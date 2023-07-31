@@ -46,6 +46,7 @@ Value::~Value()
 void Value::Dispatch(ValueDispatch* vd)
 {
 	switch(GetType()) {
+		//The HANDLE(vt) is a macro that defines a case for each value type vt. It dispatches the specific type to the corresponding Dispatch function in the ValueDispatch class. The ValueDispatch class seems to be a visitor-like interface with several overloaded Dispatch functions, each handling a different value type.
 #define HANDLE(vt) case vt: vd->Dispatch((TypeForVT<vt>::type*)this); return;
 		
 		HANDLE(VT_COLLECTION);
@@ -78,9 +79,9 @@ void Value::Dispatch(ConstValueDispatch* vd) const
 		HANDLE(VT_TRAJECTORY);
 		HANDLE(VT_POSE);
 		HANDLE(VT_POINTCLOUD);
-//		HANDLE(VT_FEATURE);
-//		HANDLE(VT_FEATURELIST);
-//		HANDLE(VT_FRAME);
+		// HANDLE(VT_FEATURE);
+		// HANDLE(VT_FEATURELIST);
+		// HANDLE(VT_FRAME);
 		HANDLE(VT_MATRIX);
 #undef HANDLE
 		case VT_UNKNOWN:

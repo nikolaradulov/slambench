@@ -3,6 +3,7 @@ import sys
 import os
 import platform
 import argparse 
+import configparser
 
 def is_wsl():
     return "Microsoft" in platform.uname().release
@@ -15,7 +16,7 @@ def print_usage():
     print("  dataset     - Create a specified dataset.")
     print("\nOptions:")
     print("  For 'run' mode:")
-    print("Usage: {} run [options] <dataset_location_in_volume> [<library1_path> ... <libraryN_path>]".format(sys.argv[0]))
+    print("Usage: {} run [options] <dataset_location_in_volume> [<library1_path> ... <libraryN_path>] -- [<slambench_arg1>, <slambench_arg2>, ...]".format(sys.argv[0]))
     print("    bench-cli         - Run a benchmark with provided arguments using the command line as interface.")
     print("    bench-gui         - Run a benchmark with provided arguments with the visualisation tool of SLAMBench.")
     print("    interactive-cli   - Run the container in interactive mode with mounts for datasets and algorithms.")
@@ -37,7 +38,7 @@ def dataset_handle(run_type, vol_name, dataset):
             sys.exit(1)
         return f"docker run --mount source={vol_name},destination=/slambench/datasets slambench/main --dataset {dataset}"
 
-def run_handle(mode, volumes, files, paths):
+def run_handle(mode, volumes, files, paths, save, extra):
     """
         The function handles the running options of the tool. 
     """
@@ -65,8 +66,13 @@ def run_handle(mode, volumes, files, paths):
         volumes.append("{}-vol".format(names[0]))
         end += "{} ".format('/deps/'+path)
 
+    if len(extra)!=0:
+        for val in extra:
+            end += f" {val}"
     print(end)
     print(volumes)
+
+   
 
     # Mount volumes in the Docker container
     for volume in volumes:
@@ -100,6 +106,20 @@ def run_handle(mode, volumes, files, paths):
     print("Starting Docker container: {}".format(container_name))
     # print("Command: {}".format(docker_run_command))
 
+    # save the config file from the provided settings
+    if save is not None: 
+        config = configparser.ConfigParser()
+        config['DEFAULT']={'Mode':mode}
+        config['DATASET']={'Volume':volume,
+                            'Path': files}
+        counter =1
+        for path in paths:
+            names = path.split('/')
+            config['ALGORITHM'+str(counter)]={'Volume': names[0],
+                                              'Implentation': path}
+        with open(save, 'w') as configfile:
+            config.write(configfile)
+
     return docker_run_command
 
 def main():
@@ -112,8 +132,8 @@ def main():
     run_parser.add_argument("-d", "--dataset",nargs=1,  type=str, help="Specify the dataset file to be used")
     run_parser.add_argument("-a","--algorithm", nargs="*", help="Specify algorithms to be used. Must be of the form <algorithm_name>/<library_name>. Refer to the wiki for more information.")
     run_parser.add_argument("-t", "--type", choices=['cli', 'gui', 'interactive-cli', 'interactive-gui'], required=True)
-    
-    
+    run_parser.add_argument("-s","--save_config",  help="Save current configuration to config file")
+    run_parser.add_argument("slamopt", nargs="*")
 
     build_parser = subparsers.add_parser("build", help="Running the tool in build mode")
     build_parser.add_argument("build_option", choices=["download", "build"], help="Download or build the container for SLAMBench.")
@@ -127,7 +147,8 @@ def main():
     
     args = parser.parse_args()
     if args.mode == "run":
-        docker_run_command = run_handle(args.type, args.dataset_volume, args.dataset, args.algorithm)
+        # get the arguments after the separator
+        docker_run_command = run_handle(args.type, args.dataset_volume, args.dataset, args.algorithm, args.save_config, args.slamopt)
     elif args.mode == "build":
         docker_run_command = build_handle(args.build_option)
     elif args.mode == "dataset": 

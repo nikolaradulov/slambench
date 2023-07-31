@@ -51,3 +51,5 @@ paper/*.tex
 # macOS
 .DS_Store
 
+#Large log
+./text_event_out.txt

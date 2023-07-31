@@ -424,7 +424,7 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
         slamfile.Sensors.AddSensor(event_sensor);
 
         if (!loadUZHFPVEventData(dirname, slamfile, event_sensor)) {
-            std::cerr << "Error while loading grey left stereo information." << std::endl;
+            std::cerr << "Error while loading event information." << std::endl;
             delete slamfile_ptr;
             return nullptr;
         }
@@ -489,7 +489,7 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
     // load IMU data
     if (imu) {
         if(!loadUZHFPVIMUData(dirname, slamfile, yaml)) {
-            std::cerr << "Error while loading gt information." << std::endl;
+            std::cerr << "Error while loading imu information." << std::endl;
             delete slamfile_ptr;
             return nullptr;
         }

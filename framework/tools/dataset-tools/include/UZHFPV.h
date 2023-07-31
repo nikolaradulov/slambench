@@ -88,5 +88,4 @@ namespace slambench {
 
   }  // namespace io
 }  // namespace slambench
-
 #endif /* FRAMEWORK_TOOLS_DATASET_TOOLS_INCLUDE_UZHFPV_H_ */

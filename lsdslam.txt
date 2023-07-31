@@ -1,0 +1,68 @@
+SLAMBench Report run started:	2023-07-26 05:19:19
+
+Properties:
+=================
+
+frame-limit: 0
+start-frame: 0
+log-file: lsdslam.txt
+input: ./datasets/ICL_NUIM/living_room_traj2_loop.slam
+load-slam-library: ./build/lib/libopen_vins-original-library.so
+dse: false
+help: false
+realtime-mode: false
+realtime-multiplier: 1
+file-output: 
+alignment-technique: new
+gui: true
+lifelong: false
+RGB-intrinsics-parameters: 0.751875,1,0.4992185,0.4989583
+Depth-intrinsics-parameters: 0.751875,1,0.4992185,0.4989583
+Depth-disparity-params: 0.0002,0
+Grey-intrinsics-parameters: 0.751875,1,0.4992185,0.4989583
+use_fej: true
+use_imu_avg: true
+use_rk4inttegration: true
+use_stereo: true
+calib_cam_extrinsics: true
+calib_cam_intrinsics: true
+calib_cam_timeoffset: true
+max_clones: 11
+max_slam: 50
+max_aruco: 1024
+num_cameras: 2
+dt_slam_delay: 5
+calib_camimu_dt: 0
+feat_representation: GLOBAL_3D
+fi_max_runs: 20
+fi_init_lamda: 0.001
+fi_min_dx: 1e-06
+fi_max_lamda: 10000000000
+fi_min_dcost: 1e-06
+fi_lam_mult: 10
+fi_min_dist: 0.25
+fi_max_dist: 40
+fi_max_baseline: 40
+fi_max_cond_number: 1000
+init_window_time: 0.75
+init_imu_thresh: 1.5
+use_klt: true
+use_aruco: false
+downsize_aruco: true
+num_pts: 400
+fast_threshold: 15
+grid_x: 5
+grid_y: 3
+min_px_dist: 10
+knn_ratio: 0.7
+up_msckf_sigma_px: 1
+up_slam_sigma_px: 1
+up_aruco_sigma_px: 1
+up_msckf_chi2_multipler: 1
+up_slam_chi2_multipler: 1
+up_aruco_chi2_multipler: 1
+max_slam_in_update: 25
+max_msckf_in_update: 999
+path_gt: 
+cam0_is_fisheye: false
+cam1_is_fisheye: false

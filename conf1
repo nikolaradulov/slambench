@@ -1,0 +1,11 @@
+[DEFAULT]
+mode = interactive-gui
+
+[DATASET]
+volume = lsdslam-vol
+path = ['living_room_traj2_loop.slam']
+
+[ALGORITHM1]
+volume = lsdslam
+implentation = lsdslam/liblsdslam-cpp-library.so
+

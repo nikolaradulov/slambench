@@ -34,12 +34,13 @@ RUN apt-get -y install \
     libgtk2.0-dev  \
     libyaml-dev \
     build-essential \
-    libyaml-cpp-dev
+    libyaml-cpp-dev 
 # download git folder
 RUN git clone https://github.com/nikolaradulov/slambench.git
 WORKDIR /slambench
 RUN apt-get install python
 COPY entry.sh /slambench
+COPY entry.py /slambench
 RUN chmod +x /slambench/entry.sh
 # COPY ./framework/tools/accuracy-tools/CMakeLists.txt /slambench/framework/tools/accuracy-tools
 #COPY ./framework/makefiles/deps.makefile /slambench/framework/makefiles
