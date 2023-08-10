@@ -1,0 +1,122 @@
+mkdir -p build/
+cd build;  Pangolin_DIR=/home/nrad/slambench/deps/pangolin/lib/cmake/Pangolin/ OpenCV_DIR=/home/nrad/slambench/deps/opencv/share/OpenCV/ brisk_DIR=/home/nrad/slambench/deps/brisk/lib/CMake/brisk// PCL_DIR=/home/nrad/slambench/deps/pcl/share/pcl-1.8/ G2O_ROOT=/home/nrad/slambench/deps/g2o/ cmake -U -Bbuild -H.  -DAPPS=""   -DCERES_DIR=/home/nrad/slambench/deps/ceres/ -DSophus_INCLUDE_DIR=/home/nrad/slambench/deps/Sophus/include -DSophus_INCLUDE_DIRS=/home/nrad/slambench/deps/Sophus/include -DGVARS_INCLUDE_DIR=/home/nrad/slambench/deps/gvars/include -DGVARS_LIBRARY=/home/nrad/slambench/deps/gvars/lib/libGVars3.so -DCVD_INCLUDE_DIR=/home/nrad/slambench/deps/cvd/include -DCVD_LIBRARY=/home/nrad/slambench/deps/cvd/lib/libcvd.so -DBRISK_INCLUDE_PATH=/home/nrad/slambench/deps/brisk/include -DEIGEN3_INCLUDE_DIR=/home/nrad/slambench/deps/eigen3/include/eigen3 -DEIGEN3_VERSION_OK=ON -DEIGEN_INCLUDE_DIR=/home/nrad/slambench/deps/eigen3/include/eigen3 -DEIGEN_VERSION_OK=ON -DTOON_INCLUDE_PATH=/home/nrad/slambench/deps/toon/include -DSUITE_SPARSE_ROOT=/home/nrad/slambench/deps/suitesparse -DFreeImage_INCLUDE_PATH="/home/nrad/slambench/deps/freeimage/include" -DFreeImage_DYNAMIC_LIBRARY="/home/nrad/slambench/deps/freeimage/lib/libfreeimage.so" -D"CMAKE_MODULE_PATH:PATH=/home/nrad/slambench/cmake_modules" ..
+-- CMAKE_MODULE_PATH=/home/nrad/slambench/cmake_modules
+-- Using flag -std=c++2a
+-- Could NOT find PAPI (missing: PAPI_LIBRARY SENSORS_LIBRARY PAPI_INCLUDE_DIRS) 
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.54") found components: program_options regex 
+-- Found Boost: /usr/include (found suitable version "1.71.0", minimum required is "1.40.0") found components: system filesystem thread date_time iostreams serialization chrono atomic regex 
+-- Checking for module 'libopenni'
+--   No package 'libopenni' found
+-- Could NOT find openni (missing: OPENNI_LIBRARY OPENNI_INCLUDE_DIRS) 
+-- Checking for module 'libopenni2'
+--   No package 'libopenni2' found
+-- Could NOT find OpenNI2 (missing: OPENNI2_LIBRARY OPENNI2_INCLUDE_DIRS) 
+-- Could NOT find ensenso (missing: ENSENSO_LIBRARY ENSENSO_INCLUDE_DIR) 
+-- Could NOT find DAVIDSDK (missing: DAVIDSDK_LIBRARY DAVIDSDK_INCLUDE_DIR) 
+-- Could NOT find DSSDK (missing: _DSSDK_LIBRARIES) 
+-- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) 
+-- looking for PCL_COMMON
+-- looking for PCL_OCTREE
+-- looking for PCL_IO
+-- looking for PCL_KDTREE
+-- looking for PCL_SEARCH
+-- looking for PCL_SAMPLE_CONSENSUS
+-- looking for PCL_FILTERS
+-- looking for PCL_2D
+-- looking for PCL_GEOMETRY
+-- looking for PCL_FEATURES
+-- looking for PCL_ML
+-- looking for PCL_SURFACE
+-- looking for PCL_REGISTRATION
+-- looking for PCL_KEYPOINTS
+-- Could NOT find PAPI (missing: PAPI_LIBRARY SENSORS_LIBRARY PAPI_INCLUDE_DIRS) 
+-- Could NOT find OpenCL (missing: OPENCL_LIBRARY) 
+-- Could NOT find CUDA (missing: CUDA_NVCC_EXECUTABLE CUDA_CUDART_LIBRARY) 
+-- Could NOT find OpenNI (missing: OPENNI_LIBRARY OPENNI_INCLUDE_DIR) 
+-- SLAMBENCH WILL NOT USE OPENNI 1.2 !!
+-- NOT Found OpenNI2 Library: OPENNI2_LIBRARY-NOTFOUND
+-- NOT Found OpenNI2 includes: OPENNI2_INCLUDE_PATH-NOTFOUND
+-- NOT FOUND: OpenNI2
+-- SLAMBENCH WILL NOT USE OPENNI 2.X !!
+-- No realsense
+-- Checking for module 'libopenni'
+--   No package 'libopenni' found
+-- Could NOT find openni (missing: OPENNI_LIBRARY OPENNI_INCLUDE_DIRS) 
+-- Checking for module 'libopenni2'
+--   No package 'libopenni2' found
+-- Could NOT find OpenNI2 (missing: OPENNI2_LIBRARY OPENNI2_INCLUDE_DIRS) 
+-- Could NOT find ensenso (missing: ENSENSO_LIBRARY ENSENSO_INCLUDE_DIR) 
+-- Could NOT find DAVIDSDK (missing: DAVIDSDK_LIBRARY DAVIDSDK_INCLUDE_DIR) 
+-- Could NOT find DSSDK (missing: _DSSDK_LIBRARIES) 
+-- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) 
+-- looking for PCL_COMMON
+-- looking for PCL_OCTREE
+-- looking for PCL_IO
+-- looking for PCL_KDTREE
+-- looking for PCL_SEARCH
+-- looking for PCL_SAMPLE_CONSENSUS
+-- looking for PCL_FILTERS
+-- looking for PCL_2D
+-- looking for PCL_GEOMETRY
+-- looking for PCL_FEATURES
+-- looking for PCL_ML
+-- looking for PCL_SURFACE
+-- looking for PCL_REGISTRATION
+-- looking for PCL_KEYPOINTS
+-- VTK FIX:Previous properties=_FILE_OFFSET_BITS=64
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.54") found components: system filesystem program_options regex 
+-- Found LIBYAML Library: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
+-- Found LIBYAML includes: /usr/include/yaml-cpp
+-- Found LIBYAML: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
+-- [1;31mrosbag_storage dependency for TUM rosbag datasets not found[m
+-- [1;31mDependencies for TUM rosbag datasets not found - dataset skipped[m
+-- Could NOT find OpenCL (missing: OPENCL_LIBRARY) 
+-- OpenCL wrapper cannot be build, OpenCL not found.
+-- Select only  applications...
+-- Application loop over 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/nrad/slambench/build
+make -C build 
+make[1]: Entering directory '/home/nrad/slambench/build'
+make[2]: Entering directory '/home/nrad/slambench/build'
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[  6%] Built target slambench-utils
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 42%] Built target slambench-io
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 65%] Built target slambench-metrics
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 67%] Built target slambench-c-wrapper
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 69%] Built target slambench-ui-pangolin
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 71%] Built target pointcloud_aligner
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 73%] Built target io-readply
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 75%] Built target OpenLORIS
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 77%] Built target io-inspect-file
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 79%] Built target UZHFPV
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+[ 81%] Built target TUM
+make[3]: Entering directory '/home/nrad/slambench/build'
+make[3]: Leaving directory '/home/nrad/slambench/build'
+make[3]: Entering directory '/home/nrad/slambench/build'
+[ 82%] Building CXX object framework/tools/dataset-tools/CMakeFiles/ICLNUIM.dir/ICLNUIM.cpp.o
+make[3]: Leaving directory '/home/nrad/slambench/build'
+make[2]: Leaving directory '/home/nrad/slambench/build'
+make[1]: Leaving directory '/home/nrad/slambench/build'

@@ -35,6 +35,11 @@
 
 using namespace slambench::io;
 
+
+/**
+    Loads grey images from dataset. On stereo mode the images are properly loaded but ot on 
+    mono for events. Output looks funny
+*/
 bool loadUZHFPVGreyData(const std::string& dirname,
                         const std::string& filename,
                         const std::string& sensor_name_yaml,
@@ -354,7 +359,7 @@ bool loadUZHFPVEventData(const std::string &dirname,
         // loop from current position until frame found with time difference greater than framerate
         for(i = current_index; i < events.size(); ++i) {
             auto delta = events[i].ts - current_ts;
-            if (delta > std::chrono::milliseconds{20}) break;
+            if (delta > std::chrono::milliseconds{10}) break;
         }
 
         size_t count = (i - 1) - current_index;
@@ -449,18 +454,18 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
 
     } else {
         // davis grey camera
-        auto grey_sensor = GreySensorBuilder()
-                .name("Grey")
-                .size(346, 260)
-                .pose(pose)
-                .intrinsics(davis_intrinsics)
-                .distortion(CameraSensor::distortion_type_t::Equidistant, davis_distortion)
-                .rate(50) // from paper
-                .index(slamfile.Sensors.size())
-                .build();
+        // auto grey_sensor = GreySensorBuilder()
+        //         .name("Grey")
+        //         .size(346, 260)
+        //         .pose(pose)
+        //         .intrinsics(davis_intrinsics)
+        //         .distortion(CameraSensor::distortion_type_t::Equidistant, davis_distortion)
+        //         .rate(50) // from paper
+        //         .index(slamfile.Sensors.size())
+        //         .build();
 
-        slamfile.Sensors.AddSensor(grey_sensor);
-
+        // slamfile.Sensors.AddSensor(grey_sensor);
+        
         if (!loadUZHFPVGreyData(dirname, "images.txt", "cam0", slamfile, yaml)) {
             std::cerr << "Error while loading Grey information." << std::endl;
             delete slamfile_ptr;
