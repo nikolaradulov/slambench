@@ -45,6 +45,7 @@ bool loadUZHFPVGreyData(const std::string& dirname,
                         const std::string& sensor_name_yaml,
                         SLAMFile &file,
                         const YAML::Node& yaml) {
+
     auto width = yaml[sensor_name_yaml]["resolution"][0].as<int>();
     auto height = yaml[sensor_name_yaml]["resolution"][1].as<int>();
     slambench::io::CameraSensor::intrinsics_t intrinsics;
@@ -65,6 +66,11 @@ bool loadUZHFPVGreyData(const std::string& dirname,
             yaml[sensor_name_yaml]["T_cam_imu"][0][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][1][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][2][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][3][3].as<float>();
 
     auto rate = yaml["cam1"] ? 30 : 50; // if cam1 exists, it's Snapdragon (30fps), else it's Davis (50fps).
+    
+    // a sepaerate grey sensro for the event camera is made outside of the function
+    // but never passed inside. Probably would be a good idea to have a different 
+    // loader for davis 
+
     auto grey_sensor = GreySensorBuilder()
             .name("Grey " + sensor_name_yaml)
             .size(width, height)
@@ -433,6 +439,7 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
             delete slamfile_ptr;
             return nullptr;
         }
+        std::cout<<"Events written successfully\n\n";
     }
 
     // load camera data
@@ -453,7 +460,8 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
         }
 
     } else {
-        // davis grey camera
+        // davis grey camera. never used inside the loader
+        // all the necessary data seems to be added inside the loader so this is useless?
         // auto grey_sensor = GreySensorBuilder()
         //         .name("Grey")
         //         .size(346, 260)
@@ -465,7 +473,7 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
         //         .build();
 
         // slamfile.Sensors.AddSensor(grey_sensor);
-        
+        std::cout<<"Loading mono data\n";
         if (!loadUZHFPVGreyData(dirname, "images.txt", "cam0", slamfile, yaml)) {
             std::cerr << "Error while loading Grey information." << std::endl;
             delete slamfile_ptr;
