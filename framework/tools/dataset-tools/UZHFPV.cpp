@@ -329,6 +329,7 @@ bool loadUZHFPVEventData(const std::string &dirname,
 
     std::vector<Event> events = {};
 
+    // read events from dataset in memory
     while (std::getline(infile, line)) {
         if (line.empty()) {
             continue;
@@ -352,37 +353,19 @@ bool loadUZHFPVEventData(const std::string &dirname,
         }
     }
 
-    size_t current_index = 0, i;
-    auto current_ts = events[current_index].ts;
+    // save the entire events as one frame
+    size_t size = events.size()*sizeof(Event);
+    auto event_frame = new SLAMInMemoryFrame();
+    event_frame->FrameSensor = event_sensor;
+    event_frame->Timestamp = TimeStamp{0,0};
+    event_frame->SetVariableSize(size);
+    event_frame->Data = malloc(size);
+    memcpy(event_frame->Data, &events[0], size);
 
-    // loop runs once per SLAM Frame
-    while(current_index < events.size() - 1) {
+    file.AddFrame(event_frame);
 
-        auto event_frame = new SLAMInMemoryFrame();
-        event_frame->FrameSensor = event_sensor;
-        event_frame->Timestamp = current_ts;
 
-        // loop from current position until frame found with time difference greater than framerate
-        for(i = current_index; i < events.size(); ++i) {
-            auto delta = events[i].ts - current_ts;
-            if (delta > std::chrono::milliseconds{10}) break;
-        }
-
-        size_t count = (i - 1) - current_index;
-        size_t variable_size = sizeof(Event) * count;
-
-        // copy from and to points into malloc'd memory
-        event_frame->SetVariableSize(variable_size);
-        event_frame->Data = malloc(variable_size);
-        memcpy(event_frame->Data, &events[current_index], variable_size);
-
-        file.AddFrame(event_frame);
-
-        // set index to beginning of next frame
-        current_index = i;
-        current_ts = events[current_index].ts;
-    }
-
+    
     return true;
 }
 
@@ -460,29 +443,18 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
         }
 
     } else {
-        // davis grey camera. never used inside the loader
-        // all the necessary data seems to be added inside the loader so this is useless?
-        // auto grey_sensor = GreySensorBuilder()
-        //         .name("Grey")
-        //         .size(346, 260)
-        //         .pose(pose)
-        //         .intrinsics(davis_intrinsics)
-        //         .distortion(CameraSensor::distortion_type_t::Equidistant, davis_distortion)
-        //         .rate(50) // from paper
-        //         .index(slamfile.Sensors.size())
-        //         .build();
-
-        // slamfile.Sensors.AddSensor(grey_sensor);
         std::cout<<"Loading mono data\n";
         if (!loadUZHFPVGreyData(dirname, "images.txt", "cam0", slamfile, yaml)) {
             std::cerr << "Error while loading Grey information." << std::endl;
             delete slamfile_ptr;
             return nullptr;
         }
+        std::cout<<"Done with mono data\n\n";
     }
 
     // load GT
     if (gt) {
+        std::cout<<"Writing gt\n\n";
         auto gt_sensor = GTSensorBuilder()
                 .name("GroundTruth")
                 .description("GroundTruthSensor")
@@ -496,6 +468,7 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
             delete slamfile_ptr;
             return nullptr;
         }
+        std::cout<<"Done with gt\n\n";
     }
 
     yaml = YAML::LoadFile(dirname + "/imu.yaml");
