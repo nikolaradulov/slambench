@@ -52,6 +52,39 @@
 #include <boost/filesystem/operations.hpp>
 #include "ResultWriter.h"
 
+void SLAMBenchConfiguration::pickEventFrame(){
+    // size_t current_index = 0, i;
+    // auto current_ts = events[current_index].ts;
+    // // loop runs once per SLAM Frame
+    // while(current_index < events.size() - 1) {
+
+    //     auto event_frame = new SLAMInMemoryFrame();
+    //     event_frame->FrameSensor = event_sensor;
+    //     event_frame->Timestamp = current_ts;
+
+    //     // loop from current position until frame found with time difference greater than framerate
+    //     for(i = current_index; i < events.size(); ++i) {
+    //         auto delta = events[i].ts - current_ts;
+    //         if (delta > std::chrono::milliseconds{20}) break;
+    //     }
+
+    //     size_t count = (i - 1) - current_index;
+    //     size_t variable_size = sizeof(Event) * count;
+
+    //     // copy from and to points into malloc'd memory
+    //     event_frame->SetVariableSize(variable_size);
+    //     event_frame->Data = malloc(variable_size);
+    //     memcpy(event_frame->Data, &events[current_index], variable_size);
+
+    //     file.AddFrame(event_frame);
+
+    //     // set index to beginning of next frame
+    //     current_index = i;
+    //     current_ts = events[current_index].ts;
+    // }
+    std::cout<<"This is a function\n";
+}
+
 SLAMBenchConfiguration::SLAMBenchConfiguration(void (*custom_input_callback)(Parameter*, ParameterComponent*),void (*libs_callback)(Parameter*, ParameterComponent*)) :
         ParameterComponent("") {
 
