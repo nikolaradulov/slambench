@@ -19,18 +19,30 @@
 #include <utility>
 #include <vector>
 #include <Eigen/Core>
+#include <mutex>
+#include<io/Event.h>
 
 class SLAMBenchLibraryHelper : public ParameterComponent {
 
 private :
+    mutable std::mutex range_lock_;
+    int begin_idx_=0;
+    int end_idx_=-1;
 	std::string                        identifier_;
 	std::string                        library_name_;
     slambench::metrics::MetricManager  metric_manager_;
     std::ostream&				       log_stream_;
     slambench::io::InputInterface*     input_interface_;
 	slambench::outputs::OutputManager  output_manager_;
+    
 
 public:
+    std::vector<slambench::io::Event>* events_;
+    // void * events_;
+    // some event based algorithms will use dynamic event frame assignment. 
+    // for those we split the frames as they run. Otherwise frame split is done ar init time
+    bool event_=false;
+    bool dynamic_event_frames_;
 	bool    (* c_sb_new_slam_configuration)(SLAMBenchLibraryHelper*);
     bool    (* c_sb_init_slam_system)(SLAMBenchLibraryHelper*);
     bool    (* c_sb_update_frame)(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*);
@@ -38,7 +50,6 @@ public:
     bool    (* c_sb_clean_slam_system)();
     bool    (* c_sb_update_outputs)(SLAMBenchLibraryHelper*, const slambench::TimeStamp *ts);
     bool    (* c_sb_relocalize)(SLAMBenchLibraryHelper* );
-
     SLAMBenchLibraryHelper(const std::string& id,
                            std::string lib,
                            std::ostream& l,
@@ -56,7 +67,12 @@ public:
             c_sb_update_outputs(nullptr),
             c_sb_relocalize(nullptr)
 	{}
-
+    inline bool IsEventAlg(){return event_;}
+    inline std::mutex& GetMutex() {return range_lock_;}
+    inline int GetBeginIndex(){return begin_idx_;}
+    inline int GetEndIndex(){return end_idx_;}
+    inline void SetEndIndex(int index){end_idx_ =  index;}
+    inline void SetBeginIndex(int index){begin_idx_ = index;}
     inline const std::string& GetIdentifier() const {return identifier_;}
     inline const std::string& GetLibraryName() const {return library_name_;}
     inline std::ostream& GetLogStream() {return log_stream_;}

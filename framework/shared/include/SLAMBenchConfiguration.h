@@ -28,6 +28,9 @@
 #include <io/InputInterface.h>
 #include <dlfcn.h>
 #include <io/InputInterfaceManager.h>
+#include <io/sensor/EventCameraSensor.h>
+#include <io/SLAMFrame.h>
+#include <io/Event.h>
 
 #define LOAD_FUNC2HELPER(handle,lib,f)     *(void**)(& lib->f) = dlsym(handle,#f); const char *dlsym_error_##lib##f = dlerror(); if (dlsym_error_##lib##f) {std::cerr << "Cannot load symbol " << #f << dlsym_error_##lib##f << std::endl; dlclose(handle); exit(1);}
 
@@ -58,12 +61,13 @@ private:
     std::vector<slambench::outputs::AlignmentOutput*> alignments_;
     std::string alignment_technique_ = "umeyama";
     std::string output_filename_;
-
     std::vector<std::string> input_filenames_;
     slambench::ParameterManager param_manager_;
     slambench::outputs::OutputManager ground_truth_;
-
+    slambench::io::Sensor * event_idf_;
     std::vector<std::function<void()>> frame_callbacks_;
+    //slambench::io::Event * event_stream_;
+    std::vector<slambench::io::Event> event_stream_;
     double realtime_mult_;
     int current_input_id_ = 0;
     unsigned int frame_limit_;
@@ -90,6 +94,8 @@ public:
      * the sensor collection are registered as GT outputs, and all frames
      * within the collection are registered as GT output values.
      */
+    void LoadEvents();
+    slambench::io::SLAMFrame * pickEventFrame(SLAMBenchLibraryHelper * lib);
     void InitGroundtruth(bool with_point_cloud = false);
     void InitAlgorithms();
     void InitAlignment();
@@ -98,6 +104,7 @@ public:
     void ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui);
     void AddSLAMLibrary(const std::string& so_file, const std::string &id);
     bool LoadNextInputInterface();
+
     inline std::ostream& GetLogStream() {
         if (!log_stream_)
             UpdateLogStream();

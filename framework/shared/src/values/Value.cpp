@@ -110,7 +110,29 @@ FrameValue::FrameValue(uint32_t width, uint32_t height, slambench::io::pixelform
 	auto depth = slambench::io::pixelformat::GetPixelSize(pxl_format_);
 	
 	size_t datasize = width * height * depth;
+	datasize_ = datasize;
 	data_.resize(datasize);
+}
+
+EventFrameValue :: EventFrameValue(uint32_t width, uint32_t height, std::vector<slambench::io::Event>* events, int start, int end):FrameValue(width, height, slambench::io::pixelformat::G_I_8)
+{
+	static Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> image;
+	image.resize(width,height);
+	image.fill(128);
+	for(int i=start; i<=end; i++){
+		//outfile<<(*(lib->events_))[i]<<"\n";
+		//int location = event[i].x+event[i].y*event_sensor->Height;
+		if((*(events))[i].polarity){
+			image((*(events))[i].y, (*(events))[i].x)=0;
+			//image_raw[location]=0;  // Set black for ON events and white for OFF events
+		}else{
+			image((*(events))[i].y, (*(events))[i].x)=255;
+			//image_raw[location]=255;
+		}
+		
+	}
+	// stolen from the FrameValue constructor
+	memcpy(data_.data(), (void*)(image.data()), this->GetDatasize());
 }
 
 ValueCollectionValue::~ValueCollectionValue() {

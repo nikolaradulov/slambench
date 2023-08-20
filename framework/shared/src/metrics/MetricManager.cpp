@@ -86,18 +86,22 @@ void MetricManager::BeginPhase(Phase* phase)
 
 void MetricManager::EndFrame()
 {
+    
     for(auto &i : frame_metrics_ ) {
         i->MeasureEnd(&frame_phase_);
     }
-
+    // std::cout<<"end measurement done\n";
     auto &frame = *GetFrame(frame_counter_);
+    // std::cout<<"ob tained metric\n";
     auto &frame_data = frame.GetFrameData();
+    // std::cout<<"Obtained frame data\n";
     for(auto &i : frame_metrics_) {
         frame_data.insert({&*i, i->GetValue(&frame_phase_)});
         if (!strcmp(duration_metric_typeid_, typeid(*i).name())) {
             frame_phase_duration_.push_back(dynamic_cast<slambench::values::TypedValue<double>*>(frame_data[&*i])->GetValue());
         }
     }
+    // std::cout<<"The for worjked\n";
     // yeaaaahhhhh
     frame.GetPhaseData(&frame_phase_) = frame_data;
 

@@ -50,7 +50,13 @@ uint32_t SLAMFrame::GetVariableSize() const
 	return size_if_variable_sized_;
 }
 
+void * SLAMEventFrame::GetData(){
+	return indices;
+}
 
+void SLAMEventFrame::FreeData(){
+	delete indices;
+}
 void *SLAMInMemoryFrame::GetData() {
 	return Data;
 }

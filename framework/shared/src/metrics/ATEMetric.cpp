@@ -44,8 +44,10 @@ void ATEMetric::MeasureStart(Phase* phase)
 
 void ATEMetric::MeasureEnd(Phase* phase)
 {
+	// std::cout<<"Try ATEmetric\n";
 	(void)phase;
 	latest_trajectory_ = trajectory_->GetAll();
+	// std::cout<<"ATE metric was successfull\n";
 }
 
 Value *ATEMetric::GetValue(Phase* phase)

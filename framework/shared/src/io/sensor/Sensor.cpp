@@ -38,6 +38,10 @@ void Sensor::CopyPose(const Sensor* other) {
 	CopyPose(other->Pose);
 }
 
+bool Sensor::IsEvent() const{
+	return (this->GetType() == "EventCamera");
+}
+
 bool Sensor::IsGroundTruth() const
 {
 	return SensorDatabase::Singleton()->Get(GetType()).IsGroundTruth();

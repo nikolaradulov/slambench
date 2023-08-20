@@ -17,6 +17,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <io/Event.h>
 
 #include <Eigen/Eigen>
 
@@ -42,6 +43,7 @@ namespace slambench {
 			VT_FEATURE, // A tracked feature
 			VT_FEATURELIST,
 			VT_FRAME,
+			VT_EVENT, // for outputing events
 			VT_MATRIX //Can represent an arbitrary matrix
 		};
 
@@ -61,6 +63,7 @@ namespace slambench {
 			case VT_FEATURELIST : return "VT_FEATURELIST ";
 			case VT_FRAME       : return "VT_FRAME       ";
 			case VT_MATRIX      : return "VT_MATRIX      ";
+			case VT_EVENT		: return "VT_EVENT       ";
 			case VT_UNKNOWN     :
 			default             : return "VT_UNKNOWN     ";
 
@@ -327,11 +330,17 @@ namespace slambench {
 			uint32_t GetWidth() const { return width_; }
 			uint32_t GetHeight() const { return height_; }
 			slambench::io::pixelformat::EPixelFormat GetFormat() const { return pxl_format_; }
-
-		private:
-			uint32_t width_, height_;
-			slambench::io::pixelformat::EPixelFormat pxl_format_;
 			std::vector<unsigned char> data_;
+			inline uint32_t GetDatasize(){return datasize_;}
+		private:
+			uint32_t width_, height_, datasize_;
+			slambench::io::pixelformat::EPixelFormat pxl_format_;
+			
+		};
+
+		class EventFrameValue : public FrameValue{
+		public:
+			EventFrameValue(uint32_t width, uint32_t height, std::vector<slambench::io::Event>* events, int start, int end);
 		};
 
 		class FeatureValue : public Value {

@@ -45,6 +45,7 @@ namespace slambench {
 			
 			bool IsVariableSize() const;
 			bool IsGroundTruth() const;
+			bool IsEvent() const;
 			
 		private:
 			const sensor_name_t sensor_name_;

@@ -54,7 +54,13 @@ namespace slambench {
 		private:
 			uint32_t size_if_variable_sized_;
 		};
-		
+		class SLAMEventFrame : public SLAMFrame{
+			public:
+				std::pair<int,int> * indices;
+
+				void *GetData() override;
+				void FreeData() override;
+		};
 		class SLAMInMemoryFrame : public SLAMFrame {
 		public:
 			void *Data;

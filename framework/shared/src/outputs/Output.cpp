@@ -265,6 +265,7 @@ void AlignedTrajectoryOutput::Recalculate()
 		Eigen::Matrix4f transformed_pose = latest_alignment * pose;
 
 		t->push_back(point.first, values::PoseValue(transformed_pose));
+		std::cout<<"Push_back in  AlignedTrajectoryOutput::Recalculate() succeeds\n";
 	}
 
 	auto new_trajectory = new values::TrajectoryValue(*t);

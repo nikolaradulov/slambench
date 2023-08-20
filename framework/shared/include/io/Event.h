@@ -24,10 +24,10 @@ namespace slambench {
       Event(TimeStamp ts, uint16_t x, uint16_t y, bool polarity) : ts(ts), x(x), y(y), polarity(polarity) {}
     };
 
-    std::ostream& operator << (std::ostream &out, const Event &e) {
-      out << e.ts.S << "." << e.ts.Ns << " = " << e.x << " " << e.y << " " << e.polarity;
+    inline std::ostream& operator << (std::ostream &out, const Event &e) {
+       out << e.ts.S << "." << e.ts.Ns << " = " << e.x << " " << e.y << " " << e.polarity;
       return out;
-    }
+    };
   }
 }
 
