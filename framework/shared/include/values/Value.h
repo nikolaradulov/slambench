@@ -341,6 +341,9 @@ namespace slambench {
 		class EventFrameValue : public FrameValue{
 		public:
 			EventFrameValue(uint32_t width, uint32_t height, std::vector<slambench::io::Event>* events, int start, int end);
+		
+		private:
+			Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> image;
 		};
 
 		class FeatureValue : public Value {

@@ -116,7 +116,6 @@ FrameValue::FrameValue(uint32_t width, uint32_t height, slambench::io::pixelform
 
 EventFrameValue :: EventFrameValue(uint32_t width, uint32_t height, std::vector<slambench::io::Event>* events, int start, int end):FrameValue(width, height, slambench::io::pixelformat::G_I_8)
 {
-	static Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> image;
 	image.resize(width,height);
 	image.fill(128);
 	for(int i=start; i<=end; i++){
@@ -133,6 +132,7 @@ EventFrameValue :: EventFrameValue(uint32_t width, uint32_t height, std::vector<
 	}
 	// stolen from the FrameValue constructor
 	memcpy(data_.data(), (void*)(image.data()), this->GetDatasize());
+
 }
 
 ValueCollectionValue::~ValueCollectionValue() {

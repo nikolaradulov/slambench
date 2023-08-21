@@ -24,7 +24,9 @@ namespace slambench {
 		uint32_t S;
 		uint32_t Ns;
 		
+		
 		uint64_t ToNs() const { return (S * 1000000000ULL) + Ns; }
+		int64_t ToMs() const{ return ToNs()/1000;}
 		double ToS() const { return ToNs() / 1000000000.0; }
 		
 		static TimeStamp get(uint32_t S, uint32_t Ns) {

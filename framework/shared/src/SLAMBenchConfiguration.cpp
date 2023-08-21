@@ -128,7 +128,7 @@ slambench::io::SLAMFrame * SLAMBenchConfiguration::pickEventFrame(SLAMBenchLibra
     event_frame->FrameSensor = event_idf_;
     event_frame->Timestamp = current_ts;
     event_frame->indices = new std::pair<int,int>(begin_idx, end_idx);
-    
+    std::cout<<"Created frame with "<<event_frame->indices->first<<' '<<event_frame->indices->second<<' '<<event_frame->Timestamp<<'\n';
     return event_frame;
 }
 
@@ -213,7 +213,7 @@ void SLAMBenchConfiguration::AddSLAMLibrary(const std::string& so_file, const st
 void SLAMBenchConfiguration::InitGroundtruth(bool with_point_cloud) {
     if(initialised_)
         return;
-    // LoadEvents();
+    LoadEvents();
     auto interface = input_interface_manager_->GetCurrentInputInterface();
     if(interface != nullptr) {
         auto gt_buffering_stream = new slambench::io::GTBufferingFrameStream(interface->GetFrames());
@@ -335,32 +335,33 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         // ----------------- [LOAD EVENTS ALTERNATIVE] -----------------
         // first frame should always be event frame
         // 
-        if(current_frame->FrameSensor->IsEvent()){
+        // if(current_frame->FrameSensor->IsEvent()){
             
-            std::cout<<"it was the first frame\n";
-            int elements  = current_frame->GetVariableSize()/sizeof(slambench::io::Event);
-            slambench::io::Event * events = static_cast<slambench::io::Event*>(current_frame->GetData());
-            for(int i=0; i<elements; i++){
-                event_stream_.push_back(std::move(events[i]));
-            }
-            // save the sensor that was used
-            event_idf_ = current_frame->FrameSensor;
-            current_frame->FreeData();
-            // get next one
-            current_frame = input_interface_manager_->GetNextFrame();
-            std::cout<<"event no 5 is "<<event_stream_[4]<<'\n';
-            for (auto &lib : slam_libs_){
-                lib->events_=&event_stream_;   
-            }
-        }   
+        //     std::cout<<"it was the first frame\n";
+        //     int elements  = current_frame->GetVariableSize()/sizeof(slambench::io::Event);
+        //     slambench::io::Event * events = static_cast<slambench::io::Event*>(current_frame->GetData());
+        //     for(int i=0; i<elements; i++){
+        //         event_stream_.push_back(std::move(events[i]));
+        //     }
+        //     // save the sensor that was used
+        //     event_idf_ = current_frame->FrameSensor;
+        //     current_frame->FreeData();
+        //     // get next one
+        //     current_frame = input_interface_manager_->GetNextFrame();
+        //     std::cout<<"event no 5 is "<<event_stream_[4]<<'\n';
+        //     for (auto &lib : slam_libs_){
+        //         lib->events_=&event_stream_;   
+        //     }
+        // }   
         //---------------------------------------------------------------
         
 
         while (current_frame != nullptr) {
             event_picked = false;
             frame_count++;
-            std::cout<<frame_count<<'\n';
+            
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
+                std::cout<<frame_count<<'\n';
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********
                 for (size_t i = 0; i < slam_libs_.size(); i++) {
                     auto lib = slam_libs_[i];
