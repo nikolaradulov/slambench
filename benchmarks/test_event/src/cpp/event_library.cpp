@@ -125,10 +125,17 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
         event_frames++;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
         // free the data from the frame so you don;t run out of memory
         outfile<<"EXIT FRAME\n";
-        s->FreeData();
         select_frame(lib);
         // /exit(1);
         // std::cout<<"got frame with "<<begin<<' '<<end<<' '<<last_frame_timestamp<<'\n';
+        event=true;
+        // if(grey&&event){
+        //     grey=false;
+        //     event =false;
+        //     return true;
+        // }
+
+        s->FreeData();
         return true;
     }
    
@@ -136,11 +143,16 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
     if(s->FrameSensor==grey_sensor){
         memcpy(grey_raw.data(), s->GetData(), s->GetSize());
         latest_frame = s->Timestamp;
-        s->FreeData();
+        // s->FreeData();
         grey=true;
         // forces the algorithm to need one of each to work
-    
+        // if(grey&&event){
+        //     grey=false;
+        //     event =false;
+        //     return true;
+        // }
         return true;
+            
     }
     // std::cout<<"Mistery frame received "<<s->FrameSensor->GetType()<<" \n";    
     return false;	
@@ -169,7 +181,7 @@ bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::T
     // pass the identy matrix as pose , should be 0,0,0
     if(pose_out->IsActive()) {
         std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
-	    pose_out->AddPoint(last_frame_timestamp, new slambench::values::PoseValue(ident_matrix));
+	    pose_out->AddPoint(*timestamp, new slambench::values::PoseValue(ident_matrix));
     }
     // std::cout<<"FINISHED: sb_update_outputs\n";
     // we need to output the events. Could do a matrix that stays constantly in memory and then we use frames
@@ -206,5 +218,9 @@ bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::T
     // if that implementation works we then employ something simillar and creat a special output class for events, where we have the matrix
     // globally stored and then it's just updated as events come in 
     std::cout<<"Done update outputs\n";
+    return true;
+}
+
+bool sb_relocalize(){
     return true;
 }

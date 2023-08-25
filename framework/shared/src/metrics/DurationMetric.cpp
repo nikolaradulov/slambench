@@ -28,13 +28,15 @@ DurationMetric::DurationMetric() : Metric("Duration")
 }
 
 void DurationMetric::MeasureStart(Phase* phase)
-{
+{	
+	//makes sure the phase is not already there
 	assert(!phase_start_.count(phase));
 	phase_start_[phase] = getTime();
 }
 
 void DurationMetric::MeasureEnd(Phase* phase)
 {
+	// expects the phase to be there but it isn't
 	assert(phase_start_.count(phase));
 	assert(!phase_end_.count(phase));
 	

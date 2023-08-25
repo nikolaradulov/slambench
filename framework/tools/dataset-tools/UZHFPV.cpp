@@ -336,8 +336,8 @@ bool loadUZHFPVEventData(const std::string &dirname,
         } else if (boost::regex_match(line, match, comment)) {
             continue;
         } else if (boost::regex_match(line, match, events_line)) {
-
-            uint32_t timestampS = std::stoi(match[0]);
+            // std::cout<<' '<<match[1]<<' '<<match[2]<<' '<<match[3]<<'\n';
+            uint32_t timestampS = std::stoi(match[1]); 
             uint32_t timestampNs = std::stod(match[2]) * std::pow(10, 9 - match[2].length());
 
             auto timestamp = TimeStamp{timestampS, timestampNs};

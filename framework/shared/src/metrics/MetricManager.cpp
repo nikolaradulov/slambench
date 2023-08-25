@@ -86,7 +86,7 @@ void MetricManager::BeginPhase(Phase* phase)
 
 void MetricManager::EndFrame()
 {
-    
+    // std::cout<<"DEBUG: trying measurement end in MetricManager::EndFrame\n";    
     for(auto &i : frame_metrics_ ) {
         i->MeasureEnd(&frame_phase_);
     }

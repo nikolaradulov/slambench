@@ -59,7 +59,10 @@ void SLAMBenchConfiguration::LoadEvents(){
    int count =0;
    while(buffer->HasNextFrame()){
         auto cur_frame = buffer->GetNextFrame();
-        //std::cout<<"Managed to retrieve frame number "<<count<<'\n';
+        if(cur_frame==nullptr)
+            break;
+        // std::cout<<"Managed to retrieve frame number "<<count;
+        // std::cout<<cur_frame<<' ';
         if(cur_frame->FrameSensor->IsEvent()){
             int elements  = cur_frame->GetVariableSize()/sizeof(slambench::io::Event);
             slambench::io::Event * events = static_cast<slambench::io::Event*>(cur_frame->GetData());
@@ -72,10 +75,12 @@ void SLAMBenchConfiguration::LoadEvents(){
             
             break;
         }
+        // std::cout<<" - not event"<<'\n';
         count++;
    }
 
-    delete buffer;
+    std::cout<<event_stream_.size()<<'\n';
+    // delete buffer;
   
 }
 
@@ -128,7 +133,7 @@ slambench::io::SLAMFrame * SLAMBenchConfiguration::pickEventFrame(SLAMBenchLibra
     event_frame->FrameSensor = event_idf_;
     event_frame->Timestamp = current_ts;
     event_frame->indices = new std::pair<int,int>(begin_idx, end_idx);
-    std::cout<<"Created frame with "<<event_frame->indices->first<<' '<<event_frame->indices->second<<' '<<event_frame->Timestamp<<'\n';
+    // std::cout<<"Created frame with "<<event_frame->indices->first<<' '<<event_frame->indices->second<<' '<<event_frame->Timestamp<<'\n';
     return event_frame;
 }
 
@@ -213,12 +218,13 @@ void SLAMBenchConfiguration::AddSLAMLibrary(const std::string& so_file, const st
 void SLAMBenchConfiguration::InitGroundtruth(bool with_point_cloud) {
     if(initialised_)
         return;
-    LoadEvents();
+    // LoadEvents();
     auto interface = input_interface_manager_->GetCurrentInputInterface();
     if(interface != nullptr) {
+        std::cout<<typeid(interface->GetFrames()).name()<<'\n';
         auto gt_buffering_stream = new slambench::io::GTBufferingFrameStream(interface->GetFrames());
         input_interface_manager_->input_stream_ = gt_buffering_stream;
-
+        
         if(realtime_mode_) {
             std::cerr << "Real time mode enabled" << std::endl;
             input_interface_manager_->input_stream_ = new slambench::io::RealTimeFrameStream(input_interface_manager_->input_stream_, realtime_mult_, true);
@@ -239,6 +245,32 @@ void SLAMBenchConfiguration::InitGroundtruth(bool with_point_cloud) {
         gt_available_ = true;
     }
 
+    // LoadEvents();
+    // ----------------- [LOAD EVENTS ALTERNATIVE] -----------------
+    // first frame should always be event frame
+    
+    auto current_frame = input_interface_manager_->GetNextFrame();
+
+    if(current_frame->FrameSensor->IsEvent()){
+        
+        std::cout<<"it was the first frame\n";
+        int elements  = current_frame->GetVariableSize()/sizeof(slambench::io::Event);
+        slambench::io::Event * events = static_cast<slambench::io::Event*>(current_frame->GetData());
+        for(int i=0; i<elements; i++){
+            event_stream_.push_back(std::move(events[i]));
+        }
+        // save the sensor that was used
+        event_idf_ = current_frame->FrameSensor;
+        current_frame->FreeData();
+        delete current_frame;
+        // get next one
+        std::cout<<"event no 5 is "<<event_stream_[4]<<'\n';
+        for (auto &lib : slam_libs_){
+            lib->events_=&event_stream_;   
+        }
+    }   
+    // ---------------------------------------------------------------
+        
     initialised_ = true;
 }
 
@@ -250,7 +282,7 @@ void SLAMBenchConfiguration::InitAlgorithms() {
     // set envents acess where necessary
     for (auto &lib : slam_libs_) {
 
-        lib->events_=&event_stream_;
+        // lib->events_=&event_stream_;
         lib->GetMetricManager().BeginInit();
         bool init_worked = lib->c_sb_init_slam_system(lib);
         lib->GetMetricManager().EndInit();
@@ -327,58 +359,48 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                 break;
             }
         }
-        slambench::io::SLAMFrame * frame, * event_frame=nullptr;
+        slambench::io::SLAMFrame * current_frame, * event_frame=nullptr;
         // if it's an event algorithm everything should be handled differently
 
-        auto current_frame = input_interface_manager_->GetNextFrame();
+        auto non_event_frame = input_interface_manager_->GetNextFrame();
 
-        // ----------------- [LOAD EVENTS ALTERNATIVE] -----------------
-        // first frame should always be event frame
-        // 
-        // if(current_frame->FrameSensor->IsEvent()){
-            
-        //     std::cout<<"it was the first frame\n";
-        //     int elements  = current_frame->GetVariableSize()/sizeof(slambench::io::Event);
-        //     slambench::io::Event * events = static_cast<slambench::io::Event*>(current_frame->GetData());
-        //     for(int i=0; i<elements; i++){
-        //         event_stream_.push_back(std::move(events[i]));
-        //     }
-        //     // save the sensor that was used
-        //     event_idf_ = current_frame->FrameSensor;
-        //     current_frame->FreeData();
-        //     // get next one
-        //     current_frame = input_interface_manager_->GetNextFrame();
-        //     std::cout<<"event no 5 is "<<event_stream_[4]<<'\n';
-        //     for (auto &lib : slam_libs_){
-        //         lib->events_=&event_stream_;   
-        //     }
-        // }   
-        //---------------------------------------------------------------
-        
-
-        while (current_frame != nullptr) {
+        bool available_events = true;
+        // while there are non_event_frames or event frames
+        while (non_event_frame != nullptr || available_events) {
             event_picked = false;
             frame_count++;
             
-            if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
-                std::cout<<frame_count<<'\n';
+            // if the non event frame is not gt then compare it ith event to see which one 
+            // is used next
+            if (non_event_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
+                // std::cout<<frame_count<<'\n';
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********
                 for (size_t i = 0; i < slam_libs_.size(); i++) {
                     auto lib = slam_libs_[i];
                     // ********* [[ EVENT FRAME SELECTION]] *********
-                    frame = current_frame;
+                    current_frame = non_event_frame;
                     if(lib->IsEventAlg()){
                         event_frame = pickEventFrame(lib);
-                        // std::cout<<current_frame->Timestamp<<' '<<event_frame->Timestamp<<' ';
+                        // std::cout<<non_event_frame->Timestamp<<' '<<event_frame->Timestamp<<' ';
                         if(event_frame!=nullptr){ 
-                            if(current_frame->Timestamp>event_frame->Timestamp){
-                                frame = event_frame;
+                            if(non_event_frame->Timestamp>event_frame->Timestamp){
+                                current_frame = event_frame;
                                 event_picked = true;
                             }
+                            else{
+                                event_frame->FreeData();
+                                delete event_frame;
+                            }
+                        }else{
+                            // if there are no more events 
+                            available_events=false;
                         }
+                    }else{
+                        // if not an event based algorithm then don't wait for events
+                        available_events = false;
                     }
                     // ********* [[ SEND THE FRAME ]] *********
-                    ongoing = not lib->c_sb_update_frame(lib, frame);
+                    ongoing = not lib->c_sb_update_frame(lib, current_frame);
 
                     // This algorithm hasn't received enough frames yet.
                     if (ongoing) {
@@ -389,6 +411,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     lib->GetMetricManager().BeginFrame();
                     slambench::TimeStamp ts = current_frame->Timestamp;
 
+                    // std::cout<<"input_interface_manager_->updated_ = "<<input_interface_manager_->updated_<<'\n';
                     if (!input_interface_manager_->updated_) {
                         if (not lib->c_sb_process_once(lib)) {
                             std::cerr <<"Error after lib->c_sb_process_once." << std::endl;
@@ -398,6 +421,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                         // ********** [[or relocalization]] **********
                         //Mihai: need assertion / safety mechanism to avoid ugly errors
                         bool res = lib->c_sb_relocalize(lib);
+                        std::cout<<"Relocalise: "<<res<<'\n';
                         input_interface_manager_->updated_ = false;
                         frame_count = 0;
                         /* If the library failed to re-localize at the beginning of a new input,
@@ -446,14 +470,17 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     }
                 }
             }
-            current_frame->FreeData();
-            if(event_frame!=nullptr){
-                event_frame->FreeData();
-            }
+            
+            // if(event_frame!=nullptr){
+            //     event_frame->FreeData();
+            // }
             
             // won't work. I can't choose the next event frame until the algorithm is executed 
             if(!event_picked){
-                current_frame = input_interface_manager_->GetNextFrame();
+                // only free and delete is a new one is coming
+                non_event_frame->FreeData();
+                delete non_event_frame;
+                non_event_frame = input_interface_manager_->GetNextFrame();
             }
             
         } // we're done with the frame
