@@ -95,10 +95,8 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
     
     
 
-    image.resize(event_sensor->Height, event_sensor->Width);
-
+    
     eventInputSize   = make_sb_uint2(event_sensor->Width, event_sensor->Height);
-    image_raw.resize(event_sensor->Height*event_sensor->Width);
     // Initialize Vertices
 
     greyInputSize   = make_sb_uint2(grey_sensor->Width, grey_sensor->Height);
@@ -135,7 +133,7 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
         //     return true;
         // }
 
-        s->FreeData();
+        // s->FreeData();
         return true;
     }
    
@@ -208,16 +206,16 @@ bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::T
 	// }
 
     
-    if(event_frame_output->IsActive()) {
-		std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
-        // Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> rotated = (image.transpose().rowwise().reverse());
-		// std::cout<<"Showing frame with indices "<<indices->first<<' '<<indices->second<<' '<<last_frame_timestamp<<'\n';
-        event_frame_output->AddPoint(last_frame_timestamp, new slambench::values::EventFrameValue(eventInputSize.y, eventInputSize.x,  slam_settings->events_, begin, end));
-	}
+    // if(event_frame_output->IsActive()) {
+	// 	std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
+    //     // Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> rotated = (image.transpose().rowwise().reverse());
+	// 	// std::cout<<"Showing frame with indices "<<indices->first<<' '<<indices->second<<' '<<last_frame_timestamp<<'\n';
+    //     event_frame_output->AddPoint(last_frame_timestamp, new slambench::values::EventFrameValue(eventInputSize.y, eventInputSize.x,  slam_settings->events_, begin, end));
+	// }
 
     // if that implementation works we then employ something simillar and creat a special output class for events, where we have the matrix
     // globally stored and then it's just updated as events come in 
-    std::cout<<"Done update outputs\n";
+    // std::cout<<"Done update outputs\n";
     return true;
 }
 

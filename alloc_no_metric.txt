@@ -1,0 +1,473 @@
+--------------------------------------------------------------------------------
+Command:            ./build/bin/slambench -i ./datasets/UZHFPV/indoor_forward_5_davis_with_gt.slam -load ./build/lib/libevent-cpp-library.so
+Massif arguments:   (none)
+ms_print arguments: massif.out.6800
+--------------------------------------------------------------------------------
+
+
+    GB
+2.413^                     :::::::::#########                                 
+     |                     :        #                                         
+     |                     :        #                                         
+     |                     :        #                                         
+     |                     :        #                                         
+     |                     :        #        :: ::::  :   : @:  :::    @::  : 
+     |                     :        #        :: ::::  :   : @:  :::    @::  : 
+     |           :::::@@@@@:        #        :: ::::  :   : @:  :::    @::  : 
+     |           :    @    :        #        :: ::::  :   : @:  :::    @::  : 
+     |           :    @    :        #        :: ::::  :   : @:  :::    @::  : 
+     |      :::@@:    @    :        #        :: ::::  :   : @:  :::    @::  : 
+     |    :@:  @ :    @    :        #        :: ::::  :   : @:  :::    @::  : 
+     |   @:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+     |  :@:@:  @ :    @    :        #        ::::@::::::::::@:@:@::@:::@::@::@
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   3.663
+
+Number of snapshots: 92
+ Detailed snapshots: [2, 3, 6, 8, 10, 12, 14 (peak), 24, 43, 46, 50, 60, 70, 80, 90]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1     44,374,745           72,712           72,704             8            0
+  2     78,825,468        2,105,008        1,909,110       195,898            0
+90.69% (1,909,110B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->60.09% (1,264,832B) 0x18CB97: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+| ->60.09% (1,264,832B) 0x18BBFD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+|   ->60.09% (1,264,832B) 0x18BCDF: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+|     ->60.09% (1,264,832B) 0x16A130: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+|       ->60.09% (1,264,832B) 0x161503: main (slambench_app.cpp:89)
+|         
+->12.45% (262,144B) 0x1868E5: allocate (new_allocator.h:114)
+| ->12.45% (262,144B) 0x1868E5: allocate (alloc_traits.h:443)
+|   ->12.45% (262,144B) 0x1868E5: _M_allocate (stl_vector.h:343)
+|     ->12.45% (262,144B) 0x1868E5: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+|       ->12.45% (262,144B) 0x18BC6B: push_back (stl_vector.h:1195)
+|         ->12.45% (262,144B) 0x18BC6B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+|           ->12.45% (262,144B) 0x18BCDF: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+|             ->12.45% (262,144B) 0x16A130: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+|               ->12.45% (262,144B) 0x161503: main (slambench_app.cpp:89)
+|                 
+->08.20% (172,640B) 0x1CF66A: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+| ->08.20% (172,640B) 0x16A1CE: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+|   ->08.20% (172,640B) 0x161503: main (slambench_app.cpp:89)
+|     
+->04.92% (103,584B) 0x1C5AAE: allocate (new_allocator.h:114)
+| ->04.92% (103,584B) 0x1C5AAE: allocate (alloc_traits.h:443)
+|   ->04.92% (103,584B) 0x1C5AAE: _M_get_node (stl_tree.h:580)
+|     ->04.92% (103,584B) 0x1C5AAE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+|       ->04.92% (103,584B) 0x1C5AAE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+|         ->04.92% (103,584B) 0x1C5AAE: operator[] (stl_map.h:499)
+|           ->04.92% (103,584B) 0x1C5AAE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+|             ->04.92% (103,584B) 0x1CF6C5: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+|               ->04.92% (103,584B) 0x16A1CE: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+|                 ->04.92% (103,584B) 0x161503: main (slambench_app.cpp:89)
+|                   
+->03.45% (72,704B) 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->03.45% (72,704B) 0x4011B99: call_init.part.0 (dl-init.c:72)
+|   ->03.45% (72,704B) 0x4011CA0: call_init (dl-init.c:30)
+|     ->03.45% (72,704B) 0x4011CA0: _dl_init (dl-init.c:119)
+|       ->03.45% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+|         ->03.45% (72,704B) 0x4: ???
+|           ->03.45% (72,704B) 0x1FFF000236: ???
+|             ->03.45% (72,704B) 0x1FFF00024C: ???
+|               ->03.45% (72,704B) 0x1FFF00024F: ???
+|                 ->03.45% (72,704B) 0x1FFF000285: ???
+|                   ->03.45% (72,704B) 0x1FFF00028B: ???
+|                     
+->01.58% (33,206B) in 105 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  3    105,669,804        4,232,480        3,800,182       432,298            0
+89.79% (3,800,182B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->32.00% (1,354,560B) 0x1CF66A: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+| ->32.00% (1,354,560B) 0x16A1CE: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+|   ->32.00% (1,354,560B) 0x161503: main (slambench_app.cpp:89)
+|     
+->29.88% (1,264,832B) 0x18CB97: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+| ->29.88% (1,264,832B) 0x18BBFD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+|   ->29.88% (1,264,832B) 0x18BCDF: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+|     ->29.88% (1,264,832B) 0x16A130: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+|       ->29.88% (1,264,832B) 0x161503: main (slambench_app.cpp:89)
+|         
+->19.20% (812,736B) 0x1C5AAE: allocate (new_allocator.h:114)
+| ->19.20% (812,736B) 0x1C5AAE: allocate (alloc_traits.h:443)
+|   ->19.20% (812,736B) 0x1C5AAE: _M_get_node (stl_tree.h:580)
+|     ->19.20% (812,736B) 0x1C5AAE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+|       ->19.20% (812,736B) 0x1C5AAE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+|         ->19.20% (812,736B) 0x1C5AAE: operator[] (stl_map.h:499)
+|           ->19.20% (812,736B) 0x1C5AAE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+|             ->19.20% (812,736B) 0x1CF6C5: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+|               ->19.20% (812,736B) 0x16A1CE: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+|                 ->19.20% (812,736B) 0x161503: main (slambench_app.cpp:89)
+|                   
+->06.19% (262,144B) 0x1868E5: allocate (new_allocator.h:114)
+| ->06.19% (262,144B) 0x1868E5: allocate (alloc_traits.h:443)
+|   ->06.19% (262,144B) 0x1868E5: _M_allocate (stl_vector.h:343)
+|     ->06.19% (262,144B) 0x1868E5: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+|       ->06.19% (262,144B) 0x18BC6B: push_back (stl_vector.h:1195)
+|         ->06.19% (262,144B) 0x18BC6B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+|           ->06.19% (262,144B) 0x18BCDF: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+|             ->06.19% (262,144B) 0x16A130: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+|               ->06.19% (262,144B) 0x161503: main (slambench_app.cpp:89)
+|                 
+->01.72% (72,704B) 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+| ->01.72% (72,704B) 0x4011B99: call_init.part.0 (dl-init.c:72)
+|   ->01.72% (72,704B) 0x4011CA0: call_init (dl-init.c:30)
+|     ->01.72% (72,704B) 0x4011CA0: _dl_init (dl-init.c:119)
+|       ->01.72% (72,704B) 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+|         ->01.72% (72,704B) 0x4: ???
+|           ->01.72% (72,704B) 0x1FFF000236: ???
+|             ->01.72% (72,704B) 0x1FFF00024C: ???
+|               ->01.72% (72,704B) 0x1FFF00024F: ???
+|                 ->01.72% (72,704B) 0x1FFF000285: ???
+|                   ->01.72% (72,704B) 0x1FFF00028B: ???
+|                     
+->00.78% (33,206B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  4    144,407,898    1,030,810,584    1,030,322,486       488,098            0
+  5    177,962,458    1,081,142,232    1,080,654,134       488,098            0
+  6    207,322,646    1,081,142,232    1,080,654,134       488,098            0
+99.95% (1,080,654,134B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->90.26% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->90.26% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->90.26% (975,828,528B) 0x16A272: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->90.26% (975,828,528B) 0x161503: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->09.31% (100,663,296B) 0x1738A2: allocate (new_allocator.h:114)
+| ->09.31% (100,663,296B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->09.31% (100,663,296B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->09.31% (100,663,296B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->09.31% (100,663,296B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->09.31% (100,663,296B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->09.31% (100,663,296B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->09.31% (100,663,296B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.38% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  7    245,071,450    1,181,805,528    1,181,317,430       488,098            0
+  8    303,791,766    1,181,805,528    1,181,317,430       488,098            0
+99.96% (1,181,317,430B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->82.57% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->82.57% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->82.57% (975,828,528B) 0x16A272: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->82.57% (975,828,528B) 0x161503: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->17.04% (201,326,592B) 0x1738A2: allocate (new_allocator.h:114)
+| ->17.04% (201,326,592B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->17.04% (201,326,592B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->17.04% (201,326,592B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->17.04% (201,326,592B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->17.04% (201,326,592B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->17.04% (201,326,592B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->17.04% (201,326,592B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.35% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  9    379,289,306    1,383,132,120    1,382,644,022       488,098            0
+ 10    496,729,878    1,383,132,120    1,382,644,022       488,098            0
+99.96% (1,382,644,022B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->70.55% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->70.55% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->70.55% (975,828,528B) 0x16A272: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->70.55% (975,828,528B) 0x161503: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->29.11% (402,653,184B) 0x1738A2: allocate (new_allocator.h:114)
+| ->29.11% (402,653,184B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->29.11% (402,653,184B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->29.11% (402,653,184B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->29.11% (402,653,184B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->29.11% (402,653,184B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->29.11% (402,653,184B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->29.11% (402,653,184B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.30% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 11    647,724,890    1,785,785,304    1,785,297,206       488,098            0
+ 12    882,605,974    1,785,785,304    1,785,297,206       488,098            0
+99.97% (1,785,297,206B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->54.64% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->54.64% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->54.64% (975,828,528B) 0x16A272: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->54.64% (975,828,528B) 0x161503: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->45.10% (805,306,368B) 0x1738A2: allocate (new_allocator.h:114)
+| ->45.10% (805,306,368B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->45.10% (805,306,368B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->45.10% (805,306,368B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->45.10% (805,306,368B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->45.10% (805,306,368B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->45.10% (805,306,368B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->45.10% (805,306,368B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.23% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 13  1,184,595,930    2,591,091,672    2,590,603,574       488,098            0
+ 14  1,654,358,038    2,591,091,672    2,590,603,574       488,098            0
+99.98% (2,590,603,574B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->62.16% (1,610,612,736B) 0x1738A2: allocate (new_allocator.h:114)
+| ->62.16% (1,610,612,736B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->62.16% (1,610,612,736B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->62.16% (1,610,612,736B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->62.16% (1,610,612,736B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->62.16% (1,610,612,736B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->62.16% (1,610,612,736B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->62.16% (1,610,612,736B) 0x161503: main (slambench_app.cpp:89)
+|               
+->37.66% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->37.66% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->37.66% (975,828,528B) 0x16A272: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->37.66% (975,828,528B) 0x161503: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.16% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 15  2,148,185,404    1,078,385,736    1,077,904,134       481,602            0
+ 16  2,173,545,281    2,054,658,248    2,054,106,011       552,237            0
+ 17  2,205,107,541    1,079,202,232    1,078,577,091       625,141            0
+ 18  2,228,055,498    2,055,210,744    2,054,546,651       664,093            0
+ 19  2,260,945,467    1,079,614,408    1,078,904,563       709,845            0
+ 20  2,278,954,832    1,079,758,168    1,079,022,163       736,005            0
+ 21  2,306,020,718    2,055,737,544    2,054,968,571       768,973            0
+ 22  2,341,883,225    1,080,161,208    1,079,342,371       818,837            0
+ 23  2,371,665,611    2,056,290,024    2,055,407,515       882,509            0
+ 24  2,392,406,129    1,080,712,504    1,079,780,387       932,117            0
+99.91% (1,079,780,387B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->99.35% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->99.35% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->99.35% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->99.35% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->99.35% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->99.35% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->99.35% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->99.35% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.56% (6,038,563B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 25  2,422,146,649    2,056,967,528    2,055,952,539     1,014,989            0
+ 26  2,463,737,572    1,081,583,960    1,080,479,491     1,104,469            0
+ 27  2,487,594,876    2,057,565,544    2,056,427,675     1,137,869            0
+ 28  2,523,254,032    1,081,977,576    1,080,792,227     1,185,349            0
+ 29  2,558,992,697    1,082,271,912    1,081,026,083     1,245,829            0
+ 30  2,594,957,071    1,082,512,520    1,081,217,251     1,295,269            0
+ 31  2,619,283,548    1,082,623,480    1,081,305,411     1,318,069            0
+ 32  2,643,132,157    2,058,648,280    2,057,287,931     1,360,349            0
+ 33  2,667,220,530    1,082,987,832    1,081,594,915     1,392,917            0
+ 34  2,704,565,839    1,083,232,008    1,081,788,899     1,443,109            0
+ 35  2,724,089,343    1,083,436,472    1,081,964,835     1,471,637            0
+ 36  2,753,420,581    1,083,665,464    1,082,146,755     1,518,709            0
+ 37  2,782,859,881    1,083,896,728    1,082,330,499     1,566,229            0
+ 38  2,802,581,696    1,084,012,360    1,082,422,371     1,589,989            0
+ 39  2,841,705,022    2,060,093,952    2,058,450,059     1,643,893            0
+ 40  2,880,739,656    2,060,388,288    2,058,683,915     1,704,373            0
+ 41  2,919,800,655    1,084,794,856    1,083,044,099     1,750,757            0
+ 42  2,959,034,700    1,085,109,112    1,083,293,763     1,815,349            0
+ 43  2,988,403,453    2,061,119,896    2,059,265,147     1,854,749            0
+99.91% (2,059,265,147B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->52.10% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->52.10% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->52.10% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->52.10% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->52.10% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->52.10% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->52.10% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->52.10% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->47.34% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->47.34% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->47.34% (975,828,528B) 0x4844B54: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->47.34% (975,828,528B) 0x16E2B8: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->47.34% (975,828,528B) 0x16176B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.47% (9,694,795B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 44  3,027,645,448    1,085,540,040    1,083,636,163     1,903,877            0
+ 45  3,057,093,043    2,061,571,912    2,059,624,283     1,947,629            0
+ 46  3,086,649,326    1,085,959,416    1,083,969,347     1,990,069            0
+99.82% (1,083,969,347B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->98.87% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->98.87% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->98.87% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->98.87% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->98.87% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->98.87% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->98.87% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->98.87% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.94% (10,227,523B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 47  3,106,404,656    1,086,075,048    1,084,061,219     2,013,829            0
+ 48  3,145,586,943    1,086,376,328    1,084,300,611     2,075,717            0
+ 49  3,175,137,549    1,086,569,112    1,084,453,763     2,115,349            0
+ 50  3,193,154,310    1,086,661,320    1,084,527,043     2,134,277            0
+99.80% (1,084,527,043B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->98.81% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->98.81% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->98.81% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->98.81% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->98.81% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->98.81% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->98.81% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->98.81% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->00.99% (10,785,219B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 51  3,211,235,277    2,062,630,120    2,060,465,051     2,165,069            0
+ 52  3,229,250,257    2,062,759,328    2,060,567,755     2,191,573            0
+ 53  3,247,259,882    1,087,086,472    1,084,864,835     2,221,637            0
+ 54  3,265,270,412    1,087,221,960    1,084,972,483     2,249,477            0
+ 55  3,283,441,522    1,087,345,832    1,085,070,883     2,274,949            0
+ 56  3,301,563,297    1,087,471,976    1,085,171,107     2,300,869            0
+ 57  3,319,572,701    2,063,473,864    2,061,135,435     2,338,429            0
+ 58  3,337,582,138    1,087,793,056    1,085,426,227     2,366,829            0
+ 59  3,355,618,563    1,087,942,680    1,085,545,091     2,397,589            0
+ 60  3,373,794,125    1,088,068,824    1,085,645,315     2,423,509            0
+99.78% (1,085,645,315B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->98.68% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->98.68% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->98.68% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->98.68% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->98.68% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->98.68% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->98.68% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->98.68% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->01.09% (11,903,491B) in 171 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 61  3,391,974,036    1,088,164,600    1,085,721,411     2,443,189            0
+ 62  3,410,003,018    1,088,399,624    1,085,935,075     2,464,549            0
+ 63  3,428,101,841    1,088,533,928    1,086,041,795     2,492,133            0
+ 64  3,446,140,248    1,088,682,264    1,086,159,651     2,522,613            0
+ 65  3,464,249,839    1,088,848,120    1,086,291,427     2,556,693            0
+ 66  3,482,260,292    1,088,967,192    1,086,386,051     2,581,141            0
+ 67  3,500,355,337    1,089,085,224    1,086,479,811     2,605,413            0
+ 68  3,518,369,809    1,089,227,296    1,086,592,723     2,634,573            0
+ 69  3,536,482,471    1,089,383,064    1,086,716,451     2,666,613            0
+ 70  3,554,512,451    2,065,348,296    2,062,651,643     2,696,653            0
+99.87% (2,062,651,643B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->51.99% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->51.99% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->51.99% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->51.99% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->51.99% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->51.99% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->51.99% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->51.99% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->47.25% (975,828,528B) 0x185AED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->47.25% (975,828,528B) 0x186B9C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->47.25% (975,828,528B) 0x4844B54: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->47.25% (975,828,528B) 0x16E2B8: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->47.25% (975,828,528B) 0x16176B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.63% (13,081,291B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 71  3,572,608,401    1,089,649,368    1,086,928,035     2,721,333            0
+ 72  3,590,649,983    1,089,754,488    1,087,011,555     2,742,933            0
+ 73  3,608,659,390    1,089,872,416    1,087,105,259     2,767,157            0
+ 74  3,626,723,997    2,065,842,360    2,063,044,187     2,798,173            0
+ 75  3,644,767,890    1,090,148,104    1,087,324,291     2,823,813            0
+ 76  3,662,781,366    1,090,322,880    1,087,463,187     2,859,693            0
+ 77  3,680,838,481    1,090,456,456    1,087,569,283     2,887,173            0
+ 78  3,698,916,670    2,066,417,016    2,063,500,763     2,916,253            0
+ 79  3,716,936,874    1,090,732,104    1,087,788,291     2,943,813            0
+ 80  3,734,970,863    1,090,904,968    1,087,925,635     2,979,333            0
+99.73% (1,087,925,635B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->98.43% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->98.43% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->98.43% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->98.43% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->98.43% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->98.43% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->98.43% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->98.43% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->01.30% (14,183,811B) in 171 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 81  3,752,981,418    1,091,039,224    1,088,032,323     3,006,901            0
+ 82  3,770,990,792    1,091,188,672    1,088,151,059     3,037,613            0
+ 83  3,789,219,008    1,091,281,064    1,088,224,451     3,056,613            0
+ 84  3,807,228,901    1,091,382,616    1,088,305,155     3,077,461            0
+ 85  3,825,239,395    1,091,518,104    1,088,412,803     3,105,301            0
+ 86  3,843,356,154    1,091,682,856    1,088,543,683     3,139,173            0
+ 87  3,861,446,277    2,067,683,128    2,064,506,715     3,176,413            0
+ 88  3,879,456,194    1,092,055,384    1,088,839,683     3,215,701            0
+ 89  3,897,465,579    1,092,243,880    1,088,989,443     3,254,437            0
+ 90  3,915,474,945    1,092,409,232    1,089,120,819     3,288,413            0
+99.70% (1,089,120,819B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->98.29% (1,073,741,824B) 0x1738A2: allocate (new_allocator.h:114)
+| ->98.29% (1,073,741,824B) 0x1738A2: allocate (alloc_traits.h:443)
+|   ->98.29% (1,073,741,824B) 0x1738A2: _M_allocate (stl_vector.h:343)
+|     ->98.29% (1,073,741,824B) 0x1738A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->98.29% (1,073,741,824B) 0x16A2EF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->98.29% (1,073,741,824B) 0x16A2EF: push_back (stl_vector.h:1201)
+|           ->98.29% (1,073,741,824B) 0x16A2EF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->98.29% (1,073,741,824B) 0x161503: main (slambench_app.cpp:89)
+|               
+->01.41% (15,378,995B) in 171 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 91  3,933,485,227    1,092,648,728    1,089,311,107     3,337,621            0

@@ -363,7 +363,9 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         // if it's an event algorithm everything should be handled differently
 
         auto non_event_frame = input_interface_manager_->GetNextFrame();
-
+        const std::type_info& typeInfo = typeid(*non_event_frame);
+        std::cout << "Object type: " << typeInfo.name() << std::endl;
+        // non_event_frame->GetData();
         bool available_events = true;
         // while there are non_event_frames or event frames
         while (non_event_frame != nullptr || available_events) {
@@ -372,7 +374,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
             
             // if the non event frame is not gt then compare it ith event to see which one 
             // is used next
-            if (non_event_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
+            if (non_event_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType ) {
                 // std::cout<<frame_count<<'\n';
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********
                 for (size_t i = 0; i < slam_libs_.size(); i++) {
@@ -481,6 +483,9 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                 non_event_frame->FreeData();
                 delete non_event_frame;
                 non_event_frame = input_interface_manager_->GetNextFrame();
+            }else{
+                event_frame->FreeData();
+                delete event_frame;
             }
             
         } // we're done with the frame
@@ -599,25 +604,25 @@ void SLAMBenchConfiguration::InitWriter() {
         }
 
         writer_->AddColumn(new slambench::OutputTimestampColumnInterface(lib_traj));
-        if (gt_traj) {
-            // Create an aligned trajectory
-            auto aligned = new slambench::outputs::AlignedPoseOutput("", &*alignments_[i], lib_traj);
+        // if (gt_traj) {
+        //     // Create an aligned trajectory
+        //     auto aligned = new slambench::outputs::AlignedPoseOutput("", &*alignments_[i], lib_traj);
 
-            // Add ATE metric
-            auto ate_metric = std::make_shared<slambench::metrics::ATEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
-            if (!ate_metric->GetValueDescription().GetStructureDescription().empty()) {
-                lib->GetMetricManager().AddFrameMetric(ate_metric);
-                writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*ate_metric, lib->GetMetricManager().GetFramePhase()));
-            }
+        //     // Add ATE metric
+        //     auto ate_metric = std::make_shared<slambench::metrics::ATEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
+        //     if (!ate_metric->GetValueDescription().GetStructureDescription().empty()) {
+        //         lib->GetMetricManager().AddFrameMetric(ate_metric);
+        //         writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*ate_metric, lib->GetMetricManager().GetFramePhase()));
+        //     }
 
-            // Add RPE metric
-            auto rpe_metric = std::make_shared<slambench::metrics::RPEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
-            lib->GetMetricManager().AddFrameMetric(rpe_metric);
-            writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*rpe_metric, lib->GetMetricManager().GetFramePhase()));
-        }
-        else {
-            std::cerr<<"NO GT TRAJECTORY!!"<<std::endl;
-        }
+        //     // Add RPE metric
+        //     auto rpe_metric = std::make_shared<slambench::metrics::RPEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
+        //     lib->GetMetricManager().AddFrameMetric(rpe_metric);
+        //     writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*rpe_metric, lib->GetMetricManager().GetFramePhase()));
+        // }
+        // else {
+        //     std::cerr<<"NO GT TRAJECTORY!!"<<std::endl;
+        // }
 
         // Add a duration metric
         lib->GetMetricManager().AddFrameMetric(duration_metric_);

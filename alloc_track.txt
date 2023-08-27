@@ -1,0 +1,1431 @@
+--------------------------------------------------------------------------------
+Command:            ./build/bin/slambench -i ./datasets/UZHFPV/indoor_forward_5_davis_with_gt.slam -load ./build/lib/libevent-cpp-library.so
+Massif arguments:   (none)
+ms_print arguments: massif.out.5299
+--------------------------------------------------------------------------------
+
+
+    GB
+4.755^                                                                       #
+     |                                                                   @@@@#
+     |                                                              :@@@@@@@@#
+     |                                                           :@@@@@@@@@@@#
+     |                                                      @@@:::@@@@@@@@@@@#
+     |                                                :::@::@@@: :@@@@@@@@@@@#
+     |                                            ::::: :@::@@@: :@@@@@@@@@@@#
+     |                                      ::@@:::: :: :@::@@@: :@@@@@@@@@@@#
+     |                                @@@:::: @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |                           ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     | ::                 ::::@::::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     | :          ::::::::: ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     | :  :::::::::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     | :  : :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     | :  : :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |@:  : :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |@: :: :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |@: :: :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |@: :: :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+     |@: :: :::: ::: :::: : ::@: ::@@@@@ :: : @@: :: :: :@::@@@: :@@@@@@@@@@@#
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   41.56
+
+Number of snapshots: 75
+ Detailed snapshots: [1, 19, 23, 24, 25, 26, 27, 32, 33, 40, 43, 44, 45, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74 (peak)]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1    496,733,271    1,383,132,120    1,382,644,022       488,098            0
+99.96% (1,382,644,022B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->70.55% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->70.55% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->70.55% (975,828,528B) 0x16A652: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:258)
+|   | ->70.55% (975,828,528B) 0x1625E3: main (slambench_app.cpp:89)
+|   |   
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->29.11% (402,653,184B) 0x1751A2: allocate (new_allocator.h:114)
+| ->29.11% (402,653,184B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->29.11% (402,653,184B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->29.11% (402,653,184B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->29.11% (402,653,184B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->29.11% (402,653,184B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->29.11% (402,653,184B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->29.11% (402,653,184B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->00.30% (4,162,310B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  2  1,184,599,323    2,591,091,672    2,590,603,574       488,098            0
+  3  2,148,188,797    1,078,385,736    1,077,904,134       481,602            0
+  4  3,020,201,934    2,082,453,248    2,080,195,289     2,257,959            0
+  5  3,732,781,029    2,107,148,960    2,102,767,493     4,381,467            0
+  6  4,575,378,991    2,139,067,224    2,131,550,738     7,516,486            0
+  7  5,154,386,549    2,167,705,128    2,157,752,417     9,952,711            0
+  8  6,100,687,033    2,214,830,288    2,200,532,580    14,297,708            0
+  9  6,836,993,150    2,252,233,544    2,234,497,788    17,735,756            0
+ 10  7,933,359,721    2,309,306,032    2,286,330,480    22,975,552            0
+ 11  8,665,541,558    2,345,842,952    2,319,330,401    26,512,551            0
+ 12  9,562,012,935    2,395,754,248    2,364,853,929    30,900,319            0
+ 13 10,296,020,209    2,435,757,728    2,401,240,055    34,517,673            0
+ 14 10,947,039,144    2,470,100,328    2,432,202,856    37,897,472            0
+ 15 11,739,171,896    2,515,550,648    2,473,495,113    42,055,535            0
+ 16 12,798,539,006    2,579,317,600    2,531,422,984    47,894,616            0
+ 17 13,652,101,173    2,634,782,128    2,582,085,483    52,696,645            0
+ 18 14,478,246,954    2,688,512,136    2,631,076,504    57,435,632            0
+ 19 15,439,447,362    2,751,029,808    2,687,939,890    63,089,918            0
+97.71% (2,687,939,890B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->39.03% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->39.03% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->39.03% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->39.03% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->39.03% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->39.03% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->39.03% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->39.03% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->35.47% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->35.47% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->35.47% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->35.47% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->35.47% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->22.35% (614,855,680B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->22.35% (614,855,680B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->07.40% (203,491,200B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->07.40% (203,491,200B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->07.40% (203,491,200B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->07.40% (203,491,200B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->07.40% (203,491,200B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->07.40% (203,491,200B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->07.40% (203,491,200B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->07.40% (203,491,200B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->07.40% (203,491,200B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->07.40% (203,491,200B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->07.40% (203,491,200B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->07.40% (203,491,200B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->07.39% (203,310,800B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->07.39% (203,310,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->07.39% (203,310,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->07.39% (203,310,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->07.39% (203,310,800B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->07.39% (203,310,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->07.39% (203,310,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->07.39% (203,310,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.17% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.85% (23,513,858B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 20 16,013,874,484    2,784,061,024    2,717,483,168    66,577,856            0
+ 21 17,004,489,924    2,853,124,272    2,780,520,026    72,604,246            0
+ 22 17,696,999,269    2,899,911,280    2,822,941,995    76,969,285            0
+ 23 18,385,475,181    2,949,938,016    2,868,639,274    81,298,742            0
+97.24% (2,868,639,274B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->36.40% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->36.40% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->36.40% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->36.40% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->36.40% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->36.40% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->36.40% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->36.40% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->33.08% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->33.08% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->33.08% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->33.08% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->33.08% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->26.96% (795,378,880B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->26.96% (795,378,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->08.94% (263,682,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->08.94% (263,682,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->08.94% (263,682,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->08.94% (263,682,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->08.94% (263,682,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->08.94% (263,682,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->08.94% (263,682,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->08.94% (263,682,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->08.94% (263,682,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->08.94% (263,682,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->08.94% (263,682,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->08.94% (263,682,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->08.93% (263,476,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->08.93% (263,476,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->08.93% (263,476,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->08.93% (263,476,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->08.93% (263,476,880B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->08.93% (263,476,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->08.93% (263,476,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->08.93% (263,476,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.16% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.80% (23,690,042B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 24 18,805,543,972    2,979,486,312    2,895,494,885    83,991,427            0
+97.18% (2,895,494,885B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->36.04% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->36.04% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->36.04% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->36.04% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->36.04% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->36.04% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->36.04% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->36.04% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->32.75% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->32.75% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->32.75% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->32.75% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->32.75% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->27.59% (822,090,480B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->27.59% (822,090,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->09.15% (272,588,400B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->09.15% (272,588,400B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->09.15% (272,588,400B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->09.15% (272,588,400B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->09.15% (272,588,400B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->09.15% (272,588,400B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->09.15% (272,588,400B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->09.15% (272,588,400B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->09.15% (272,588,400B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->09.15% (272,588,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->09.15% (272,588,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->09.15% (272,588,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->09.14% (272,379,600B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->09.14% (272,379,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.14% (272,379,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.14% (272,379,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->09.14% (272,379,600B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->09.14% (272,379,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.14% (272,379,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.14% (272,379,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.16% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.80% (23,834,053B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 25 19,646,651,890    3,039,399,136    2,949,954,218    89,444,918            0
+97.06% (2,949,954,218B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->35.33% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->35.33% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->35.33% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->35.33% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->35.33% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->35.33% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->35.33% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->35.33% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->32.11% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->32.11% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->32.11% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->32.11% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->32.11% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->28.83% (876,198,080B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->28.83% (876,198,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->09.56% (290,628,800B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->09.56% (290,628,800B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->09.56% (290,628,800B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->09.56% (290,628,800B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->09.56% (290,628,800B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->09.56% (290,628,800B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->09.56% (290,628,800B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->09.56% (290,628,800B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->09.56% (290,628,800B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->09.56% (290,628,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->09.56% (290,628,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->09.56% (290,628,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->09.55% (290,413,200B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->09.55% (290,413,200B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.55% (290,413,200B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.55% (290,413,200B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->09.55% (290,413,200B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->09.55% (290,413,200B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.55% (290,413,200B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.55% (290,413,200B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.16% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.80% (24,185,786B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 26 20,076,268,352    3,069,810,888    2,977,541,221    92,269,667            0
+96.99% (2,977,541,221B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->34.98% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->34.98% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->34.98% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->34.98% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->34.98% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->34.98% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->34.98% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->34.98% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->31.79% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->31.79% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->31.79% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->31.79% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->31.79% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->29.46% (904,230,640B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->29.46% (904,230,640B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->09.77% (299,975,280B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->09.77% (299,975,280B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->09.77% (299,975,280B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->09.77% (299,975,280B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->09.77% (299,975,280B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->09.77% (299,975,280B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->09.77% (299,975,280B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->09.77% (299,975,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->09.77% (299,975,280B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->09.77% (299,975,280B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->09.77% (299,975,280B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->09.77% (299,975,280B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->09.76% (299,756,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->09.76% (299,756,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.76% (299,756,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.76% (299,756,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->09.76% (299,756,240B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->09.76% (299,756,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->09.76% (299,756,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->09.76% (299,756,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.15% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.77% (23,740,229B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 27 20,917,424,814    3,131,560,040    3,033,712,120    97,847,920            0
+96.88% (3,033,712,120B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->34.29% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->34.29% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->34.29% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->34.29% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->34.29% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->34.29% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->34.29% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->34.29% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->31.16% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->31.16% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->31.16% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->31.16% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->31.16% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->30.64% (959,594,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->30.64% (959,594,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->10.17% (318,434,480B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->10.17% (318,434,480B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->10.17% (318,434,480B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->10.17% (318,434,480B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->10.17% (318,434,480B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->10.17% (318,434,480B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->10.17% (318,434,480B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->10.17% (318,434,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->10.17% (318,434,480B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->10.17% (318,434,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->10.17% (318,434,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->10.17% (318,434,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->10.16% (318,208,800B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->10.16% (318,208,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->10.16% (318,208,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->10.16% (318,208,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->10.16% (318,208,800B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->10.16% (318,208,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->10.16% (318,208,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->10.16% (318,208,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.15% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.78% (24,546,808B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 28 21,990,437,241    3,205,944,976    3,100,830,912   105,114,064            0
+ 29 22,846,116,803    3,273,117,928    3,162,169,046   110,948,882            0
+ 30 23,713,349,853    3,335,971,688    3,218,989,108   116,982,580            0
+ 31 24,151,322,875    3,372,222,464    3,252,130,173   120,092,291            0
+ 32 24,815,978,606    3,425,899,456    3,301,174,298   124,725,158            0
+96.36% (3,301,174,298B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->35.80% (1,226,512,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->35.80% (1,226,512,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->11.89% (407,426,880B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->11.89% (407,426,880B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->11.89% (407,426,880B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->11.89% (407,426,880B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->11.89% (407,426,880B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->11.89% (407,426,880B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->11.89% (407,426,880B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->11.89% (407,426,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->11.89% (407,426,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->11.89% (407,426,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->11.89% (407,426,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->11.89% (407,426,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->11.89% (407,171,600B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->11.89% (407,171,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->11.89% (407,171,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->11.89% (407,171,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->11.89% (407,171,600B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->11.89% (407,171,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->11.89% (407,171,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->11.89% (407,171,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.14% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->31.34% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->31.34% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->31.34% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->31.34% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->31.34% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->31.34% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->31.34% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->31.34% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->28.48% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->28.48% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->28.48% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->28.48% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->28.48% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.73% (25,090,986B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 33 25,703,140,952    3,494,925,040    3,363,877,099   131,047,941            0
+96.25% (3,363,877,099B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->36.89% (1,289,330,080B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->36.89% (1,289,330,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->12.26% (428,370,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->12.26% (428,370,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->12.26% (428,370,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->12.26% (428,370,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->12.26% (428,370,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->12.26% (428,370,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->12.26% (428,370,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->12.26% (428,370,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->12.26% (428,370,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->12.26% (428,370,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->12.26% (428,370,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->12.26% (428,370,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->12.25% (428,108,480B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->12.25% (428,108,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->12.25% (428,108,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->12.25% (428,108,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->12.25% (428,108,480B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->12.25% (428,108,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->12.25% (428,108,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->12.25% (428,108,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.14% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->30.72% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->30.72% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->30.72% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->30.72% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->30.72% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->30.72% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->30.72% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->30.72% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->27.92% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->27.92% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->27.92% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->27.92% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->27.92% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.71% (24,976,667B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 34 26,449,231,964    3,549,027,000    3,412,602,158   136,424,842            0
+ 35 27,343,738,064    3,624,831,624    3,481,906,590   142,925,034            0
+ 36 28,249,585,439    3,695,972,440    3,546,338,333   149,634,107            0
+ 37 29,166,011,059    3,770,847,448    3,614,492,141   156,355,307            0
+ 38 30,084,400,485    3,843,498,952    3,680,248,124   163,250,828            0
+ 39 31,024,839,985    3,921,537,216    3,751,121,291   170,415,925            0
+ 40 31,663,622,281    3,978,735,848    3,803,529,889   175,205,959            0
+95.60% (3,803,529,889B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->43.44% (1,728,283,280B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->43.44% (1,728,283,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->14.44% (574,715,600B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->14.44% (574,715,600B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->14.44% (574,715,600B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->14.44% (574,715,600B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->14.44% (574,715,600B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->14.44% (574,715,600B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->14.44% (574,715,600B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->14.44% (574,715,600B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->14.44% (574,715,600B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->14.44% (574,715,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->14.44% (574,715,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->14.44% (574,715,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->14.44% (574,412,400B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->14.44% (574,412,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->14.44% (574,412,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->14.44% (574,412,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->14.44% (574,412,400B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->14.44% (574,412,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->14.44% (574,412,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->14.44% (574,412,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.12% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->26.99% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->26.99% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->26.99% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->26.99% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->26.99% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->26.99% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->26.99% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->26.99% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->24.53% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->24.53% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->24.53% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->24.53% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->24.53% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.65% (25,676,257B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 41 32,436,246,597    4,042,254,584    3,861,145,817   181,108,767            0
+ 42 32,919,061,452    4,080,163,392    3,895,325,817   184,837,575            0
+ 43 33,580,348,384    4,140,464,784    3,950,508,271   189,956,513            0
+95.41% (3,950,508,271B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->45.28% (1,874,989,440B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->45.28% (1,874,989,440B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->15.06% (623,626,080B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->15.06% (623,626,080B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->15.06% (623,626,080B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->15.06% (623,626,080B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->15.06% (623,626,080B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->15.06% (623,626,080B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->15.06% (623,626,080B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->15.06% (623,626,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->15.06% (623,626,080B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->15.06% (623,626,080B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->15.06% (623,626,080B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->15.06% (623,626,080B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->15.05% (623,310,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->15.05% (623,310,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.05% (623,310,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.05% (623,310,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->15.05% (623,310,240B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->15.05% (623,310,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.05% (623,310,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.05% (623,310,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.11% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->25.93% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->25.93% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->25.93% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->25.93% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->25.93% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->25.93% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->25.93% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->25.93% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->23.57% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->23.57% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->23.57% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->23.57% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->23.57% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.63% (25,948,479B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 44 34,555,792,495    4,223,808,688    4,026,252,286   197,556,402            0
+95.32% (4,026,252,286B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->46.18% (1,950,589,280B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->46.18% (1,950,589,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->15.36% (648,830,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->15.36% (648,830,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->15.36% (648,830,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->15.36% (648,830,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->15.36% (648,830,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->15.36% (648,830,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->15.36% (648,830,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->15.36% (648,830,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->15.36% (648,830,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->15.36% (648,830,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->15.36% (648,830,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->15.36% (648,830,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->15.35% (648,508,080B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->15.35% (648,508,080B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.35% (648,508,080B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.35% (648,508,080B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->15.35% (648,508,080B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->15.35% (648,508,080B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.35% (648,508,080B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.35% (648,508,080B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.11% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->25.42% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->25.42% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->25.42% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->25.42% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->25.42% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->25.42% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->25.42% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->25.42% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->23.10% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->23.10% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->23.10% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->23.10% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->23.10% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.62% (26,092,654B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 45 35,042,505,258    4,266,084,456    4,064,721,173   201,363,283            0
+95.28% (4,064,721,173B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->46.61% (1,988,462,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->46.61% (1,988,462,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->15.51% (661,456,880B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->15.51% (661,456,880B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->15.51% (661,456,880B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->15.51% (661,456,880B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->15.51% (661,456,880B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->15.51% (661,456,880B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->15.51% (661,456,880B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->15.51% (661,456,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->15.51% (661,456,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->15.51% (661,456,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->15.51% (661,456,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->15.51% (661,456,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->15.50% (661,131,600B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->15.50% (661,131,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.50% (661,131,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.50% (661,131,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->15.50% (661,131,600B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->15.50% (661,131,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->15.50% (661,131,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->15.50% (661,131,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.11% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->25.17% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->25.17% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->25.17% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->25.17% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->25.17% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->25.17% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->25.17% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->25.17% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->22.87% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->22.87% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->22.87% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->22.87% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->22.87% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.63% (26,687,861B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 46 35,824,308,696    4,331,552,768    4,124,029,579   207,523,189            0
+ 47 36,839,844,160    4,415,983,104    4,200,552,129   215,430,975            0
+ 48 37,577,920,522    4,484,498,208    4,263,346,634   221,151,574            0
+95.07% (4,263,346,634B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->48.73% (2,185,352,640B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->48.73% (2,185,352,640B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.21% (727,097,280B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.21% (727,097,280B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.21% (727,097,280B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.21% (727,097,280B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.21% (727,097,280B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.21% (727,097,280B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.21% (727,097,280B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.21% (727,097,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.21% (727,097,280B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.21% (727,097,280B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.21% (727,097,280B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.21% (727,097,280B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.21% (726,756,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.21% (726,756,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.21% (726,756,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.21% (726,756,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.21% (726,756,240B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.21% (726,756,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.21% (726,756,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.21% (726,756,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.11% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->23.94% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->23.94% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->23.94% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->23.94% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->23.94% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->23.94% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->23.94% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->23.94% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->21.76% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->21.76% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->21.76% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->21.76% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->21.76% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.63% (28,423,642B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 49 37,880,876,846    4,509,207,840    4,285,684,781   223,523,059            0
+ 50 38,102,490,515    4,529,425,328    4,304,141,618   225,283,710            0
+95.03% (4,304,141,618B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.16% (2,226,467,840B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->49.16% (2,226,467,840B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.36% (740,804,480B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.36% (740,804,480B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.36% (740,804,480B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.36% (740,804,480B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.36% (740,804,480B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.36% (740,804,480B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.36% (740,804,480B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.36% (740,804,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.36% (740,804,480B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.36% (740,804,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.36% (740,804,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.36% (740,804,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.35% (740,460,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.35% (740,460,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.35% (740,460,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.35% (740,460,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.35% (740,460,240B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.35% (740,460,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.35% (740,460,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.35% (740,460,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->23.71% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->23.71% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->23.71% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->23.71% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->23.71% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->23.71% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->23.71% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->23.71% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->21.54% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->21.54% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->21.54% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->21.54% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->21.54% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.62% (28,103,426B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 51 38,522,559,409    4,560,430,776    4,331,845,410   228,585,366            0
+ 52 38,618,230,811    4,574,805,432    4,345,456,265   229,349,167            0
+94.99% (4,345,456,265B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.55% (2,266,924,880B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->49.55% (2,266,924,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.49% (754,292,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.49% (754,292,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.49% (754,292,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.49% (754,292,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.49% (754,292,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.49% (754,292,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.49% (754,292,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.49% (754,292,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.49% (754,292,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.49% (754,292,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.49% (754,292,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.49% (754,292,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.48% (753,944,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.48% (753,944,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.48% (753,944,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.48% (753,944,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.48% (753,944,880B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.48% (753,944,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.48% (753,944,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.48% (753,944,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->23.47% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->23.47% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->23.47% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->23.47% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->23.47% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->23.47% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->23.47% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->23.47% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->21.33% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->21.33% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->21.33% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->21.33% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->21.33% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.63% (28,961,033B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 53 39,038,668,240    4,608,206,248    4,375,459,537   232,746,711            0
+ 54 39,148,915,117    4,620,566,248    4,387,009,649   233,556,599            0
+94.95% (4,387,009,649B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.97% (2,308,798,480B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->49.97% (2,308,798,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.63% (768,252,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.63% (768,252,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.63% (768,252,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.63% (768,252,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.63% (768,252,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.63% (768,252,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.63% (768,252,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.63% (768,252,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.63% (768,252,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.63% (768,252,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.63% (768,252,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.63% (768,252,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.62% (767,901,680B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.62% (767,901,680B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.62% (767,901,680B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.62% (767,901,680B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.62% (767,901,680B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.62% (767,901,680B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.62% (767,901,680B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.62% (767,901,680B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->23.24% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->23.24% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->23.24% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->23.24% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->23.24% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->23.24% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->23.24% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->23.24% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->21.12% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->21.12% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->21.12% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->21.12% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->21.12% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.62% (28,640,817B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 55 39,569,207,063    4,654,699,904    4,417,714,872   236,985,032            0
+ 56 39,682,060,733    4,666,815,048    4,429,012,569   237,802,479            0
+94.90% (4,429,012,569B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->50.38% (2,351,056,080B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->50.38% (2,351,056,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.76% (782,340,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.76% (782,340,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.76% (782,340,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.76% (782,340,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.76% (782,340,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.76% (782,340,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.76% (782,340,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.76% (782,340,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.76% (782,340,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.76% (782,340,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.76% (782,340,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.76% (782,340,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.76% (781,986,480B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.76% (781,986,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.76% (781,986,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.76% (781,986,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.76% (781,986,480B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.76% (781,986,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.76% (781,986,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.76% (781,986,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->23.01% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->23.01% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->23.01% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->23.01% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->23.01% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->23.01% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->23.01% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->23.01% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->20.91% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->20.91% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->20.91% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->20.91% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->20.91% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.61% (28,386,137B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 57 40,102,129,752    4,698,366,648    4,457,191,624   241,175,024            0
+ 58 40,206,263,370    4,713,616,888    4,471,637,664   241,979,224            0
+94.87% (4,471,637,664B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->50.76% (2,392,626,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->50.76% (2,392,626,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->16.89% (796,199,280B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->16.89% (796,199,280B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->16.89% (796,199,280B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->16.89% (796,199,280B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->16.89% (796,199,280B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->16.89% (796,199,280B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->16.89% (796,199,280B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->16.89% (796,199,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->16.89% (796,199,280B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->16.89% (796,199,280B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->16.89% (796,199,280B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->16.89% (796,199,280B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->16.88% (795,842,400B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->16.88% (795,842,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.88% (795,842,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.88% (795,842,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->16.88% (795,842,400B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->16.88% (795,842,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->16.88% (795,842,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->16.88% (795,842,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->22.78% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->22.78% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->22.78% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->22.78% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->22.78% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->22.78% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->22.78% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->22.78% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->20.70% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->20.70% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->20.70% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->20.70% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->20.70% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.62% (29,440,352B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 59 40,626,332,303    4,744,121,240    4,498,782,479   245,338,761            0
+ 60 40,745,844,651    4,760,765,800    4,514,464,520   246,301,280            0
+94.83% (4,514,464,520B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->51.16% (2,435,642,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->51.16% (2,435,642,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.03% (810,540,080B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.03% (810,540,080B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.03% (810,540,080B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.03% (810,540,080B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.03% (810,540,080B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.03% (810,540,080B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.03% (810,540,080B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.03% (810,540,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.03% (810,540,080B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.03% (810,540,080B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.03% (810,540,080B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.03% (810,540,080B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.02% (810,180,000B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.02% (810,180,000B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.02% (810,180,000B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.02% (810,180,000B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.02% (810,180,000B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.02% (810,180,000B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.02% (810,180,000B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.02% (810,180,000B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->22.55% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->22.55% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->22.55% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->22.55% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->22.55% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->22.55% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->22.55% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->22.55% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->20.50% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->20.50% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->20.50% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->20.50% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->20.50% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.61% (29,251,208B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 61 41,166,059,125    4,797,799,664    4,548,122,615   249,677,049            0
+ 62 41,288,465,223    4,808,599,096    4,557,937,520   250,661,576            0
+94.79% (4,557,937,520B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->51.55% (2,479,042,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->51.55% (2,479,042,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.16% (825,008,880B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.16% (825,008,880B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.16% (825,008,880B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.16% (825,008,880B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.16% (825,008,880B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.16% (825,008,880B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.16% (825,008,880B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.16% (825,008,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.16% (825,008,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.16% (825,008,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.16% (825,008,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.16% (825,008,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.15% (824,645,600B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.15% (824,645,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.15% (824,645,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.15% (824,645,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.15% (824,645,600B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.15% (824,645,600B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.15% (824,645,600B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.15% (824,645,600B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->22.33% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->22.33% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->22.33% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->22.33% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->22.33% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->22.33% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->22.33% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->22.33% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->20.29% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->20.29% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->20.29% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->20.29% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->20.29% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.61% (29,324,208B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 63 41,708,534,204    4,840,118,776    4,586,066,767   254,052,009            0
+ 64 41,834,060,554    4,856,854,824    4,601,794,520   255,060,304            0
+94.75% (4,601,794,520B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->51.94% (2,522,826,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->51.94% (2,522,826,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.29% (839,605,680B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.29% (839,605,680B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.29% (839,605,680B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.29% (839,605,680B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.29% (839,605,680B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.29% (839,605,680B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.29% (839,605,680B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.29% (839,605,680B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.29% (839,605,680B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.29% (839,605,680B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.29% (839,605,680B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.29% (839,605,680B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.28% (839,239,200B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.28% (839,239,200B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.28% (839,239,200B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.28% (839,239,200B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.28% (839,239,200B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.28% (839,239,200B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.28% (839,239,200B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.28% (839,239,200B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->22.11% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->22.11% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->22.11% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->22.11% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->22.11% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->22.11% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->22.11% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->22.11% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->20.09% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->20.09% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->20.09% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->20.09% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->20.09% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.61% (29,397,208B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 65 42,254,794,720    4,891,068,112    4,632,535,951   258,532,161            0
+ 66 42,382,646,855    4,905,532,856    4,646,035,520   259,497,336            0
+94.71% (4,646,035,520B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->52.33% (2,566,994,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->52.33% (2,566,994,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.42% (854,330,480B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.42% (854,330,480B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.42% (854,330,480B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.42% (854,330,480B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.42% (854,330,480B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.42% (854,330,480B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.42% (854,330,480B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.42% (854,330,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.42% (854,330,480B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.42% (854,330,480B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.42% (854,330,480B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.42% (854,330,480B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.41% (853,960,800B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.41% (853,960,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.41% (853,960,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.41% (853,960,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.41% (853,960,800B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.41% (853,960,800B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.41% (853,960,800B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.41% (853,960,800B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->21.89% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->21.89% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->21.89% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->21.89% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->21.89% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->21.89% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->21.89% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->21.89% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->19.89% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->19.89% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->19.89% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->19.89% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->19.89% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.60% (29,470,208B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 67 42,803,009,744    4,940,075,256    4,677,076,086   262,999,170            0
+ 68 42,934,222,664    4,954,633,272    4,690,660,520   263,972,752            0
+94.67% (4,690,660,520B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->52.71% (2,611,546,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->52.71% (2,611,546,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.54% (869,183,280B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.54% (869,183,280B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.54% (869,183,280B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.54% (869,183,280B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.54% (869,183,280B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.54% (869,183,280B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.54% (869,183,280B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.54% (869,183,280B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.54% (869,183,280B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.54% (869,183,280B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.54% (869,183,280B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.54% (869,183,280B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.54% (868,810,400B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.54% (868,810,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.54% (868,810,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.54% (868,810,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.54% (868,810,400B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.54% (868,810,400B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.54% (868,810,400B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.54% (868,810,400B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.10% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->21.67% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->21.67% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->21.67% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->21.67% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->21.67% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->21.67% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->21.67% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->21.67% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->19.70% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->19.70% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->19.70% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->19.70% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->19.70% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.60% (29,543,208B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 69 43,354,291,500    4,986,415,136    4,718,977,798   267,437,338            0
+ 70 43,488,822,362    5,004,418,568    4,735,931,664   268,486,904            0
+94.64% (4,735,931,664B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->53.08% (2,656,482,960B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->53.08% (2,656,482,960B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.67% (884,164,080B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.67% (884,164,080B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.67% (884,164,080B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.67% (884,164,080B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.67% (884,164,080B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.67% (884,164,080B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.67% (884,164,080B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.67% (884,164,080B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.67% (884,164,080B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.67% (884,164,080B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.67% (884,164,080B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.67% (884,164,080B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.66% (883,788,000B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.66% (883,788,000B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.66% (883,788,000B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.66% (883,788,000B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.66% (883,788,000B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.66% (883,788,000B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.66% (883,788,000B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.66% (883,788,000B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.09% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->21.46% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->21.46% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->21.46% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->21.46% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->21.46% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->21.46% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->21.46% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->21.46% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->19.50% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->19.50% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->19.50% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->19.50% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->19.50% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.60% (29,878,352B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 71 43,908,891,409    5,035,616,672    4,763,705,326   271,911,346            0
+ 72 44,059,200,058    5,054,471,096    4,781,317,529   273,153,567            0
+94.60% (4,781,317,529B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->53.48% (2,702,940,880B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->53.48% (2,702,940,880B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.80% (899,652,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.80% (899,652,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.80% (899,652,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.80% (899,652,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.80% (899,652,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.80% (899,652,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.80% (899,652,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.80% (899,652,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.80% (899,652,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.80% (899,652,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.80% (899,652,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.80% (899,652,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.79% (899,272,880B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.79% (899,272,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.79% (899,272,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.79% (899,272,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.79% (899,272,880B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.79% (899,272,880B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.79% (899,272,880B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.79% (899,272,880B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.09% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->21.24% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->21.24% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->21.24% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->21.24% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->21.24% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->21.24% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->21.24% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->21.24% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->19.31% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->19.31% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->19.31% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->19.31% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->19.31% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.57% (28,806,297B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 73 44,479,270,859    5,092,084,176    4,815,490,407   276,593,769            0
+ 74 44,620,532,510    5,105,209,848    4,827,464,577   277,745,271            0
+94.56% (4,827,464,577B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->53.84% (2,748,654,480B) 0x20379C: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:44)
+| ->53.84% (2,748,654,480B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   ->17.92% (914,892,240B) 0x1C61F1: slambench::outputs::AlignmentOutput::Recalculate() (Output.cpp:162)
+|   | ->17.92% (914,892,240B) 0x1C69C5: recalculate (Output.cpp:104)
+|   |   ->17.92% (914,892,240B) 0x1C69C5: Empty (Output.cpp:96)
+|   |     ->17.92% (914,892,240B) 0x1C69C5: slambench::outputs::AlignedPoseOutput::Recalculate() (Output.cpp:183)
+|   |       ->17.92% (914,892,240B) 0x1C5246: recalculate (Output.cpp:104)
+|   |         ->17.92% (914,892,240B) 0x1C5246: slambench::outputs::DerivedOutput::GetValues() const (Output.cpp:122)
+|   |           ->17.92% (914,892,240B) 0x203645: slambench::outputs::PoseOutputTrajectoryInterface::recalculate() const (TrajectoryInterface.cpp:42)
+|   |             ->17.92% (914,892,240B) 0x203908: slambench::outputs::PoseOutputTrajectoryInterface::GetAll() const (TrajectoryInterface.cpp:34)
+|   |               ->17.92% (914,892,240B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   |                 ->17.92% (914,892,240B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |                   ->17.92% (914,892,240B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |                     ->17.92% (914,892,240B) 0x16284B: main (slambench_app.cpp:116)
+|   |                       
+|   ->17.91% (914,509,680B) 0x1BB174: slambench::metrics::ATEMetric::MeasureEnd(slambench::metrics::Phase*) (ATEMetric.cpp:49)
+|   | ->17.91% (914,509,680B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.91% (914,509,680B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.91% (914,509,680B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->17.91% (914,509,680B) 0x1BCF14: slambench::metrics::RPEMetric::MeasureEnd(slambench::metrics::Phase*) (RPEMetric.cpp:46)
+|   | ->17.91% (914,509,680B) 0x1C2B7F: slambench::metrics::MetricManager::EndFrame() (MetricManager.cpp:91)
+|   |   ->17.91% (914,509,680B) 0x16FA7B: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:461)
+|   |     ->17.91% (914,509,680B) 0x16284B: main (slambench_app.cpp:116)
+|   |       
+|   ->00.09% (4,742,880B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->21.03% (1,073,741,824B) 0x1751A2: allocate (new_allocator.h:114)
+| ->21.03% (1,073,741,824B) 0x1751A2: allocate (alloc_traits.h:443)
+|   ->21.03% (1,073,741,824B) 0x1751A2: _M_allocate (stl_vector.h:343)
+|     ->21.03% (1,073,741,824B) 0x1751A2: void std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_realloc_insert<slambench::io::Event>(__gnu_cxx::__normal_iterator<slambench::io::Event*, std::vector<slambench::io::Event, std::allocator<slambench::io::Event> > >, slambench::io::Event&&) (vector.tcc:440)
+|       ->21.03% (1,073,741,824B) 0x16A6CF: emplace_back<slambench::io::Event> (vector.tcc:121)
+|         ->21.03% (1,073,741,824B) 0x16A6CF: push_back (stl_vector.h:1201)
+|           ->21.03% (1,073,741,824B) 0x16A6CF: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:260)
+|             ->21.03% (1,073,741,824B) 0x1625E3: main (slambench_app.cpp:89)
+|               
+->19.11% (975,828,528B) 0x1873ED: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+| ->19.11% (975,828,528B) 0x18849C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+|   ->19.11% (975,828,528B) 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+|   | ->19.11% (975,828,528B) 0x16FA10: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:405)
+|   |   ->19.11% (975,828,528B) 0x16284B: main (slambench_app.cpp:116)
+|   |     
+|   ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->00.57% (29,239,745B) in 1+ places, all below ms_print's threshold (01.00%)
+

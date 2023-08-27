@@ -1,0 +1,698 @@
+desc: (none)
+cmd: ./build/bin/slambench -i ./datasets/UZHFPV/indoor_forward_5_davis_with_gt.slam -load ./build/lib/libevent-cpp-library.so -fl 5000
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=44380130
+mem_heap_B=72704
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=51632382
+mem_heap_B=450710
+mem_heap_extra_B=38178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=62376847
+mem_heap_B=970006
+mem_heap_extra_B=94898
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=75235384
+mem_heap_B=1648886
+mem_heap_extra_B=163386
+mem_stacks_B=0
+heap_tree=detailed
+n4: 1648886 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1264832 0x18EC57: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+  n1: 1264832 0x18DCBD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+   n1: 1264832 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+    n1: 1264832 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+     n0: 1264832 0x1625E3: main (slambench_app.cpp:89)
+ n1: 262144 0x188995: allocate (new_allocator.h:114)
+  n1: 262144 0x188995: allocate (alloc_traits.h:443)
+   n1: 262144 0x188995: _M_allocate (stl_vector.h:343)
+    n1: 262144 0x188995: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+     n1: 262144 0x18DD2B: push_back (stl_vector.h:1195)
+      n1: 262144 0x18DD2B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+       n1: 262144 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+        n1: 262144 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+         n0: 262144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 72704 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B99: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011CA0: call_init (dl-init.c:30)
+    n1: 72704 0x4011CA0: _dl_init (dl-init.c:119)
+     n1: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+      n1: 72704 0x6: ???
+       n1: 72704 0x1FFF000242: ???
+        n1: 72704 0x1FFF000258: ???
+         n1: 72704 0x1FFF00025B: ???
+          n1: 72704 0x1FFF000291: ???
+           n1: 72704 0x1FFF000297: ???
+            n1: 72704 0x1FFF0002BB: ???
+             n0: 72704 0x1FFF0002BF: ???
+ n0: 49206 in 107 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=83741181
+mem_heap_B=2255222
+mem_heap_extra_B=239178
+mem_stacks_B=0
+heap_tree=detailed
+n6: 2255222 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1264832 0x18EC57: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+  n1: 1264832 0x18DCBD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+   n1: 1264832 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+    n1: 1264832 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+     n0: 1264832 0x1625E3: main (slambench_app.cpp:89)
+ n1: 388960 0x1D17BA: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+  n1: 388960 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+   n0: 388960 0x1625E3: main (slambench_app.cpp:89)
+ n1: 262144 0x188995: allocate (new_allocator.h:114)
+  n1: 262144 0x188995: allocate (alloc_traits.h:443)
+   n1: 262144 0x188995: _M_allocate (stl_vector.h:343)
+    n1: 262144 0x188995: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+     n1: 262144 0x18DD2B: push_back (stl_vector.h:1195)
+      n1: 262144 0x18DD2B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+       n1: 262144 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+        n1: 262144 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+         n0: 262144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 233376 0x1C7BFE: allocate (new_allocator.h:114)
+  n1: 233376 0x1C7BFE: allocate (alloc_traits.h:443)
+   n1: 233376 0x1C7BFE: _M_get_node (stl_tree.h:580)
+    n1: 233376 0x1C7BFE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+     n1: 233376 0x1C7BFE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+      n1: 233376 0x1C7BFE: operator[] (stl_map.h:499)
+       n1: 233376 0x1C7BFE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+        n1: 233376 0x1D1815: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+         n1: 233376 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+          n0: 233376 0x1625E3: main (slambench_app.cpp:89)
+ n1: 72704 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B99: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011CA0: call_init (dl-init.c:30)
+    n1: 72704 0x4011CA0: _dl_init (dl-init.c:119)
+     n1: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+      n1: 72704 0x6: ???
+       n1: 72704 0x1FFF000242: ???
+        n1: 72704 0x1FFF000258: ???
+         n1: 72704 0x1FFF00025B: ???
+          n1: 72704 0x1FFF000291: ???
+           n1: 72704 0x1FFF000297: ???
+            n1: 72704 0x1FFF0002BB: ???
+             n0: 72704 0x1FFF0002BF: ???
+ n0: 33206 in 105 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=6
+#-----------
+time=95575563
+mem_heap_B=3089270
+mem_heap_extra_B=343434
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3089270 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1264832 0x18EC57: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+  n1: 1264832 0x18DCBD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+   n1: 1264832 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+    n1: 1264832 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+     n0: 1264832 0x1625E3: main (slambench_app.cpp:89)
+ n1: 910240 0x1D17BA: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+  n1: 910240 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+   n0: 910240 0x1625E3: main (slambench_app.cpp:89)
+ n1: 546144 0x1C7BFE: allocate (new_allocator.h:114)
+  n1: 546144 0x1C7BFE: allocate (alloc_traits.h:443)
+   n1: 546144 0x1C7BFE: _M_get_node (stl_tree.h:580)
+    n1: 546144 0x1C7BFE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+     n1: 546144 0x1C7BFE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+      n1: 546144 0x1C7BFE: operator[] (stl_map.h:499)
+       n1: 546144 0x1C7BFE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+        n1: 546144 0x1D1815: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+         n1: 546144 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+          n0: 546144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 262144 0x188995: allocate (new_allocator.h:114)
+  n1: 262144 0x188995: allocate (alloc_traits.h:443)
+   n1: 262144 0x188995: _M_allocate (stl_vector.h:343)
+    n1: 262144 0x188995: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+     n1: 262144 0x18DD2B: push_back (stl_vector.h:1195)
+      n1: 262144 0x18DD2B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+       n1: 262144 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+        n1: 262144 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+         n0: 262144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 72704 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B99: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011CA0: call_init (dl-init.c:30)
+    n1: 72704 0x4011CA0: _dl_init (dl-init.c:119)
+     n1: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+      n1: 72704 0x6: ???
+       n1: 72704 0x1FFF000242: ???
+        n1: 72704 0x1FFF000258: ???
+         n1: 72704 0x1FFF00025B: ???
+          n1: 72704 0x1FFF000291: ???
+           n1: 72704 0x1FFF000297: ???
+            n1: 72704 0x1FFF0002BB: ???
+             n0: 72704 0x1FFF0002BF: ???
+ n0: 33206 in 105 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=103096160
+mem_heap_B=3617142
+mem_heap_extra_B=409418
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3617142 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1264832 0x18EC57: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+  n1: 1264832 0x18DCBD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+   n1: 1264832 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+    n1: 1264832 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+     n0: 1264832 0x1625E3: main (slambench_app.cpp:89)
+ n1: 1240160 0x1D17BA: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+  n1: 1240160 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+   n0: 1240160 0x1625E3: main (slambench_app.cpp:89)
+ n1: 744096 0x1C7BFE: allocate (new_allocator.h:114)
+  n1: 744096 0x1C7BFE: allocate (alloc_traits.h:443)
+   n1: 744096 0x1C7BFE: _M_get_node (stl_tree.h:580)
+    n1: 744096 0x1C7BFE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+     n1: 744096 0x1C7BFE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+      n1: 744096 0x1C7BFE: operator[] (stl_map.h:499)
+       n1: 744096 0x1C7BFE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+        n1: 744096 0x1D1815: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+         n1: 744096 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+          n0: 744096 0x1625E3: main (slambench_app.cpp:89)
+ n1: 262144 0x188995: allocate (new_allocator.h:114)
+  n1: 262144 0x188995: allocate (alloc_traits.h:443)
+   n1: 262144 0x188995: _M_allocate (stl_vector.h:343)
+    n1: 262144 0x188995: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+     n1: 262144 0x18DD2B: push_back (stl_vector.h:1195)
+      n1: 262144 0x18DD2B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+       n1: 262144 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+        n1: 262144 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+         n0: 262144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 72704 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B99: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011CA0: call_init (dl-init.c:30)
+    n1: 72704 0x4011CA0: _dl_init (dl-init.c:119)
+     n1: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+      n1: 72704 0x6: ???
+       n1: 72704 0x1FFF000242: ???
+        n1: 72704 0x1FFF000258: ???
+         n1: 72704 0x1FFF00025B: ???
+          n1: 72704 0x1FFF000291: ???
+           n1: 72704 0x1FFF000297: ???
+            n1: 72704 0x1FFF0002BB: ???
+             n0: 72704 0x1FFF0002BF: ???
+ n0: 33206 in 105 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=8
+#-----------
+time=110754675
+mem_heap_B=4153078
+mem_heap_extra_B=476410
+mem_stacks_B=0
+heap_tree=detailed
+n6: 4153078 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1575120 0x1D17BA: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+  n1: 1575120 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+   n0: 1575120 0x1625E3: main (slambench_app.cpp:89)
+ n1: 1264832 0x18EC57: slambench::io::SLAMFrameDeserialiser::GetNextFrame() (SLAMFrameDeserialiser.cpp:25)
+  n1: 1264832 0x18DCBD: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:92)
+   n1: 1264832 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+    n1: 1264832 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+     n0: 1264832 0x1625E3: main (slambench_app.cpp:89)
+ n1: 945072 0x1C7BFE: allocate (new_allocator.h:114)
+  n1: 945072 0x1C7BFE: allocate (alloc_traits.h:443)
+   n1: 945072 0x1C7BFE: _M_get_node (stl_tree.h:580)
+    n1: 945072 0x1C7BFE: _M_create_node<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:630)
+     n1: 945072 0x1C7BFE: _M_emplace_hint_unique<const std::piecewise_construct_t&, std::tuple<const slambench::TimeStamp&>, std::tuple<> > (stl_tree.h:2460)
+      n1: 945072 0x1C7BFE: operator[] (stl_map.h:499)
+       n1: 945072 0x1C7BFE: slambench::outputs::Output::AddPoint(slambench::TimeStamp, slambench::values::Value const*) (Output.cpp:60)
+        n1: 945072 0x1D1815: slambench::outputs::OutputManager::LoadGTOutputsFromSLAMFile(slambench::io::SensorCollection&, slambench::io::FrameCollection*, bool) (OutputManager.cpp:112)
+         n1: 945072 0x16979E: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:235)
+          n0: 945072 0x1625E3: main (slambench_app.cpp:89)
+ n1: 262144 0x188995: allocate (new_allocator.h:114)
+  n1: 262144 0x188995: allocate (alloc_traits.h:443)
+   n1: 262144 0x188995: _M_allocate (stl_vector.h:343)
+    n1: 262144 0x188995: void std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> >::_M_realloc_insert<slambench::io::SLAMFrame* const&>(__gnu_cxx::__normal_iterator<slambench::io::SLAMFrame**, std::vector<slambench::io::SLAMFrame*, std::allocator<slambench::io::SLAMFrame*> > >, slambench::io::SLAMFrame* const&) (vector.tcc:440)
+     n1: 262144 0x18DD2B: push_back (stl_vector.h:1195)
+      n1: 262144 0x18DD2B: slambench::io::GTBufferingFrameStream::fastForward() (FrameSource.cpp:101)
+       n1: 262144 0x18DD9F: slambench::io::GTBufferingFrameStream::GTBufferingFrameStream(slambench::io::FrameStream&) (FrameSource.cpp:58)
+        n1: 262144 0x169700: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:225)
+         n0: 262144 0x1625E3: main (slambench_app.cpp:89)
+ n1: 72704 0x4E6EA99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B99: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011CA0: call_init (dl-init.c:30)
+    n1: 72704 0x4011CA0: _dl_init (dl-init.c:119)
+     n1: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+      n1: 72704 0x6: ???
+       n1: 72704 0x1FFF000242: ???
+        n1: 72704 0x1FFF000258: ???
+         n1: 72704 0x1FFF00025B: ???
+          n1: 72704 0x1FFF000291: ???
+           n1: 72704 0x1FFF000297: ???
+            n1: 72704 0x1FFF0002BB: ???
+             n0: 72704 0x1FFF0002BF: ???
+ n0: 33206 in 105 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=316727808
+mem_heap_B=1955819366
+mem_heap_extra_B=482474
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=446332565
+mem_heap_B=1955819366
+mem_heap_extra_B=482474
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1955819366 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 975828528 0x172FE0: allocate (new_allocator.h:114)
+  n1: 975828528 0x172FE0: allocate (alloc_traits.h:443)
+   n1: 975828528 0x172FE0: _M_allocate (stl_vector.h:343)
+    n1: 975828528 0x172FE0: std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_default_append(unsigned long) (vector.tcc:635)
+     n1: 975828528 0x169A3A: resize (stl_vector.h:937)
+      n1: 975828528 0x169A3A: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:264)
+       n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+ n1: 975828528 0x187B9D: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+  n2: 975828528 0x188C5C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+   n1: 975828528 0x169889: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:265)
+    n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 4162310 in 109 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=453165407
+mem_heap_B=1960670420
+mem_heap_extra_B=642348
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=462078255
+mem_heap_B=1967870365
+mem_heap_extra_B=891979
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=467822917
+mem_heap_B=1973905110
+mem_heap_extra_B=959106
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=477888172
+mem_heap_B=1970124378
+mem_heap_extra_B=961342
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=486101026
+mem_heap_B=994311846
+mem_heap_extra_B=961642
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=495542221
+mem_heap_B=994331274
+mem_heap_extra_B=964758
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=505029006
+mem_heap_B=994357870
+mem_heap_extra_B=968354
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=514560045
+mem_heap_B=994384914
+mem_heap_extra_B=972270
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=524135697
+mem_heap_B=994415926
+mem_heap_extra_B=976618
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=537998937
+mem_heap_B=1970297172
+mem_heap_extra_B=986044
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=544344864
+mem_heap_B=1974126870
+mem_heap_extra_B=988346
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=552565498
+mem_heap_B=1970366090
+mem_heap_extra_B=994174
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1970366090 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 975828528 0x172FE0: allocate (new_allocator.h:114)
+  n1: 975828528 0x172FE0: allocate (alloc_traits.h:443)
+   n1: 975828528 0x172FE0: _M_allocate (stl_vector.h:343)
+    n1: 975828528 0x172FE0: std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_default_append(unsigned long) (vector.tcc:635)
+     n1: 975828528 0x169A3A: resize (stl_vector.h:937)
+      n1: 975828528 0x169A3A: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:264)
+       n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+ n1: 975828528 0x187B9D: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+  n2: 975828528 0x188C5C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+   n1: 975828528 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+    n1: 975828528 0x16F87A: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:409)
+     n0: 975828528 0x16284B: main (slambench_app.cpp:116)
+   n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n0: 18709034 in 214 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=558947395
+mem_heap_B=1974192300
+mem_heap_extra_B=996636
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=567227982
+mem_heap_B=1970436992
+mem_heap_extra_B=1003168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=573650376
+mem_heap_B=1974266370
+mem_heap_extra_B=1005742
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1974266370 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 975828528 0x172FE0: allocate (new_allocator.h:114)
+  n1: 975828528 0x172FE0: allocate (alloc_traits.h:443)
+   n1: 975828528 0x172FE0: _M_allocate (stl_vector.h:343)
+    n1: 975828528 0x172FE0: std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_default_append(unsigned long) (vector.tcc:635)
+     n1: 975828528 0x169A3A: resize (stl_vector.h:937)
+      n1: 975828528 0x169A3A: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:264)
+       n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+ n1: 975828528 0x187B9D: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+  n2: 975828528 0x188C5C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+   n1: 975828528 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+    n1: 975828528 0x16F87A: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:409)
+     n0: 975828528 0x16284B: main (slambench_app.cpp:116)
+   n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n0: 22609314 in 214 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=585977927
+mem_heap_B=1974334695
+mem_heap_extra_B=1013993
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=598373568
+mem_heap_B=1974409020
+mem_heap_extra_B=1022844
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=610841113
+mem_heap_B=1974489345
+mem_heap_extra_B=1032311
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=623392851
+mem_heap_B=1974595126
+mem_heap_extra_B=1042378
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=631350702
+mem_heap_B=1970846873
+mem_heap_extra_B=1050511
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=642085425
+mem_heap_B=1970934414
+mem_heap_extra_B=1060602
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=648725701
+mem_heap_B=1974802096
+mem_heap_extra_B=1064280
+mem_stacks_B=0
+heap_tree=peak
+n3: 1974802096 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 975828528 0x172FE0: allocate (new_allocator.h:114)
+  n1: 975828528 0x172FE0: allocate (alloc_traits.h:443)
+   n1: 975828528 0x172FE0: _M_allocate (stl_vector.h:343)
+    n1: 975828528 0x172FE0: std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_default_append(unsigned long) (vector.tcc:635)
+     n1: 975828528 0x169A3A: resize (stl_vector.h:937)
+      n1: 975828528 0x169A3A: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:264)
+       n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+ n1: 975828528 0x187B9D: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+  n2: 975828528 0x188C5C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+   n1: 975828528 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+    n1: 975828528 0x16F87A: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:409)
+     n0: 975828528 0x16284B: main (slambench_app.cpp:116)
+   n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n0: 23145040 in 214 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=655989385
+mem_heap_B=1974847587
+mem_heap_extra_B=1071317
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=666776624
+mem_heap_B=1973052679
+mem_heap_extra_B=1081033
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=677908996
+mem_heap_B=1971234252
+mem_heap_extra_B=1094836
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=685453988
+mem_heap_B=1973210198
+mem_heap_extra_B=1102690
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1973210198 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 975828528 0x172FE0: allocate (new_allocator.h:114)
+  n1: 975828528 0x172FE0: allocate (alloc_traits.h:443)
+   n1: 975828528 0x172FE0: _M_allocate (stl_vector.h:343)
+    n1: 975828528 0x172FE0: std::vector<slambench::io::Event, std::allocator<slambench::io::Event> >::_M_default_append(unsigned long) (vector.tcc:635)
+     n1: 975828528 0x169A3A: resize (stl_vector.h:937)
+      n1: 975828528 0x169A3A: SLAMBenchConfiguration::InitGroundtruth(bool) (SLAMBenchConfiguration.cpp:264)
+       n0: 975828528 0x1625E3: main (slambench_app.cpp:89)
+ n1: 975828528 0x187B9D: slambench::io::FrameBuffer::Reserve(unsigned long) (FrameBuffer.cpp:59)
+  n2: 975828528 0x188C5C: slambench::io::DeserialisedFrame::GetData() (SLAMFrame.cpp:272)
+   n1: 975828528 0x4844B04: sb_update_frame(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*) (event_library.cpp:142)
+    n1: 975828528 0x16F87A: SLAMBenchConfiguration::ComputeLoopAlgorithm(bool*, SLAMBenchUI*) (SLAMBenchConfiguration.cpp:409)
+     n0: 975828528 0x16284B: main (slambench_app.cpp:116)
+   n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n0: 21553142 in 214 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=696396040
+mem_heap_B=1973308131
+mem_heap_extra_B=1113749
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=703822784
+mem_heap_B=1971477222
+mem_heap_extra_B=1122178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=711445577
+mem_heap_B=1973461328
+mem_heap_extra_B=1130784
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=718623899
+mem_heap_B=1973539579
+mem_heap_extra_B=1135541
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=726321857
+mem_heap_B=1975501726
+mem_heap_extra_B=1144482
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=740560250
+mem_heap_B=1971857700
+mem_heap_extra_B=1164492
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=748291237
+mem_heap_B=1973853230
+mem_heap_extra_B=1174106
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=755394046
+mem_heap_B=1975818361
+mem_heap_extra_B=1179279
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=766046519
+mem_heap_B=1975940701
+mem_heap_extra_B=1192651
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=776744916
+mem_heap_B=1976066881
+mem_heap_extra_B=1206407
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=787506781
+mem_heap_B=1976235813
+mem_heap_extra_B=1220547
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=798323563
+mem_heap_B=1976369673
+mem_heap_extra_B=1235071
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=812802836
+mem_heap_B=1974661126
+mem_heap_extra_B=1259458
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=818857492
+mem_heap_B=1974732833
+mem_heap_extra_B=1267327
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=824605641
+mem_heap_B=997066587
+mem_heap_extra_B=1272941
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=830666189
+mem_heap_B=1976794229
+mem_heap_extra_B=1280971
+mem_stacks_B=0
+heap_tree=empty

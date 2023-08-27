@@ -80,7 +80,9 @@ Value *RPEMetric::GetValue(Phase* phase)
 		// Step 1 : ensure GT in the future exists
 		//***************************************
 
-		while(gt_iterator->first < es_iterator->first ) {
+		while(gt_iterator != gt_traj.end() ) {
+			if((gt_iterator->first > es_iterator->first))
+				break; 
 			gt_iterator++;
 		}
 

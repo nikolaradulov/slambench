@@ -83,9 +83,12 @@ Value *ATEMetric::GetValue(Phase* phase)
 		// Step 1 : ensure GT in the futre exists
 		//***************************************
 
-		while((gt_iterator->first < es_iterator->first) && gt_iterator != gt_traj.end() ) {
+		while(gt_iterator != gt_traj.end() ) {
+			if((gt_iterator->first > es_iterator->first))
+				break; 
 			gt_iterator++;
 		}
+
 
 
 		if(gt_iterator == gt_traj.end()) {

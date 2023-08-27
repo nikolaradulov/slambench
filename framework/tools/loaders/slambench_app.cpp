@@ -111,7 +111,8 @@ int main(int argc, char * argv[])
             std::cerr<< "Not compiled with Pangolin support! Continuing without GUI." <<std::endl;
             SLAMBenchConfiguration::ComputeLoopAlgorithm(config, nullptr, nullptr);
 #endif
-        } else {
+        }
+        else {
             config->ComputeLoopAlgorithm(nullptr, nullptr);
         }
 
