@@ -341,6 +341,7 @@ void SLAMBenchConfiguration::InitAlignment() {
 
 void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui) {
 
+    std::cout<<"PoseValue takes "<<sizeof(slambench::values::PoseValue)<<"-----\n\n";
     assert(initialised_);
 
     int input_seq = 0;
@@ -604,25 +605,25 @@ void SLAMBenchConfiguration::InitWriter() {
         }
 
         writer_->AddColumn(new slambench::OutputTimestampColumnInterface(lib_traj));
-        // if (gt_traj) {
-        //     // Create an aligned trajectory
-        //     auto aligned = new slambench::outputs::AlignedPoseOutput("", &*alignments_[i], lib_traj);
+        if (gt_traj) {
+            // Create an aligned trajectory
+            auto aligned = new slambench::outputs::AlignedPoseOutput("", &*alignments_[i], lib_traj);
 
-        //     // Add ATE metric
-        //     auto ate_metric = std::make_shared<slambench::metrics::ATEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
-        //     if (!ate_metric->GetValueDescription().GetStructureDescription().empty()) {
-        //         lib->GetMetricManager().AddFrameMetric(ate_metric);
-        //         writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*ate_metric, lib->GetMetricManager().GetFramePhase()));
-        //     }
+            // Add ATE metric
+            auto ate_metric = std::make_shared<slambench::metrics::ATEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
+            if (!ate_metric->GetValueDescription().GetStructureDescription().empty()) {
+                lib->GetMetricManager().AddFrameMetric(ate_metric);
+                writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*ate_metric, lib->GetMetricManager().GetFramePhase()));
+            }
 
-        //     // Add RPE metric
-        //     auto rpe_metric = std::make_shared<slambench::metrics::RPEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
-        //     lib->GetMetricManager().AddFrameMetric(rpe_metric);
-        //     writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*rpe_metric, lib->GetMetricManager().GetFramePhase()));
-        // }
-        // else {
-        //     std::cerr<<"NO GT TRAJECTORY!!"<<std::endl;
-        // }
+            // Add RPE metric
+            auto rpe_metric = std::make_shared<slambench::metrics::RPEMetric>(new slambench::outputs::PoseOutputTrajectoryInterface(aligned), new slambench::outputs::PoseOutputTrajectoryInterface(gt_traj));
+            lib->GetMetricManager().AddFrameMetric(rpe_metric);
+            writer_->AddColumn(new slambench::CollectionValueLibColumnInterface(lib, &*rpe_metric, lib->GetMetricManager().GetFramePhase()));
+        }
+        else {
+            std::cerr<<"NO GT TRAJECTORY!!"<<std::endl;
+        }
 
         // Add a duration metric
         lib->GetMetricManager().AddFrameMetric(duration_metric_);

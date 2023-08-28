@@ -36,13 +36,17 @@ TrajectoryValue::pose_container_t PoseOutputTrajectoryInterface::GetAll() const
 
     return cached_traj_;
 }
+
 void PoseOutputTrajectoryInterface::recalculate() const {
+   
     cached_traj_.clear();
 
     for(auto i : pose_output_->GetValues()) {
         auto point = dynamic_cast<const PoseValue*>(i.second);
-        auto newval = new PoseValue(point->GetValue());
-        cached_traj_.insert({i.first, *newval});
+        // auto newval = new PoseValue(point->GetValue());
+        // to_clear.emplace_back(newval);
+        // cached_traj_.push_back(i.first, *newval);
+        cached_traj_.insert(i.first, point->GetValue());
     }
 
     if(!cached_traj_.empty()) {

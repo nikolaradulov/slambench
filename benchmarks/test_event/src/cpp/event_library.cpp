@@ -206,12 +206,12 @@ bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::T
 	// }
 
     
-    // if(event_frame_output->IsActive()) {
-	// 	std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
-    //     // Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> rotated = (image.transpose().rowwise().reverse());
-	// 	// std::cout<<"Showing frame with indices "<<indices->first<<' '<<indices->second<<' '<<last_frame_timestamp<<'\n';
-    //     event_frame_output->AddPoint(last_frame_timestamp, new slambench::values::EventFrameValue(eventInputSize.y, eventInputSize.x,  slam_settings->events_, begin, end));
-	// }
+    if(event_frame_output->IsActive()) {
+		std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
+        // Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> rotated = (image.transpose().rowwise().reverse());
+		// std::cout<<"Showing frame with indices "<<indices->first<<' '<<indices->second<<' '<<last_frame_timestamp<<'\n';
+        event_frame_output->AddPoint(last_frame_timestamp, new slambench::values::EventFrameValue(eventInputSize.y, eventInputSize.x,  slam_settings->events_, begin, end));
+	}
 
     // if that implementation works we then employ something simillar and creat a special output class for events, where we have the matrix
     // globally stored and then it's just updated as events come in 

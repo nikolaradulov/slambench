@@ -90,6 +90,9 @@ void Value::Dispatch(ConstValueDispatch* vd) const
 	}
 }
 
+void Trajectory::clear(){
+	values_.clear();
+}
 
 FrameValue::FrameValue(const FrameValue& other) : Value(VT_FRAME), width_(other.width_), height_(other.height_), pxl_format_(other.pxl_format_), data_(other.data_) 
 {

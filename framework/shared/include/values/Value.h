@@ -180,11 +180,11 @@ namespace slambench {
 				values_.push_back(value_t(ts, pose));
 			}
 			void insert(const value_t &value) { push_back(value.first, value.second); }
-
+			void insert(const TimeStamp &ts, const Eigen::Matrix4f &pose){values_.emplace_back(value_t(ts, PoseValue(pose)));}
 			size_t size() const { return values_.size(); }
 			bool empty() const { return values_.size() == 0; }
 
-			void clear() { values_.clear(); }
+			void clear();
 
 			const_iterator_t begin() const { return values_.begin(); }
 			const_reverse_iterator_t rbegin() const { return values_.rbegin(); }

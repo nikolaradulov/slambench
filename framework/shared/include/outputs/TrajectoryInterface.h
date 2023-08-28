@@ -33,12 +33,14 @@ namespace slambench {
 			
 			values::PoseValue Get(const TimeStamp& when) const override;
 			values::TrajectoryValue::pose_container_t GetAll() const override;
-			
+			mutable int no_poseVal=0; 
 		private:
+			
 			void recalculate() const;
 			BaseOutput *pose_output_;
 			mutable TimeStamp newest_point_;
 			mutable values::TrajectoryValue::pose_container_t cached_traj_;
+			mutable std::vector<slambench::values::PoseValue*> to_clear;
 		};
 
 		/**
