@@ -51,91 +51,6 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/operations.hpp>
 #include "ResultWriter.h"
-#include <io/Event.h>
-
-void SLAMBenchConfiguration::LoadEvents(){
-   // not how you use gt buffer as a normal buffer. 
-   auto buffer = new slambench::io::GTBufferingFrameStream(input_interface_manager_->GetCurrentInputInterface()->GetFrames());
-   int count =0;
-   while(buffer->HasNextFrame()){
-        auto cur_frame = buffer->GetNextFrame();
-        if(cur_frame==nullptr)
-            break;
-        // std::cout<<"Managed to retrieve frame number "<<count;
-        // std::cout<<cur_frame<<' ';
-        if(cur_frame->FrameSensor->IsEvent()){
-            int elements  = cur_frame->GetVariableSize()/sizeof(slambench::io::Event);
-            slambench::io::Event * events = static_cast<slambench::io::Event*>(cur_frame->GetData());
-            for(int i=0; i<elements; i++){
-                event_stream_.push_back(std::move(events[i]));
-            }
-            // save the sensor that was used
-            event_idf_ = cur_frame->FrameSensor;
-            cur_frame->FreeData();
-            
-            break;
-        }
-        // std::cout<<" - not event"<<'\n';
-        count++;
-   }
-
-    std::cout<<event_stream_.size()<<'\n';
-    // delete buffer;
-  
-}
-
-
-// some event based algorithms will use dynamic event frame assignment. 
-// for those we split the frames as they run. Otherwise frame split is done ar init time
-
-slambench::io::SLAMFrame * SLAMBenchConfiguration::pickEventFrame(SLAMBenchLibraryHelper * lib){
-    // size_t current_index = 0, i;
-    // auto current_ts = events[current_index].ts;
-    // // loop runs once per SLAM Frame
-    // while(current_index < events.size() - 1) {
-
-    //     auto event_frame = new SLAMInMemoryFrame();
-    //     event_frame->FrameSensor = event_sensor;
-    //     event_frame->Timestamp = current_ts;
-
-    //     // loop from current position until frame found with time difference greater than framerate
-    //     for(i = current_index; i < events.size(); ++i) {
-    //         auto delta = events[i].ts - current_ts;
-    //         if (delta > std::chrono::milliseconds{20}) break;
-    //     }
-
-    //     size_t count = (i - 1) - current_index;
-    //     size_t variable_size = sizeof(Event) * count;
-
-    //     // copy from and to points into malloc'd memory
-    //     event_frame->SetVariableSize(variable_size);
-    //     event_frame->Data = malloc(variable_size);
-    //     memcpy(event_frame->Data, &events[current_index], variable_size);
-
-    //     file.AddFrame(event_frame);
-
-    //     // set index to beginning of next frame
-    //     current_index = i;
-    //     current_ts = events[current_index].ts;
-    // }
-
-    // gets the range from the lock and makes the frame based on it 
-    // lock the mutex in order to read the frames
-    std::lock_guard<std::mutex> lock(lib->GetMutex());
-    int begin_idx = lib->GetBeginIndex();
-    int end_idx = lib->GetEndIndex();
-    if(begin_idx==-1000 && end_idx==-1000){
-        return nullptr;
-    }
-    auto current_ts = event_stream_[begin_idx].ts;
-    size_t events_size = (end_idx - begin_idx)*sizeof(slambench::io::Event);
-    auto event_frame = new slambench::io::SLAMEventFrame();
-    event_frame->FrameSensor = event_idf_;
-    event_frame->Timestamp = current_ts;
-    event_frame->indices = new std::pair<int,int>(begin_idx, end_idx);
-    // std::cout<<"Created frame with "<<event_frame->indices->first<<' '<<event_frame->indices->second<<' '<<event_frame->Timestamp<<'\n';
-    return event_frame;
-}
 
 SLAMBenchConfiguration::SLAMBenchConfiguration(void (*custom_input_callback)(Parameter*, ParameterComponent*),void (*libs_callback)(Parameter*, ParameterComponent*)) :
         ParameterComponent("") {
@@ -210,6 +125,7 @@ void SLAMBenchConfiguration::AddSLAMLibrary(const std::string& so_file, const st
     }
     size_t post = slambench::memory::MemoryProfile::singleton.GetOverallData().BytesAllocatedAtEndOfFrame;
     std::cerr << "Configuration consumed " << post-pre  << " bytes" << std::endl;
+
     param_manager_.AddComponent(lib_ptr);
 
     std::cerr << "SLAM library loaded: " << so_file << std::endl;
@@ -218,13 +134,12 @@ void SLAMBenchConfiguration::AddSLAMLibrary(const std::string& so_file, const st
 void SLAMBenchConfiguration::InitGroundtruth(bool with_point_cloud) {
     if(initialised_)
         return;
-    // LoadEvents();
+
     auto interface = input_interface_manager_->GetCurrentInputInterface();
     if(interface != nullptr) {
-        std::cout<<typeid(interface->GetFrames()).name()<<'\n';
         auto gt_buffering_stream = new slambench::io::GTBufferingFrameStream(interface->GetFrames());
         input_interface_manager_->input_stream_ = gt_buffering_stream;
-        
+
         if(realtime_mode_) {
             std::cerr << "Real time mode enabled" << std::endl;
             input_interface_manager_->input_stream_ = new slambench::io::RealTimeFrameStream(input_interface_manager_->input_stream_, realtime_mult_, true);
@@ -245,44 +160,15 @@ void SLAMBenchConfiguration::InitGroundtruth(bool with_point_cloud) {
         gt_available_ = true;
     }
 
-    // LoadEvents();
-    // ----------------- [LOAD EVENTS ALTERNATIVE] -----------------
-    // first frame should always be event frame
-    
-    auto current_frame = input_interface_manager_->GetNextFrame();
-
-    if(current_frame->FrameSensor->IsEvent()){
-        
-        std::cout<<"it was the first frame\n";
-        int elements  = current_frame->GetVariableSize()/sizeof(slambench::io::Event);
-        slambench::io::Event * events = static_cast<slambench::io::Event*>(current_frame->GetData());
-        for(int i=0; i<elements; i++){
-            event_stream_.push_back(std::move(events[i]));
-        }
-        // save the sensor that was used
-        event_idf_ = current_frame->FrameSensor;
-        current_frame->FreeData();
-        delete current_frame;
-        // get next one
-        std::cout<<"event no 5 is "<<event_stream_[4]<<'\n';
-        for (auto &lib : slam_libs_){
-            lib->events_=&event_stream_;   
-        }
-    }   
-    // ---------------------------------------------------------------
-        
     initialised_ = true;
 }
 
 void SLAMBenchConfiguration::InitAlgorithms() {
 
-    // load events
-    std::cout<<"Don't make me load those events, i warn ya!!!\n\n";
     assert(initialised_);
-    // set envents acess where necessary
+
     for (auto &lib : slam_libs_) {
 
-        // lib->events_=&event_stream_;
         lib->GetMetricManager().BeginInit();
         bool init_worked = lib->c_sb_init_slam_system(lib);
         lib->GetMetricManager().EndInit();
@@ -298,11 +184,9 @@ void SLAMBenchConfiguration::InitAlgorithms() {
             exit(1);
         }
     }
-    std::cout<<"----------------------------------- ALG -----------------------------------\n";
 }
 
 void SLAMBenchConfiguration::InitAlignment() {
-    std::cout<<"Try alignment\n";
     if(!gt_available_)
         return;
     slambench::outputs::TrajectoryAlignmentMethod *alignment_method;
@@ -336,21 +220,16 @@ void SLAMBenchConfiguration::InitAlignment() {
             lib->GetOutputManager().RegisterOutput(pc_aligned);
         }
     }
-    std::cout<<"Alignment done\n";
 }
 
 void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui) {
 
-    std::cout<<"PoseValue takes "<<sizeof(slambench::values::PoseValue)<<"-----\n\n";
     assert(initialised_);
 
     int input_seq = 0;
     bool ongoing = false;
-    // having the flag set here will only make it work when only one algorithm is loaded. 
-    // any more than one and the entire thing will break in a million pieces
-    // will get changed eventually when i figure out how 
-    bool event_picked;
     std::vector<Eigen::Matrix4f> libs_trans;
+
     // ********* [[ MAIN LOOP ]] *********
     unsigned int frame_count = 0;
     while(true) {
@@ -360,48 +239,15 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                 break;
             }
         }
-        slambench::io::SLAMFrame * current_frame, * event_frame=nullptr;
-        // if it's an event algorithm everything should be handled differently
 
-        auto non_event_frame = input_interface_manager_->GetNextFrame();
-        const std::type_info& typeInfo = typeid(*non_event_frame);
-        std::cout << "Object type: " << typeInfo.name() << std::endl;
-        // non_event_frame->GetData();
-        bool available_events = true;
-        // while there are non_event_frames or event frames
-        while (non_event_frame != nullptr || available_events) {
-            event_picked = false;
+        auto current_frame = input_interface_manager_->GetNextFrame();
+
+        while (current_frame != nullptr) {
             frame_count++;
-            
-            // if the non event frame is not gt then compare it ith event to see which one 
-            // is used next
-            if (non_event_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType ) {
-                // std::cout<<frame_count<<'\n';
+            if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********
                 for (size_t i = 0; i < slam_libs_.size(); i++) {
                     auto lib = slam_libs_[i];
-                    // ********* [[ EVENT FRAME SELECTION]] *********
-                    current_frame = non_event_frame;
-                    if(lib->IsEventAlg()){
-                        event_frame = pickEventFrame(lib);
-                        // std::cout<<non_event_frame->Timestamp<<' '<<event_frame->Timestamp<<' ';
-                        if(event_frame!=nullptr){ 
-                            if(non_event_frame->Timestamp>event_frame->Timestamp){
-                                current_frame = event_frame;
-                                event_picked = true;
-                            }
-                            else{
-                                event_frame->FreeData();
-                                delete event_frame;
-                            }
-                        }else{
-                            // if there are no more events 
-                            available_events=false;
-                        }
-                    }else{
-                        // if not an event based algorithm then don't wait for events
-                        available_events = false;
-                    }
                     // ********* [[ SEND THE FRAME ]] *********
                     ongoing = not lib->c_sb_update_frame(lib, current_frame);
 
@@ -414,7 +260,6 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     lib->GetMetricManager().BeginFrame();
                     slambench::TimeStamp ts = current_frame->Timestamp;
 
-                    // std::cout<<"input_interface_manager_->updated_ = "<<input_interface_manager_->updated_<<'\n';
                     if (!input_interface_manager_->updated_) {
                         if (not lib->c_sb_process_once(lib)) {
                             std::cerr <<"Error after lib->c_sb_process_once." << std::endl;
@@ -424,7 +269,6 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                         // ********** [[or relocalization]] **********
                         //Mihai: need assertion / safety mechanism to avoid ugly errors
                         bool res = lib->c_sb_relocalize(lib);
-                        std::cout<<"Relocalise: "<<res<<'\n';
                         input_interface_manager_->updated_ = false;
                         frame_count = 0;
                         /* If the library failed to re-localize at the beginning of a new input,
@@ -458,9 +302,8 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                         std::cerr << "Failed to get outputs" << std::endl;
                         exit(1);
                     }
-                    // std::cout<<"metric manager\n";
+
                     lib->GetMetricManager().EndFrame();
-                    // std::cout<<"Metric manager done";
                 }
                 // ********* [[ FINALIZE ]] *********
                 if (!ongoing) {
@@ -473,22 +316,8 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     }
                 }
             }
-            
-            // if(event_frame!=nullptr){
-            //     event_frame->FreeData();
-            // }
-            
-            // won't work. I can't choose the next event frame until the algorithm is executed 
-            if(!event_picked){
-                // only free and delete is a new one is coming
-                non_event_frame->FreeData();
-                delete non_event_frame;
-                non_event_frame = input_interface_manager_->GetNextFrame();
-            }else{
-                event_frame->FreeData();
-                delete event_frame;
-            }
-            
+            current_frame->FreeData();
+            current_frame = input_interface_manager_->GetNextFrame();
         } // we're done with the frame
         if (!output_filename_.empty())
             SaveResults();
@@ -496,8 +325,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         if (input_seq++ == 0)
             for(auto& alignment : alignments_)
                 alignment->SetFreeze(true);
-        
-        // if no more inputs to try exit computation loop
+
         if (!LoadNextInputInterface())
             break;
     }

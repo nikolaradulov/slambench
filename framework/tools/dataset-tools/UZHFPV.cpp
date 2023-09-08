@@ -45,7 +45,6 @@ bool loadUZHFPVGreyData(const std::string& dirname,
                         const std::string& sensor_name_yaml,
                         SLAMFile &file,
                         const YAML::Node& yaml) {
-
     auto width = yaml[sensor_name_yaml]["resolution"][0].as<int>();
     auto height = yaml[sensor_name_yaml]["resolution"][1].as<int>();
     slambench::io::CameraSensor::intrinsics_t intrinsics;
@@ -66,11 +65,6 @@ bool loadUZHFPVGreyData(const std::string& dirname,
             yaml[sensor_name_yaml]["T_cam_imu"][0][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][1][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][2][3].as<float>(), yaml[sensor_name_yaml]["T_cam_imu"][3][3].as<float>();
 
     auto rate = yaml["cam1"] ? 30 : 50; // if cam1 exists, it's Snapdragon (30fps), else it's Davis (50fps).
-    
-    // a sepaerate grey sensro for the event camera is made outside of the function
-    // but never passed inside. Probably would be a good idea to have a different 
-    // loader for davis 
-
     auto grey_sensor = GreySensorBuilder()
             .name("Grey " + sensor_name_yaml)
             .size(width, height)
@@ -329,15 +323,14 @@ bool loadUZHFPVEventData(const std::string &dirname,
 
     std::vector<Event> events = {};
 
-    // read events from dataset in memory
     while (std::getline(infile, line)) {
         if (line.empty()) {
             continue;
         } else if (boost::regex_match(line, match, comment)) {
             continue;
         } else if (boost::regex_match(line, match, events_line)) {
-            // std::cout<<' '<<match[1]<<' '<<match[2]<<' '<<match[3]<<'\n';
-            uint32_t timestampS = std::stoi(match[1]); 
+
+            uint32_t timestampS = std::stoi(match[0]);
             uint32_t timestampNs = std::stod(match[2]) * std::pow(10, 9 - match[2].length());
 
             auto timestamp = TimeStamp{timestampS, timestampNs};
@@ -353,19 +346,37 @@ bool loadUZHFPVEventData(const std::string &dirname,
         }
     }
 
-    // save the entire events as one frame
-    size_t size = events.size()*sizeof(Event);
-    auto event_frame = new SLAMInMemoryFrame();
-    event_frame->FrameSensor = event_sensor;
-    event_frame->Timestamp = TimeStamp{0,0};
-    event_frame->SetVariableSize(size);
-    event_frame->Data = malloc(size);
-    memcpy(event_frame->Data, &events[0], size);
+    size_t current_index = 0, i;
+    auto current_ts = events[current_index].ts;
 
-    file.AddFrame(event_frame);
+    // loop runs once per SLAM Frame
+    while(current_index < events.size() - 1) {
 
+        auto event_frame = new SLAMInMemoryFrame();
+        event_frame->FrameSensor = event_sensor;
+        event_frame->Timestamp = current_ts;
 
-    
+        // loop from current position until frame found with time difference greater than framerate
+        for(i = current_index; i < events.size(); ++i) {
+            auto delta = events[i].ts - current_ts;
+            if (delta > std::chrono::milliseconds{20}) break;
+        }
+
+        size_t count = (i - 1) - current_index;
+        size_t variable_size = sizeof(Event) * count;
+
+        // copy from and to points into malloc'd memory
+        event_frame->SetVariableSize(variable_size);
+        event_frame->Data = malloc(variable_size);
+        memcpy(event_frame->Data, &events[current_index], variable_size);
+
+        file.AddFrame(event_frame);
+
+        // set index to beginning of next frame
+        current_index = i;
+        current_ts = events[current_index].ts;
+    }
+
     return true;
 }
 
@@ -422,7 +433,6 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
             delete slamfile_ptr;
             return nullptr;
         }
-        std::cout<<"Events written successfully\n\n";
     }
 
     // load camera data
@@ -443,18 +453,28 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
         }
 
     } else {
-        std::cout<<"Loading mono data\n";
+        // davis grey camera
+        // auto grey_sensor = GreySensorBuilder()
+        //         .name("Grey")
+        //         .size(346, 260)
+        //         .pose(pose)
+        //         .intrinsics(davis_intrinsics)
+        //         .distortion(CameraSensor::distortion_type_t::Equidistant, davis_distortion)
+        //         .rate(50) // from paper
+        //         .index(slamfile.Sensors.size())
+        //         .build();
+
+        // slamfile.Sensors.AddSensor(grey_sensor);
+        
         if (!loadUZHFPVGreyData(dirname, "images.txt", "cam0", slamfile, yaml)) {
             std::cerr << "Error while loading Grey information." << std::endl;
             delete slamfile_ptr;
             return nullptr;
         }
-        std::cout<<"Done with mono data\n\n";
     }
 
     // load GT
     if (gt) {
-        std::cout<<"Writing gt\n\n";
         auto gt_sensor = GTSensorBuilder()
                 .name("GroundTruth")
                 .description("GroundTruthSensor")
@@ -468,7 +488,6 @@ SLAMFile *UZHFPVReader::GenerateSLAMFile() {
             delete slamfile_ptr;
             return nullptr;
         }
-        std::cout<<"Done with gt\n\n";
     }
 
     yaml = YAML::LoadFile(dirname + "/imu.yaml");
