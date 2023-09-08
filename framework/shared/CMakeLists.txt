@@ -25,8 +25,11 @@ if(GLUT_FOUND)
 endif(GLUT_FOUND)
 
 ########## PCL Library ####################
-find_package(PCL)
+#find_package(Eigen3 REQUIRED)
+find_package(PCL EXACT REQUIRED PATHS "/home/nrad/slambench/deps/pcl/share/pcl-1.8")
 if (PCL_FOUND)
+	message("FOUND PCL-------------------------------")
+	message("${PCL_INCLUDE_DIRS}")
     include_directories(${PCL_INCLUDE_DIRS})
     link_directories(${PCL_LIBRARY_DIRS})
     add_definitions(${PCL_DEFINITIONS})
