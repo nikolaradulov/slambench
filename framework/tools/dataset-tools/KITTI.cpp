@@ -34,6 +34,8 @@
 
 
 using namespace slambench::io;
+constexpr CameraSensor::intrinsics_t KITTIReader::intrinsics_111003_rect;
+constexpr CameraSensor::intrinsics_t KITTIReader::intrinsics_110930_rect;
 
 int kitti_start = 0;
 int kitti_end = 0;
