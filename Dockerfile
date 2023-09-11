@@ -36,7 +36,7 @@ RUN apt-get -y install \
     build-essential \
     libyaml-cpp-dev
 # download git folder
-RUN git clone --branch SLAMBench-conteinarisation https://github.com/nikolaradulov/slambench.git
+RUN git clone --branch macos https://github.com/nikolaradulov/slambench.git
 WORKDIR /slambench
 # RUN git checkout 93fa32123c8878a311ecb02acd2ad8971292a4ab
 RUN apt-get install python
