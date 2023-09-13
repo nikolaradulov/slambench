@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 set(common_properties "")
 set(common_libraries "")
 include_directories(./include)
+include_directories(${SLAMBENCH_INCLUDE_DIR})
 
 ########## Boost (required) ####################
 find_package(Boost 1.54 REQUIRED COMPONENTS program_options regex)
@@ -11,7 +12,7 @@ find_package(Boost 1.54 REQUIRED COMPONENTS program_options regex)
 find_package(GLUT)
 if(GLUT_FOUND)
     ########## Pangolin GUI Library ####################
-    find_package(Pangolin)
+    find_package(Pangolin QUIET)
     if(Pangolin_FOUND)
         include_directories(${Pangolin_INCLUDE_DIRS})
         include_directories(${TOON_INCLUDE_PATHS})

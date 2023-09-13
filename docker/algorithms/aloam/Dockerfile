@@ -1,13 +1,14 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LOAM_DIR=/deps/aloam
 
-RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y update 
+RUN apt-get -y upgrade
 RUN apt-get -y install git
-RUN apt-get -y install g++
+RUN apt-get -y install clang
 RUN apt-get -y install cmake
 RUN apt-get -y install libboost-all-dev libyaml-cpp-dev
 # Required by suitesparse
@@ -144,7 +145,7 @@ RUN make -j$(expr $(nproc) - 2) && make install
 
 # ====== <SLAMBench> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone --branch macos https://github.com/nikolaradulov/slambench.git slambench
 
 WORKDIR $LOAM_DIR
 RUN mkdir wrapper

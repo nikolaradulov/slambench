@@ -4,7 +4,7 @@ ANDROID_EIGEN3_INCLUDE_DIR=${ANDROID_DEPS_DIR}/eigen3/include/eigen3
 ${REPOS_DIR}/eigen3 :
 	mkdir -p ${REPOS_DIR}/ 
 	rm -rf ${REPOS_DIR}/eigen3 
-	cd ${REPOS_DIR}/ && git clone --depth 1 --branch 3.2.10 https://gitlab.com/libeigen/eigen.git eigen3
+	cd ${REPOS_DIR}/ && git clone --depth 1 --branch 3.3.4 https://gitlab.com/libeigen/eigen.git eigen3
 
 
 ${DEPS_DIR}/eigen3  : ${REPOS_DIR}/eigen3 

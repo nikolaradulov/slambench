@@ -38,28 +38,18 @@ RUN apt-get -y install \
 # download git folder
 RUN git clone --branch macos https://github.com/nikolaradulov/slambench.git
 WORKDIR /slambench
+RUN git pull
 # RUN git checkout 93fa32123c8878a311ecb02acd2ad8971292a4ab
 RUN apt-get install python
 COPY entry.sh /slambench
 RUN chmod +x /slambench/entry.sh
 # COPY ./framework/tools/accuracy-tools/CMakeLists.txt /slambench/framework/tools/accuracy-tools
 #COPY ./framework/makefiles/deps.makefile /slambench/framework/makefiles
-# RUN	make brisk
-#	+make ceres
-#	+make cvd
 RUN make eigen3
 RUN make flann -j$(expr $(nproc) - 2)
-#	+make freeimage
-# RUN make g2o
-#	+make gvars
 RUN make opencv -j$(expr $(nproc) - 2)
-#	+make opengv
-#	+make opentuner
 RUN make pangolin -j$(expr $(nproc) - 2)
 RUN make pcl -j$(expr $(nproc) - 2)
-# RUN make suitesparse
-#	+make toon
-#	+make Sophus
 # build slambench
 RUN make slambench
 ENTRYPOINT [ "./entry.sh" ]

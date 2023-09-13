@@ -1,6 +1,7 @@
 PANGOLIN_DIR=${DEPS_DIR}/pangolin/lib/cmake/Pangolin/
 
 CURRENT_PANGOLIN_COMMIT=c2a6ef524401945b493f14f8b5b8aa76cc7d71a9 # (Mar 18)
+# CURRENT_PANGOLIN_COMMIT=master # (Mar 18)
 
 ## INFO: Previously we used 8b8b7b96adcf58ac2755dedd3f681fc512385af0 (Jan 17)
 
