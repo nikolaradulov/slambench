@@ -50,6 +50,9 @@ uint32_t SLAMFrame::GetVariableSize() const
 	return size_if_variable_sized_;
 }
 
+void SLAMInMemoryFrame::Enhance(){
+	printf("This is a memroy frame\n");
+}
 
 void *SLAMInMemoryFrame::GetData() {
 	return Data;
@@ -260,20 +263,49 @@ void DeserialisedFrame::SetOffset(size_t new_offset) {
     offset_ = new_offset;
 }
 
-void *DeserialisedFrame::GetData() {
+void *DeserialisedFrame::GetDataHelper() {
+	/*
+		The original GetData() fuction for DeserialisedFrame. Now a helper to aloow for enhancing 
+	*/
 	unsigned long size = GetSize();
 	buffer_.Acquire();
 	buffer_.Reserve(size);
-
+	
 	fseeko(file_, offset_, SEEK_SET);
 	fread(buffer_.Data(), size, 1, file_);
 	// TODO : Check return value of fread
 	return buffer_.Data();
 }
 
+void * DeserialisedFrame::GetData(){
+	void * data = this->GetDataHelper();
+	if(this->enhance_){
+		this->enhanced_image_ = FrameSensor->Enhance(data, "blur");
+		return this->enhanced_image_;
+	}
+	else{
+		return data;
+	}
+}
+
+void DeserialisedFrame::Enhance(){
+	// only enable enhance if the sensor can provide its
+	this->enhance_=FrameSensor->enhance_;
+	
+	printf("This is a deserialised frame. %s\n ", this->enhance_ ? "true" : "false");
+}
 void DeserialisedFrame::FreeData() {
 	buffer_.Release();
 	buffer_.ResetBuffer();
+	if (this->enhance_){
+		free(this->enhanced_image_);
+		printf("The image was enhanced. Free the enhanced version");
+	}
+}
+
+void ImageFileFrame::Enhance(){
+	this->enhance_= true;
+	printf("This is a image file frame\n");
 }
 
 void* ImageFileFrame::LoadFile() {

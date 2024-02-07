@@ -74,7 +74,7 @@ SLAMBenchConfiguration::SLAMBenchConfiguration(void (*custom_input_callback)(Par
     addParameter(TriggeredParameter("h",     "help",   "Print the help.", help_callback));
     addParameter(TypedParameter<bool>("realtime",     "realtime-mode",      "realtime frame loading mode",                   &realtime_mode_, &default_is_false));
     addParameter(TypedParameter<double>("realtime-mult",     "realtime-multiplier",      "realtime frame loading mode",                   &realtime_mult_, &default_realtime_mult));
-
+    addParameter(TypedParameter<bool>("enhance",     "enhance-image",        "apply noise/blur filters to image",     &enhance_mode_,     &default_is_false));
     param_manager_.AddComponent(this);
 }
 
@@ -246,7 +246,8 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         }
 
         auto current_frame = input_interface_manager_->GetNextFrame();
-
+        current_frame->Enhance();
+        printf("Got here _______________-------------------__________________-------------------_____________\n");
         while (current_frame != nullptr) {
             frame_count++;
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {

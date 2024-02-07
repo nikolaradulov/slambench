@@ -35,6 +35,8 @@ namespace slambench {
 			pose_t Pose;
 			float Rate;
 			float Delay; // Delay between sensor and baseline
+			// signals if the sensor is cmple to enhance the data
+			bool enhance_=false;
 
 			virtual size_t GetFrameSize(const SLAMFrame *frame) const = 0;
 			const sensor_type_t &GetType() const;
@@ -42,7 +44,10 @@ namespace slambench {
 			
 			void CopyPose(const Sensor *other);
 			void CopyPose(const pose_t &other);
-			
+			// null pointer signals enhanced not implemented / error 
+			virtual void *Enhance(void * raw, std::string type){return nullptr;}
+
+
 			bool IsVariableSize() const;
 			bool IsGroundTruth() const;
 			

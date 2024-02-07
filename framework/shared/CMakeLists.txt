@@ -3,6 +3,13 @@ cmake_minimum_required(VERSION 2.8)
 set(common_properties "")
 set(common_libraries "")
 include_directories(./include)
+########## OpenCV (required) ##############
+find_package(OpenCV QUIET)
+IF (OpenCV_FOUND)
+	include_directories(${OpenCV_INCLUDE_DIRS})
+	link_directories(${OpenCV_LIBRARY_DIRS})
+	set(common_libraries "${common_libraries}" "${OpenCV_LIBRARIES}")
+ENDIF ()
 
 ########## Boost (required) ####################
 find_package(Boost 1.54 REQUIRED COMPONENTS program_options regex)

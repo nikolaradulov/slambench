@@ -12,7 +12,7 @@
 #include "io/deserialisation/Deserialiser.h"
 #include "io/sensor/CameraSensor.h"
 #include "io/sensor/SensorDatabase.h"
-
+#include <opencv2/opencv.hpp>
 #include <cassert>
 #include <Parameters.h>
 
@@ -63,6 +63,39 @@ void CameraSensor::CopyIntrinsics(const CameraSensor* other) {
 	CopyIntrinsics(other->Intrinsics);
 }
 
+void * CameraSensor::Enhance(void * raw_image, std::string type){
+	
+	int img_type ;
+	if(pixelformat::IsGrey(this->PixelFormat)){
+		img_type = CV_8UC1;	
+	}
+	else{
+		if(pixelformat::IsRGB(this->PixelFormat)){
+			img_type = CV_8UC3;
+		}
+	}
+	cv::Mat image_mat = cv::Mat(this->Height, this->Width, img_type, raw_image);
+	cv::imshow("Pre-edit", image_mat);
+	
+	if(type=="blur"){
+		cv::blur(image_mat, image_mat, cv::Size(1,1));
+		printf("Image to be blurred\n");
+		cv::imshow("Post-edit",image_mat);
+		cv::waitKey(0);
+	}
+
+	void* edited_image = malloc(image_mat.total() * image_mat.elemSize());
+    if (edited_image == nullptr) {
+        // Handle memory allocation failure
+        return nullptr;
+    }
+
+	memcpy(edited_image, image_mat.data, image_mat.total() * image_mat.elemSize());
+
+	return edited_image;
+
+}
+
 class CameraSensorSerialiser : public SensorSerialiser {
 	bool SerialiseSensorSpecific(Serialiser* serialiser, const Sensor* s) override {
 		CameraSensor *sensor = (CameraSensor*)s;
@@ -111,3 +144,4 @@ class CameraSensorDeserialiser : public SensorDeserialiser {
 };
 
 static slambench::io::SensorDatabaseRegistration camera_reg(CameraSensor::kCameraType, slambench::io::SensorDatabaseEntry(new CameraSensorSerialiser(), new CameraSensorDeserialiser(), false, false));
+

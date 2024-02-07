@@ -74,7 +74,7 @@ private:
     bool realtime_mode_;
     bool gt_available_;
     bool aided_reloc_ = false;
-
+    bool enhance_mode_;
 public:
     SLAMBenchConfiguration(void (*input_callback)(Parameter*, ParameterComponent*) = nullptr,
                            void (*libs_callback)(Parameter*, ParameterComponent*)  = nullptr);

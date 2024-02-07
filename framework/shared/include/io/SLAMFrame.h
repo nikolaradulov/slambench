@@ -32,8 +32,11 @@ namespace slambench {
 			TimeStamp Timestamp;
 			Sensor *FrameSensor;
 			
+			bool enhance_=false;
+
 			size_t GetSize() const;
 			void SetVariableSize(uint32_t size);
+			virtual void Enhance(){printf("This is the base class\n");}
 			uint32_t GetVariableSize() const;
             virtual void *GetData() = 0;
             virtual void FreeData() = 0;
@@ -53,12 +56,13 @@ namespace slambench {
 
 		private:
 			uint32_t size_if_variable_sized_;
+			
 		};
 		
 		class SLAMInMemoryFrame : public SLAMFrame {
 		public:
 			void *Data;
-		
+			void Enhance() override;
 			void *GetData() override;
 			void FreeData() override;
 		};
@@ -94,6 +98,7 @@ namespace slambench {
 			void *LoadFile() override;
 			
 		private:
+			void Enhance() override;
 			void *LoadPng();
 			void *LoadPbm();
 		};
@@ -101,9 +106,10 @@ namespace slambench {
 		class DeserialisedFrame : public SLAMFrame {
 		public:
 			DeserialisedFrame(FrameBuffer &buffer, FILE *file);
-			
+			void Enhance() override;
 			void SetOffset(size_t data_offset);
 			void *GetData() override;
+			void *GetDataHelper();
 			void FreeData() override;
 			FrameBuffer& getFrameBuffer() {
 				return buffer_;
@@ -112,6 +118,7 @@ namespace slambench {
 		private:
 			FrameBuffer &buffer_;
 			FILE *file_;
+			void *enhanced_image_;
 			size_t offset_;
 		};
 	}
