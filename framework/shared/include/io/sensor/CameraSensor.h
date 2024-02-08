@@ -37,7 +37,7 @@ namespace slambench {
 			uint32_t Width;
 			uint32_t Height;
 
-			bool enhance_ = true;
+			// bool enhance_=true;
 			
 			// Color setting
 			frameformat::EFrameFormat FrameFormat;
@@ -51,7 +51,7 @@ namespace slambench {
 			distortion_coefficients_t EquidistantDistortion;
 			distortion_coefficients_t Distortion;
 
-			void *Enhance(void * raw, std::string type) override; 
+			void * Enhance(void * raw, std::string type) override; 
 			size_t GetFrameSize(const SLAMFrame *frame) const override;
 			void CopyIntrinsics(const CameraSensor *other);
 			void CopyIntrinsics(const intrinsics_t &other);

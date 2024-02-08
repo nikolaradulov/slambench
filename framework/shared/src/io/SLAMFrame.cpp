@@ -290,14 +290,14 @@ void * DeserialisedFrame::GetData(){
 
 void DeserialisedFrame::Enhance(){
 	// only enable enhance if the sensor can provide its
-	this->enhance_=FrameSensor->enhance_;
+	this->enhance_=true;
 	
 	printf("This is a deserialised frame. %s\n ", this->enhance_ ? "true" : "false");
 }
 void DeserialisedFrame::FreeData() {
 	buffer_.Release();
 	buffer_.ResetBuffer();
-	if (this->enhance_){
+	if (this->enhance_ && this->enhanced_image_){
 		free(this->enhanced_image_);
 		printf("The image was enhanced. Free the enhanced version");
 	}
