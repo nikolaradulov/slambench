@@ -246,9 +246,10 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         }
 
         auto current_frame = input_interface_manager_->GetNextFrame();
-        current_frame->Enhance();
+        
         printf("Got here _______________-------------------__________________-------------------_____________\n");
         while (current_frame != nullptr) {
+            current_frame->Enhance();
             frame_count++;
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********

@@ -118,7 +118,7 @@ namespace slambench {
 		private:
 			FrameBuffer &buffer_;
 			FILE *file_;
-			void *enhanced_image_;
+			void *enhanced_image_=nullptr;
 			size_t offset_;
 		};
 	}

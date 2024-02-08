@@ -75,13 +75,13 @@ void * CameraSensor::Enhance(void * raw_image, std::string type){
 		}
 	}
 	cv::Mat image_mat = cv::Mat(this->Height, this->Width, img_type, raw_image);
-	cv::imshow("Pre-edit", image_mat);
+	// cv::imshow("Pre-edit", image_mat);
 	
 	if(type=="blur"){
-		cv::blur(image_mat, image_mat, cv::Size(1,1));
-		printf("Image to be blurred\n");
-		cv::imshow("Post-edit",image_mat);
-		cv::waitKey(0);
+		cv::blur(image_mat, image_mat, cv::Size(10,10));
+		// printf("Image to be blurred\n");
+		// cv::imshow("Post-edit",image_mat);
+		// cv::waitKey(0);
 	}
 
 	void* edited_image = malloc(image_mat.total() * image_mat.elemSize());
