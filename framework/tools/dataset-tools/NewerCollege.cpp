@@ -289,7 +289,7 @@ bool loadNewerGroundTruthData(const std::string &dirname, SLAMFile &file) {
     std::string line;
 
     boost::smatch match;
-    std::ifstream infile(dirname + "/" + "poses.csv");
+    std::ifstream infile(dirname + "/" + "groundtruth.csv");
 
     const std::string& num = RegexPattern::number;
     const std::string& start = RegexPattern::start;
@@ -379,6 +379,10 @@ SLAMFile* NewerCollegeReader::GenerateSLAMFile() {
         requirements.emplace_back("/ouster_scan");
     }
 
+    if (gt) {
+        requirements.emplace_back("groundtruth.csv");
+    }
+
     if (!checkRequirements(dirname, requirements)) {
         std::cerr << "Invalid folder." << std::endl;
         return nullptr;
@@ -420,6 +424,7 @@ SLAMFile* NewerCollegeReader::GenerateSLAMFile() {
         return nullptr;
     }
 
+    if (!imu) std::cout << "IMU sensor disabled by default, check NewerCollege.h" << std::endl;
     if (lidar && imu && !loadNewerLidarIMUData(dirname, slamfile)) {
         std::cout << "Error while loading Ouster IMU information." << std::endl;
         delete slamfilep;

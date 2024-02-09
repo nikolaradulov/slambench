@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LOAM_DIR=/deps/aloam
+ENV LOAM_DIR=/deps/floam
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install git
@@ -33,6 +33,18 @@ RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTA
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
+# ===== <YAML-CPP> =====
+WORKDIR /repos
+RUN git clone --branch 0.8.0 https://github.com/jbeder/yaml-cpp.git yaml-cpp
+
+# Build yaml-cpp
+WORKDIR yaml-cpp
+RUN mkdir build
+WORKDIR build
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/yaml-cpp/"
+RUN make -j$(expr $(nproc) - 2) && make install
+
+
 # ====== <Suitesparse v4.3.1> ======
 # Required dependencies: gfortran libblas-dev liblapack-dev
 WORKDIR /repos
@@ -45,26 +57,6 @@ RUN make
 RUN mkdir $LOAM_DIR/suitesparse/include -p
 RUN mkdir $LOAM_DIR/suitesparse/lib -p
 RUN make install INSTALL_LIB=$LOAM_DIR/suitesparse/lib INSTALL_INCLUDE=$LOAM_DIR/suitesparse/include
-
-
-# ===== <Flann> =====
-WORKDIR /repos
-RUN git clone https://github.com/mariusmuja/flann.git flann
-WORKDIR flann
-RUN git checkout 06a49513138009d19a1f4e0ace67fbff13270c69
-RUN touch /repos/flann/src/cpp/empty.cpp
-RUN sed -e "/add_library(flann_cpp SHARED/ s/\"\"/empty.cpp/" -e "/add_library(flann SHARED/ s/\"\"/empty.cpp/" -i /repos/flann/src/cpp/CMakeLists.txt
-
-# build flann
-RUN mkdir build
-WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/flann/" \
-            -DBUILD_MATLAB_BINDINGS=FALSE \
-            -DBUILD_PYTHON_BINDINGS=FALSE \
-            -DBUILD_EXAMPLES=FALSE \
-            -DBUILD_TESTS=FALSE \
-            -DBUILD_DOC=FALSE
-RUN make -j$(expr $(nproc) - 2) && make install
 
 
 # ===== <Ceres> =====
@@ -88,6 +80,26 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/ceres" \
              -DSUITESPARSE_LIBRARY_DIR_HINTS=$LOAM_DIR/suitesparse/lib \
              -DCXSPARSE_INCLUDE_DIR=$LOAM_DIR/suitesparse/include \
              -DCXSPARSE_LIBRARY=$LOAM_DIR/suitesparse/lib/libcxsparse.a
+RUN make -j$(expr $(nproc) - 2) && make install
+
+
+# ===== <Flann> =====
+WORKDIR /repos
+RUN git clone https://github.com/mariusmuja/flann.git flann
+WORKDIR flann
+RUN git checkout 06a49513138009d19a1f4e0ace67fbff13270c69
+RUN touch /repos/flann/src/cpp/empty.cpp
+RUN sed -e "/add_library(flann_cpp SHARED/ s/\"\"/empty.cpp/" -e "/add_library(flann SHARED/ s/\"\"/empty.cpp/" -i /repos/flann/src/cpp/CMakeLists.txt
+
+# build flann
+RUN mkdir build
+WORKDIR build
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/flann/" \
+            -DBUILD_MATLAB_BINDINGS=FALSE \
+            -DBUILD_PYTHON_BINDINGS=FALSE \
+            -DBUILD_EXAMPLES=FALSE \
+            -DBUILD_TESTS=FALSE \
+            -DBUILD_DOC=FALSE
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -154,11 +166,11 @@ COPY ./libslambench-c-wrapper.a $LOAM_DIR/wrapper/
 RUN mv null.cpp $LOAM_DIR/wrapper
 
 
-# ====== <A-LOAM> ======
+# ====== <F-LOAM> ======
 WORKDIR /repos
-RUN git clone --recursive --branch slambench https://github.com/yuhaozhang7/oh_my_loam.git aloam
+RUN git clone --recursive --branch slambench https://github.com/yuhaozhang7/floam.git floam
 
-WORKDIR aloam
+WORKDIR floam
 RUN mkdir build
 WORKDIR build
 RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
@@ -167,14 +179,16 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
 	-DFLANN_INCLUDE_DIR=$LOAM_DIR/flann/include/ \
     -DPCL_INCLUDE_DIR=$LOAM_DIR/pcl/include/pcl-1.8/ \
     -DCERES_INCLUDE_DIR=$LOAM_DIR/ceres/include/ \
+    -DYAML_CPP_INCLUDE_DIR=$LOAM_DIR/yaml-cpp/include/ \
  	-DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/ \
 	-DFLANN_LIBRARY_DIR=$LOAM_DIR/flann/lib/ \
     -DPCL_LIBRARY_DIR=$LOAM_DIR/pcl/lib/ \
     -DCERES_LIBRARY_DIR=$LOAM_DIR/ceres/lib/ \
- 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pcl/lib:\$ORIGIN/../ceres/lib:\$ORIGIN/../flann/lib"
+    -DYAML_CPP_LIBRARY_DIR=$LOAM_DIR/yaml-cpp/lib/ \
+ 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../flann/lib:\$ORIGIN/../pcl/lib:\$ORIGIN/../ceres/lib:\$ORIGIN/../yaml-cpp/lib"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 WORKDIR $LOAM_DIR
 RUN mkdir configs
 WORKDIR configs
-RUN mv /repos/aloam/configs/*.yaml .
+RUN mv /repos/floam/configs/*.yaml .

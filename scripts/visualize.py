@@ -18,7 +18,7 @@ def calculate_rmse(abs_errors):
     rmse = np.sqrt(mean_squared_error)
     return rmse
 
-def extract_result_from_file(filename):
+def extract_result_from_file(filename, input_gt_length):
     
     with open(filename, "r") as f:
         # Read lines from the file
@@ -38,7 +38,6 @@ def extract_result_from_file(filename):
     has_accuracy = False
 
     # Loop through each line in the file
-    idx = 0
     for line in lines:
         parts = line.strip().split('\t')
 
@@ -57,15 +56,13 @@ def extract_result_from_file(filename):
             cpu_memory_idx, gpu_memory_idx = parts.index("CPU_Memory"), parts.index("GPU_Memory")
 
             continue
-
-        if parts[ATE_RMSE_idx] in ("-nan", "nan") or parts[maxATE_idx] in ("-nan", "nan"):
+        
+        if parts[ATE_RMSE_idx] in ("-nan", "nan") or parts[maxATE_idx] in ("-nan", "nan") or parts[RPE_RMSE_idx] in ("-nan", "nan"):
             continue
 
-        if parts[RPE_RMSE_idx] in ("-nan", "nan"):
-            break
-
         # Check if the first part is a string that represents an integer
-        if re.match(r"^\d+$", parts[0]):
+        if re.match(r"\d+", parts[0]):
+            # print(parts[0])
             x, y, z = parts[x_idx], parts[y_idx], parts[z_idx]
             poses.append((x, y, z))
 
@@ -76,6 +73,8 @@ def extract_result_from_file(filename):
             duration_frames.append(float(parts[duration_frame_idx]))
             cpu_memory, gpu_memory = float(parts[cpu_memory_idx]), float(parts[gpu_memory_idx])
 
+            if (int(parts[0]) >= input_gt_length):
+                break
         else:
             continue
 
@@ -226,34 +225,34 @@ def visualize_metrices(values_list, algo_names, metric="NONE"):
     plt.close()
 
 
-def visualize_bar_graph(meanATE_list, maxATE_list, ATE_RMSE_list, RPE_RMSE_list, algo_names):
+def visualize_bar_graph(meanATE_list, maxATE_list, ATE_RMSE_list, algo_names):
     # Number of algorithms
     n_algos = len(algo_names)
 
     # Set the positions and width for the bars
     bar_width = 0.1
-    index = np.arange(4)  # Now four groups: meanATE, maxATE, ATE_RMSE, and RPE_RMSE
+    index = np.arange(3)  # Now four groups: meanATE, maxATE, ATE_RMSE
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    for i, (mean, max_, ate_rmse, rpe_rmse, name) in enumerate(zip(meanATE_list, maxATE_list, ATE_RMSE_list, RPE_RMSE_list, algo_names)):
-        ax.bar(index + i*bar_width, [mean, max_, ate_rmse, rpe_rmse], bar_width, label=name)
+    for i, (mean, max_, ate_rmse, name) in enumerate(zip(meanATE_list, maxATE_list, ATE_RMSE_list, algo_names)):
+        ax.bar(index + i*bar_width, [mean, max_, ate_rmse], bar_width, label=name)
 
     # Add some text for labels, title, and custom x-axis tick labels, etc.
     ax.set_xlabel('Metrices')
     ax.set_ylabel('Values')
     ax.set_title('Comparison of Different Algorithms')
     ax.set_xticks(index + (bar_width * n_algos / 2) - bar_width/2)
-    ax.set_xticklabels(['meanATE', 'maxATE', 'ATE_RMSE', 'RPE_RMSE'])
+    ax.set_xticklabels(['meanATE', 'maxATE', 'ATE_RMSE'])
     ax.legend()
 
     if args.output_folder:
         if not os.path.exists(args.output_folder):
             os.makedirs(args.output_folder, exist_ok=True)
 
-        output_filepath = os.path.join(args.output_folder, f"ATE_RPE.png")
+        output_filepath = os.path.join(args.output_folder, f"ATE.png")
         plt.savefig(output_filepath, dpi=300)
-        print(f"Saved ATE_RPE.png to: {output_filepath}")
+        print(f"Saved ATE.png to: {output_filepath}")
 
     if args.plot:
         plt.tight_layout()
@@ -301,12 +300,14 @@ def compute_RPE(groundtruth, estimated):
     - rpes: List of RPE values for each frame
     """
     
-    assert len(groundtruth) == len(estimated), "The two lists should have the same length"
-    
-    N = len(groundtruth)
+    # assert len(groundtruth) == len(estimated), "The two lists should have the same length"
+    if len(groundtruth) < len(estimated):
+        N = len(groundtruth)
+    else:
+        N = len(estimated)
     rpes = []
 
-    for i in range(1, N):
+    for i in range(2, N-1):
         delta_gt = np.array([
             float(groundtruth[i][0]) - float(groundtruth[i-1][0]),
             float(groundtruth[i][1]) - float(groundtruth[i-1][1]),
@@ -325,33 +326,58 @@ def compute_RPE(groundtruth, estimated):
     return rpes
 
 
-def plot_ATE_or_RPE(*ate_values_lists, labels=None, start_index=0, end_index=2900, transparency=0.8):
+def moving_average(data, window_size=10):
+    cumsum_vec = np.cumsum(np.insert(data, 0, 0))
+    ma_vec = (cumsum_vec[window_size:] - cumsum_vec[:-window_size]) / window_size
+    return ma_vec
+
+
+def plot_ATE_or_RPE(rpe_values, labels, start_index=0, end_index=0, transparency=1.0, smooth=False, reduce_resolution=False):
     """
-    Plot multiple ATE values.
+    Plot RPE values.
 
     Args:
-    - ate_values_lists: Multiple lists of ATE values.
-    - labels: List of strings for labeling each ATE values list in the plot legend.
-    - start_index: Index to start plotting from.
-    - end_index: Index to end plotting. If None, plots till the end.
-    - transparency: Value between 0 and 1 for line transparency.
+    ...
+    - smooth: If True, applies moving average to smooth data.
+    - reduce_resolution: If True, plots 1 out of every five points.
     """
-    x_values = range(start_index, end_index if end_index else len(ate_values_lists[0]))
     
-    for idx, ate_values in enumerate(ate_values_lists):
-        label = labels[idx] if labels else None
-        plt.plot(x_values, ate_values[start_index:end_index], label=label, alpha=transparency)
+    assert len(rpe_values) == len(labels), "Number of RPE values should match the number of labels"
+    
+    for idx, rpe_value in enumerate(rpe_values):
+        current_end_index = end_index if end_index else len(rpe_value)
+        x_values = range(start_index, current_end_index)
         
-    plt.axvline(x=385, color='r', linestyle='--', label='man appear')
-    plt.axvline(x=591, color='g', linestyle='--', label='man disappear')
+        if smooth:
+            smoothed_rpe = moving_average(rpe_value[start_index:current_end_index])
+            plt.plot(x_values[len(x_values)-len(smoothed_rpe):], smoothed_rpe, label=labels[idx], alpha=transparency)
+        elif reduce_resolution:
+            reduced_x = x_values[::5]
+            reduced_rpe = rpe_value[start_index:current_end_index:5]
+            plt.plot(reduced_x, reduced_rpe, label=labels[idx], alpha=transparency)
+        else:
+            plt.plot(x_values, rpe_value[start_index:current_end_index], label=labels[idx], alpha=transparency)
+
+        transparency -= 0.1
         
     plt.xlabel('Frames', fontsize=12)
     plt.ylabel('RPE (m)', fontsize=12)
-    # plt.title('Absolute Trajectory Error (ATE) from Index {} to {}'.format(start_index, end_index))
+    # plt.yscale('log')
     plt.grid(True)
-    if labels:
-        plt.legend(loc="upper left", fontsize=12)
-    plt.show()
+    plt.legend(loc="upper left", fontsize=12)
+
+    if args.output_folder:
+        if not os.path.exists(args.output_folder):
+            os.makedirs(args.output_folder, exist_ok=True)
+
+        output_filepath = os.path.join(args.output_folder, f"RPE.png")
+        plt.savefig(output_filepath, dpi=300)
+        print(f"Saved RPE.png to: {output_filepath}")
+
+    if args.plot:
+        plt.show()
+
+    plt.close()
 
 
 def main():
@@ -377,6 +403,8 @@ def main():
     maxATE_list = []
     ATE_RMSE_list = []
     RPE_RMSE_list = []
+    RPE_list = []
+    Highest_RPE_list = []
 
     cpu_memory_list = []
     gpu_memory_list = []
@@ -384,11 +412,13 @@ def main():
     algo_names = []
 
     # Handle the groundtruth file if provided
+    gt_length = 10000
     if args.groundtruth:
         poses_list.append(extract_xyz_from_gt(args.groundtruth))
-    
+        gt_length = len(poses_list[0])
+
     for filepath in args.algorithms:
-        poses, duration_frames, meanATE, maxATE, ATE_RMSE, RPE_RMSE, cpu_memory, gpu_memory = extract_result_from_file(filepath)
+        poses, duration_frames, meanATE, maxATE, ATE_RMSE, RPE_RMSE, cpu_memory, gpu_memory = extract_result_from_file(filepath, gt_length)
         poses_list.append(poses)
         duration_frames_list.append(duration_frames)
         mean_durantion_frame_list.append(sum(duration_frames) / len(duration_frames))
@@ -404,6 +434,18 @@ def main():
         # For visualization, the base name of the file can be used as a label 
         algo_names.append(os.path.basename(filepath).split('_')[0])
 
+    if args.groundtruth:
+        for i in range(len(poses_list)):
+            if i != 0:
+                rpe = compute_RPE(poses_list[0], poses_list[i])
+                indexed_rpe = sorted(enumerate(rpe), key=lambda x: x[1], reverse=True)
+                top_10_indices = [index for index, value in indexed_rpe[:10]]
+                top_10_indices = sorted(top_10_indices)
+                Highest_RPE_list.append(top_10_indices)
+                RPE_list.append(rpe)
+        plot_ATE_or_RPE(RPE_list, algo_names)
+
+
     # ===== Plot the figure ======
     if args.groundtruth:
         visualize_coordinates(poses_list, ["GroundTruth"] + algo_names)
@@ -412,13 +454,30 @@ def main():
 
     visualize_metrices(duration_frames_list, algo_names, "Duration Frame")
 
-    if meanATE_list[0] != -1 and maxATE_list[0] != -1 and ATE_RMSE_list[0] != -1 and RPE_RMSE_list[0] != -1:
-        visualize_bar_graph(meanATE_list, maxATE_list, ATE_RMSE_list, RPE_RMSE_list, algo_names)
+    if meanATE_list[0] != -1 and maxATE_list[0] != -1 and ATE_RMSE_list[0] != -1:
+        visualize_bar_graph(meanATE_list, maxATE_list, ATE_RMSE_list, algo_names)
 
     # ===== Save result in txt file ======
-    if args.output_folder:
+    if args.output_folder and args.groundtruth:
         output_filepath = os.path.join(args.output_folder, f"results.txt")
         with open(output_filepath, "w") as file:
+            file.write(f"Number of Poses: {gt_length}\n\n")
+            for name, mean_ate, max_ate, ate_rmse, rpe_rmse, highest_rpe_frame, mean_dur, cpu_mem, gpu_mem in \
+            zip(algo_names, meanATE_list, maxATE_list, ATE_RMSE_list, RPE_RMSE_list, Highest_RPE_list, mean_durantion_frame_list, cpu_memory_list, gpu_memory_list):
+                file.write(f"===== {name} =====\n")
+                file.write(f"meanATE: {mean_ate}\n")
+                file.write(f"maxATE: {max_ate}\n")
+                file.write(f"ATE_RMSE: {ate_rmse}\n")
+                file.write(f"RPE_RMSE: {rpe_rmse}\n")
+                file.write("Frame Number with High RPE: " + ",".join(map(str, highest_rpe_frame)) + "\n")
+                file.write(f"meanDuration: {mean_dur}\n")
+                file.write(f"CPU_Memory: {cpu_mem}\n")
+                file.write(f"GPU_Memory: {gpu_mem}\n\n")
+            print(f"Saved results.txt to: {output_filepath}")
+    elif args.output_folder:
+        output_filepath = os.path.join(args.output_folder, f"results.txt")
+        with open(output_filepath, "w") as file:
+            file.write(f"Number of Poses: {gt_length}\n\n")
             for name, mean_ate, max_ate, ate_rmse, rpe_rmse, mean_dur, cpu_mem, gpu_mem in \
             zip(algo_names, meanATE_list, maxATE_list, ATE_RMSE_list, RPE_RMSE_list, mean_durantion_frame_list, cpu_memory_list, gpu_memory_list):
                 file.write(f"===== {name} =====\n")
@@ -430,6 +489,7 @@ def main():
                 file.write(f"CPU_Memory: {cpu_mem}\n")
                 file.write(f"GPU_Memory: {gpu_mem}\n\n")
             print(f"Saved results.txt to: {output_filepath}")
+
 
 if __name__ == "__main__":
     main()
