@@ -51,7 +51,7 @@ namespace slambench {
 			distortion_coefficients_t EquidistantDistortion;
 			distortion_coefficients_t Distortion;
 
-			void * Enhance(void * raw, std::string type) override; 
+			void * Enhance(void * raw, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override; 
 			size_t GetFrameSize(const SLAMFrame *frame) const override;
 			void CopyIntrinsics(const CameraSensor *other);
 			void CopyIntrinsics(const intrinsics_t &other);

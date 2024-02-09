@@ -13,9 +13,23 @@
 #include <string>
 #include <Eigen/Eigen>
 #include <ParameterComponent.h>
+#include <unordered_map>
 
 namespace slambench {
 	namespace io {
+		struct FilterSettings {
+			float mean;
+			float standard_deviation;
+			int kernel_size;
+			float density;
+			float value;
+			float brightness;
+			float contrast;
+			float saturation;
+			int width;
+			int height;
+		};
+
 		class Serialiser;
 		class Deserialiser;
 		class SLAMFrame;
@@ -45,7 +59,7 @@ namespace slambench {
 			void CopyPose(const Sensor *other);
 			void CopyPose(const pose_t &other);
 			// null pointer signals enhanced not implemented / error 
-			virtual void * Enhance(void * raw, std::string type){return nullptr;}
+			virtual void * Enhance(void * raw, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){return nullptr;}
 
 
 			bool IsVariableSize() const;

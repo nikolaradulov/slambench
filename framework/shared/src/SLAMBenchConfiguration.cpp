@@ -52,6 +52,93 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/operations.hpp>
 #include "ResultWriter.h"
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+// bool compareByFrameID(const std::pair<int, std::vector<std::string>>& a, const std::pair<int, std::vector<std::string>>& b) {
+//     return a.first > b.first;
+// }
+
+bool SLAMBenchConfiguration::readConfiguration(const std::string& filename) {
+    // Read the configuration file
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error: Unable to open configuration file." << std::endl;
+        return false;
+    }
+
+    // Parse the JSON data
+    json config;
+    try {
+        file >> config;
+    } catch (const json::parse_error& e) {
+        std::cerr << "Error parsing JSON: " << e.what() << std::endl;
+        return false;
+    }
+
+    // Parse frame information
+    for (const auto& frame : config["frames"]) {
+        int frameID;
+        if (frame.find("id") != frame.end()) { // Single frame
+            frameID = frame["id"];
+        } else if (frame.find("id_range") != frame.end()) { // ID range
+            int startID = frame["id_range"][0];
+            int endID = frame["id_range"][1];
+            for (frameID = startID; frameID <= endID; ++frameID) {
+                std::unordered_map<std::string, std::vector<std::string>> sensorFilters;
+                for (auto it = frame.begin(); it != frame.end(); ++it) {
+                    if (it.key() != "id" && it.key() != "id_range") {
+                        std::vector<std::string> filters;
+                        for (const auto& filter : it.value()) {
+                            filters.push_back(filter);
+                        }
+                        sensorFilters[it.key()] = filters;
+                    }
+                }
+                frameFilters.emplace_back(frameID, sensorFilters);
+            }
+        }
+        if (frame.find("id") != frame.end()) { // Single frame
+            std::unordered_map<std::string, std::vector<std::string>> sensorFilters;
+            for (auto it = frame.begin(); it != frame.end(); ++it) {
+                if (it.key() != "id" && it.key() != "id_range") {
+                    std::vector<std::string> filters;
+                    for (const auto& filter : it.value()) {
+                        filters.push_back(filter);
+                    }
+                    sensorFilters[it.key()] = filters;
+                }
+            }
+            frameFilters.emplace_back(frameID, sensorFilters);
+        }
+    }
+
+
+    // Parse sensor settings
+    for (const auto& [sensorName, filters] : config["sensor_settings"].items()) {
+        std::unordered_map<std::string, slambench::io::FilterSettings> filterSettingsMap;
+        for (const auto& [filterName, filterSettings] : filters.items()) {
+            slambench::io::FilterSettings setting;
+            setting.mean = filterSettings.value("mean", 0.0f);
+            setting.standard_deviation = filterSettings.value("standard_deviation", 0.0f);
+            setting.kernel_size = filterSettings.value("kernel_size", 0);
+            setting.density = filterSettings.value("density", 0.0f);
+            setting.value = filterSettings.value("value", 0.0f);
+            setting.brightness = filterSettings.value("brightness", 0.0f);
+            setting.contrast = filterSettings.value("contrast", 0.0f);
+            setting.saturation = filterSettings.value("saturation", 0.0f);
+            setting.width = filterSettings.value("width", 0);
+            setting.height = filterSettings.value("height", 0);
+            filterSettingsMap[filterName] = setting;
+        }
+        sensorSettings[sensorName] = filterSettingsMap;
+    }
+
+    return true;
+}
+
+
 
 SLAMBenchConfiguration::SLAMBenchConfiguration(void (*custom_input_callback)(Parameter*, ParameterComponent*),void (*libs_callback)(Parameter*, ParameterComponent*)) :
         ParameterComponent("") {
@@ -76,6 +163,54 @@ SLAMBenchConfiguration::SLAMBenchConfiguration(void (*custom_input_callback)(Par
     addParameter(TypedParameter<double>("realtime-mult",     "realtime-multiplier",      "realtime frame loading mode",                   &realtime_mult_, &default_realtime_mult));
     addParameter(TypedParameter<bool>("enhance",     "enhance-image",        "apply noise/blur filters to image",     &enhance_mode_,     &default_is_false));
     param_manager_.AddComponent(this);
+
+    // here should load the filtering configuration? 
+    if (!this->readConfiguration("enhance_config.json")) {
+        printf("Loading Conf failed. Proceeding without. ");
+        this->enhance_mode_ = false;
+    }
+    else{
+        // ____________________________________ Remove this later ______________________________________________
+        // Display parsed data for verification
+        std::cout << "Frame Filters:" << std::endl;
+        for (const auto& frameFilter : frameFilters) {
+            int frameID = frameFilter.first;
+            const auto& sensorFilters = frameFilter.second;
+
+            std::cout << "Frame ID: " << frameID << std::endl;
+            for (const auto& sensorFilter : sensorFilters) {
+                const std::string& sensorName = sensorFilter.first;
+                const std::vector<std::string>& filters = sensorFilter.second;
+
+                std::cout << "Sensor: " << sensorName << ", Filters: ";
+                for (const auto& filter : filters) {
+                    std::cout << filter << " ";
+                }
+                std::cout << std::endl;
+            }
+        }
+
+        // Display parsed data for verification
+        for (const auto& [sensorName, filters] : sensorSettings) {
+            std::cout << "Sensor: " << sensorName << std::endl;
+            for (const auto& [filterName, setting] : filters) {
+                std::cout << "Filter: " << filterName << std::endl;
+                std::cout << "Mean: " << setting.mean << std::endl;
+                std::cout << "Standard Deviation: " << setting.standard_deviation << std::endl;
+                std::cout << "Kernel Size: " << setting.kernel_size << std::endl;
+                std::cout << "Density: " << setting.density << std::endl;
+                std::cout << "Value: " << setting.value << std::endl;
+                std::cout << "Brightness: " << setting.brightness << std::endl;
+                std::cout << "Contrast: " << setting.contrast << std::endl;
+                std::cout << "Saturation: " << setting.saturation << std::endl;
+                std::cout << "Width: " << setting.width << std::endl;
+                std::cout << "Height: " << setting.height << std::endl;
+                std::cout << std::endl;
+            }
+        }
+        // _______________________________________________________________________________________________________
+    }
+
 }
 
 SLAMBenchConfiguration::~SLAMBenchConfiguration() {
@@ -232,11 +367,14 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
     assert(initialised_);
 
     int input_seq = 0;
+    int accepted_frames = 0;
     bool ongoing = false;
     std::vector<Eigen::Matrix4f> libs_trans;
-
+    std::pair<int, std::unordered_map<std::string, std::vector<std::string>>> current_enhance;
     // ********* [[ MAIN LOOP ]] *********
     unsigned int frame_count = 0;
+    current_enhance = this->frameFilters.back();
+    this->frameFilters.pop_back();
     while(true) {
         if (frame_count != 0 && ui && !ongoing) {
             if (!(ui->WaitForFrame() || !ui->IsFreeRunning())) {
@@ -244,13 +382,22 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                 break;
             }
         }
-
+        
         auto current_frame = input_interface_manager_->GetNextFrame();
         
-        printf("Got here _______________-------------------__________________-------------------_____________\n");
         while (current_frame != nullptr) {
-            current_frame->Enhance();
+            // printf("Frame is %d %d\n", accepted_frames, frame_count);
+            // printf("Current enhance: %d %d \n", accepted_frames, current_enhance.first);
+            if(accepted_frames==current_enhance.first){
+                // printf("Frame %d is to be enhanced\n", accepted_frames);
+                current_frame->Enhance( &current_enhance.second, &this->sensorSettings);
+                if(!this->frameFilters.empty()){
+                    current_enhance = this->frameFilters.back();
+                    this->frameFilters.pop_back();
+                }    
+            }
             frame_count++;
+            
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
                 // ********* [[ NEW FRAME PROCESSED BY ALGO ]] *********
                 for (size_t i = 0; i < slam_libs_.size(); i++) {
@@ -267,7 +414,8 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     if (ongoing) {
                         continue;
                     }
-
+                    //  Id increase only when all necessary data has been provided
+                    accepted_frames ++;
                     // ********* [[ PROCESS ALGO START ]] *********
                     lib->GetMetricManager().BeginFrame();
                     slambench::TimeStamp ts = current_frame->Timestamp;

@@ -19,6 +19,7 @@
 #include <string>
 #include <chrono>
 #include <list>
+#include <unordered_map>
 
 #include <ParameterComponent.h>
 #include <ParameterManager.h>
@@ -28,6 +29,7 @@
 #include <io/InputInterface.h>
 #include <dlfcn.h>
 #include <io/InputInterfaceManager.h>
+#include "io/SLAMFrame.h"
 
 #define LOAD_FUNC2HELPER(handle,lib,f)     *(void**)(& lib->f) = dlsym(handle,#f); const char *dlsym_error_##lib##f = dlerror(); if (dlsym_error_##lib##f) {std::cerr << "Cannot load symbol " << #f << dlsym_error_##lib##f << std::endl; dlclose(handle); exit(1);}
 
@@ -43,6 +45,8 @@ static const std::vector<std::string> default_input_files      = {};
 static const bool                     default_is_false         = false;
 
 typedef std::chrono::time_point<std::chrono::high_resolution_clock> stl_time;
+
+
 
 class SLAMBenchConfiguration : public ParameterComponent {
 private:
@@ -60,6 +64,9 @@ private:
     std::string alignment_technique_ = "umeyama";
     std::string output_filename_;
     std::string save_groundtruth_file_;
+    
+    std::vector<std::pair<int, std::unordered_map<std::string, std::vector<std::string>>>> frameFilters;
+    std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>> sensorSettings;
 
     std::vector<std::string> input_filenames_;
     slambench::ParameterManager param_manager_;
@@ -92,6 +99,7 @@ public:
      * the sensor collection are registered as GT outputs, and all frames
      * within the collection are registered as GT output values.
      */
+    bool readConfiguration(const std::string& filename);
     void InitGroundtruth(bool with_point_cloud = false);
     void InitAlgorithms();
     void InitAlignment();

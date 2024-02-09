@@ -63,7 +63,7 @@ void CameraSensor::CopyIntrinsics(const CameraSensor* other) {
 	CopyIntrinsics(other->Intrinsics);
 }
 
-void * CameraSensor::Enhance(void * raw_image, std::string type){
+void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){
 	
 	int img_type ;
 	if(pixelformat::IsGrey(this->PixelFormat)){
@@ -77,12 +77,38 @@ void * CameraSensor::Enhance(void * raw_image, std::string type){
 	cv::Mat image_mat = cv::Mat(this->Height, this->Width, img_type, raw_image);
 	// cv::imshow("Pre-edit", image_mat);
 	
-	if(type=="blur"){
+	// apply filters to the image in specified order
+	auto filters_to_apply = filters->find("camera");
+	for(const auto& type : filters_to_apply->second){
+		printf("Applying %s to image", type);
+		if(type=="blur"){
 		cv::blur(image_mat, image_mat, cv::Size(10,10));
-		// printf("Image to be blurred\n");
-		// cv::imshow("Post-edit",image_mat);
-		// cv::waitKey(0);
+		}else{
+			if(type=="brightness"){
+				// standard 50 brightness
+				image_mat.convertTo(image_mat, -1, 1, 50);
+			}
+			else{
+				if(type=="contrast"){
+					image_mat.convertTo(image_mat, -1, 4, 0);
+				}
+				else{
+					if(type=="noise"){
+						cv::Mat noise(this->Height, this->Width, img_type);
+						if(img_type==CV_8UC1)
+							cv::randn(noise, 0, 10); //mean and variance
+						if(img_type==CV_8UC3)
+							cv::randn(noise, cv::Scalar(0,0,0), cv::Scalar(10,10,10));
+						image_mat += noise;
+					}else{
+						// default if the enhancement method is not specified
+						return nullptr;
+					}
+				}
+			}
 	}
+	}
+	
 
 	void* edited_image = malloc(image_mat.total() * image_mat.elemSize());
     if (edited_image == nullptr) {

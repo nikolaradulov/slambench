@@ -16,12 +16,17 @@
 #include <cstdio>
 #include <cstddef>
 #include <cstring>
+#include <unordered_map>
+#include <vector>
 
 #include "TimeStamp.h"
 #include "PixelFormat.h"
+#include <io/sensor/Sensor.h>
 
 namespace slambench {
 	namespace io {
+		
+		
 		class Sensor;
 		class FrameBuffer;
 		
@@ -32,11 +37,14 @@ namespace slambench {
 			TimeStamp Timestamp;
 			Sensor *FrameSensor;
 			
+			std::unordered_map<std::string, std::vector<std::string>> * filters;
+    		std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>> * settings;
+
 			bool enhance_=false;
 
 			size_t GetSize() const;
 			void SetVariableSize(uint32_t size);
-			virtual void Enhance(){printf("This is the base class\n");}
+			virtual void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){printf("This is the base class\n");}
 			uint32_t GetVariableSize() const;
             virtual void *GetData() = 0;
             virtual void FreeData() = 0;
@@ -62,7 +70,7 @@ namespace slambench {
 		class SLAMInMemoryFrame : public SLAMFrame {
 		public:
 			void *Data;
-			void Enhance() override;
+			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
 			void *GetData() override;
 			void FreeData() override;
 		};
@@ -98,7 +106,7 @@ namespace slambench {
 			void *LoadFile() override;
 			
 		private:
-			void Enhance() override;
+			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
 			void *LoadPng();
 			void *LoadPbm();
 		};
@@ -106,7 +114,7 @@ namespace slambench {
 		class DeserialisedFrame : public SLAMFrame {
 		public:
 			DeserialisedFrame(FrameBuffer &buffer, FILE *file);
-			void Enhance() override;
+			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
 			void SetOffset(size_t data_offset);
 			void *GetData() override;
 			void *GetDataHelper();

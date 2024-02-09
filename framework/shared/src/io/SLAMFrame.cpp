@@ -8,8 +8,8 @@
  */
 
 #include "io/FrameBuffer.h"
-#include "io/SLAMFrame.h"
-#include "io/sensor/Sensor.h"
+
+
 #include "io/sensor/CameraSensor.h"
 #include "io/sensor/DepthSensor.h"
 
@@ -25,7 +25,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
-
+#include "io/SLAMFrame.h"
 using namespace slambench::io;
 
 SLAMFrame::~SLAMFrame() {}
@@ -50,9 +50,6 @@ uint32_t SLAMFrame::GetVariableSize() const
 	return size_if_variable_sized_;
 }
 
-void SLAMInMemoryFrame::Enhance(){
-	printf("This is a memroy frame\n");
-}
 
 void *SLAMInMemoryFrame::GetData() {
 	return Data;
@@ -280,18 +277,21 @@ void *DeserialisedFrame::GetDataHelper() {
 void * DeserialisedFrame::GetData(){
 	void * data = this->GetDataHelper();
 	if(this->enhance_){
-		this->enhanced_image_ = FrameSensor->Enhance(data, "blur");
-		return this->enhanced_image_;
-	}
-	else{
+		this->enhanced_image_ = FrameSensor->Enhance(data, this->filters, this->settings);
+		// if enhancing actually worked
+		if(this->enhanced_image_)
+			return this->enhanced_image_;
 		return data;
 	}
+	return data;
 }
 
-void DeserialisedFrame::Enhance(){
+void DeserialisedFrame::Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){
 	// only enable enhance if the sensor can provide its
 	this->enhance_=true;
-	// printf("This is a deserialised frame. %s\n ", this->enhance_ ? "true" : "false");
+	this->filters=filters;
+	this->settings=settings;
+	printf("This is a deserialised frame. %s\n ", this->enhance_ ? "true" : "false");
 }
 void DeserialisedFrame::FreeData() {
 	buffer_.Release();
@@ -302,10 +302,10 @@ void DeserialisedFrame::FreeData() {
 	}
 }
 
-void ImageFileFrame::Enhance(){
-	this->enhance_= true;
-	printf("This is a image file frame\n");
-}
+// void ImageFileFrame::Enhance(){
+// 	this->enhance_= true;
+// 	printf("This is a image file frame\n");
+// }
 
 void* ImageFileFrame::LoadFile() {
 	// get file extension
