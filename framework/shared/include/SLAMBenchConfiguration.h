@@ -66,7 +66,7 @@ private:
     std::string save_groundtruth_file_;
     
     std::vector<std::pair<int, std::unordered_map<std::string, std::vector<std::string>>>> frameFilters;
-    std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>> sensorSettings;
+    std::unordered_map<std::string, slambench::io::FilterSettings> sensorSettings;
 
     std::vector<std::string> input_filenames_;
     slambench::ParameterManager param_manager_;

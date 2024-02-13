@@ -14,6 +14,21 @@
 
 using namespace slambench::io;
 
+slambench::io::FilterSettings Sensor::getDefaultSettings() {
+    slambench::io::FilterSettings default_settings;
+    default_settings.mean = 0.0f;
+    default_settings.standard_deviation = 0.0f;
+    default_settings.kernel_size = 0;
+    default_settings.density = 0.0f;
+    default_settings.value = 0.0f;
+    default_settings.brightness = 0.0f;
+    default_settings.contrast = 0.0f;
+    default_settings.saturation = 0.0f;
+    default_settings.width = 0;
+    default_settings.height = 0;
+    return default_settings;
+}
+
 Sensor::Sensor(const sensor_name_t &name, const sensor_type_t &type) :
 		ParameterComponent(name),
 		Index(0),

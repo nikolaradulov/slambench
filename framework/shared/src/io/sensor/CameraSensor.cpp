@@ -63,8 +63,27 @@ void CameraSensor::CopyIntrinsics(const CameraSensor* other) {
 	CopyIntrinsics(other->Intrinsics);
 }
 
-void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){
-	
+void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){
+	slambench::io::FilterSettings sensor_settings;
+	auto settings_it = settings->find("camera");
+	if(settings_it!=settings->end()){
+		sensor_settings = settings_it->second;
+	}
+	else {
+    	// Load default settings
+    	sensor_settings = this->getDefaultSettings();
+	}
+	printf("Trying to enhance camera\n");
+	for (const auto& sensorFilter : *filters) {
+                const std::string& sensorName = sensorFilter.first;
+                const std::vector<std::string>& sensor_filters = sensorFilter.second;
+
+                std::cout << "Sensor: " << sensorName << ", Filters: ";
+                for (const auto& filter : sensor_filters) {
+                    std::cout << filter << " ";
+                }
+                std::cout << std::endl;
+            }
 	int img_type ;
 	if(pixelformat::IsGrey(this->PixelFormat)){
 		img_type = CV_8UC1;	
@@ -78,38 +97,49 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 	// cv::imshow("Pre-edit", image_mat);
 	
 	// apply filters to the image in specified order
-	auto filters_to_apply = filters->find("camera");
-	for(const auto& type : filters_to_apply->second){
-		printf("Applying %s to image", type);
-		if(type=="blur"){
-		cv::blur(image_mat, image_mat, cv::Size(10,10));
-		}else{
-			if(type=="brightness"){
-				// standard 50 brightness
-				image_mat.convertTo(image_mat, -1, 1, 50);
-			}
-			else{
-				if(type=="contrast"){
-					image_mat.convertTo(image_mat, -1, 4, 0);
+	auto filters_it = filters->find("camera");
+	if(filters_it != filters->end()){
+		std::vector<std::string>& filters_to_apply = filters_it->second;
+		std::cout<<filters_it->first<<std::endl;
+		for(const auto type : filters_to_apply){
+			std::cout<<"Applying "<<type<<" to image"<<std::endl;
+			if(type=="blur"){
+			cv::blur(image_mat, image_mat, cv::Size(sensor_settings.kernel_size,sensor_settings.kernel_size));
+			}else{
+				if(type=="brightness"){
+					// standard 50 brightness
+					image_mat.convertTo(image_mat, -1, 1, sensor_settings.brightness);
 				}
 				else{
-					if(type=="noise"){
-						cv::Mat noise(this->Height, this->Width, img_type);
-						if(img_type==CV_8UC1)
-							cv::randn(noise, 0, 10); //mean and variance
-						if(img_type==CV_8UC3)
-							cv::randn(noise, cv::Scalar(0,0,0), cv::Scalar(10,10,10));
-						image_mat += noise;
-					}else{
-						// default if the enhancement method is not specified
-						return nullptr;
+					if(type=="contrast"){
+						image_mat.convertTo(image_mat, -1, sensor_settings.contrast, 0);
+					}
+					else{
+						if(type=="noise"){
+							cv::Mat noise(this->Height, this->Width, img_type);
+							if(img_type==CV_8UC1)
+								cv::randn(noise, sensor_settings.mean, sensor_settings.standard_deviation); //mean and variance
+							if(img_type==CV_8UC3)
+								cv::randn(noise, cv::Scalar(sensor_settings.mean,sensor_settings.mean,sensor_settings.mean), cv::Scalar(sensor_settings.standard_deviation,sensor_settings.standard_deviation,sensor_settings.standard_deviation));
+							image_mat += noise;
+						}else{
+							// default if the enhancement method is not specified
+							// return nullptr;
+							continue;
+						}
 					}
 				}
 			}
+		}
 	}
+	else{
+		// message not necessary should otherwise be do nothing
+		//  message  is for debugging
+		printf("Cannot find camera sensor filter specifications for the frame\n");
 	}
 	
-
+	cv::imshow("Post-edit", image_mat);
+	cv::waitKey(0);
 	void* edited_image = malloc(image_mat.total() * image_mat.elemSize());
     if (edited_image == nullptr) {
         // Handle memory allocation failure

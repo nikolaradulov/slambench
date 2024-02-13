@@ -38,13 +38,13 @@ namespace slambench {
 			Sensor *FrameSensor;
 			
 			std::unordered_map<std::string, std::vector<std::string>> * filters;
-    		std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>> * settings;
+    		std::unordered_map<std::string, slambench::io::FilterSettings> * settings;
 
 			bool enhance_=false;
 
 			size_t GetSize() const;
 			void SetVariableSize(uint32_t size);
-			virtual void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){printf("This is the base class\n");}
+			virtual void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){printf("This is the base class\n");}
 			uint32_t GetVariableSize() const;
             virtual void *GetData() = 0;
             virtual void FreeData() = 0;
@@ -70,7 +70,7 @@ namespace slambench {
 		class SLAMInMemoryFrame : public SLAMFrame {
 		public:
 			void *Data;
-			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
+			// void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
 			void *GetData() override;
 			void FreeData() override;
 		};
@@ -106,7 +106,7 @@ namespace slambench {
 			void *LoadFile() override;
 			
 		private:
-			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
+			// void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
 			void *LoadPng();
 			void *LoadPbm();
 		};
@@ -114,7 +114,7 @@ namespace slambench {
 		class DeserialisedFrame : public SLAMFrame {
 		public:
 			DeserialisedFrame(FrameBuffer &buffer, FILE *file);
-			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings) override;
+			void Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings) override;
 			void SetOffset(size_t data_offset);
 			void *GetData() override;
 			void *GetDataHelper();

@@ -29,6 +29,9 @@ namespace slambench {
 			int width;
 			int height;
 		};
+		// FilterSettings getDefaultSettings();
+		
+		
 
 		class Serialiser;
 		class Deserialiser;
@@ -55,11 +58,11 @@ namespace slambench {
 			virtual size_t GetFrameSize(const SLAMFrame *frame) const = 0;
 			const sensor_type_t &GetType() const;
 			const sensor_name_t &GetName() const;
-			
+			FilterSettings getDefaultSettings();
 			void CopyPose(const Sensor *other);
 			void CopyPose(const pose_t &other);
 			// null pointer signals enhanced not implemented / error 
-			virtual void * Enhance(void * raw, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, std::unordered_map<std::string, slambench::io::FilterSettings>>* settings){return nullptr;}
+			virtual void * Enhance(void * raw, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){return nullptr;}
 
 
 			bool IsVariableSize() const;
