@@ -326,6 +326,21 @@ def compute_RPE(groundtruth, estimated):
     return rpes
 
 
+def divide_and_rank_with_indices(numbers, num_groups):
+    group_size = (int)(len(numbers) / num_groups)
+    
+    groups_with_indices = [(max(numbers[i:i+group_size]), i) for i in range(0, len(numbers), group_size)]
+    
+    # Sort the groups by their maximum values in descending order
+    groups_with_indices_sorted = sorted(groups_with_indices, key=lambda x: x[0], reverse=True)
+    
+    # Extract indices of the starting position of each group in the original list for the ranked values
+    # and increase each index by 1 to make it one-based
+    ranked_indices = [group[1] + 1 for group in groups_with_indices_sorted]
+    
+    return ranked_indices
+
+
 def moving_average(data, window_size=10):
     cumsum_vec = np.cumsum(np.insert(data, 0, 0))
     ma_vec = (cumsum_vec[window_size:] - cumsum_vec[:-window_size]) / window_size
@@ -438,10 +453,11 @@ def main():
         for i in range(len(poses_list)):
             if i != 0:
                 rpe = compute_RPE(poses_list[0], poses_list[i])
-                indexed_rpe = sorted(enumerate(rpe), key=lambda x: x[1], reverse=True)
-                top_10_indices = [index for index, value in indexed_rpe[:10]]
-                top_10_indices = sorted(top_10_indices)
-                Highest_RPE_list.append(top_10_indices)
+                rpe_indices = divide_and_rank_with_indices(rpe, 50)
+                if len(rpe_indices) < 10:
+                    Highest_RPE_list.append(rpe_indices)
+                else:
+                    Highest_RPE_list.append(rpe_indices[:10])
                 RPE_list.append(rpe)
         plot_ATE_or_RPE(RPE_list, algo_names)
 
