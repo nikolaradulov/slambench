@@ -43,6 +43,7 @@ static const std::string default_save_groundtruth_file         = "";
 static const std::vector<std::string> default_slam_libraries   = {};
 static const std::vector<std::string> default_input_files      = {};
 static const bool                     default_is_false         = false;
+static const std::string default_enhance_file                  ="";
 
 typedef std::chrono::time_point<std::chrono::high_resolution_clock> stl_time;
 
@@ -64,9 +65,10 @@ private:
     std::string alignment_technique_ = "umeyama";
     std::string output_filename_;
     std::string save_groundtruth_file_;
-    
-    std::vector<std::pair<int, std::unordered_map<std::string, std::vector<std::string>>>> frameFilters;
-    std::unordered_map<std::string, slambench::io::FilterSettings> sensorSettings;
+    std::string enhance_file_;
+
+    std::vector<std::pair<int, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>>>> frameFilters;
+    // std::unordered_map<std::string, slambench::io::FilterSettings> sensorSettings;
 
     std::vector<std::string> input_filenames_;
     slambench::ParameterManager param_manager_;
@@ -82,6 +84,7 @@ private:
     bool gt_available_;
     bool aided_reloc_ = false;
     bool enhance_mode_;
+     
 public:
     SLAMBenchConfiguration(void (*input_callback)(Parameter*, ParameterComponent*) = nullptr,
                            void (*libs_callback)(Parameter*, ParameterComponent*)  = nullptr);
@@ -109,6 +112,7 @@ public:
     void ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui);
     void AddSLAMLibrary(const std::string& so_file, const std::string &id);
     bool LoadNextInputInterface();
+    void displayConfig();
     inline std::ostream& GetLogStream() {
         if (!log_stream_)
             UpdateLogStream();

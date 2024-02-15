@@ -278,7 +278,7 @@ void * DeserialisedFrame::GetData(){
 	// printf("Get data called\n %d ", this->enhance_);
 	void * data = this->GetDataHelper();
 	if(this->enhance_){
-		this->enhanced_image_ = FrameSensor->Enhance(data, this->filters, this->settings);
+		this->enhanced_image_ = FrameSensor->Enhance(data, this->filters);
 		// if enhancing actually worked
 		if(this->enhanced_image_)
 			return this->enhanced_image_;
@@ -287,11 +287,11 @@ void * DeserialisedFrame::GetData(){
 	return data;
 }
 
-void DeserialisedFrame::Enhance(std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){
+void DeserialisedFrame::Enhance(std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> *filters){
 	// only enable enhance if the sensor can provide its
 	this->enhance_=true;
 	this->filters=filters;
-	this->settings=settings;
+	// this->settings=settings;
 	printf("This is a deserialised frame. %s\n ", this->enhance_ ? "true" : "false");
 }
 void DeserialisedFrame::FreeData() {

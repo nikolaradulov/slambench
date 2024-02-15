@@ -62,7 +62,7 @@ namespace slambench {
 			void CopyPose(const Sensor *other);
 			void CopyPose(const pose_t &other);
 			// null pointer signals enhanced not implemented / error 
-			virtual void * Enhance(void * raw, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){return nullptr;}
+			virtual void * Enhance(void * raw, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> *filters){return nullptr;}
 
 
 			bool IsVariableSize() const;

@@ -63,27 +63,7 @@ void CameraSensor::CopyIntrinsics(const CameraSensor* other) {
 	CopyIntrinsics(other->Intrinsics);
 }
 
-void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::vector<std::string>> * filters, std::unordered_map<std::string, slambench::io::FilterSettings>* settings){
-	slambench::io::FilterSettings sensor_settings;
-	auto settings_it = settings->find("camera");
-	if(settings_it!=settings->end()){
-		sensor_settings = settings_it->second;
-	}
-	else {
-    	// Load default settings
-    	sensor_settings = this->getDefaultSettings();
-	}
-	printf("Trying to enhance camera\n");
-	for (const auto& sensorFilter : *filters) {
-                const std::string& sensorName = sensorFilter.first;
-                const std::vector<std::string>& sensor_filters = sensorFilter.second;
-
-                std::cout << "Sensor: " << sensorName << ", Filters: ";
-                for (const auto& filter : sensor_filters) {
-                    std::cout << filter << " ";
-                }
-                std::cout << std::endl;
-            }
+void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> *filters){
 	int img_type ;
 	if(pixelformat::IsGrey(this->PixelFormat)){
 		img_type = CV_8UC1;	
@@ -99,8 +79,9 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 	// apply filters to the image in specified order
 	auto filters_it = filters->find("camera");
 	if(filters_it != filters->end()){
-		std::vector<std::string>& filters_to_apply = filters_it->second;
-		std::cout<<filters_it->first<<std::endl;
+		std::vector<std::string>& filters_to_apply = filters_it->second.first;
+		slambench::io::FilterSettings & sensor_settings = filters_it->second.second;
+		// std::cout<<filters_it->first<<std::endl;
 		for(const auto type : filters_to_apply){
 			std::cout<<"Applying "<<type<<" to image"<<std::endl;
 			if(type=="blur"){
@@ -135,7 +116,10 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 	else{
 		// message not necessary should otherwise be do nothing
 		//  message  is for debugging
-		printf("Cannot find camera sensor filter specifications for the frame\n");
+		// printf("Cannot find camera sensor filter specifications for the frame\n");
+		// if there is no setting to be applied can just return nullptr to 
+		// ommit memcpy
+		return nullptr;
 	}
 	
 	cv::imshow("Post-edit", image_mat);
