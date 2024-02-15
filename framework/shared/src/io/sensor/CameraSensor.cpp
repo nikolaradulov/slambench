@@ -122,8 +122,8 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 		return nullptr;
 	}
 	
-	cv::imshow("Post-edit", image_mat);
-	cv::waitKey(0);
+	// cv::imshow("Post-edit", image_mat);
+	// cv::waitKey(0);
 	void* edited_image = malloc(image_mat.total() * image_mat.elemSize());
     if (edited_image == nullptr) {
         // Handle memory allocation failure

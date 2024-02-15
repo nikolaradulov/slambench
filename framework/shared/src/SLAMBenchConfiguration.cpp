@@ -88,7 +88,7 @@ void parseSensorData(const json& frame, std::unordered_map<std::string, std::pai
 
 
 static bool compareByFrameID(const std::pair<int, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>>>& a, const std::pair<int, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>>>& b) {
-    return a.first < b.first;
+    return a.first > b.first;
 }
 
 void SLAMBenchConfiguration::displayConfig(){
