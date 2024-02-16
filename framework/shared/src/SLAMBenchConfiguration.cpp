@@ -369,7 +369,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
     }
 
     int input_seq = 0;
-    int accepted_frames = 0;
+    int accepted_frames = 1;
     bool ongoing = false;
     std::vector<Eigen::Matrix4f> libs_trans;
     std::pair<int, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>>> current_enhance;
@@ -483,7 +483,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     }
                 }
             }
-            current_frame->FreeData();
+            // current_frame->FreeData();
             current_frame = input_interface_manager_->GetNextFrame();
         } // we're done with the frame
         if (!output_filename_.empty())
