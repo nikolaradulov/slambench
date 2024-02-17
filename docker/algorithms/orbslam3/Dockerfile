@@ -88,7 +88,8 @@ RUN mv null.cpp $ORB3_DIR/wrapper
 
 # ====== <ORB-SLAM3> ======
 WORKDIR /repos
-RUN git clone --recursive --branch master https://github.com/yuhaozhang7/orbslam3-slambench.git orbslam3
+
+RUN git clone --recursive --branch master https://github.com/nikolaradulov/orbslam3-slambench.git orbslam3
 
 WORKDIR orbslam3
 RUN mkdir build
