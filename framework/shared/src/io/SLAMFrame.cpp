@@ -275,9 +275,10 @@ void *DeserialisedFrame::GetDataHelper() {
 }
 
 void * DeserialisedFrame::GetData(){
-	// printf("Get data called\n %d ", this->enhance_);
+	printf("Get data called\n %d ", this->enhance_);
 	void * data = this->GetDataHelper();
 	if(this->enhance_){
+		printf("will enhance\n");
 		this->enhanced_image_ = FrameSensor->Enhance(data, this->filters);
 		// if enhancing actually worked
 		if(this->enhanced_image_)
