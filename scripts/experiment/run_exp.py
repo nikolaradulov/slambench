@@ -33,7 +33,8 @@ base ={ "blur":1, "contrast":1, "brightness":0}
 no_frames={
     "kitty": {
         "test": 1106,
-        "lsd": 1106
+        "lsd": 1106,
+        "open_vins": -1
     },
     "eurocMAV":{
         "test": 3682,
@@ -46,7 +47,8 @@ no_frames={
     },
     "icl-nuim":{
         "lsd": 967,
-        "test": 967
+        "test": 967,
+        "open_vins": -1
     }
 }
 dataset_paths={
@@ -59,7 +61,19 @@ dataset_paths={
 algorithm_paths={
     "test": "build/lib/libtest-cpp-library.so",
     "lsd": "build/lib/liblsdslam-cpp-library.so"
+    "open_vins": "build/lib/libopen"
 }
+
+
+def generate_orbslam_pick(k, n, range_start, range_end):
+    result = []
+    for _ in range(k):
+        # Pick n random numbers within the range
+        random_numbers = np.sort(np.random.choice(range_start, range_end + 1, size=n))
+        # Construct the array with the number and its 2 preceding and 2 succeeding numbers
+        array = np.concatenate([np.arange(num - 2, num + 3) for num in random_numbers])
+        result.append(array)
+    return result
 
 def generate_conf(filter, setting, frames):
     # frames = np.random.choice(np.arange(total_frames + 1), size=20, replace=False)
@@ -97,6 +111,9 @@ def generate_conf(filter, setting, frames):
 for algorithm in algorithms:
     os.makedirs(Path(f"{prefix}/{algorithm}"), exist_ok=True)
     for dataset in datasets:
+        # for algorithm / datasets that don't work together
+        if no_frames[dataset][algorithm] ==-1:
+            continue
         path = f"{prefix}/{algorithm}/{dataset}"
         os.makedirs(Path(path), exist_ok=True)
         # select max_frames 
@@ -113,6 +130,9 @@ for algorithm in algorithms:
             else:
                 for t in range(2*frame_step, max_frames+1, frame_step):
                     frame_rand = np.random.choice(np.arange(1, no_frames[dataset][algorithm]+1), size=(repeats, t))
+                    if algorithm == "orbslam3":
+                        frame_rand = generate_orbslam_pick(repeats, (int)(t/5), 1, no_frames[dataset][algorithm]+1)
+
                     #  for each run pick different random, but repeat as the granularity increases
                     # eg. run one for all granularities will be the same frames
                     #  run 2 will be the same for all granularities but different set from run 1, etc.

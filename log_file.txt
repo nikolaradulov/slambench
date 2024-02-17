@@ -1,0 +1,41 @@
+SLAMBench Report run started:	2024-02-17 12:20:47
+
+Properties:
+=================
+
+frame-limit: 0
+start-frame: 0
+log-file: log_file.txt
+input: /home/nikola/slambench/datasets/TUM/freiburg1/rgbd_dataset_freiburg1_room.slam
+load-slam-library: /deps/orbslam3/lib/liborbslam3-original-library.so
+save-groundtruth: 
+dse: false
+help: false
+realtime-mode: false
+realtime-multiplier: 1
+enhance-image: 
+file-output: 
+alignment-technique: new
+gui: false
+lifelong: false
+Depth-intrinsics-parameters: 0.9235938,1.229375,0.5171875,0.4875
+Depth-disparity-params: 0.0002,0
+Grey-intrinsics-parameters: 0.8082812,1.076042,0.4978125,0.531875
+RGB-intrinsics-parameters: 0.8082812,1.076042,0.4978125,0.531875
+mode: auto
+settings: 
+vocabulary: /deps/orbslam3/Vocabulary/ORBvoc.txt
+image-metrics: 
+max-features: 1000
+scale-levels: 8
+scale-factor: 1.2
+initial-fast-threshold: 20
+second-fast-threshold: 7
+camera-fps: 40
+depth-threshold: 40
+start-frame: 0
+
+Statistics:
+=================
+
+Frame Number	Timestamp	ATE_RMSE	OrientationError	MeanATE	MaxATE	RPE_RMSE	Duration_Frame	CPU_Memory	GPU_Memory	X	Y	Z

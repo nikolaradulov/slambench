@@ -402,8 +402,8 @@ fullfusion:
 	@echo "cmake_minimum_required(VERSION 2.8)"   > benchmarks/$@/CMakeLists.txt
 	@echo "explore_implementations ( $@ src/* )"     >> benchmarks/$@/CMakeLists.txt
 
-.PHONY: bundlefusion svo refusion open_vins orbslam2 kinectfusion orbslam3 ptam dso efusion supereight kfusion lsdslam monoslam infinitam okvis flame semanticfusion fullfusion
-algorithms :  bundlefusion svo refusion open_vins orbslam2 kinectfusion orbslam3 ptam dso efusion supereight kfusion lsdslam monoslam infinitam okvis flame semanticfusion fullfusion
+.PHONY: supereight orbslam2 ptam semanticfusion efusion kinectfusion refusion open_vins dso kfusion flame svo infinitam bundlefusion okvis orbslam3 fullfusion monoslam lsdslam
+algorithms :  supereight orbslam2 ptam semanticfusion efusion kinectfusion refusion open_vins dso kfusion flame svo infinitam bundlefusion okvis orbslam3 fullfusion monoslam lsdslam
 
 benchmarks_status:
 	@echo  "************ Check-in monoslam in benchmarks/monoslam/src/original"

@@ -349,7 +349,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
 
     assert(initialised_);
 
-    printf("mode: %d\n", this->enhance_mode_);
+    // printf("mode: %d\n", this->enhance_mode_);
 
     std::cout<<this->enhance_file_<<std::endl;
     if(this->enhance_file_!=""){
@@ -390,7 +390,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
         auto current_frame = input_interface_manager_->GetNextFrame();
         
         while (current_frame != nullptr) {
-            // printf("Frame is %d %d\n", accepted_frames, frame_count);
+            printf("Frame is %d %d\n", accepted_frames, frame_count);
             
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
                 // printf("Current enhance: %d %d \n", accepted_frames, current_enhance.first);
