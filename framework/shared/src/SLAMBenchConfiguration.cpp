@@ -393,7 +393,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
             // printf("Frame is %d %d\n", accepted_frames, frame_count);
             
             if (current_frame->FrameSensor->GetType() != slambench::io::GroundTruthSensor::kGroundTruthTrajectoryType) {
-                printf("Current enhance: %d %d \n", accepted_frames, current_enhance.first);
+                // printf("Current enhance: %d %d \n", accepted_frames, current_enhance.first);
                 if(accepted_frames==current_enhance.first && this->enhance_mode_){
                     // printf("Frame %d is to be enhanced\n", accepted_frames);
                     current_frame->Enhance( &current_enhance.second);
@@ -417,7 +417,8 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                         continue;
                     }
                     //  Id increase only when all necessary data has been provided
-                    accepted_frames ++;
+                    // for multiple algorithms support accepted_frames can be vectorised, along with current tracking
+                    accepted_frames = lib->frame_counter;
                     // if finished with this frame , and the enhace happened then get next enhance
                     if(!this->frameFilters.empty() && current_enhance.first<accepted_frames && this->enhance_mode_){
                         current_enhance = this->frameFilters.back();

@@ -31,6 +31,7 @@ private :
 	slambench::outputs::OutputManager  output_manager_;
 
 public:
+    int frame_counter; // how many framers had the algorithm had for dinner so far?
 	bool    (* c_sb_new_slam_configuration)(SLAMBenchLibraryHelper*);
     bool    (* c_sb_init_slam_system)(SLAMBenchLibraryHelper*);
     bool    (* c_sb_update_frame)(SLAMBenchLibraryHelper*, slambench::io::SLAMFrame*);
