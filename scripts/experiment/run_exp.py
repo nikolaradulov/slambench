@@ -7,12 +7,12 @@ import subprocess
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
-    "tum",
-    "icl-nuim", 
+    # "tum",
+    # "icl-nuim", 
     # "eurocMAV"
     "kitty"
 ]
-algorithms=["lsd"]
+algorithms=["orbslam3"]
 repeats = 5
 base_repeat = 3
 granularity = 10 # how many range increases will take place till max / min range 
@@ -34,7 +34,8 @@ no_frames={
     "kitty": {
         "test": 1106,
         "lsd": 1106,
-        "open_vins": -1
+        "open_vins": -1,
+        "orbslam3":1106
     },
     "eurocMAV":{
         "test": 3682,
@@ -42,13 +43,15 @@ no_frames={
     },
     "tum":{
         "test": 1362,
-        "lsd": 1362
+        "lsd": 1362, 
+        "orbslam3": 1359
 
     },
     "icl-nuim":{
         "lsd": 967,
         "test": 967,
-        "open_vins": -1
+        "open_vins": -1,
+        "orbslam3": 966
     }
 }
 dataset_paths={
@@ -59,9 +62,10 @@ dataset_paths={
 }
 
 algorithm_paths={
-    "test": "build/lib/libtest-cpp-library.so",
-    "lsd": "build/lib/liblsdslam-cpp-library.so"
-    "open_vins": "build/lib/libopen"
+    "test": "~/slambench/build/lib/libtest-cpp-library.so",
+    "lsd": "~/slambench/build/lib/liblsdslam-cpp-library.so",
+    "open_vins": "build/lib/libopen",
+    "orbslam3": "/deps/orbslam3/lib/liborbslam3-original-library.so"
 }
 
 
@@ -69,7 +73,8 @@ def generate_orbslam_pick(k, n, range_start, range_end):
     result = []
     for _ in range(k):
         # Pick n random numbers within the range
-        random_numbers = np.sort(np.random.choice(range_start, range_end + 1, size=n))
+        # print(n)
+        random_numbers = np.sort(np.random.choice(np.arange(range_start, range_end + 1), size=n))
         # Construct the array with the number and its 2 preceding and 2 succeeding numbers
         array = np.concatenate([np.arange(num - 2, num + 3) for num in random_numbers])
         result.append(array)
@@ -128,7 +133,7 @@ for algorithm in algorithms:
                     dir_path = f"{prefix}/{algorithm}/{dataset}/base_{j+1}"
                     os.makedirs(Path(dir_path), exist_ok=True)
             else:
-                for t in range(2*frame_step, max_frames+1, frame_step):
+                for t in range(frame_step, max_frames+1, frame_step):
                     frame_rand = np.random.choice(np.arange(1, no_frames[dataset][algorithm]+1), size=(repeats, t))
                     if algorithm == "orbslam3":
                         frame_rand = generate_orbslam_pick(repeats, (int)(t/5), 1, no_frames[dataset][algorithm]+1)
@@ -145,7 +150,7 @@ for algorithm in algorithms:
                             # print(conf)
                             with open(Path(dir_path+"/conf.json"), "w") as json_file:
                                 json.dump(conf, json_file, indent=4)
-                            command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load ~/slambench/{algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
+                            command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
                             print(f"        ->{dir_path}")
                             try:
                                 subprocess.run(command, shell=True, capture_output=True, timeout=900)
@@ -162,7 +167,7 @@ for algorithm in algorithms:
                                 # print(conf)
                                 with open(Path(dir_path+"/conf.json"), "w") as json_file:
                                     json.dump(conf, json_file, indent=4)
-                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load ~/slambench/{algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
+                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
                                 print(f"        ->{dir_path}")
                                 try:
                                     subprocess.run(command, shell=True, capture_output=True, timeout=900)
@@ -178,7 +183,7 @@ for algorithm in algorithms:
                                 # print(conf)
                                 with open(Path(dir_path+"/conf.json"), "w") as json_file:
                                     json.dump(conf, json_file, indent=4)
-                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load ~/slambench/{algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
+                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
                                 print(f"        ->{dir_path}")
                                 try:
                                     subprocess.run(command, shell=True, capture_output=True, timeout=900)

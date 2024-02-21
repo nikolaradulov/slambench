@@ -21,19 +21,22 @@ static slambench::TimeStamp last_frame_timestamp;
 static slambench::outputs::Output *grey_frame_output;
 static Eigen::Matrix<unsigned char, Eigen::Dynamic, Eigen::Dynamic> image;
 
+static slambench::io::CameraSensor *rgb_sensor;
+
 static slambench::TimeStamp latest_frame;
 static std::vector<unsigned char> image_raw;
 static std::vector<unsigned char> grey_raw;
 
 static sb_uint2 greyInputSize;
 static std::pair<int,int> *indices;
-
+static cv::Mat *imRGB = nullptr;
 static int begin;
 static int end;
 
 std::string im_file_name;
 std::string default_file ="";
 static int event_frames=0;
+
 
 void static im_compute_metrics(const cv::Mat image)
 {   
@@ -48,7 +51,7 @@ void static im_compute_metrics(const cv::Mat image)
 
     /* ---------- Compute Image Quality ------------ */
     cv::Mat laplacian, absLaplacian;
-
+    imRGB = new cv::Mat (rgb_sensor->Height, rgb_sensor->Width,CV_8UC3);
     // Sharpness: Variance of Laplacian
     cv::Laplacian(current_image, laplacian, CV_64F);
     cv::convertScaleAbs(laplacian, absLaplacian);
@@ -97,6 +100,8 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
     slambench::io::CameraSensorFinder sensor_finder;
     grey_sensor = sensor_finder.FindOne(slam_settings->get_sensors(), {{"camera_type", "grey"}});
 	assert(grey_sensor!=nullptr && "Failed, did not find event sensor");
+    rgb_sensor = sensor_finder.FindOne(slam_settings->get_sensors(), {{"camera_type", "rgb"}});
+    
 
     // initialise the pose output and bind it to the slam configuration output
     pose_out = new slambench::outputs::Output("Pose", slambench::values::VT_POSE, true);
@@ -122,8 +127,19 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
         cv::Mat image_grey = cv::Mat(grey_sensor->Height, grey_sensor->Width, CV_8UC1, grey_raw.data());
 		im_compute_metrics(image_grey);
         s->FreeData();
-        return true;
+        return false;
             
+    }else if(s->FrameSensor == rgb_sensor and imRGB) {
+        printf("Checkpoint 1.5\n");
+        memcpy(imRGB->data, s->GetData(), s->GetSize());
+        printf("memcpy good\n");
+        cv::Mat image_grey = cv::Mat(rgb_sensor->Height, rgb_sensor->Width, CV_8UC3, imRGB->data);
+        im_compute_metrics(image_grey);
+        printf("quality good\n");
+        last_frame_timestamp = s->Timestamp;
+        s->FreeData();
+        printf("checkpoint 2\n");
+        return true;
     }
       
     return false;	

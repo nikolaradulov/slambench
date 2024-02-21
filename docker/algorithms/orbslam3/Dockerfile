@@ -76,7 +76,7 @@ RUN make -j$(expr $(nproc) - 2) && make install
 
 # ====== <SLAMBench> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone --branch image_filter https://github.com/nikolaradulov/slambench.git slambench
 
 WORKDIR $ORB3_DIR
 RUN mkdir wrapper && mkdir Vocabulary
