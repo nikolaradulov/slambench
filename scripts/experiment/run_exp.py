@@ -7,16 +7,16 @@ import subprocess
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
-    # "tum",
-    # "icl-nuim", 
+    "icl-nuim", 
     # "eurocMAV"
-    "kitty"
+    "kitty",
+    # "tum"
 ]
 algorithms=["orbslam3"]
 repeats = 5
 base_repeat = 3
 granularity = 10 # how many range increases will take place till max / min range 
-percentage = 0.10
+percentage = 0.11
 if len(sys.argv) >=2:
     prefix=sys.argv[1]
 else: prefix =""
@@ -35,7 +35,8 @@ no_frames={
         "test": 1106,
         "lsd": 1106,
         "open_vins": -1,
-        "orbslam3":1106
+        "orbslam3":1106,
+        "orbslam2":1106
     },
     "eurocMAV":{
         "test": 3682,
@@ -44,19 +45,21 @@ no_frames={
     "tum":{
         "test": 1362,
         "lsd": 1362, 
-        "orbslam3": 1359
+        "orbslam3": 1359,
+        "orbslam2": 1359
 
     },
     "icl-nuim":{
-        "lsd": 967,
+        "lsd": 882,
         "test": 967,
         "open_vins": -1,
-        "orbslam3": 966
+        "orbslam3": 882,
+        "orbslam2": 882
     }
 }
 dataset_paths={
     "kitty":"./datasets/KITTI/2011_09_30_drive_0027/2011_09_30_drive_0027_sync.slam",
-    "icl-nuim": "datasets/ICL_NUIM/living_room_traj1_loop.slam",
+    "icl-nuim": "datasets/ICL_NUIM/living_room_traj2_loop.slam",
     "tum": "datasets/TUM/freiburg1/rgbd_dataset_freiburg1_room.slam",
     "eurocMAV": "datasets/EuRoCMAV/machine_hall/MH_01_easy/MH_01_easy.slam",
 }
@@ -65,7 +68,8 @@ algorithm_paths={
     "test": "~/slambench/build/lib/libtest-cpp-library.so",
     "lsd": "~/slambench/build/lib/liblsdslam-cpp-library.so",
     "open_vins": "build/lib/libopen",
-    "orbslam3": "/deps/orbslam3/lib/liborbslam3-original-library.so"
+    "orbslam3": "/deps/orbslam3/lib/liborbslam3-original-library.so",
+    "orbslam2": "/deps/orbslam2/lib/liborbslam2-original-library.so"
 }
 
 
@@ -76,7 +80,7 @@ def generate_orbslam_pick(k, n, range_start, range_end):
         # print(n)
         random_numbers = np.sort(np.random.choice(np.arange(range_start, range_end + 1), size=n))
         # Construct the array with the number and its 2 preceding and 2 succeeding numbers
-        array = np.concatenate([np.arange(num - 2, num + 3) for num in random_numbers])
+        array = np.concatenate([np.arange(num - 15, num + 16) for num in random_numbers])
         result.append(array)
     return result
 
@@ -134,10 +138,13 @@ for algorithm in algorithms:
                     os.makedirs(Path(dir_path), exist_ok=True)
             else:
                 for t in range(frame_step, max_frames+1, frame_step):
-                    frame_rand = np.random.choice(np.arange(1, no_frames[dataset][algorithm]+1), size=(repeats, t))
-                    if algorithm == "orbslam3":
-                        frame_rand = generate_orbslam_pick(repeats, (int)(t/5), 1, no_frames[dataset][algorithm]+1)
-
+                    # print((int)(t/30))
+                    if dataset == "kitty":
+                        # print((int)(t/7))
+                        frame_rand = generate_orbslam_pick(repeats, (int)(t/7), 1, no_frames[dataset][algorithm]+1)
+                    else:
+                        frame_rand = generate_orbslam_pick(repeats, (int)(t/30), 1, no_frames[dataset][algorithm]+1)
+                      
                     #  for each run pick different random, but repeat as the granularity increases
                     # eg. run one for all granularities will be the same frames
                     #  run 2 will be the same for all granularities but different set from run 1, etc.
