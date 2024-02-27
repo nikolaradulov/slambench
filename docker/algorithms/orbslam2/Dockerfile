@@ -76,7 +76,7 @@ RUN make -j$(expr $(nproc) - 2) && make install
 
 # ====== <SLAMBench> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone --branch image_filter https://github.com/nikolaradulov/slambench.git slambench
 
 WORKDIR $ORB2_DIR
 RUN mkdir wrapper && mkdir Vocabulary
@@ -87,7 +87,7 @@ RUN mv null.cpp $ORB2_DIR/wrapper
 
 # ====== <ORB-SLAM2> ======
 WORKDIR /repos
-RUN git clone --recursive --branch update-master https://github.com/yuhaozhang7/orbslam2-slambench.git orbslam2
+RUN git clone --recursive --branch update-master https://github.com/nikolaradulov/orbslam2-slambench.git orbslam2
 
 WORKDIR orbslam2
 RUN mkdir build
