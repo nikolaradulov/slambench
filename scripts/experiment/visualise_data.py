@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import sys
 import re
 import math
+import json
 
 
 no_frames={
@@ -69,8 +70,17 @@ def read_image_metrics(file_path):
             sharpness = float(values[1])
             brightness = float(values[2])
             contrast = float(values[3])
-            image_metrics.append({'frame_id': frame_id, 'sharpness': sharpness, 'brightness': brightness, 'contrast': contrast})
+            image_metrics.append({'frame_id': frame_id, 'blur': sharpness, 'brightness': brightness, 'contrast': contrast})
     return image_metrics
+
+def compute_mean_metric(quality_metrics, modified_ids, filter_type):
+    # Filter quality metrics for perturbed frames with the specified filter type
+    perturbed_metrics = [metric[filter_type] for metric in quality_metrics if metric['frame_id'] in modified_ids]
+    
+    # Compute the mean metric for the filter type
+    mean_metric = sum(perturbed_metrics) / len(perturbed_metrics) if perturbed_metrics else None
+    
+    return mean_metric
 
 
 def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
@@ -101,25 +111,33 @@ def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
         exp_numbers = sorted(exp_numbers)
         filter_values = sorted(filter_values)
         ate_per_filer = []
-        
+        mean_values =[]
         partial_failure = {'x':[], 'y':[]}
         failure_points = {'x':[], 'y':[]}
         for filter_val in filter_values:
             fail_flag=5
             mean_ate_values_all_runs = []
+            mean_values_all_runs = []
             for run in exp_numbers:
                 exp_folder = f"exp{run}_frames_val_{filter_val}"
                 # print(exp_folder)
                 exp_path = os.path.join(frame_path, exp_folder)
                 log_file_path = os.path.join(exp_path, 'log_file.txt')
+                modified_ids = read_modified_frame_ids(os.path.join(exp_path, "conf.json"))
+                quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
+
                 mean_ate_values = parse_log_file(log_file_path)
+                quality_metric = compute_mean_metric(quality_metrics, modified_ids, filter_type)
+                # print(quality_metric)
+                mean_values_all_runs.append(quality_metric)
                 # just in case give some liniency
                 if(len(mean_ate_values)<no_frames[dataset_name][slam_alg]-20):
-                    mean_ate_values_all_runs.append(100)
                     fail_flag-=1
                 else:
                     mean_ate_values_all_runs.append(np.mean(mean_ate_values))
                 # print(mean_ate_values_all_runs)
+            
+            mean_values.append(np.mean(mean_values_all_runs))
             ate_per_filer.append(np.mean(mean_ate_values_all_runs))
             if(fail_flag<5 and fail_flag>0):
                 partial_failure['x'].append(filter_val)
@@ -134,10 +152,10 @@ def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
             filter_values = np.log10(filter_values)
             partial_failure['x'] = np.log10(partial_failure['x'])
             failure_points['x'] = np.log10(failure_points['x'])
-
-        plt.plot(filter_values, ate_per_filer, label=frame_folder)
-        plt.scatter(partial_failure['x'], partial_failure['y'], c='orange', label="Partial Failure")
-        plt.scatter(failure_points['x'], failure_points['y'], c='red', label="Total Failure")
+        print(filter_type, filter_val, mean_values)
+        plt.plot(mean_values, ate_per_filer, label=frame_folder)
+        # plt.scatter(partial_failure['x'], partial_failure['y'], c='orange', label="Partial Failure")
+        # plt.scatter(failure_points['x'], failure_points['y'], c='red', label="Total Failure")
 
     
     plt.title(f'{dataset_name}: Mean ATE Evolution for {filter_type}')
@@ -148,8 +166,9 @@ def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
     plt.subplots_adjust(bottom=0.3) 
     name = f"{dataset_name}_{filter_type}_plot.png"
     print(f"    >>>>>   Saving {name}")
-    plt.savefig(os.path.join(dataset_folder,name),bbox_inches='tight')
-    plt.clf()
+    plt.show()
+    # plt.savefig(os.path.join(dataset_folder,name),bbox_inches='tight')
+    # plt.clf()
 
 def plot_dataset_mean_ate_evolution(slam_name_folder):
     dataset_folders = [f for f in os.listdir(slam_name_folder) if os.path.isdir(os.path.join(slam_name_folder, f))]
