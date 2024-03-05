@@ -96,7 +96,7 @@ bool sb_new_slam_configuration(SLAMBenchLibraryHelper * slam_settings){
 }
 
 bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
-    
+    slam_settings->frame_counter=0;
     slambench::io::CameraSensorFinder sensor_finder;
     grey_sensor = sensor_finder.FindOne(slam_settings->get_sensors(), {{"camera_type", "grey"}});
 	assert(grey_sensor!=nullptr && "Failed, did not find event sensor");
@@ -130,15 +130,15 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
         return false;
             
     }else if(s->FrameSensor == rgb_sensor and imRGB) {
-        printf("Checkpoint 1.5\n");
+        // printf("Checkpoint 1.5\n");
         memcpy(imRGB->data, s->GetData(), s->GetSize());
-        printf("memcpy good\n");
+        // printf("memcpy good\n");
         cv::Mat image_grey = cv::Mat(rgb_sensor->Height, rgb_sensor->Width, CV_8UC3, imRGB->data);
         im_compute_metrics(image_grey);
-        printf("quality good\n");
+        // printf("quality good\n");
         last_frame_timestamp = s->Timestamp;
         s->FreeData();
-        printf("checkpoint 2\n");
+        // printf("checkpoint 2\n");
         return true;
     }
       
@@ -147,7 +147,7 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
 
 bool sb_process_once(SLAMBenchLibraryHelper * slam_settings){
     // nothing to do for a fake
-    
+    slam_settings->frame_counter++;
     return true;
 }
 
@@ -160,6 +160,7 @@ bool sb_clean_slam_system(){
 }
 
 bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::TimeStamp *timestamp){
+    
     // pass the identy matrix as pose , should be 0,0,0
     if(pose_out->IsActive()) {
         std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());

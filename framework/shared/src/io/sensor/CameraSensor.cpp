@@ -65,12 +65,15 @@ void CameraSensor::CopyIntrinsics(const CameraSensor* other) {
 
 void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> *filters){
 	int img_type ;
+	int float_img_type;
 	if(pixelformat::IsGrey(this->PixelFormat)){
 		img_type = CV_8UC1;	
+		float_img_type = CV_32FC1;
 	}
 	else{
 		if(pixelformat::IsRGB(this->PixelFormat)){
 			img_type = CV_8UC3;
+			float_img_type = CV_32FC3;
 		}
 	}
 	cv::Mat image_mat = cv::Mat(this->Height, this->Width, img_type, raw_image);
@@ -83,7 +86,7 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 		slambench::io::FilterSettings & sensor_settings = filters_it->second.second;
 		// std::cout<<filters_it->first<<std::endl;
 		for(const auto type : filters_to_apply){
-			std::cout<<"Applying "<<type<<" to image"<<std::endl;
+			// std::cout<<"Applying "<<type<<" to image"<<std::endl;
 			if(type=="blur"){
 			cv::blur(image_mat, image_mat, cv::Size(sensor_settings.kernel_size,sensor_settings.kernel_size));
 			}else{
@@ -93,7 +96,20 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 				}
 				else{
 					if(type=="contrast"){
-						image_mat.convertTo(image_mat, -1, sensor_settings.contrast, 0);
+						// image_mat.convertTo(image_mat, -1, sensor_settings.contrast, 0);
+						// Specify the contrast value (in range [-255, 255])
+						int contrastValue = sensor_settings.contrast;
+						// Compute contrast factor F
+						float contrastFactor = (259.0 * (contrastValue + 255.0)) / (255.0 * (259.0 - contrastValue));
+						// convert to float point image
+						image_mat.convertTo(image_mat, float_img_type);
+						// apply contrast
+						image_mat= contrastFactor * (image_mat - 128.0) + 128.0;
+						// Clip values to [0, 255]
+   						image_mat = max(min(image_mat, 255.0f), 0.0f);
+
+						// Convert back to 8-bit format in place
+						image_mat.convertTo(image_mat, img_type);
 					}
 					else{
 						if(type=="noise"){

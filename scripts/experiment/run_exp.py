@@ -7,12 +7,12 @@ import subprocess
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
-    "icl-nuim", 
+    # "icl-nuim",
     # "eurocMAV"
-    "kitty",
+    "kitty"
     # "tum"
 ]
-algorithms=["orbslam3"]
+algorithms=["orbslam2"]
 repeats = 5
 base_repeat = 3
 granularity = 10 # how many range increases will take place till max / min range 
@@ -24,11 +24,16 @@ else: prefix =""
 ###############################################################################
  
 brightness_step = 255/granularity
-contrast_step = 10/granularity
-contrast_inv_step = 1/granularity
+contrast_step = 255/granularity
+# contrast_inv_step = 1/granularity
 blur_step = 10/granularity
-steps ={"blur":blur_step, "contrast":contrast_step, "contrast_inv":contrast_inv_step, "brightness":brightness_step }
-filters = {1:"blur", 2:"contrast", 3:"brightness", 4:"noise"}
+steps ={"blur":blur_step, "contrast":contrast_step, "brightness":brightness_step }
+filters = {
+    1:"blur", 
+    2:"contrast",
+    3:"brightness" 
+    # 4:"noise"
+    }
 base ={ "blur":1, "contrast":1, "brightness":0}
 no_frames={
     "kitty": {
@@ -51,7 +56,7 @@ no_frames={
     },
     "icl-nuim":{
         "lsd": 882,
-        "test": 967,
+        "test": 882,
         "open_vins": -1,
         "orbslam3": 882,
         "orbslam2": 882
@@ -76,12 +81,23 @@ algorithm_paths={
 def generate_orbslam_pick(k, n, range_start, range_end):
     result = []
     for _ in range(k):
-        # Pick n random numbers within the range
-        # print(n)
-        random_numbers = np.sort(np.random.choice(np.arange(range_start, range_end + 1), size=n))
-        # Construct the array with the number and its 2 preceding and 2 succeeding numbers
-        array = np.concatenate([np.arange(num - 15, num + 16) for num in random_numbers])
-        result.append(array)
+        picked_numbers = []  # List to store the picked numbers
+        
+        # Randomly pick n numbers within the specified range without replacement
+        while len(picked_numbers) < n:
+            num = np.random.randint(range_start + 15, range_end - 15 + 1)  # Ensure no overlap with the surrounding 15 numbers
+            if all(abs(num - picked) > 15 for picked in picked_numbers):  # Ensure no overlap with previously picked numbers
+                picked_numbers.append(num)
+        
+        picked_numbers.sort()  # Sort the picked numbers
+        
+        arrays = []
+        for num in picked_numbers:
+            # Construct the array with the number and its surrounding 15 numbers
+            array = np.arange(num - 15, num + 16)
+            arrays.append(array)
+        
+        result.append(np.concatenate(arrays))
     return result
 
 def generate_conf(filter, setting, frames):
@@ -132,11 +148,16 @@ for algorithm in algorithms:
         print(f"    ->frames={max_frames}")
         print(f"    ->frame_step={frame_step}\n\n\n")
         for filter in range(4):
+            # if filter == 1 or filter ==3:
+            #     continue
+            if filter == 3:
+                skip
             if filter == 0:
                 for j in range(base_repeat):
                     dir_path = f"{prefix}/{algorithm}/{dataset}/base_{j+1}"
                     os.makedirs(Path(dir_path), exist_ok=True)
             else:
+
                 for t in range(frame_step, max_frames+1, frame_step):
                     # print((int)(t/30))
                     if dataset == "kitty":
@@ -148,7 +169,10 @@ for algorithm in algorithms:
                     #  for each run pick different random, but repeat as the granularity increases
                     # eg. run one for all granularities will be the same frames
                     #  run 2 will be the same for all granularities but different set from run 1, etc.
-                    for i in range(1,granularity+1):
+                    for i in range(0,granularity+1):
+                        # skip 0 value for blur
+                        if filter ==1 and i==0:
+                            continue
                         for turn in range(repeats):
                             setting = i*steps[filters[filter]]
                             dir_path = f"{prefix}/{algorithm}/{dataset}/{filters[filter]}/frames{t}/exp{turn}_frames_val_{setting}"
@@ -166,35 +190,22 @@ for algorithm in algorithms:
                                 open(Path(f'{dir_path}/Timeout.txt'), "a").close()
                             
                             #  do reverse for brightness and contrast
-                            if(filters[filter] == "brightness"):
-                                setting=-setting
-                                dir_path = f"{prefix}/{algorithm}/{dataset}/{filters[filter]}/frames{t}/exp{turn}_frames_val_{setting}"
-                                os.makedirs(Path(dir_path), exist_ok=True)
-                                conf = generate_conf(filters[filter], setting, frame_rand[turn])
-                                # print(conf)
-                                with open(Path(dir_path+"/conf.json"), "w") as json_file:
-                                    json.dump(conf, json_file, indent=4)
-                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
-                                print(f"        ->{dir_path}")
-                                try:
-                                    subprocess.run(command, shell=True, capture_output=True, timeout=900)
-                                except subprocess.TimeoutExpired:
-                                    print("                 ->timeout")
-                                    open(Path(f'{dir_path}/Timeout.txt'), "a").close()
-                                    
-                            elif(filters[filter]=="contrast"):
-                                setting = i*steps["contrast_inv"]
-                                dir_path = f"{prefix}/{algorithm}/{dataset}/{filters[filter]}/frames{t}/exp{turn}_frames_val_{setting}"
-                                os.makedirs(Path(dir_path), exist_ok=True)
-                                conf = generate_conf(filters[filter], setting, frame_rand[turn])
-                                # print(conf)
-                                with open(Path(dir_path+"/conf.json"), "w") as json_file:
-                                    json.dump(conf, json_file, indent=4)
-                                command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
-                                print(f"        ->{dir_path}")
-                                try:
-                                    subprocess.run(command, shell=True, capture_output=True, timeout=900)
-                                except subprocess.TimeoutExpired:
-                                    print("                 ->timeout")
-                                    open(Path(f'{dir_path}/Timeout.txt'), "a").close()
+                            if(filters[filter] == "brightness" or filters[filter] == "contrast"):
+                                if i!=0:
+                                    setting=-setting
+                                    dir_path = f"{prefix}/{algorithm}/{dataset}/{filters[filter]}/frames{t}/exp{turn}_frames_val_{setting}"
+                                    os.makedirs(Path(dir_path), exist_ok=True)
+                                    conf = generate_conf(filters[filter], setting, frame_rand[turn])
+                                    # print(conf)
+                                    with open(Path(dir_path+"/conf.json"), "w") as json_file:
+                                        json.dump(conf, json_file, indent=4)
+                                    command = f"~/slambench/build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
+                                    print(f"        ->{dir_path}")
+                                    try:
+                                        subprocess.run(command, shell=True, capture_output=True, timeout=900)
+                                    except subprocess.TimeoutExpired:
+                                        print("                 ->timeout")
+                                        open(Path(f'{dir_path}/Timeout.txt'), "a").close()
+                                        
+                           
                                     

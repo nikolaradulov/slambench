@@ -1,0 +1,42 @@
+{
+    "frames": [
+        {
+            "id": 1,
+            "camera": ["blur", "noise"]
+        },
+        {
+            "id_range": [2, 5],
+            "camera": ["brightness"],
+            "pointcloud": ["color_distortion", "resize"]
+        },
+        {
+            "id": 100,
+            "camera":["nothing", "contrast"]
+        },
+        {
+            "id":1000,
+            "pointcloud": ["noise"]
+        }
+    ],
+    "sensor_settings": {
+        "camera": {
+        
+            "mean": 100,
+            "standard_deviation": 10,
+            "kernel_size": 5,
+            "brightness": 50,
+            "contrast": 100
+            
+        },
+        "pointcloud": {
+            "mean": 1,
+            "standard_deviation": 10,
+            "density": 0.02,
+            "brightness": 0.5,
+            "contrast": 1.2,
+            "saturation": 0.8,
+            "width": 640,
+            "height": 480
+        }
+    }
+}

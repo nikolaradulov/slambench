@@ -76,7 +76,7 @@ def read_image_metrics(file_path):
 def compute_mean_metric(quality_metrics, modified_ids, filter_type):
     # Filter quality metrics for perturbed frames with the specified filter type
     perturbed_metrics = [metric[filter_type] for metric in quality_metrics if metric['frame_id'] in modified_ids]
-    
+    print(perturbed_metrics)
     # Compute the mean metric for the filter type
     mean_metric = sum(perturbed_metrics) / len(perturbed_metrics) if perturbed_metrics else None
     
@@ -111,6 +111,8 @@ def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
         exp_numbers = sorted(exp_numbers)
         filter_values = sorted(filter_values)
         ate_per_filer = []
+        ate_per_filer2 = []
+        mean_values2 = []
         mean_values =[]
         partial_failure = {'x':[], 'y':[]}
         failure_points = {'x':[], 'y':[]}
@@ -125,50 +127,66 @@ def plot_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
                 log_file_path = os.path.join(exp_path, 'log_file.txt')
                 modified_ids = read_modified_frame_ids(os.path.join(exp_path, "conf.json"))
                 quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
-
+                # print(quality_metrics[modified_ids[4]])
                 mean_ate_values = parse_log_file(log_file_path)
                 quality_metric = compute_mean_metric(quality_metrics, modified_ids, filter_type)
                 # print(quality_metric)
                 mean_values_all_runs.append(quality_metric)
                 # just in case give some liniency
                 if(len(mean_ate_values)<no_frames[dataset_name][slam_alg]-20):
+                    mean_ate_values_all_runs.append(np.mean(1))
                     fail_flag-=1
                 else:
                     mean_ate_values_all_runs.append(np.mean(mean_ate_values))
-                # print(mean_ate_values_all_runs)
+                # print(mean_values_all_runs)
+            if filter_type=="contrast" and filter_val <1:
+                mean_values2.append(np.mean(mean_values_all_runs))
+                ate_per_filer2.append(np.mean(mean_ate_values_all_runs))
+            else:
+                mean_values.append(np.mean(mean_values_all_runs))
+                ate_per_filer.append(np.mean(mean_ate_values_all_runs))
             
-            mean_values.append(np.mean(mean_values_all_runs))
-            ate_per_filer.append(np.mean(mean_ate_values_all_runs))
             if(fail_flag<5 and fail_flag>0):
-                partial_failure['x'].append(filter_val)
+                partial_failure['x'].append(np.mean(mean_values_all_runs))
                 partial_failure['y'].append(np.mean(mean_ate_values_all_runs))
             elif(fail_flag==0):
-                failure_points['x'].append(filter_val)
+                failure_points['x'].append(np.mean(mean_values_all_runs))
                 failure_points['y'].append(np.mean(mean_ate_values_all_runs))
         
-        mean_ate_values_all_runs = np.array(mean_ate_values_all_runs)
-        mean_ate_values_avg = np.mean(mean_ate_values_all_runs, axis=0)
+        # mean_ate_values_all_runs = np.array(mean_ate_values_all_runs)
+        # mean_ate_values_avg = np.mean(mean_ate_values_all_runs, axis=0)
         if filter_type=="contrast":
             filter_values = np.log10(filter_values)
-            partial_failure['x'] = np.log10(partial_failure['x'])
-            failure_points['x'] = np.log10(failure_points['x'])
-        print(filter_type, filter_val, mean_values)
+            # partial_failure['x'] = np.log10(partial_failure['x'])
+            # failure_points['x'] = np.log10(failure_points['x'])
+            plt.plot(mean_values2, ate_per_filer2, label=frame_folder)
+        print(filter_type, filter_val, mean_values, ate_per_filer)
         plt.plot(mean_values, ate_per_filer, label=frame_folder)
-        # plt.scatter(partial_failure['x'], partial_failure['y'], c='orange', label="Partial Failure")
-        # plt.scatter(failure_points['x'], failure_points['y'], c='red', label="Total Failure")
+        plt.scatter(partial_failure['x'], partial_failure['y'], c='orange', label="Partial Failure")
+        plt.scatter(failure_points['x'], failure_points['y'], c='red', label="Total Failure")
 
     
     plt.title(f'{dataset_name}: Mean ATE Evolution for {filter_type}')
-    plt.yscale('log')
+    if filter_type == "blur":
+        plt.xscale('log', base=2)
+    # plt.yscale('log')
+    # Get handles and labels of current axes
+    handles, labels = plt.gca().get_legend_handles_labels()
+
+    # Create a dictionary to store unique labels and corresponding handles
+    unique_labels = {}
+    for label, handle in zip(labels, handles):
+        if label not in unique_labels:
+            unique_labels[label] = handle
     plt.xlabel('Filter Value')
     plt.ylabel('Mean ATE log')
-    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), shadow=True, ncol=3)
+    plt.legend(unique_labels.values(), unique_labels.keys(),loc='upper center', bbox_to_anchor=(0.5, -0.2), shadow=True, ncol=3)
     plt.subplots_adjust(bottom=0.3) 
     name = f"{dataset_name}_{filter_type}_plot.png"
     print(f"    >>>>>   Saving {name}")
-    plt.show()
-    # plt.savefig(os.path.join(dataset_folder,name),bbox_inches='tight')
-    # plt.clf()
+    # plt.show()
+    plt.savefig(os.path.join(dataset_folder,name),bbox_inches='tight')
+    plt.clf()
 
 def plot_dataset_mean_ate_evolution(slam_name_folder):
     dataset_folders = [f for f in os.listdir(slam_name_folder) if os.path.isdir(os.path.join(slam_name_folder, f))]

@@ -1,0 +1,4758 @@
+Benchmark does not implement sb_relocalize(). Will use the default.
+mode: 0
+/home/nrad/test/tum/blur/frames22/exp0_frames_val_10/conf.json
+Apllying config from file /home/nrad/test/tum/blur/frames22/exp0_frames_val_10/conf.json
+Frames:
+Frame ID: 1262
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1234
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1210
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1082
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1035
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1027
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1019
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 1012
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 994
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 910
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 895
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 739
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 710
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 547
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 501
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 459
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 381
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 351
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 268
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 162
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 101
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Frame ID: 4
+Sensor: camera
+Filters: blur 
+Settings:
+  Mean: 0
+  Standard Deviation: 0
+  Kernel Size: 10
+  Brightness: 0
+  Contrast: 0
+  Density: 0
+  Saturation: 0
+  Width: 0
+  Height: 0
+
+Current enhance: 0 4 
+Current enhance: 0 4 
+Current enhance: 0 4 
+Current enhance: 0 4 
+212.292  89.3803  73.6384
+Current enhance: 1 4 
+Current enhance: 1 4 
+214.048  89.3256  73.7592
+Current enhance: 2 4 
+Current enhance: 2 4 
+Current enhance: 2 4 
+Current enhance: 2 4 
+214.423  89.1028  73.9382
+Current enhance: 3 4 
+Current enhance: 3 4 
+214.44  88.8145  74.0611
+Current enhance: 4 4 
+Current enhance: 4 4 
+Current enhance: 4 4 
+Applying blur to image
+2.58491  88.4376  70.9432
+Current enhance: 5 101 
+Current enhance: 5 101 
+Current enhance: 5 101 
+218.648  88.0741  74.3377
+Current enhance: 6 101 
+Current enhance: 6 101 
+Current enhance: 6 101 
+Current enhance: 6 101 
+223.225  87.3688  74.2455
+Current enhance: 7 101 
+Current enhance: 7 101 
+227.595  86.597  74.3075
+Current enhance: 8 101 
+Current enhance: 8 101 
+Current enhance: 8 101 
+Current enhance: 8 101 
+234.592  85.1615  74.6178
+Current enhance: 9 101 
+Current enhance: 9 101 
+244.989  84.3127  74.9326
+Current enhance: 10 101 
+Current enhance: 10 101 
+Current enhance: 10 101 
+Current enhance: 10 101 
+256.758  84.0674  75.4305
+Current enhance: 11 101 
+Current enhance: 11 101 
+Current enhance: 11 101 
+264.205  83.2397  75.8585
+Current enhance: 12 101 
+Current enhance: 12 101 
+274.79  82.6087  76.329
+Current enhance: 13 101 
+Current enhance: 13 101 
+Current enhance: 13 101 
+Current enhance: 13 101 
+287.638  82.4557  76.7066
+Current enhance: 14 101 
+Current enhance: 14 101 
+Current enhance: 14 101 
+298.061  82.2197  77.0916
+Current enhance: 15 101 
+Current enhance: 15 101 
+313.513  82.4756  77.5904
+Current enhance: 16 101 
+Current enhance: 16 101 
+Current enhance: 16 101 
+Current enhance: 16 101 
+324.637  82.4919  78.0266
+Current enhance: 17 101 
+Current enhance: 17 101 
+Current enhance: 17 101 
+324.293  82.7962  78.4397
+Current enhance: 18 101 
+Current enhance: 18 101 
+332.561  83.6822  79.096
+Current enhance: 19 101 
+Current enhance: 19 101 
+Current enhance: 19 101 
+Current enhance: 19 101 
+349.293  84.6517  79.6269
+Current enhance: 20 101 
+Current enhance: 20 101 
+367.052  85.2564  80.0827
+Current enhance: 21 101 
+Current enhance: 21 101 
+Current enhance: 21 101 
+391.054  86.8827  81.569
+Current enhance: 22 101 
+Current enhance: 22 101 
+Current enhance: 22 101 
+418.563  89.3468  83.6579
+Current enhance: 23 101 
+Current enhance: 23 101 
+Current enhance: 23 101 
+Current enhance: 23 101 
+419.565  92.8706  85.4418
+Current enhance: 24 101 
+Current enhance: 24 101 
+390.011  93.1794  84.624
+Current enhance: 25 101 
+Current enhance: 25 101 
+Current enhance: 25 101 
+358.392  92.972  83.5356
+Current enhance: 26 101 
+Current enhance: 26 101 
+Current enhance: 26 101 
+Current enhance: 26 101 
+348.192  92.1049  82.2721
+Current enhance: 27 101 
+Current enhance: 27 101 
+345.715  90.9707  80.8882
+Current enhance: 28 101 
+Current enhance: 28 101 
+Current enhance: 28 101 
+Current enhance: 28 101 
+311.665  91.1085  80.3324
+Current enhance: 29 101 
+Current enhance: 29 101 
+Current enhance: 29 101 
+269.838  92.8333  81.6947
+Current enhance: 30 101 
+Current enhance: 30 101 
+259.197  96.2293  83.606
+Current enhance: 31 101 
+Current enhance: 31 101 
+Current enhance: 31 101 
+Current enhance: 31 101 
+247.184  96.4449  84.9503
+Current enhance: 32 101 
+Current enhance: 32 101 
+229.392  94.9332  87.3732
+Current enhance: 33 101 
+Current enhance: 33 101 
+Current enhance: 33 101 
+Current enhance: 33 101 
+224.832  97.1219  91.1855
+Current enhance: 34 101 
+Current enhance: 34 101 
+257  102.773  93.96
+Current enhance: 35 101 
+Current enhance: 35 101 
+Current enhance: 35 101 
+268.308  106.476  95.0266
+Current enhance: 36 101 
+Current enhance: 36 101 
+Current enhance: 36 101 
+Current enhance: 36 101 
+254.315  107.625  96.284
+Current enhance: 37 101 
+Current enhance: 37 101 
+247.426  108.875  96.924
+Current enhance: 38 101 
+Current enhance: 38 101 
+Current enhance: 38 101 
+254.018  110.387  97.4296
+Current enhance: 39 101 
+Current enhance: 39 101 
+Current enhance: 39 101 
+283.13  115.735  98.3642
+Current enhance: 40 101 
+Current enhance: 40 101 
+Current enhance: 40 101 
+297.815  120.443  98.7892
+Current enhance: 41 101 
+Current enhance: 41 101 
+Current enhance: 41 101 
+Current enhance: 41 101 
+311.114  125.105  98.9311
+Current enhance: 42 101 
+Current enhance: 42 101 
+319.118  129.272  98.9622
+Current enhance: 43 101 
+Current enhance: 43 101 
+Current enhance: 43 101 
+314.157  133.266  98.3656
+Current enhance: 44 101 
+Current enhance: 44 101 
+Current enhance: 44 101 
+340.16  136.907  97.313
+Current enhance: 45 101 
+Current enhance: 45 101 
+Current enhance: 45 101 
+Current enhance: 45 101 
+363.255  139.41  96.0876
+Current enhance: 46 101 
+Current enhance: 46 101 
+351.407  140.433  95.1521
+Current enhance: 47 101 
+Current enhance: 47 101 
+Current enhance: 47 101 
+Current enhance: 47 101 
+342.162  139.76  94.9416
+Current enhance: 48 101 
+Current enhance: 48 101 
+Current enhance: 48 101 
+364.513  138.353  94.5765
+Current enhance: 49 101 
+Current enhance: 49 101 
+388.079  136.402  92.7665
+Current enhance: 50 101 
+Current enhance: 50 101 
+Current enhance: 50 101 
+388.545  132.81  91.0002
+Current enhance: 51 101 
+Current enhance: 51 101 
+Current enhance: 51 101 
+Current enhance: 51 101 
+398.606  126.018  88.4868
+Current enhance: 52 101 
+Current enhance: 52 101 
+417.5  126.584  84.9585
+Current enhance: 53 101 
+Current enhance: 53 101 
+Current enhance: 53 101 
+449.898  126.372  83.0361
+Current enhance: 54 101 
+Current enhance: 54 101 
+Current enhance: 54 101 
+Current enhance: 54 101 
+516.654  125.329  83.7703
+Current enhance: 55 101 
+Current enhance: 55 101 
+Current enhance: 55 101 
+518.691  122.239  82.5757
+Current enhance: 56 101 
+Current enhance: 56 101 
+Current enhance: 56 101 
+373.093  116.196  81.2296
+Current enhance: 57 101 
+Current enhance: 57 101 
+346.795  108.523  79.8088
+Current enhance: 58 101 
+Current enhance: 58 101 
+Current enhance: 58 101 
+Current enhance: 58 101 
+348.706  102.334  79.1441
+Current enhance: 59 101 
+Current enhance: 59 101 
+Current enhance: 59 101 
+346.933  96.2294  78.7423
+Current enhance: 60 101 
+Current enhance: 60 101 
+277.11  94.8001  78.5097
+Current enhance: 61 101 
+Current enhance: 61 101 
+Current enhance: 61 101 
+Current enhance: 61 101 
+278.057  89.1714  77.6978
+Current enhance: 62 101 
+Current enhance: 62 101 
+Current enhance: 62 101 
+276.221  87.6941  78.4768
+Current enhance: 63 101 
+Current enhance: 63 101 
+Current enhance: 63 101 
+273.267  88.4775  78.0927
+Current enhance: 64 101 
+Current enhance: 64 101 
+Current enhance: 64 101 
+287.393  92.589  79.7151
+Current enhance: 65 101 
+Current enhance: 65 101 
+Current enhance: 65 101 
+306.607  96.6565  80.1663
+Current enhance: 66 101 
+Current enhance: 66 101 
+Current enhance: 66 101 
+314.583  97.4991  80.149
+Current enhance: 67 101 
+Current enhance: 67 101 
+Current enhance: 67 101 
+315.228  96.9042  79.9457
+Current enhance: 68 101 
+Current enhance: 68 101 
+Current enhance: 68 101 
+316.393  97.8063  80.7789
+Current enhance: 69 101 
+Current enhance: 69 101 
+320.961  99.1047  82.0786
+Current enhance: 70 101 
+Current enhance: 70 101 
+Current enhance: 70 101 
+Current enhance: 70 101 
+308.44  99.0786  79.8767
+Current enhance: 71 101 
+Current enhance: 71 101 
+Current enhance: 71 101 
+297.32  93.1595  75.3533
+Current enhance: 72 101 
+Current enhance: 72 101 
+Current enhance: 72 101 
+320.008  94.4225  77.0205
+Current enhance: 73 101 
+Current enhance: 73 101 
+Current enhance: 73 101 
+352.462  93.6945  78.6254
+Current enhance: 74 101 
+Current enhance: 74 101 
+351.64  92.16  76.9062
+Current enhance: 75 101 
+Current enhance: 75 101 
+Current enhance: 75 101 
+359.894  92.5729  75.9165
+Current enhance: 76 101 
+Current enhance: 76 101 
+Current enhance: 76 101 
+Current enhance: 76 101 
+374.524  92.1987  76.7404
+Current enhance: 77 101 
+Current enhance: 77 101 
+367.658  89.754  76.5425
+Current enhance: 78 101 
+Current enhance: 78 101 
+Current enhance: 78 101 
+Current enhance: 78 101 
+354.901  90.0046  76.5204
+Current enhance: 79 101 
+Current enhance: 79 101 
+354.988  89.9773  77.5093
+Current enhance: 80 101 
+Current enhance: 80 101 
+Current enhance: 80 101 
+Current enhance: 80 101 
+365.449  91.7849  79.2109
+Current enhance: 81 101 
+Current enhance: 81 101 
+366.931  96.9829  81.8859
+Current enhance: 82 101 
+Current enhance: 82 101 
+Current enhance: 82 101 
+375.079  97.3626  80.6762
+Current enhance: 83 101 
+Current enhance: 83 101 
+Current enhance: 83 101 
+364.901  99.2194  80.0519
+Current enhance: 84 101 
+Current enhance: 84 101 
+Current enhance: 84 101 
+364.847  101.615  78.7676
+Current enhance: 85 101 
+Current enhance: 85 101 
+Current enhance: 85 101 
+379.761  99.3727  76.42
+Current enhance: 86 101 
+Current enhance: 86 101 
+Current enhance: 86 101 
+Current enhance: 86 101 
+366.149  95.9255  74.6052
+Current enhance: 87 101 
+Current enhance: 87 101 
+Current enhance: 87 101 
+370.968  99.0328  75.9839
+Current enhance: 88 101 
+Current enhance: 88 101 
+317.883  96.5895  74.5853
+Current enhance: 89 101 
+Current enhance: 89 101 
+Current enhance: 89 101 
+Current enhance: 89 101 
+337.625  99.8227  76.2966
+Current enhance: 90 101 
+Current enhance: 90 101 
+Current enhance: 90 101 
+330.235  96.6537  75.5129
+Current enhance: 91 101 
+Current enhance: 91 101 
+Current enhance: 91 101 
+317.097  97.2606  74.2632
+Current enhance: 92 101 
+Current enhance: 92 101 
+313.135  96.3773  74.4172
+Current enhance: 93 101 
+Current enhance: 93 101 
+Current enhance: 93 101 
+313.848  96.2463  74.1815
+Current enhance: 94 101 
+Current enhance: 94 101 
+Current enhance: 94 101 
+302.762  92.6436  71.9533
+Current enhance: 95 101 
+Current enhance: 95 101 
+Current enhance: 95 101 
+321.7  97.6958  74.3963
+Current enhance: 96 101 
+Current enhance: 96 101 
+Current enhance: 96 101 
+Current enhance: 96 101 
+319.665  96.2481  74.1595
+Current enhance: 97 101 
+Current enhance: 97 101 
+312.714  97.0797  75.0039
+Current enhance: 98 101 
+Current enhance: 98 101 
+Current enhance: 98 101 
+Current enhance: 98 101 
+320.097  95.4822  73.494
+Current enhance: 99 101 
+Current enhance: 99 101 
+Current enhance: 99 101 
+321.904  92.5591  72.3106
+Current enhance: 100 101 
+Current enhance: 100 101 
+336.711  91.8043  72.0073
+Current enhance: 101 101 
+Current enhance: 101 101 
+Current enhance: 101 101 
+Applying blur to image
+3.83593  93.266  67.8431
+Current enhance: 102 162 
+Current enhance: 102 162 
+Current enhance: 102 162 
+Current enhance: 102 162 
+333.867  90.7992  71.7513
+Current enhance: 103 162 
+Current enhance: 103 162 
+327.518  85.0669  68.0372
+Current enhance: 104 162 
+Current enhance: 104 162 
+Current enhance: 104 162 
+Current enhance: 104 162 
+318.357  86.2972  70.0502
+Current enhance: 105 162 
+Current enhance: 105 162 
+329.572  89.4119  72.9774
+Current enhance: 106 162 
+Current enhance: 106 162 
+Current enhance: 106 162 
+Current enhance: 106 162 
+346.003  90.7256  76.3459
+Current enhance: 107 162 
+Current enhance: 107 162 
+Current enhance: 107 162 
+351.851  97.1628  77.6037
+Current enhance: 108 162 
+Current enhance: 108 162 
+364.691  101.269  81.1623
+Current enhance: 109 162 
+Current enhance: 109 162 
+Current enhance: 109 162 
+Current enhance: 109 162 
+337.832  101.094  82.3795
+Current enhance: 110 162 
+Current enhance: 110 162 
+Current enhance: 110 162 
+319.906  98.4529  82.8643
+Current enhance: 111 162 
+Current enhance: 111 162 
+Current enhance: 111 162 
+334.743  100.673  83.228
+Current enhance: 112 162 
+Current enhance: 112 162 
+Current enhance: 112 162 
+316.295  100.685  82.3339
+Current enhance: 113 162 
+Current enhance: 113 162 
+Current enhance: 113 162 
+324.524  102.067  82.6349
+Current enhance: 114 162 
+Current enhance: 114 162 
+Current enhance: 114 162 
+327.016  101.131  79.9657
+Current enhance: 115 162 
+Current enhance: 115 162 
+Current enhance: 115 162 
+299.495  101.031  78.1886
+Current enhance: 116 162 
+Current enhance: 116 162 
+295.537  100.462  76.6036
+Current enhance: 117 162 
+Current enhance: 117 162 
+Current enhance: 117 162 
+295.989  97.5555  76.6012
+Current enhance: 118 162 
+Current enhance: 118 162 
+Current enhance: 118 162 
+295.693  94.5875  76.2801
+Current enhance: 119 162 
+Current enhance: 119 162 
+Current enhance: 119 162 
+279.095  94.5521  77.9167
+Current enhance: 120 162 
+Current enhance: 120 162 
+Current enhance: 120 162 
+Current enhance: 120 162 
+269.997  95.4885  79.1184
+Current enhance: 121 162 
+Current enhance: 121 162 
+248.622  94.4833  78.1321
+Current enhance: 122 162 
+Current enhance: 122 162 
+Current enhance: 122 162 
+Current enhance: 122 162 
+245.403  96.4901  79.2354
+Current enhance: 123 162 
+Current enhance: 123 162 
+Current enhance: 123 162 
+243.191  100.743  80.4531
+Current enhance: 124 162 
+Current enhance: 124 162 
+Current enhance: 124 162 
+244.236  100.078  79.0057
+Current enhance: 125 162 
+Current enhance: 125 162 
+Current enhance: 125 162 
+241.788  96.6825  78.0758
+Current enhance: 126 162 
+Current enhance: 126 162 
+249.154  94.3356  78.7589
+Current enhance: 127 162 
+Current enhance: 127 162 
+Current enhance: 127 162 
+242.077  91.1804  78.4954
+Current enhance: 128 162 
+Current enhance: 128 162 
+Current enhance: 128 162 
+247.127  89.4019  77.9924
+Current enhance: 129 162 
+Current enhance: 129 162 
+Current enhance: 129 162 
+254.344  87.0034  75.6573
+Current enhance: 130 162 
+Current enhance: 130 162 
+Current enhance: 130 162 
+269.402  86.051  74.7686
+Current enhance: 131 162 
+Current enhance: 131 162 
+Current enhance: 131 162 
+Current enhance: 131 162 
+297.84  83.1592  71.2112
+Current enhance: 132 162 
+Current enhance: 132 162 
+Current enhance: 132 162 
+303.293  86.8249  71.4101
+Current enhance: 133 162 
+Current enhance: 133 162 
+280.853  87.5668  72.9163
+Current enhance: 134 162 
+Current enhance: 134 162 
+Current enhance: 134 162 
+289.317  86.3401  73.9506
+Current enhance: 135 162 
+Current enhance: 135 162 
+Current enhance: 135 162 
+282.092  85.8141  75.4919
+Current enhance: 136 162 
+Current enhance: 136 162 
+Current enhance: 136 162 
+Current enhance: 136 162 
+299.605  85.375  77.3833
+Current enhance: 137 162 
+Current enhance: 137 162 
+Current enhance: 137 162 
+305.145  91.4843  82.0794
+Current enhance: 138 162 
+Current enhance: 138 162 
+Current enhance: 138 162 
+279.215  94.3309  85.7421
+Current enhance: 139 162 
+Current enhance: 139 162 
+266.668  93.4428  87.3525
+Current enhance: 140 162 
+Current enhance: 140 162 
+Current enhance: 140 162 
+250.448  92.1884  90.4993
+Current enhance: 141 162 
+Current enhance: 141 162 
+Current enhance: 141 162 
+245.72  93.1045  93.26
+Current enhance: 142 162 
+Current enhance: 142 162 
+Current enhance: 142 162 
+250.41  89.7993  91.4573
+Current enhance: 143 162 
+Current enhance: 143 162 
+Current enhance: 143 162 
+Current enhance: 143 162 
+240.432  89.2467  90.6327
+Current enhance: 144 162 
+Current enhance: 144 162 
+244.236  96.4837  92.2071
+Current enhance: 145 162 
+Current enhance: 145 162 
+Current enhance: 145 162 
+Current enhance: 145 162 
+225.301  90.9106  91.0872
+Current enhance: 146 162 
+Current enhance: 146 162 
+228.577  90.474  88.7093
+Current enhance: 147 162 
+Current enhance: 147 162 
+Current enhance: 147 162 
+235.159  88.6791  86.6435
+Current enhance: 148 162 
+Current enhance: 148 162 
+Current enhance: 148 162 
+Current enhance: 148 162 
+233.079  87.3956  84.2934
+Current enhance: 149 162 
+Current enhance: 149 162 
+236.831  87.6779  80.8863
+Current enhance: 150 162 
+Current enhance: 150 162 
+Current enhance: 150 162 
+Current enhance: 150 162 
+241.653  87.4201  78.4894
+Current enhance: 151 162 
+Current enhance: 151 162 
+Current enhance: 151 162 
+250.833  88.293  75.7579
+Current enhance: 152 162 
+Current enhance: 152 162 
+Current enhance: 152 162 
+249.227  86.0065  72.6317
+Current enhance: 153 162 
+Current enhance: 153 162 
+249.487  85.3482  70.9534
+Current enhance: 154 162 
+Current enhance: 154 162 
+Current enhance: 154 162 
+247.491  86.4697  70.9585
+Current enhance: 155 162 
+Current enhance: 155 162 
+Current enhance: 155 162 
+243.881  86.9251  70.1403
+Current enhance: 156 162 
+Current enhance: 156 162 
+Current enhance: 156 162 
+Current enhance: 156 162 
+239.365  87.0173  68.6394
+Current enhance: 157 162 
+Current enhance: 157 162 
+233.086  87.4378  68.0568
+Current enhance: 158 162 
+Current enhance: 158 162 
+Current enhance: 158 162 
+Current enhance: 158 162 
+234.149  89.1518  68.2336
+Current enhance: 159 162 
+Current enhance: 159 162 
+237.306  89.9388  68.7261
+Current enhance: 160 162 
+Current enhance: 160 162 
+Current enhance: 160 162 
+237.55  88.5093  68.797
+Current enhance: 161 162 
+Current enhance: 161 162 
+Current enhance: 161 162 
+Current enhance: 161 162 
+237.297  86.5956  67.7801
+Current enhance: 162 162 
+Current enhance: 162 162 
+Current enhance: 162 162 
+Applying blur to image
+2.3332  86.8255  64.1212
+Current enhance: 163 268 
+Current enhance: 163 268 
+256.833  88.3819  67.975
+Current enhance: 164 268 
+Current enhance: 164 268 
+Current enhance: 164 268 
+273.34  89.5222  68.9159
+Current enhance: 165 268 
+Current enhance: 165 268 
+Current enhance: 165 268 
+Current enhance: 165 268 
+284.92  90.2295  69.7949
+Current enhance: 166 268 
+Current enhance: 166 268 
+289.803  89.6092  70.3933
+Current enhance: 167 268 
+Current enhance: 167 268 
+Current enhance: 167 268 
+281.802  87.7461  70.1203
+Current enhance: 168 268 
+Current enhance: 168 268 
+Current enhance: 168 268 
+278.273  93.1196  68.8835
+Current enhance: 169 268 
+Current enhance: 169 268 
+Current enhance: 169 268 
+Current enhance: 169 268 
+268.867  89.2392  67.107
+Current enhance: 170 268 
+Current enhance: 170 268 
+271.478  91.7054  67.5068
+Current enhance: 171 268 
+Current enhance: 171 268 
+Current enhance: 171 268 
+277.009  95.9512  68.1828
+Current enhance: 172 268 
+Current enhance: 172 268 
+Current enhance: 172 268 
+276.589  98.2347  68.7881
+Current enhance: 173 268 
+Current enhance: 173 268 
+Current enhance: 173 268 
+268.731  98.5286  69.42
+Current enhance: 174 268 
+Current enhance: 174 268 
+Current enhance: 174 268 
+Current enhance: 174 268 
+258.221  98.1399  70.6791
+Current enhance: 175 268 
+Current enhance: 175 268 
+261.185  96.9957  70.3947
+Current enhance: 176 268 
+Current enhance: 176 268 
+Current enhance: 176 268 
+Current enhance: 176 268 
+275.178  88.41  67.239
+Current enhance: 177 268 
+Current enhance: 177 268 
+293.943  83.9296  65.6544
+Current enhance: 178 268 
+Current enhance: 178 268 
+Current enhance: 178 268 
+Current enhance: 178 268 
+280.724  88.997  65.0346
+Current enhance: 179 268 
+Current enhance: 179 268 
+277.84  91.0263  65.9595
+Current enhance: 180 268 
+Current enhance: 180 268 
+Current enhance: 180 268 
+Current enhance: 180 268 
+277.921  95.7509  67.8288
+Current enhance: 181 268 
+Current enhance: 181 268 
+Current enhance: 181 268 
+274.324  95.0236  71.1179
+Current enhance: 182 268 
+Current enhance: 182 268 
+Current enhance: 182 268 
+248.491  96.1038  76.6131
+Current enhance: 183 268 
+Current enhance: 183 268 
+248.964  100.424  83.1329
+Current enhance: 184 268 
+Current enhance: 184 268 
+Current enhance: 184 268 
+244.899  101.888  85.2262
+Current enhance: 185 268 
+Current enhance: 185 268 
+Current enhance: 185 268 
+Current enhance: 185 268 
+247.002  100.896  85.7455
+Current enhance: 186 268 
+Current enhance: 186 268 
+231.856  96.1605  84.8866
+Current enhance: 187 268 
+Current enhance: 187 268 
+Current enhance: 187 268 
+222.468  85.9656  76.7495
+Current enhance: 188 268 
+Current enhance: 188 268 
+Current enhance: 188 268 
+215.259  84.602  73.2103
+Current enhance: 189 268 
+Current enhance: 189 268 
+Current enhance: 189 268 
+225.377  80.4559  64.9692
+Current enhance: 190 268 
+Current enhance: 190 268 
+Current enhance: 190 268 
+237.191  80.7607  61.7977
+Current enhance: 191 268 
+Current enhance: 191 268 
+Current enhance: 191 268 
+Current enhance: 191 268 
+257.019  84.8576  63.3344
+Current enhance: 192 268 
+Current enhance: 192 268 
+Current enhance: 192 268 
+271.239  80.5911  65.6118
+Current enhance: 193 268 
+Current enhance: 193 268 
+300.081  86.882  68.9677
+Current enhance: 194 268 
+Current enhance: 194 268 
+Current enhance: 194 268 
+312.568  87.4138  69.903
+Current enhance: 195 268 
+Current enhance: 195 268 
+Current enhance: 195 268 
+Current enhance: 195 268 
+322.6  92.9868  71.8265
+Current enhance: 196 268 
+Current enhance: 196 268 
+321.93  93.9529  72.9046
+Current enhance: 197 268 
+Current enhance: 197 268 
+Current enhance: 197 268 
+Current enhance: 197 268 
+336.821  96.0098  73.4621
+Current enhance: 198 268 
+Current enhance: 198 268 
+Current enhance: 198 268 
+334.327  95.1052  72.7504
+Current enhance: 199 268 
+Current enhance: 199 268 
+339.717  93.3917  72.5018
+Current enhance: 200 268 
+Current enhance: 200 268 
+Current enhance: 200 268 
+Current enhance: 200 268 
+339.698  91.0052  73.3312
+Current enhance: 201 268 
+Current enhance: 201 268 
+337.998  93.4025  74.8763
+Current enhance: 202 268 
+Current enhance: 202 268 
+Current enhance: 202 268 
+318.09  93.2137  75.5435
+Current enhance: 203 268 
+Current enhance: 203 268 
+Current enhance: 203 268 
+299.059  95.6245  75.0791
+Current enhance: 204 268 
+Current enhance: 204 268 
+Current enhance: 204 268 
+Current enhance: 204 268 
+306.522  98.3379  74.9167
+Current enhance: 205 268 
+Current enhance: 205 268 
+Current enhance: 205 268 
+326.967  104.889  75.0509
+Current enhance: 206 268 
+Current enhance: 206 268 
+Current enhance: 206 268 
+284.145  89.1648  72.0477
+Current enhance: 207 268 
+Current enhance: 207 268 
+297.183  96.2676  75.3856
+Current enhance: 208 268 
+Current enhance: 208 268 
+Current enhance: 208 268 
+294.679  98.2289  77.9159
+Current enhance: 209 268 
+Current enhance: 209 268 
+Current enhance: 209 268 
+Current enhance: 209 268 
+294.681  94.6794  79.3226
+Current enhance: 210 268 
+Current enhance: 210 268 
+307.759  90.5926  80.7624
+Current enhance: 211 268 
+Current enhance: 211 268 
+Current enhance: 211 268 
+320.576  87.2547  82.8665
+Current enhance: 212 268 
+Current enhance: 212 268 
+Current enhance: 212 268 
+Current enhance: 212 268 
+346.877  90.0764  83.9591
+Current enhance: 213 268 
+Current enhance: 213 268 
+Current enhance: 213 268 
+371.652  95.0577  84.0405
+Current enhance: 214 268 
+Current enhance: 214 268 
+Current enhance: 214 268 
+355.633  83.6596  77.8091
+Current enhance: 215 268 
+Current enhance: 215 268 
+367.348  85.5087  76.7723
+Current enhance: 216 268 
+Current enhance: 216 268 
+Current enhance: 216 268 
+367.09  89.2439  76.9434
+Current enhance: 217 268 
+Current enhance: 217 268 
+Current enhance: 217 268 
+Current enhance: 217 268 
+377.273  97.8323  79.1358
+Current enhance: 218 268 
+Current enhance: 218 268 
+358.711  90.09  74.6364
+Current enhance: 219 268 
+Current enhance: 219 268 
+Current enhance: 219 268 
+344.269  89.0025  71.9475
+Current enhance: 220 268 
+Current enhance: 220 268 
+Current enhance: 220 268 
+323.395  97.1874  70.6558
+Current enhance: 221 268 
+Current enhance: 221 268 
+Current enhance: 221 268 
+303.679  95.2177  67.4173
+Current enhance: 222 268 
+Current enhance: 222 268 
+Current enhance: 222 268 
+Current enhance: 222 268 
+326.548  80.6009  67.9742
+Current enhance: 223 268 
+Current enhance: 223 268 
+Current enhance: 223 268 
+358.762  94.8221  75.3353
+Current enhance: 224 268 
+Current enhance: 224 268 
+Current enhance: 224 268 
+349.066  91.8397  76.3884
+Current enhance: 225 268 
+Current enhance: 225 268 
+352.955  95.7421  77.5607
+Current enhance: 226 268 
+Current enhance: 226 268 
+Current enhance: 226 268 
+344.494  95.7699  77.7899
+Current enhance: 227 268 
+Current enhance: 227 268 
+Current enhance: 227 268 
+351.486  104.589  79.385
+Current enhance: 228 268 
+Current enhance: 228 268 
+Current enhance: 228 268 
+350.977  104.588  78.962
+Current enhance: 229 268 
+Current enhance: 229 268 
+Current enhance: 229 268 
+Current enhance: 229 268 
+342.816  97.5444  79.2059
+Current enhance: 230 268 
+Current enhance: 230 268 
+341.678  89.5423  78.1814
+Current enhance: 231 268 
+Current enhance: 231 268 
+Current enhance: 231 268 
+347.799  91.7594  79.3274
+Current enhance: 232 268 
+Current enhance: 232 268 
+Current enhance: 232 268 
+346.65  92.7399  79.0704
+Current enhance: 233 268 
+Current enhance: 233 268 
+Current enhance: 233 268 
+Current enhance: 233 268 
+358.017  97.8568  80.8413
+Current enhance: 234 268 
+Current enhance: 234 268 
+370.739  100.885  80.7812
+Current enhance: 235 268 
+Current enhance: 235 268 
+Current enhance: 235 268 
+374.685  100.599  79.4914
+Current enhance: 236 268 
+Current enhance: 236 268 
+Current enhance: 236 268 
+382.346  100.368  77.2376
+Current enhance: 237 268 
+Current enhance: 237 268 
+Current enhance: 237 268 
+386.715  97.9197  74.1031
+Current enhance: 238 268 
+Current enhance: 238 268 
+Current enhance: 238 268 
+367.213  95.2454  70.5665
+Current enhance: 239 268 
+Current enhance: 239 268 
+Current enhance: 239 268 
+320.823  90.9821  68.3744
+Current enhance: 240 268 
+Current enhance: 240 268 
+Current enhance: 240 268 
+280.179  88.8124  69.6771
+Current enhance: 241 268 
+Current enhance: 241 268 
+Current enhance: 241 268 
+Current enhance: 241 268 
+258.093  92.5777  71.6146
+Current enhance: 242 268 
+Current enhance: 242 268 
+223.786  94.2868  76.9866
+Current enhance: 243 268 
+Current enhance: 243 268 
+Current enhance: 243 268 
+225.145  96.4515  78.3542
+Current enhance: 244 268 
+Current enhance: 244 268 
+Current enhance: 244 268 
+238.367  91.3547  74.4138
+Current enhance: 245 268 
+Current enhance: 245 268 
+Current enhance: 245 268 
+254.935  82.7887  65.5583
+Current enhance: 246 268 
+Current enhance: 246 268 
+Current enhance: 246 268 
+Current enhance: 246 268 
+287.928  80.8756  62.8853
+Current enhance: 247 268 
+Current enhance: 247 268 
+316.348  85.0078  66.4754
+Current enhance: 248 268 
+Current enhance: 248 268 
+Current enhance: 248 268 
+336.086  88.4867  69.7178
+Current enhance: 249 268 
+Current enhance: 249 268 
+Current enhance: 249 268 
+341.978  90.9946  70.6047
+Current enhance: 250 268 
+Current enhance: 250 268 
+Current enhance: 250 268 
+361.132  92.1368  73.0388
+Current enhance: 251 268 
+Current enhance: 251 268 
+Current enhance: 251 268 
+385.52  97.4428  76.7031
+Current enhance: 252 268 
+Current enhance: 252 268 
+Current enhance: 252 268 
+397.766  100.453  76.7293
+Current enhance: 253 268 
+Current enhance: 253 268 
+Current enhance: 253 268 
+Current enhance: 253 268 
+393.972  100.953  76.0731
+Current enhance: 254 268 
+Current enhance: 254 268 
+392.981  99.6027  74.7695
+Current enhance: 255 268 
+Current enhance: 255 268 
+Current enhance: 255 268 
+Current enhance: 255 268 
+388.238  97.8853  74.1385
+Current enhance: 256 268 
+Current enhance: 256 268 
+386.241  96.7055  73.311
+Current enhance: 257 268 
+Current enhance: 257 268 
+Current enhance: 257 268 
+368.586  96.4201  72.5659
+Current enhance: 258 268 
+Current enhance: 258 268 
+Current enhance: 258 268 
+389.895  98.8487  72.8695
+Current enhance: 259 268 
+Current enhance: 259 268 
+Current enhance: 259 268 
+403.767  100.378  72.8732
+Current enhance: 260 268 
+Current enhance: 260 268 
+Current enhance: 260 268 
+Current enhance: 260 268 
+396.976  98.3353  71.2572
+Current enhance: 261 268 
+Current enhance: 261 268 
+374.726  92.9751  68.1322
+Current enhance: 262 268 
+Current enhance: 262 268 
+Current enhance: 262 268 
+Current enhance: 262 268 
+372.496  93.0629  67.9613
+Current enhance: 263 268 
+Current enhance: 263 268 
+343.762  86.376  63.5896
+Current enhance: 264 268 
+Current enhance: 264 268 
+Current enhance: 264 268 
+Current enhance: 264 268 
+392.371  97.1107  69.6658
+Current enhance: 265 268 
+Current enhance: 265 268 
+377.263  93.6315  67.1886
+Current enhance: 266 268 
+Current enhance: 266 268 
+Current enhance: 266 268 
+372.815  92.2952  65.9386
+Current enhance: 267 268 
+Current enhance: 267 268 
+Current enhance: 267 268 
+Current enhance: 267 268 
+354.9  94.1353  66.4406
+Current enhance: 268 268 
+Current enhance: 268 268 
+Current enhance: 268 268 
+Applying blur to image
+2.70171  97.7668  64.2981
+Current enhance: 269 351 
+Current enhance: 269 351 
+Current enhance: 269 351 
+290.9  89.604  64.3172
+Current enhance: 270 351 
+Current enhance: 270 351 
+Current enhance: 270 351 
+309.363  101.432  68.86
+Current enhance: 271 351 
+Current enhance: 271 351 
+Current enhance: 271 351 
+283.36  94.2233  65.6666
+Current enhance: 272 351 
+Current enhance: 272 351 
+Current enhance: 272 351 
+256.47  92.0653  65.0258
+Current enhance: 273 351 
+Current enhance: 273 351 
+239.767  90.2089  63.4802
+Current enhance: 274 351 
+Current enhance: 274 351 
+Current enhance: 274 351 
+233.122  93.164  64.8833
+Current enhance: 275 351 
+Current enhance: 275 351 
+Current enhance: 275 351 
+231.669  94.0901  65.7664
+Current enhance: 276 351 
+Current enhance: 276 351 
+Current enhance: 276 351 
+Current enhance: 276 351 
+210.169  92.2978  67.9185
+Current enhance: 277 351 
+Current enhance: 277 351 
+Current enhance: 277 351 
+216.582  96.0193  71.7027
+Current enhance: 278 351 
+Current enhance: 278 351 
+Current enhance: 278 351 
+228.254  101.309  75.849
+Current enhance: 279 351 
+Current enhance: 279 351 
+220.416  103.217  79.6884
+Current enhance: 280 351 
+Current enhance: 280 351 
+Current enhance: 280 351 
+213.743  99.632  78.9077
+Current enhance: 281 351 
+Current enhance: 281 351 
+Current enhance: 281 351 
+Current enhance: 281 351 
+215.516  97.9174  78.4538
+Current enhance: 282 351 
+Current enhance: 282 351 
+224.494  99.6951  80.6077
+Current enhance: 283 351 
+Current enhance: 283 351 
+Current enhance: 283 351 
+Current enhance: 283 351 
+231.711  100.328  80.376
+Current enhance: 284 351 
+Current enhance: 284 351 
+232.461  100.341  79.6109
+Current enhance: 285 351 
+Current enhance: 285 351 
+Current enhance: 285 351 
+239.331  96.4515  79.3256
+Current enhance: 286 351 
+Current enhance: 286 351 
+Current enhance: 286 351 
+Current enhance: 286 351 
+269.658  97.8049  78.653
+Current enhance: 287 351 
+Current enhance: 287 351 
+Current enhance: 287 351 
+281.714  97.499  77.6979
+Current enhance: 288 351 
+Current enhance: 288 351 
+291.568  96.0142  76.6683
+Current enhance: 289 351 
+Current enhance: 289 351 
+Current enhance: 289 351 
+Current enhance: 289 351 
+297.813  93.4942  75.2737
+Current enhance: 290 351 
+Current enhance: 290 351 
+300.894  94.5163  77.5286
+Current enhance: 291 351 
+Current enhance: 291 351 
+Current enhance: 291 351 
+314.608  96.6169  79.2195
+Current enhance: 292 351 
+Current enhance: 292 351 
+Current enhance: 292 351 
+Current enhance: 292 351 
+321.169  98.144  80.5566
+Current enhance: 293 351 
+Current enhance: 293 351 
+Current enhance: 293 351 
+320.759  96.5008  80.6609
+Current enhance: 294 351 
+Current enhance: 294 351 
+324.854  95.5381  80.5942
+Current enhance: 295 351 
+Current enhance: 295 351 
+Current enhance: 295 351 
+Current enhance: 295 351 
+328.843  93.8671  80.6101
+Current enhance: 296 351 
+Current enhance: 296 351 
+340.919  91.6841  81.5116
+Current enhance: 297 351 
+Current enhance: 297 351 
+Current enhance: 297 351 
+Current enhance: 297 351 
+335.318  92.2436  81.6676
+Current enhance: 298 351 
+Current enhance: 298 351 
+330.288  91.7617  80.664
+Current enhance: 299 351 
+Current enhance: 299 351 
+Current enhance: 299 351 
+Current enhance: 299 351 
+323.513  92.3324  80.2648
+Current enhance: 300 351 
+Current enhance: 300 351 
+317.565  92.495  79.8688
+Current enhance: 301 351 
+Current enhance: 301 351 
+Current enhance: 301 351 
+311.971  91.7314  79.1161
+Current enhance: 302 351 
+Current enhance: 302 351 
+Current enhance: 302 351 
+307.699  89.9881  77.8859
+Current enhance: 303 351 
+Current enhance: 303 351 
+Current enhance: 303 351 
+Current enhance: 303 351 
+309.835  90.0678  78.2338
+Current enhance: 304 351 
+Current enhance: 304 351 
+314.175  89.8273  78.2577
+Current enhance: 305 351 
+Current enhance: 305 351 
+Current enhance: 305 351 
+Current enhance: 305 351 
+318.525  89.5253  78.0611
+Current enhance: 306 351 
+Current enhance: 306 351 
+324.697  89.6004  78.2207
+Current enhance: 307 351 
+Current enhance: 307 351 
+Current enhance: 307 351 
+331.004  88.3205  77.9477
+Current enhance: 308 351 
+Current enhance: 308 351 
+Current enhance: 308 351 
+341.655  87.162  78.0614
+Current enhance: 309 351 
+Current enhance: 309 351 
+Current enhance: 309 351 
+346.415  86.2771  78.4258
+Current enhance: 310 351 
+Current enhance: 310 351 
+Current enhance: 310 351 
+Current enhance: 310 351 
+355.751  86.4105  78.8293
+Current enhance: 311 351 
+Current enhance: 311 351 
+Current enhance: 311 351 
+359.95  88.4027  79.2514
+Current enhance: 312 351 
+Current enhance: 312 351 
+Current enhance: 312 351 
+372.077  89.0876  78.9304
+Current enhance: 313 351 
+Current enhance: 313 351 
+375.685  88.8211  78.4137
+Current enhance: 314 351 
+Current enhance: 314 351 
+Current enhance: 314 351 
+380.487  88.8832  78.3218
+Current enhance: 315 351 
+Current enhance: 315 351 
+Current enhance: 315 351 
+Current enhance: 315 351 
+386.531  89.5905  79.0358
+Current enhance: 316 351 
+Current enhance: 316 351 
+394.597  90.1967  79.7827
+Current enhance: 317 351 
+Current enhance: 317 351 
+Current enhance: 317 351 
+390.351  90.6571  80.8124
+Current enhance: 318 351 
+Current enhance: 318 351 
+Current enhance: 318 351 
+Current enhance: 318 351 
+382.776  90.0003  81.5003
+Current enhance: 319 351 
+Current enhance: 319 351 
+372.27  88.8538  82.2048
+Current enhance: 320 351 
+Current enhance: 320 351 
+Current enhance: 320 351 
+374.008  89.1985  83.9339
+Current enhance: 321 351 
+Current enhance: 321 351 
+Current enhance: 321 351 
+Current enhance: 321 351 
+374.391  89.1353  85.5041
+Current enhance: 322 351 
+Current enhance: 322 351 
+380.053  88.8358  86.7441
+Current enhance: 323 351 
+Current enhance: 323 351 
+Current enhance: 323 351 
+Current enhance: 323 351 
+393.187  88.8081  87.4737
+Current enhance: 324 351 
+Current enhance: 324 351 
+Current enhance: 324 351 
+401.8  88.7899  88.4601
+Current enhance: 325 351 
+Current enhance: 325 351 
+Current enhance: 325 351 
+399.237  89.2527  89.5623
+Current enhance: 326 351 
+Current enhance: 326 351 
+Current enhance: 326 351 
+408.197  89.5188  90.2062
+Current enhance: 327 351 
+Current enhance: 327 351 
+424.528  89.4565  90.4354
+Current enhance: 328 351 
+Current enhance: 328 351 
+Current enhance: 328 351 
+Current enhance: 328 351 
+445.159  89.6833  90.5215
+Current enhance: 329 351 
+Current enhance: 329 351 
+Current enhance: 329 351 
+445.963  90.9596  90.422
+Current enhance: 330 351 
+Current enhance: 330 351 
+429.646  93.2094  90.8108
+Current enhance: 331 351 
+Current enhance: 331 351 
+Current enhance: 331 351 
+Current enhance: 331 351 
+409.114  95.8708  91.3058
+Current enhance: 332 351 
+Current enhance: 332 351 
+399.57  99.2502  92.944
+Current enhance: 333 351 
+Current enhance: 333 351 
+Current enhance: 333 351 
+Current enhance: 333 351 
+410.341  102.739  94.6399
+Current enhance: 334 351 
+Current enhance: 334 351 
+Current enhance: 334 351 
+384.301  103.725  94.5022
+Current enhance: 335 351 
+Current enhance: 335 351 
+323.153  103.013  93.3068
+Current enhance: 336 351 
+Current enhance: 336 351 
+Current enhance: 336 351 
+290.626  100.979  90.3865
+Current enhance: 337 351 
+Current enhance: 337 351 
+Current enhance: 337 351 
+Current enhance: 337 351 
+277.306  99.9679  88.499
+Current enhance: 338 351 
+Current enhance: 338 351 
+245.849  93.0412  82.4215
+Current enhance: 339 351 
+Current enhance: 339 351 
+Current enhance: 339 351 
+Current enhance: 339 351 
+291.284  102.364  87.9141
+Current enhance: 340 351 
+Current enhance: 340 351 
+263.106  98.5105  84.657
+Current enhance: 341 351 
+Current enhance: 341 351 
+Current enhance: 341 351 
+206.399  88.3017  77.3031
+Current enhance: 342 351 
+Current enhance: 342 351 
+Current enhance: 342 351 
+Current enhance: 342 351 
+259.731  100.165  83.6256
+Current enhance: 343 351 
+Current enhance: 343 351 
+241.251  94.7523  81.0527
+Current enhance: 344 351 
+Current enhance: 344 351 
+Current enhance: 344 351 
+236.229  92.6903  79.8399
+Current enhance: 345 351 
+Current enhance: 345 351 
+Current enhance: 345 351 
+231.198  90.9235  78.7866
+Current enhance: 346 351 
+Current enhance: 346 351 
+Current enhance: 346 351 
+Current enhance: 346 351 
+232.157  90.523  78.4746
+Current enhance: 347 351 
+Current enhance: 347 351 
+Current enhance: 347 351 
+222.925  89.8046  77.625
+Current enhance: 348 351 
+Current enhance: 348 351 
+Current enhance: 348 351 
+229.292  91.3301  78.5419
+Current enhance: 349 351 
+Current enhance: 349 351 
+219.208  90.1023  78.0039
+Current enhance: 350 351 
+Current enhance: 350 351 
+Current enhance: 350 351 
+Current enhance: 350 351 
+223.443  92.3088  79.3582
+Current enhance: 351 351 
+Current enhance: 351 351 
+Current enhance: 351 351 
+Applying blur to image
+2.05535  88.4322  76.9592
+Current enhance: 352 381 
+Current enhance: 352 381 
+Current enhance: 352 381 
+227.866  91.553  80.1587
+Current enhance: 353 381 
+Current enhance: 353 381 
+Current enhance: 353 381 
+217.2  90.8736  79.1551
+Current enhance: 354 381 
+Current enhance: 354 381 
+220.717  91.3656  79.678
+Current enhance: 355 381 
+Current enhance: 355 381 
+Current enhance: 355 381 
+219.128  90.5756  79.7773
+Current enhance: 356 381 
+Current enhance: 356 381 
+Current enhance: 356 381 
+Current enhance: 356 381 
+218.09  91.1096  79.8464
+Current enhance: 357 381 
+Current enhance: 357 381 
+Current enhance: 357 381 
+217.787  90.3211  78.8933
+Current enhance: 358 381 
+Current enhance: 358 381 
+217.969  89.9141  77.9112
+Current enhance: 359 381 
+Current enhance: 359 381 
+Current enhance: 359 381 
+Current enhance: 359 381 
+215.418  86.7911  75.365
+Current enhance: 360 381 
+Current enhance: 360 381 
+226.25  87.5548  74.2278
+Current enhance: 361 381 
+Current enhance: 361 381 
+Current enhance: 361 381 
+234.517  87.5555  71.711
+Current enhance: 362 381 
+Current enhance: 362 381 
+Current enhance: 362 381 
+Current enhance: 362 381 
+238.789  87.2755  70.4201
+Current enhance: 363 381 
+Current enhance: 363 381 
+Current enhance: 363 381 
+249.6  86.5039  70.6628
+Current enhance: 364 381 
+Current enhance: 364 381 
+Current enhance: 364 381 
+253.996  85.7337  71.3531
+Current enhance: 365 381 
+Current enhance: 365 381 
+Current enhance: 365 381 
+264.537  85.2333  72.6624
+Current enhance: 366 381 
+Current enhance: 366 381 
+273.836  84.2135  73.7953
+Current enhance: 367 381 
+Current enhance: 367 381 
+Current enhance: 367 381 
+276.402  84.3623  75.7373
+Current enhance: 368 381 
+Current enhance: 368 381 
+Current enhance: 368 381 
+Current enhance: 368 381 
+280.96  83.3457  77.3631
+Current enhance: 369 381 
+Current enhance: 369 381 
+282.237  81.1552  79.003
+Current enhance: 370 381 
+Current enhance: 370 381 
+Current enhance: 370 381 
+302.427  85.2412  82.3908
+Current enhance: 371 381 
+Current enhance: 371 381 
+Current enhance: 371 381 
+Current enhance: 371 381 
+309.623  87.8828  85.0177
+Current enhance: 372 381 
+Current enhance: 372 381 
+292.529  88.6556  85.1033
+Current enhance: 373 381 
+Current enhance: 373 381 
+Current enhance: 373 381 
+Current enhance: 373 381 
+274.542  88.703  83.7594
+Current enhance: 374 381 
+Current enhance: 374 381 
+Current enhance: 374 381 
+273.564  90.6146  83.6067
+Current enhance: 375 381 
+Current enhance: 375 381 
+Current enhance: 375 381 
+260.81  91.5721  82.2489
+Current enhance: 376 381 
+Current enhance: 376 381 
+252.924  90.1256  80.2351
+Current enhance: 377 381 
+Current enhance: 377 381 
+Current enhance: 377 381 
+Current enhance: 377 381 
+234.314  87.7705  79.4624
+Current enhance: 378 381 
+Current enhance: 378 381 
+224.959  85.9267  80.7209
+Current enhance: 379 381 
+Current enhance: 379 381 
+Current enhance: 379 381 
+Current enhance: 379 381 
+230.445  86.6314  83.2178
+Current enhance: 380 381 
+Current enhance: 380 381 
+221.855  86.5674  85.5034
+Current enhance: 381 381 
+Current enhance: 381 381 
+Current enhance: 381 381 
+Applying blur to image
+2.36458  86.3048  85.5039
+Current enhance: 382 459 
+Current enhance: 382 459 
+Current enhance: 382 459 
+Current enhance: 382 459 
+239.16  87.1806  88.8487
+Current enhance: 383 459 
+Current enhance: 383 459 
+Current enhance: 383 459 
+248.551  88.4706  89.3947
+Current enhance: 384 459 
+Current enhance: 384 459 
+258.278  89.1133  89.3918
+Current enhance: 385 459 
+Current enhance: 385 459 
+Current enhance: 385 459 
+Current enhance: 385 459 
+267.368  90.0659  89.3047
+Current enhance: 386 459 
+Current enhance: 386 459 
+257.188  90.1743  88.4083
+Current enhance: 387 459 
+Current enhance: 387 459 
+Current enhance: 387 459 
+248.519  91.4554  88.6509
+Current enhance: 388 459 
+Current enhance: 388 459 
+Current enhance: 388 459 
+Current enhance: 388 459 
+256.309  92.01  88.3452
+Current enhance: 389 459 
+Current enhance: 389 459 
+Current enhance: 389 459 
+258.175  84.4703  81.2503
+Current enhance: 390 459 
+Current enhance: 390 459 
+Current enhance: 390 459 
+265.894  80.2681  76.3193
+Current enhance: 391 459 
+Current enhance: 391 459 
+285.973  80.9291  78.4181
+Current enhance: 392 459 
+Current enhance: 392 459 
+Current enhance: 392 459 
+Current enhance: 392 459 
+302.917  82.5638  79.6564
+Current enhance: 393 459 
+Current enhance: 393 459 
+Current enhance: 393 459 
+311.964  86.2691  80.4486
+Current enhance: 394 459 
+Current enhance: 394 459 
+Current enhance: 394 459 
+310.483  85.7697  80.6543
+Current enhance: 395 459 
+Current enhance: 395 459 
+Current enhance: 395 459 
+305.969  86.8092  81.0125
+Current enhance: 396 459 
+Current enhance: 396 459 
+303.613  87.5677  81.7584
+Current enhance: 397 459 
+Current enhance: 397 459 
+Current enhance: 397 459 
+Current enhance: 397 459 
+310.086  87.5805  82.2677
+Current enhance: 398 459 
+Current enhance: 398 459 
+Current enhance: 398 459 
+313.082  88.8373  82.5716
+Current enhance: 399 459 
+Current enhance: 399 459 
+Current enhance: 399 459 
+310.867  90.7385  83.0982
+Current enhance: 400 459 
+Current enhance: 400 459 
+315.828  93.1267  83.496
+Current enhance: 401 459 
+Current enhance: 401 459 
+Current enhance: 401 459 
+Current enhance: 401 459 
+296.731  93.2976  82.4224
+Current enhance: 402 459 
+Current enhance: 402 459 
+283.267  91.5949  79.8368
+Current enhance: 403 459 
+Current enhance: 403 459 
+Current enhance: 403 459 
+Current enhance: 403 459 
+291.585  96.8656  79.9009
+Current enhance: 404 459 
+Current enhance: 404 459 
+282.61  98.8878  77.875
+Current enhance: 405 459 
+Current enhance: 405 459 
+Current enhance: 405 459 
+Current enhance: 405 459 
+257.796  90.8286  75.6355
+Current enhance: 406 459 
+Current enhance: 406 459 
+Current enhance: 406 459 
+247.921  88.2646  75.4823
+Current enhance: 407 459 
+Current enhance: 407 459 
+Current enhance: 407 459 
+246.274  89.0682  75.7486
+Current enhance: 408 459 
+Current enhance: 408 459 
+Current enhance: 408 459 
+238.149  88.1254  77.0654
+Current enhance: 409 459 
+Current enhance: 409 459 
+237.215  88.1055  78.3728
+Current enhance: 410 459 
+Current enhance: 410 459 
+Current enhance: 410 459 
+Current enhance: 410 459 
+237.292  89.9168  79.3822
+Current enhance: 411 459 
+Current enhance: 411 459 
+241.063  91.7756  80.4821
+Current enhance: 412 459 
+Current enhance: 412 459 
+Current enhance: 412 459 
+Current enhance: 412 459 
+248.44  93.036  81.5194
+Current enhance: 413 459 
+Current enhance: 413 459 
+Current enhance: 413 459 
+247.466  92.9082  80.8501
+Current enhance: 414 459 
+Current enhance: 414 459 
+237.578  92.0487  79.2466
+Current enhance: 415 459 
+Current enhance: 415 459 
+Current enhance: 415 459 
+Current enhance: 415 459 
+236.959  91.7249  77.9025
+Current enhance: 416 459 
+Current enhance: 416 459 
+Current enhance: 416 459 
+229.984  89.3424  75.9223
+Current enhance: 417 459 
+Current enhance: 417 459 
+Current enhance: 417 459 
+241.788  89.1421  75.0516
+Current enhance: 418 459 
+Current enhance: 418 459 
+247.704  85.8491  72.5054
+Current enhance: 419 459 
+Current enhance: 419 459 
+Current enhance: 419 459 
+Current enhance: 419 459 
+254.232  82.1452  69.745
+Current enhance: 420 459 
+Current enhance: 420 459 
+Current enhance: 420 459 
+274.218  78.8841  66.2121
+Current enhance: 421 459 
+Current enhance: 421 459 
+Current enhance: 421 459 
+307.453  78.5501  67.0277
+Current enhance: 422 459 
+Current enhance: 422 459 
+Current enhance: 422 459 
+340.675  77.3115  67.7467
+Current enhance: 423 459 
+Current enhance: 423 459 
+382.215  79.6984  69.6108
+Current enhance: 424 459 
+Current enhance: 424 459 
+Current enhance: 424 459 
+Current enhance: 424 459 
+389.586  80.8126  71.5435
+Current enhance: 425 459 
+Current enhance: 425 459 
+Current enhance: 425 459 
+409.342  83.3621  74.2037
+Current enhance: 426 459 
+Current enhance: 426 459 
+436.033  87.475  75.35
+Current enhance: 427 459 
+Current enhance: 427 459 
+Current enhance: 427 459 
+Current enhance: 427 459 
+445.524  90.2258  75.4588
+Current enhance: 428 459 
+Current enhance: 428 459 
+Current enhance: 428 459 
+455.041  92.1012  75.2095
+Current enhance: 429 459 
+Current enhance: 429 459 
+443.657  90.4167  74.7206
+Current enhance: 430 459 
+Current enhance: 430 459 
+Current enhance: 430 459 
+Current enhance: 430 459 
+436.353  90.1825  75.0558
+Current enhance: 431 459 
+Current enhance: 431 459 
+426.916  90.7664  75.2568
+Current enhance: 432 459 
+Current enhance: 432 459 
+Current enhance: 432 459 
+Current enhance: 432 459 
+415.092  92.1451  75.0035
+Current enhance: 433 459 
+Current enhance: 433 459 
+414.487  94.1836  74.4661
+Current enhance: 434 459 
+Current enhance: 434 459 
+Current enhance: 434 459 
+Current enhance: 434 459 
+401.103  94.8532  74.4244
+Current enhance: 435 459 
+Current enhance: 435 459 
+391.864  96.9439  74.2559
+Current enhance: 436 459 
+Current enhance: 436 459 
+Current enhance: 436 459 
+Current enhance: 436 459 
+382.44  98.2608  73.7898
+Current enhance: 437 459 
+Current enhance: 437 459 
+Current enhance: 437 459 
+367.986  98.8403  72.3354
+Current enhance: 438 459 
+Current enhance: 438 459 
+Current enhance: 438 459 
+346.738  98.2076  70.9925
+Current enhance: 439 459 
+Current enhance: 439 459 
+Current enhance: 439 459 
+329.617  97.5419  70.854
+Current enhance: 440 459 
+Current enhance: 440 459 
+321.465  96.2359  71.0508
+Current enhance: 441 459 
+Current enhance: 441 459 
+Current enhance: 441 459 
+Current enhance: 441 459 
+309.774  96.5182  71.7138
+Current enhance: 442 459 
+Current enhance: 442 459 
+Current enhance: 442 459 
+300.847  96.0791  70.8257
+Current enhance: 443 459 
+Current enhance: 443 459 
+292.313  97.9092  70.6815
+Current enhance: 444 459 
+Current enhance: 444 459 
+Current enhance: 444 459 
+276.684  95.7472  68.2999
+Current enhance: 445 459 
+Current enhance: 445 459 
+Current enhance: 445 459 
+266.638  95.1242  67.4394
+Current enhance: 446 459 
+Current enhance: 446 459 
+Current enhance: 446 459 
+264.247  96.1391  67.278
+Current enhance: 447 459 
+Current enhance: 447 459 
+Current enhance: 447 459 
+Current enhance: 447 459 
+252.735  96.6894  67.5832
+Current enhance: 448 459 
+Current enhance: 448 459 
+253.071  97.8941  68.0888
+Current enhance: 449 459 
+Current enhance: 449 459 
+Current enhance: 449 459 
+Current enhance: 449 459 
+241.93  96.2652  67.7011
+Current enhance: 450 459 
+Current enhance: 450 459 
+239.858  95.4512  67.7972
+Current enhance: 451 459 
+Current enhance: 451 459 
+Current enhance: 451 459 
+238.282  95.4852  68.1115
+Current enhance: 452 459 
+Current enhance: 452 459 
+Current enhance: 452 459 
+Current enhance: 452 459 
+239.453  97.6641  68.8913
+Current enhance: 453 459 
+Current enhance: 453 459 
+Current enhance: 453 459 
+230.472  96.6843  69.1544
+Current enhance: 454 459 
+Current enhance: 454 459 
+Current enhance: 454 459 
+238.453  99.3869  70.219
+Current enhance: 455 459 
+Current enhance: 455 459 
+231.953  97.9384  69.4951
+Current enhance: 456 459 
+Current enhance: 456 459 
+Current enhance: 456 459 
+237.734  99.7931  69.8749
+Current enhance: 457 459 
+Current enhance: 457 459 
+Current enhance: 457 459 
+Current enhance: 457 459 
+240.103  98.0949  68.9515
+Current enhance: 458 459 
+Current enhance: 458 459 
+Current enhance: 458 459 
+248.798  97.2309  68.0965
+Current enhance: 459 459 
+Current enhance: 459 459 
+Applying blur to image
+2.2759  96.7783  64.603
+Current enhance: 460 501 
+Current enhance: 460 501 
+Current enhance: 460 501 
+Current enhance: 460 501 
+261.513  92.2093  67.0456
+Current enhance: 461 501 
+Current enhance: 461 501 
+278.667  94.1413  67.5165
+Current enhance: 462 501 
+Current enhance: 462 501 
+Current enhance: 462 501 
+277.783  91.8348  68.2622
+Current enhance: 463 501 
+Current enhance: 463 501 
+Current enhance: 463 501 
+285.896  95.1475  69.1379
+Current enhance: 464 501 
+Current enhance: 464 501 
+Current enhance: 464 501 
+Current enhance: 464 501 
+297.683  93.9349  67.8168
+Current enhance: 465 501 
+Current enhance: 465 501 
+330.798  95.2523  68.0048
+Current enhance: 466 501 
+Current enhance: 466 501 
+Current enhance: 466 501 
+Current enhance: 466 501 
+332.519  92.2016  67.2088
+Current enhance: 467 501 
+Current enhance: 467 501 
+Current enhance: 467 501 
+319.185  93.063  67.7522
+Current enhance: 468 501 
+Current enhance: 468 501 
+Current enhance: 468 501 
+309.698  89.5844  67.7351
+Current enhance: 469 501 
+Current enhance: 469 501 
+327.721  89.2811  68.3796
+Current enhance: 470 501 
+Current enhance: 470 501 
+Current enhance: 470 501 
+Current enhance: 470 501 
+362.114  89.7458  69.1767
+Current enhance: 471 501 
+Current enhance: 471 501 
+372.954  89.5253  70.2112
+Current enhance: 472 501 
+Current enhance: 472 501 
+Current enhance: 472 501 
+Current enhance: 472 501 
+359.777  87.3224  70.0811
+Current enhance: 473 501 
+Current enhance: 473 501 
+362.189  88.7175  70.4747
+Current enhance: 474 501 
+Current enhance: 474 501 
+Current enhance: 474 501 
+Current enhance: 474 501 
+370.833  90.1313  71.5629
+Current enhance: 475 501 
+Current enhance: 475 501 
+Current enhance: 475 501 
+323.664  91.2488  73.2078
+Current enhance: 476 501 
+Current enhance: 476 501 
+298.54  92.3747  74.8144
+Current enhance: 477 501 
+Current enhance: 477 501 
+Current enhance: 477 501 
+297.193  88.6185  72.4794
+Current enhance: 478 501 
+Current enhance: 478 501 
+Current enhance: 478 501 
+308.837  85.5202  68.833
+Current enhance: 479 501 
+Current enhance: 479 501 
+Current enhance: 479 501 
+329.433  84.9459  67.8356
+Current enhance: 480 501 
+Current enhance: 480 501 
+Current enhance: 480 501 
+Current enhance: 480 501 
+348.841  83.3361  66.2509
+Current enhance: 481 501 
+Current enhance: 481 501 
+Current enhance: 481 501 
+364.275  84.118  67.3228
+Current enhance: 482 501 
+Current enhance: 482 501 
+Current enhance: 482 501 
+372.419  84.0709  68.5027
+Current enhance: 483 501 
+Current enhance: 483 501 
+399.93  86.3483  72.0451
+Current enhance: 484 501 
+Current enhance: 484 501 
+Current enhance: 484 501 
+Current enhance: 484 501 
+409.308  87.1997  70.3907
+Current enhance: 485 501 
+Current enhance: 485 501 
+Current enhance: 485 501 
+423.982  88.031  69.2778
+Current enhance: 486 501 
+Current enhance: 486 501 
+Current enhance: 486 501 
+424.687  88.5847  69.5553
+Current enhance: 487 501 
+Current enhance: 487 501 
+Current enhance: 487 501 
+418.069  87.3923  70.39
+Current enhance: 488 501 
+Current enhance: 488 501 
+Current enhance: 488 501 
+417.683  86.379  70.7247
+Current enhance: 489 501 
+Current enhance: 489 501 
+Current enhance: 489 501 
+423.094  87.7913  71.3395
+Current enhance: 490 501 
+Current enhance: 490 501 
+Current enhance: 490 501 
+420.929  89.9923  70.6723
+Current enhance: 491 501 
+Current enhance: 491 501 
+427.306  92.41  71.0621
+Current enhance: 492 501 
+Current enhance: 492 501 
+Current enhance: 492 501 
+Current enhance: 492 501 
+430.685  94.1248  71.6383
+Current enhance: 493 501 
+Current enhance: 493 501 
+Current enhance: 493 501 
+436.664  99.3462  71.0865
+Current enhance: 494 501 
+Current enhance: 494 501 
+424.759  101.714  69.8814
+Current enhance: 495 501 
+Current enhance: 495 501 
+Current enhance: 495 501 
+Current enhance: 495 501 
+404.227  100.306  67.7844
+Current enhance: 496 501 
+Current enhance: 496 501 
+383.114  98.4589  65.789
+Current enhance: 497 501 
+Current enhance: 497 501 
+Current enhance: 497 501 
+371.776  93.5815  63.4585
+Current enhance: 498 501 
+Current enhance: 498 501 
+Current enhance: 498 501 
+369.525  90.4489  63.2651
+Current enhance: 499 501 
+Current enhance: 499 501 
+Current enhance: 499 501 
+Current enhance: 499 501 
+370.746  88.8655  64.412
+Current enhance: 500 501 
+Current enhance: 500 501 
+374.423  88.4966  66.054
+Current enhance: 501 501 
+Current enhance: 501 501 
+Current enhance: 501 501 
+Current enhance: 501 501 
+Applying blur to image
+2.90006  90.0827  62.5535
+Current enhance: 502 547 
+Current enhance: 502 547 
+Current enhance: 502 547 
+392.191  90.3162  66.3729
+Current enhance: 503 547 
+Current enhance: 503 547 
+410.334  93.0406  67.2979
+Current enhance: 504 547 
+Current enhance: 504 547 
+Current enhance: 504 547 
+419.232  93.3852  68.2627
+Current enhance: 505 547 
+Current enhance: 505 547 
+Current enhance: 505 547 
+424.282  93.0712  69.1888
+Current enhance: 506 547 
+Current enhance: 506 547 
+Current enhance: 506 547 
+418.938  95.0606  71.6001
+Current enhance: 507 547 
+Current enhance: 507 547 
+Current enhance: 507 547 
+Current enhance: 507 547 
+408.354  96.6096  74.5534
+Current enhance: 508 547 
+Current enhance: 508 547 
+Current enhance: 508 547 
+386.114  94.7874  77.5108
+Current enhance: 509 547 
+Current enhance: 509 547 
+Current enhance: 509 547 
+347.749  89.416  76.741
+Current enhance: 510 547 
+Current enhance: 510 547 
+323.792  86.4116  75.3399
+Current enhance: 511 547 
+Current enhance: 511 547 
+Current enhance: 511 547 
+336.962  90.9829  78.8029
+Current enhance: 512 547 
+Current enhance: 512 547 
+Current enhance: 512 547 
+Current enhance: 512 547 
+350.661  96.2303  81.9606
+Current enhance: 513 547 
+Current enhance: 513 547 
+360.473  97.6899  84.5595
+Current enhance: 514 547 
+Current enhance: 514 547 
+Current enhance: 514 547 
+358.948  97.3153  84.8732
+Current enhance: 515 547 
+Current enhance: 515 547 
+Current enhance: 515 547 
+Current enhance: 515 547 
+357.596  97.5267  84.8759
+Current enhance: 516 547 
+Current enhance: 516 547 
+Current enhance: 516 547 
+358.091  95.1638  83.5453
+Current enhance: 517 547 
+Current enhance: 517 547 
+Current enhance: 517 547 
+359.983  92.9294  82.9879
+Current enhance: 518 547 
+Current enhance: 518 547 
+Current enhance: 518 547 
+368.354  92.5951  84.1998
+Current enhance: 519 547 
+Current enhance: 519 547 
+391.422  91.9297  85.8952
+Current enhance: 520 547 
+Current enhance: 520 547 
+Current enhance: 520 547 
+Current enhance: 520 547 
+416.038  90.3583  86.7866
+Current enhance: 521 547 
+Current enhance: 521 547 
+431.275  91.2843  86.9747
+Current enhance: 522 547 
+Current enhance: 522 547 
+Current enhance: 522 547 
+Current enhance: 522 547 
+433.86  91.3079  85.9285
+Current enhance: 523 547 
+Current enhance: 523 547 
+432.005  92.9046  86.0399
+Current enhance: 524 547 
+Current enhance: 524 547 
+Current enhance: 524 547 
+437.251  92.9927  85.6368
+Current enhance: 525 547 
+Current enhance: 525 547 
+Current enhance: 525 547 
+Current enhance: 525 547 
+439.525  90.6412  82.9773
+Current enhance: 526 547 
+Current enhance: 526 547 
+Current enhance: 526 547 
+458.241  92.8268  81.8393
+Current enhance: 527 547 
+Current enhance: 527 547 
+443.02  92.0652  80.6971
+Current enhance: 528 547 
+Current enhance: 528 547 
+Current enhance: 528 547 
+Current enhance: 528 547 
+445.673  88.6739  80.0493
+Current enhance: 529 547 
+Current enhance: 529 547 
+Current enhance: 529 547 
+430.047  87.2257  79.5493
+Current enhance: 530 547 
+Current enhance: 530 547 
+435.296  85.2638  79.3297
+Current enhance: 531 547 
+Current enhance: 531 547 
+Current enhance: 531 547 
+Current enhance: 531 547 
+444.889  85.979  81.2218
+Current enhance: 532 547 
+Current enhance: 532 547 
+Current enhance: 532 547 
+456.386  90.044  83.7532
+Current enhance: 533 547 
+Current enhance: 533 547 
+Current enhance: 533 547 
+448.585  93.2737  84.9276
+Current enhance: 534 547 
+Current enhance: 534 547 
+Current enhance: 534 547 
+455.372  92.9346  84.2842
+Current enhance: 535 547 
+Current enhance: 535 547 
+Current enhance: 535 547 
+434.056  92.5291  83.8836
+Current enhance: 536 547 
+Current enhance: 536 547 
+Current enhance: 536 547 
+425.869  92.9397  82.8082
+Current enhance: 537 547 
+Current enhance: 537 547 
+413.055  94.3608  82.7295
+Current enhance: 538 547 
+Current enhance: 538 547 
+Current enhance: 538 547 
+Current enhance: 538 547 
+412.793  94.3894  82.1905
+Current enhance: 539 547 
+Current enhance: 539 547 
+409.038  96.3985  81.6789
+Current enhance: 540 547 
+Current enhance: 540 547 
+Current enhance: 540 547 
+404.473  100.169  80.8003
+Current enhance: 541 547 
+Current enhance: 541 547 
+Current enhance: 541 547 
+Current enhance: 541 547 
+389.49  104.1  79.1166
+Current enhance: 542 547 
+Current enhance: 542 547 
+Current enhance: 542 547 
+385.834  105.595  76.976
+Current enhance: 543 547 
+Current enhance: 543 547 
+Current enhance: 543 547 
+371.822  103.017  73.5555
+Current enhance: 544 547 
+Current enhance: 544 547 
+Current enhance: 544 547 
+362.319  105.168  70.1233
+Current enhance: 545 547 
+Current enhance: 545 547 
+Current enhance: 545 547 
+350.467  103.393  68.4007
+Current enhance: 546 547 
+Current enhance: 546 547 
+336.377  100.585  66.3932
+Current enhance: 547 547 
+Current enhance: 547 547 
+Current enhance: 547 547 
+Current enhance: 547 547 
+Applying blur to image
+3.40544  98.2427  60.1105
+Current enhance: 548 710 
+Current enhance: 548 710 
+Current enhance: 548 710 
+335.824  94.1078  63.3084
+Current enhance: 549 710 
+Current enhance: 549 710 
+Current enhance: 549 710 
+344.959  94.535  63.3145
+Current enhance: 550 710 
+Current enhance: 550 710 
+346.155  89.6751  59.3295
+Current enhance: 551 710 
+Current enhance: 551 710 
+Current enhance: 551 710 
+Current enhance: 551 710 
+366.706  95.6152  60.9455
+Current enhance: 552 710 
+Current enhance: 552 710 
+Current enhance: 552 710 
+371.385  96.7394  60.1925
+Current enhance: 553 710 
+Current enhance: 553 710 
+371.33  97.8567  59.7546
+Current enhance: 554 710 
+Current enhance: 554 710 
+Current enhance: 554 710 
+Current enhance: 554 710 
+371.666  99.9165  60.2796
+Current enhance: 555 710 
+Current enhance: 555 710 
+Current enhance: 555 710 
+362.998  100.446  60.8019
+Current enhance: 556 710 
+Current enhance: 556 710 
+Current enhance: 556 710 
+368.83  100.814  61.6555
+Current enhance: 557 710 
+Current enhance: 557 710 
+Current enhance: 557 710 
+366.028  101.336  62.2148
+Current enhance: 558 710 
+Current enhance: 558 710 
+Current enhance: 558 710 
+349.345  102.52  62.344
+Current enhance: 559 710 
+Current enhance: 559 710 
+Current enhance: 559 710 
+340.01  103.454  63.7802
+Current enhance: 560 710 
+Current enhance: 560 710 
+Current enhance: 560 710 
+317.82  104.894  65.9109
+Current enhance: 561 710 
+Current enhance: 561 710 
+309.064  104.677  66.9598
+Current enhance: 562 710 
+Current enhance: 562 710 
+Current enhance: 562 710 
+Current enhance: 562 710 
+296.851  102.024  65.7396
+Current enhance: 563 710 
+Current enhance: 563 710 
+288.872  98.2436  65.1681
+Current enhance: 564 710 
+Current enhance: 564 710 
+Current enhance: 564 710 
+Current enhance: 564 710 
+294.014  100.733  67.2471
+Current enhance: 565 710 
+Current enhance: 565 710 
+292.46  97.3243  67.4553
+Current enhance: 566 710 
+Current enhance: 566 710 
+Current enhance: 566 710 
+303.513  95.2833  66.4083
+Current enhance: 567 710 
+Current enhance: 567 710 
+Current enhance: 567 710 
+Current enhance: 567 710 
+302.774  91.9702  65.8811
+Current enhance: 568 710 
+Current enhance: 568 710 
+Current enhance: 568 710 
+300.855  92.0514  66.2628
+Current enhance: 569 710 
+Current enhance: 569 710 
+312.765  92.7465  65.7073
+Current enhance: 570 710 
+Current enhance: 570 710 
+Current enhance: 570 710 
+Current enhance: 570 710 
+295.002  92.8759  66.006
+Current enhance: 571 710 
+Current enhance: 571 710 
+Current enhance: 571 710 
+287.398  93.0087  66.8369
+Current enhance: 572 710 
+Current enhance: 572 710 
+Current enhance: 572 710 
+292.874  93.0106  67.3971
+Current enhance: 573 710 
+Current enhance: 573 710 
+Current enhance: 573 710 
+304.464  92.7479  70.1148
+Current enhance: 574 710 
+Current enhance: 574 710 
+Current enhance: 574 710 
+302.261  91.8777  69.6122
+Current enhance: 575 710 
+Current enhance: 575 710 
+Current enhance: 575 710 
+314.358  90.6077  68.9983
+Current enhance: 576 710 
+Current enhance: 576 710 
+Current enhance: 576 710 
+309.847  85.0433  67.0357
+Current enhance: 577 710 
+Current enhance: 577 710 
+Current enhance: 577 710 
+318.613  87.2141  71.9479
+Current enhance: 578 710 
+Current enhance: 578 710 
+Current enhance: 578 710 
+340.144  90.1206  79.4492
+Current enhance: 579 710 
+Current enhance: 579 710 
+327.14  93.8744  85.0287
+Current enhance: 580 710 
+Current enhance: 580 710 
+Current enhance: 580 710 
+Current enhance: 580 710 
+305.092  92.7189  85.2322
+Current enhance: 581 710 
+Current enhance: 581 710 
+309.889  98.1279  86.3355
+Current enhance: 582 710 
+Current enhance: 582 710 
+Current enhance: 582 710 
+Current enhance: 582 710 
+314.131  101.895  86.1653
+Current enhance: 583 710 
+Current enhance: 583 710 
+314.239  99.7467  85.9397
+Current enhance: 584 710 
+Current enhance: 584 710 
+Current enhance: 584 710 
+Current enhance: 584 710 
+316.216  94.6713  85.8617
+Current enhance: 585 710 
+Current enhance: 585 710 
+Current enhance: 585 710 
+325.997  91.0405  81.9409
+Current enhance: 586 710 
+Current enhance: 586 710 
+Current enhance: 586 710 
+337.522  84.1985  75.4394
+Current enhance: 587 710 
+Current enhance: 587 710 
+Current enhance: 587 710 
+336.384  83.2995  72.5948
+Current enhance: 588 710 
+Current enhance: 588 710 
+356.093  84.2561  71.0606
+Current enhance: 589 710 
+Current enhance: 589 710 
+Current enhance: 589 710 
+362.52  85.6639  71.7929
+Current enhance: 590 710 
+Current enhance: 590 710 
+Current enhance: 590 710 
+Current enhance: 590 710 
+358.741  84.1226  72.9871
+Current enhance: 591 710 
+Current enhance: 591 710 
+Current enhance: 591 710 
+408.713  100.706  76.98
+Current enhance: 592 710 
+Current enhance: 592 710 
+Current enhance: 592 710 
+432.162  114.025  83.1603
+Current enhance: 593 710 
+Current enhance: 593 710 
+423.321  106.318  84.2168
+Current enhance: 594 710 
+Current enhance: 594 710 
+Current enhance: 594 710 
+Current enhance: 594 710 
+422.645  100.378  82.905
+Current enhance: 595 710 
+Current enhance: 595 710 
+Current enhance: 595 710 
+411.35  95.883  81.8076
+Current enhance: 596 710 
+Current enhance: 596 710 
+Current enhance: 596 710 
+414.578  96.7547  83.8249
+Current enhance: 597 710 
+Current enhance: 597 710 
+Current enhance: 597 710 
+418.231  94.3642  82.8372
+Current enhance: 598 710 
+Current enhance: 598 710 
+Current enhance: 598 710 
+444.006  93.1423  82.8134
+Current enhance: 599 710 
+Current enhance: 599 710 
+Current enhance: 599 710 
+451.185  92.648  82.1428
+Current enhance: 600 710 
+Current enhance: 600 710 
+Current enhance: 600 710 
+445.801  93.4214  82.4865
+Current enhance: 601 710 
+Current enhance: 601 710 
+447.642  96.3343  82.2451
+Current enhance: 602 710 
+Current enhance: 602 710 
+Current enhance: 602 710 
+Current enhance: 602 710 
+446.714  100.088  82.2282
+Current enhance: 603 710 
+Current enhance: 603 710 
+Current enhance: 603 710 
+447.269  103.802  83.8189
+Current enhance: 604 710 
+Current enhance: 604 710 
+Current enhance: 604 710 
+441.807  106.14  84.9802
+Current enhance: 605 710 
+Current enhance: 605 710 
+425.149  106.175  85.3209
+Current enhance: 606 710 
+Current enhance: 606 710 
+Current enhance: 606 710 
+Current enhance: 606 710 
+421.455  104.376  85.3179
+Current enhance: 607 710 
+Current enhance: 607 710 
+Current enhance: 607 710 
+415.721  104.554  84.8144
+Current enhance: 608 710 
+Current enhance: 608 710 
+416.491  104.457  84.0029
+Current enhance: 609 710 
+Current enhance: 609 710 
+Current enhance: 609 710 
+423.521  100.901  82.3161
+Current enhance: 610 710 
+Current enhance: 610 710 
+Current enhance: 610 710 
+Current enhance: 610 710 
+407.006  98.0158  81.4781
+Current enhance: 611 710 
+Current enhance: 611 710 
+Current enhance: 611 710 
+414.799  95.8965  81.1959
+Current enhance: 612 710 
+Current enhance: 612 710 
+408.498  92.7228  82.2516
+Current enhance: 613 710 
+Current enhance: 613 710 
+Current enhance: 613 710 
+Current enhance: 613 710 
+422.028  92.658  81.0431
+Current enhance: 614 710 
+Current enhance: 614 710 
+427.732  89.9025  77.9785
+Current enhance: 615 710 
+Current enhance: 615 710 
+Current enhance: 615 710 
+438.221  88.9233  71.6451
+Current enhance: 616 710 
+Current enhance: 616 710 
+Current enhance: 616 710 
+Current enhance: 616 710 
+451.922  94.5283  71.0062
+Current enhance: 617 710 
+Current enhance: 617 710 
+436.837  92.3951  71.3284
+Current enhance: 618 710 
+Current enhance: 618 710 
+Current enhance: 618 710 
+Current enhance: 618 710 
+451.087  91.9045  72.4153
+Current enhance: 619 710 
+Current enhance: 619 710 
+Current enhance: 619 710 
+467.609  92.3803  73.8856
+Current enhance: 620 710 
+Current enhance: 620 710 
+Current enhance: 620 710 
+469.413  95.9553  78.0901
+Current enhance: 621 710 
+Current enhance: 621 710 
+Current enhance: 621 710 
+460.153  99.2786  81.1263
+Current enhance: 622 710 
+Current enhance: 622 710 
+451.642  96.5176  80.4641
+Current enhance: 623 710 
+Current enhance: 623 710 
+Current enhance: 623 710 
+452.176  97.9939  80.1859
+Current enhance: 624 710 
+Current enhance: 624 710 
+Current enhance: 624 710 
+Current enhance: 624 710 
+443.856  101.082  80.5977
+Current enhance: 625 710 
+Current enhance: 625 710 
+Current enhance: 625 710 
+427.532  103.009  81.978
+Current enhance: 626 710 
+Current enhance: 626 710 
+Current enhance: 626 710 
+412.146  98.9855  81.0096
+Current enhance: 627 710 
+Current enhance: 627 710 
+412.239  95.9136  80.7111
+Current enhance: 628 710 
+Current enhance: 628 710 
+Current enhance: 628 710 
+416.876  95.9154  82.0364
+Current enhance: 629 710 
+Current enhance: 629 710 
+Current enhance: 629 710 
+412.398  95.4271  82.6434
+Current enhance: 630 710 
+Current enhance: 630 710 
+Current enhance: 630 710 
+407.184  95.4225  83.4957
+Current enhance: 631 710 
+Current enhance: 631 710 
+Current enhance: 631 710 
+Current enhance: 631 710 
+403.848  92.3401  82.7044
+Current enhance: 632 710 
+Current enhance: 632 710 
+396.772  88.1152  79.9279
+Current enhance: 633 710 
+Current enhance: 633 710 
+Current enhance: 633 710 
+381.329  85.4434  77.2157
+Current enhance: 634 710 
+Current enhance: 634 710 
+Current enhance: 634 710 
+Current enhance: 634 710 
+379.134  87.4942  77.2254
+Current enhance: 635 710 
+Current enhance: 635 710 
+Current enhance: 635 710 
+371.771  91.9063  81.0817
+Current enhance: 636 710 
+Current enhance: 636 710 
+Current enhance: 636 710 
+358.41  98.2899  85.382
+Current enhance: 637 710 
+Current enhance: 637 710 
+Current enhance: 637 710 
+356.312  104.356  88.3761
+Current enhance: 638 710 
+Current enhance: 638 710 
+Current enhance: 638 710 
+359.672  112.936  92.1952
+Current enhance: 639 710 
+Current enhance: 639 710 
+Current enhance: 639 710 
+377.477  115.33  94.4218
+Current enhance: 640 710 
+Current enhance: 640 710 
+Current enhance: 640 710 
+383.576  111.924  94.7312
+Current enhance: 641 710 
+Current enhance: 641 710 
+366.496  107.575  92.443
+Current enhance: 642 710 
+Current enhance: 642 710 
+Current enhance: 642 710 
+395.55  105.917  88.3276
+Current enhance: 643 710 
+Current enhance: 643 710 
+Current enhance: 643 710 
+Current enhance: 643 710 
+387.396  100.711  83.76
+Current enhance: 644 710 
+Current enhance: 644 710 
+375.734  102.214  81.1891
+Current enhance: 645 710 
+Current enhance: 645 710 
+Current enhance: 645 710 
+Current enhance: 645 710 
+354.266  96.9846  75.5488
+Current enhance: 646 710 
+Current enhance: 646 710 
+Current enhance: 646 710 
+369.878  101.136  74.0493
+Current enhance: 647 710 
+Current enhance: 647 710 
+Current enhance: 647 710 
+361.195  105.63  75.1259
+Current enhance: 648 710 
+Current enhance: 648 710 
+Current enhance: 648 710 
+341.935  104.243  74.6949
+Current enhance: 649 710 
+Current enhance: 649 710 
+Current enhance: 649 710 
+330.258  103.892  74.2464
+Current enhance: 650 710 
+Current enhance: 650 710 
+Current enhance: 650 710 
+324.782  102.51  73.7116
+Current enhance: 651 710 
+Current enhance: 651 710 
+318.51  102.435  73.5131
+Current enhance: 652 710 
+Current enhance: 652 710 
+Current enhance: 652 710 
+Current enhance: 652 710 
+306.902  101.316  72.7031
+Current enhance: 653 710 
+Current enhance: 653 710 
+Current enhance: 653 710 
+304.4  103.84  73.5866
+Current enhance: 654 710 
+Current enhance: 654 710 
+Current enhance: 654 710 
+276.406  100.237  71.9763
+Current enhance: 655 710 
+Current enhance: 655 710 
+282.878  101.852  71.8662
+Current enhance: 656 710 
+Current enhance: 656 710 
+Current enhance: 656 710 
+262.682  99.0514  70.4284
+Current enhance: 657 710 
+Current enhance: 657 710 
+Current enhance: 657 710 
+Current enhance: 657 710 
+267.545  97.1991  69.4757
+Current enhance: 658 710 
+Current enhance: 658 710 
+272.293  96.4661  68.4452
+Current enhance: 659 710 
+Current enhance: 659 710 
+Current enhance: 659 710 
+Current enhance: 659 710 
+269.125  99.448  70.2772
+Current enhance: 660 710 
+Current enhance: 660 710 
+267.42  98.0211  68.7872
+Current enhance: 661 710 
+Current enhance: 661 710 
+Current enhance: 661 710 
+Current enhance: 661 710 
+269.773  99.303  67.1212
+Current enhance: 662 710 
+Current enhance: 662 710 
+267.154  100.308  66.8996
+Current enhance: 663 710 
+Current enhance: 663 710 
+Current enhance: 663 710 
+Current enhance: 663 710 
+266.935  100.431  66.8092
+Current enhance: 664 710 
+Current enhance: 664 710 
+Current enhance: 664 710 
+270.705  99.7012  67.4999
+Current enhance: 665 710 
+Current enhance: 665 710 
+Current enhance: 665 710 
+276.355  98.1874  68.5468
+Current enhance: 666 710 
+Current enhance: 666 710 
+Current enhance: 666 710 
+281.261  96.7132  70.1525
+Current enhance: 667 710 
+Current enhance: 667 710 
+Current enhance: 667 710 
+291.163  94.7104  71.6684
+Current enhance: 668 710 
+Current enhance: 668 710 
+307.581  94.6751  72.6883
+Current enhance: 669 710 
+Current enhance: 669 710 
+Current enhance: 669 710 
+Current enhance: 669 710 
+315.244  96.4823  73.4927
+Current enhance: 670 710 
+Current enhance: 670 710 
+Current enhance: 670 710 
+309.858  99.1114  74.6679
+Current enhance: 671 710 
+Current enhance: 671 710 
+306.203  101.994  75.9606
+Current enhance: 672 710 
+Current enhance: 672 710 
+Current enhance: 672 710 
+Current enhance: 672 710 
+299.971  102.589  75.838
+Current enhance: 673 710 
+Current enhance: 673 710 
+Current enhance: 673 710 
+301.242  103.659  75.6945
+Current enhance: 674 710 
+Current enhance: 674 710 
+Current enhance: 674 710 
+307.366  102.253  75.1756
+Current enhance: 675 710 
+Current enhance: 675 710 
+Current enhance: 675 710 
+310.718  100.62  75.3924
+Current enhance: 676 710 
+Current enhance: 676 710 
+Current enhance: 676 710 
+311.842  99.7859  74.5063
+Current enhance: 677 710 
+Current enhance: 677 710 
+Current enhance: 677 710 
+309.574  100.456  72.9414
+Current enhance: 678 710 
+Current enhance: 678 710 
+Current enhance: 678 710 
+298.168  101.474  71.2441
+Current enhance: 679 710 
+Current enhance: 679 710 
+Current enhance: 679 710 
+286.42  102.827  69.6182
+Current enhance: 680 710 
+Current enhance: 680 710 
+Current enhance: 680 710 
+278.978  102.951  68.0491
+Current enhance: 681 710 
+Current enhance: 681 710 
+272.753  101.46  67.0829
+Current enhance: 682 710 
+Current enhance: 682 710 
+Current enhance: 682 710 
+270.519  100.909  66.6877
+Current enhance: 683 710 
+Current enhance: 683 710 
+Current enhance: 683 710 
+Current enhance: 683 710 
+269.915  100.582  66.548
+Current enhance: 684 710 
+Current enhance: 684 710 
+267.348  100.273  66.3945
+Current enhance: 685 710 
+Current enhance: 685 710 
+Current enhance: 685 710 
+266.805  100.263  66.4013
+Current enhance: 686 710 
+Current enhance: 686 710 
+Current enhance: 686 710 
+Current enhance: 686 710 
+267.646  100.265  66.4024
+Current enhance: 687 710 
+Current enhance: 687 710 
+267.02  100.228  66.3979
+Current enhance: 688 710 
+Current enhance: 688 710 
+Current enhance: 688 710 
+Current enhance: 688 710 
+267.16  100.178  66.4145
+Current enhance: 689 710 
+Current enhance: 689 710 
+Current enhance: 689 710 
+266.971  99.5442  66.9161
+Current enhance: 690 710 
+Current enhance: 690 710 
+268.987  98.7105  67.7717
+Current enhance: 691 710 
+Current enhance: 691 710 
+Current enhance: 691 710 
+Current enhance: 691 710 
+272.15  96.8651  69.7087
+Current enhance: 692 710 
+Current enhance: 692 710 
+Current enhance: 692 710 
+279.839  95.862  71.7002
+Current enhance: 693 710 
+Current enhance: 693 710 
+Current enhance: 693 710 
+288.445  96.8292  73.3182
+Current enhance: 694 710 
+Current enhance: 694 710 
+Current enhance: 694 710 
+295.935  98.5462  74.2586
+Current enhance: 695 710 
+Current enhance: 695 710 
+Current enhance: 695 710 
+307.551  99.0448  75.4751
+Current enhance: 696 710 
+Current enhance: 696 710 
+Current enhance: 696 710 
+321.476  100.099  76.7166
+Current enhance: 697 710 
+Current enhance: 697 710 
+Current enhance: 697 710 
+325.406  101.592  77.1837
+Current enhance: 698 710 
+Current enhance: 698 710 
+Current enhance: 698 710 
+321.515  103.924  75.3803
+Current enhance: 699 710 
+Current enhance: 699 710 
+313.902  105.5  72.3855
+Current enhance: 700 710 
+Current enhance: 700 710 
+Current enhance: 700 710 
+Current enhance: 700 710 
+303.736  104.101  70.5478
+Current enhance: 701 710 
+Current enhance: 701 710 
+293.607  102.025  68.9739
+Current enhance: 702 710 
+Current enhance: 702 710 
+Current enhance: 702 710 
+289.595  101.429  68.6863
+Current enhance: 703 710 
+Current enhance: 703 710 
+Current enhance: 703 710 
+Current enhance: 703 710 
+294.987  100.416  68.6162
+Current enhance: 704 710 
+Current enhance: 704 710 
+Current enhance: 704 710 
+301.331  100.251  68.8661
+Current enhance: 705 710 
+Current enhance: 705 710 
+297.185  100.479  68.8892
+Current enhance: 706 710 
+Current enhance: 706 710 
+Current enhance: 706 710 
+298.199  100.878  68.7994
+Current enhance: 707 710 
+Current enhance: 707 710 
+Current enhance: 707 710 
+Current enhance: 707 710 
+295.007  100.573  68.3974
+Current enhance: 708 710 
+Current enhance: 708 710 
+296.694  100.504  67.8848
+Current enhance: 709 710 
+Current enhance: 709 710 
+Current enhance: 709 710 
+Current enhance: 709 710 
+292.546  99.2673  67.3941
+Current enhance: 710 710 
+Current enhance: 710 710 
+Current enhance: 710 710 
+Applying blur to image
+3.39851  99.0118  61.6682
+Current enhance: 711 739 
+Current enhance: 711 739 
+Current enhance: 711 739 
+284.166  99.2496  67.155
+Current enhance: 712 739 
+Current enhance: 712 739 
+Current enhance: 712 739 
+279.915  99.5206  67.0289
+Current enhance: 713 739 
+Current enhance: 713 739 
+276.181  99.8163  66.8996
+Current enhance: 714 739 
+Current enhance: 714 739 
+Current enhance: 714 739 
+Current enhance: 714 739 
+272.324  99.7034  66.6333
+Current enhance: 715 739 
+Current enhance: 715 739 
+Current enhance: 715 739 
+272.738  99.9879  66.6123
+Current enhance: 716 739 
+Current enhance: 716 739 
+Current enhance: 716 739 
+275.122  99.6107  66.8432
+Current enhance: 717 739 
+Current enhance: 717 739 
+276.125  99.0515  67.1503
+Current enhance: 718 739 
+Current enhance: 718 739 
+Current enhance: 718 739 
+Current enhance: 718 739 
+276.656  98.4034  67.8556
+Current enhance: 719 739 
+Current enhance: 719 739 
+282.452  97.8703  68.7354
+Current enhance: 720 739 
+Current enhance: 720 739 
+Current enhance: 720 739 
+281.061  96.9338  69.3095
+Current enhance: 721 739 
+Current enhance: 721 739 
+Current enhance: 721 739 
+289.004  96.9711  69.8435
+Current enhance: 722 739 
+Current enhance: 722 739 
+Current enhance: 722 739 
+Current enhance: 722 739 
+292.043  97.2982  70.1951
+Current enhance: 723 739 
+Current enhance: 723 739 
+291.663  98.2307  70.4569
+Current enhance: 724 739 
+Current enhance: 724 739 
+Current enhance: 724 739 
+299.308  99.0502  70.8541
+Current enhance: 725 739 
+Current enhance: 725 739 
+Current enhance: 725 739 
+309.018  99.9158  71.3515
+Current enhance: 726 739 
+Current enhance: 726 739 
+Current enhance: 726 739 
+Current enhance: 726 739 
+300.726  100.456  71.7183
+Current enhance: 727 739 
+Current enhance: 727 739 
+304.479  100.57  71.9431
+Current enhance: 728 739 
+Current enhance: 728 739 
+Current enhance: 728 739 
+Current enhance: 728 739 
+294.573  100.321  71.752
+Current enhance: 729 739 
+Current enhance: 729 739 
+283.53  99.9161  71.8758
+Current enhance: 730 739 
+Current enhance: 730 739 
+Current enhance: 730 739 
+283.83  100.169  72.197
+Current enhance: 731 739 
+Current enhance: 731 739 
+Current enhance: 731 739 
+287.297  101.292  72.3735
+Current enhance: 732 739 
+Current enhance: 732 739 
+Current enhance: 732 739 
+290.385  102.77  72.2496
+Current enhance: 733 739 
+Current enhance: 733 739 
+Current enhance: 733 739 
+285.159  103.567  71.3845
+Current enhance: 734 739 
+Current enhance: 734 739 
+Current enhance: 734 739 
+Current enhance: 734 739 
+277.9  102.273  69.9374
+Current enhance: 735 739 
+Current enhance: 735 739 
+265.46  101.107  69.1173
+Current enhance: 736 739 
+Current enhance: 736 739 
+Current enhance: 736 739 
+Current enhance: 736 739 
+264.637  99.5208  68.333
+Current enhance: 737 739 
+Current enhance: 737 739 
+257.668  97.9465  67.4861
+Current enhance: 738 739 
+Current enhance: 738 739 
+Current enhance: 738 739 
+263.059  95.9418  66.1058
+Current enhance: 739 739 
+Current enhance: 739 739 
+Current enhance: 739 739 
+Applying blur to image
+3.46533  94.5299  58.8617
+Current enhance: 740 895 
+Current enhance: 740 895 
+Current enhance: 740 895 
+256.072  95.0415  64.2
+Current enhance: 741 895 
+Current enhance: 741 895 
+Current enhance: 741 895 
+Current enhance: 741 895 
+263.25  95.8293  64.4379
+Current enhance: 742 895 
+Current enhance: 742 895 
+279.05  96.4895  64.7096
+Current enhance: 743 895 
+Current enhance: 743 895 
+Current enhance: 743 895 
+Current enhance: 743 895 
+285.341  97.3075  64.9674
+Current enhance: 744 895 
+Current enhance: 744 895 
+Current enhance: 744 895 
+291.631  97.0571  65.0843
+Current enhance: 745 895 
+Current enhance: 745 895 
+Current enhance: 745 895 
+298.529  95.6954  65.3435
+Current enhance: 746 895 
+Current enhance: 746 895 
+Current enhance: 746 895 
+301.003  94.1806  64.8843
+Current enhance: 747 895 
+Current enhance: 747 895 
+289.793  92.7068  64.6557
+Current enhance: 748 895 
+Current enhance: 748 895 
+Current enhance: 748 895 
+Current enhance: 748 895 
+298.713  92.2557  65.69
+Current enhance: 749 895 
+Current enhance: 749 895 
+Current enhance: 749 895 
+320.525  91.4999  67.0739
+Current enhance: 750 895 
+Current enhance: 750 895 
+Current enhance: 750 895 
+348.383  92.0524  68.6709
+Current enhance: 751 895 
+Current enhance: 751 895 
+Current enhance: 751 895 
+356.478  92.1551  70.2378
+Current enhance: 752 895 
+Current enhance: 752 895 
+Current enhance: 752 895 
+343.946  94.2106  73.1086
+Current enhance: 753 895 
+Current enhance: 753 895 
+Current enhance: 753 895 
+339.714  93.2382  73.2115
+Current enhance: 754 895 
+Current enhance: 754 895 
+353.758  94.8639  74.0369
+Current enhance: 755 895 
+Current enhance: 755 895 
+Current enhance: 755 895 
+350.776  90.5247  74.3874
+Current enhance: 756 895 
+Current enhance: 756 895 
+Current enhance: 756 895 
+Current enhance: 756 895 
+350.585  89.364  75.8916
+Current enhance: 757 895 
+Current enhance: 757 895 
+Current enhance: 757 895 
+357.471  90.74  78.0723
+Current enhance: 758 895 
+Current enhance: 758 895 
+Current enhance: 758 895 
+371.084  86.908  78.2586
+Current enhance: 759 895 
+Current enhance: 759 895 
+390.968  87.5057  78.8642
+Current enhance: 760 895 
+Current enhance: 760 895 
+Current enhance: 760 895 
+Current enhance: 760 895 
+411.59  90.0254  79.6619
+Current enhance: 761 895 
+Current enhance: 761 895 
+Current enhance: 761 895 
+416.442  89.2316  79.4091
+Current enhance: 762 895 
+Current enhance: 762 895 
+441.274  87.2494  77.0449
+Current enhance: 763 895 
+Current enhance: 763 895 
+Current enhance: 763 895 
+Current enhance: 763 895 
+471.205  87.3164  74.1921
+Current enhance: 764 895 
+Current enhance: 764 895 
+499.915  90.6394  73.724
+Current enhance: 765 895 
+Current enhance: 765 895 
+Current enhance: 765 895 
+515.403  88.3024  71.8755
+Current enhance: 766 895 
+Current enhance: 766 895 
+Current enhance: 766 895 
+525.769  89.5855  71.1769
+Current enhance: 767 895 
+Current enhance: 767 895 
+Current enhance: 767 895 
+543.883  91.5197  72.7617
+Current enhance: 768 895 
+Current enhance: 768 895 
+Current enhance: 768 895 
+537.827  90.5761  72.4299
+Current enhance: 769 895 
+Current enhance: 769 895 
+Current enhance: 769 895 
+521.296  91.2206  72.2899
+Current enhance: 770 895 
+Current enhance: 770 895 
+Current enhance: 770 895 
+520.16  92.3222  74.3557
+Current enhance: 771 895 
+Current enhance: 771 895 
+Current enhance: 771 895 
+Current enhance: 771 895 
+507.858  92.5403  74.7908
+Current enhance: 772 895 
+Current enhance: 772 895 
+Current enhance: 772 895 
+554.643  93.9938  75.6674
+Current enhance: 773 895 
+Current enhance: 773 895 
+563.09  97.7514  77.0453
+Current enhance: 774 895 
+Current enhance: 774 895 
+Current enhance: 774 895 
+Current enhance: 774 895 
+512.443  91.6718  73.7215
+Current enhance: 775 895 
+Current enhance: 775 895 
+516.595  83.4238  74.2434
+Current enhance: 776 895 
+Current enhance: 776 895 
+Current enhance: 776 895 
+544.026  91.1872  76.1162
+Current enhance: 777 895 
+Current enhance: 777 895 
+Current enhance: 777 895 
+Current enhance: 777 895 
+558.222  88.1821  77.5701
+Current enhance: 778 895 
+Current enhance: 778 895 
+576.608  90.5389  79.2842
+Current enhance: 779 895 
+Current enhance: 779 895 
+Current enhance: 779 895 
+571.56  91.4934  79.9608
+Current enhance: 780 895 
+Current enhance: 780 895 
+Current enhance: 780 895 
+592.151  88.8792  80.1768
+Current enhance: 781 895 
+Current enhance: 781 895 
+Current enhance: 781 895 
+Current enhance: 781 895 
+589.909  99.2911  77.6883
+Current enhance: 782 895 
+Current enhance: 782 895 
+554.294  97.3192  76.6106
+Current enhance: 783 895 
+Current enhance: 783 895 
+Current enhance: 783 895 
+493.306  91.6434  74.3409
+Current enhance: 784 895 
+Current enhance: 784 895 
+Current enhance: 784 895 
+469.861  92.1422  74.9993
+Current enhance: 785 895 
+Current enhance: 785 895 
+Current enhance: 785 895 
+Current enhance: 785 895 
+448.497  89.6076  75.3089
+Current enhance: 786 895 
+Current enhance: 786 895 
+464.512  89.9372  76.0328
+Current enhance: 787 895 
+Current enhance: 787 895 
+Current enhance: 787 895 
+Current enhance: 787 895 
+480.952  92.2404  77.233
+Current enhance: 788 895 
+Current enhance: 788 895 
+507.068  93.2548  75.7008
+Current enhance: 789 895 
+Current enhance: 789 895 
+Current enhance: 789 895 
+456.049  90.3327  75.2
+Current enhance: 790 895 
+Current enhance: 790 895 
+Current enhance: 790 895 
+442.055  90.8927  77.3762
+Current enhance: 791 895 
+Current enhance: 791 895 
+Current enhance: 791 895 
+453.084  94.5107  77.4262
+Current enhance: 792 895 
+Current enhance: 792 895 
+Current enhance: 792 895 
+461.211  97.1437  78.6312
+Current enhance: 793 895 
+Current enhance: 793 895 
+Current enhance: 793 895 
+Current enhance: 793 895 
+461.519  94.5637  77.6771
+Current enhance: 794 895 
+Current enhance: 794 895 
+Current enhance: 794 895 
+461.966  96.6981  80.2425
+Current enhance: 795 895 
+Current enhance: 795 895 
+449.012  86.6484  77.6294
+Current enhance: 796 895 
+Current enhance: 796 895 
+Current enhance: 796 895 
+Current enhance: 796 895 
+457.561  83.3492  78.1042
+Current enhance: 797 895 
+Current enhance: 797 895 
+Current enhance: 797 895 
+484.575  84.2462  76.7299
+Current enhance: 798 895 
+Current enhance: 798 895 
+Current enhance: 798 895 
+501.698  93.3039  77.4493
+Current enhance: 799 895 
+Current enhance: 799 895 
+503.738  92.971  78.1305
+Current enhance: 800 895 
+Current enhance: 800 895 
+Current enhance: 800 895 
+Current enhance: 800 895 
+498.457  98.6394  78.1619
+Current enhance: 801 895 
+Current enhance: 801 895 
+Current enhance: 801 895 
+455.938  98.5655  77.1811
+Current enhance: 802 895 
+Current enhance: 802 895 
+463.221  97.7121  79.1179
+Current enhance: 803 895 
+Current enhance: 803 895 
+Current enhance: 803 895 
+481.381  93.1444  80.371
+Current enhance: 804 895 
+Current enhance: 804 895 
+Current enhance: 804 895 
+Current enhance: 804 895 
+470.933  90.573  81.1723
+Current enhance: 805 895 
+Current enhance: 805 895 
+479.006  91.6004  81.4354
+Current enhance: 806 895 
+Current enhance: 806 895 
+Current enhance: 806 895 
+Current enhance: 806 895 
+473.773  92.2445  81.0956
+Current enhance: 807 895 
+Current enhance: 807 895 
+463.442  93.3738  81.8253
+Current enhance: 808 895 
+Current enhance: 808 895 
+Current enhance: 808 895 
+Current enhance: 808 895 
+479.507  93.3507  81.206
+Current enhance: 809 895 
+Current enhance: 809 895 
+Current enhance: 809 895 
+490  95.6978  80.0892
+Current enhance: 810 895 
+Current enhance: 810 895 
+444.192  97.6419  80.1609
+Current enhance: 811 895 
+Current enhance: 811 895 
+Current enhance: 811 895 
+Current enhance: 811 895 
+444.055  97.1074  78.3358
+Current enhance: 812 895 
+Current enhance: 812 895 
+Current enhance: 812 895 
+432.965  95.8055  78.1783
+Current enhance: 813 895 
+Current enhance: 813 895 
+Current enhance: 813 895 
+434.194  95.9416  79.044
+Current enhance: 814 895 
+Current enhance: 814 895 
+Current enhance: 814 895 
+420.494  97.0471  79.743
+Current enhance: 815 895 
+Current enhance: 815 895 
+417.279  97.8248  79.6622
+Current enhance: 816 895 
+Current enhance: 816 895 
+Current enhance: 816 895 
+Current enhance: 816 895 
+406.428  97.9077  79.0716
+Current enhance: 817 895 
+Current enhance: 817 895 
+Current enhance: 817 895 
+410.809  92.8599  77.0754
+Current enhance: 818 895 
+Current enhance: 818 895 
+Current enhance: 818 895 
+397.827  88.1143  75.5197
+Current enhance: 819 895 
+Current enhance: 819 895 
+Current enhance: 819 895 
+409.7  83.6559  74.3582
+Current enhance: 820 895 
+Current enhance: 820 895 
+441.783  85.2538  74.5362
+Current enhance: 821 895 
+Current enhance: 821 895 
+Current enhance: 821 895 
+Current enhance: 821 895 
+465.138  87.5245  75.4582
+Current enhance: 822 895 
+Current enhance: 822 895 
+Current enhance: 822 895 
+493.429  92.1663  76.5304
+Current enhance: 823 895 
+Current enhance: 823 895 
+516.654  101.855  78.2436
+Current enhance: 824 895 
+Current enhance: 824 895 
+Current enhance: 824 895 
+556.486  106.237  80.5148
+Current enhance: 825 895 
+Current enhance: 825 895 
+Current enhance: 825 895 
+Current enhance: 825 895 
+517.883  103.84  83.3729
+Current enhance: 826 895 
+Current enhance: 826 895 
+Current enhance: 826 895 
+493.537  89.6853  75.7611
+Current enhance: 827 895 
+Current enhance: 827 895 
+Current enhance: 827 895 
+491.087  87.2083  73.3987
+Current enhance: 828 895 
+Current enhance: 828 895 
+511.517  89.3972  73.3474
+Current enhance: 829 895 
+Current enhance: 829 895 
+Current enhance: 829 895 
+Current enhance: 829 895 
+492.322  89.3602  74.156
+Current enhance: 830 895 
+Current enhance: 830 895 
+Current enhance: 830 895 
+496.636  90.7757  74.6543
+Current enhance: 831 895 
+Current enhance: 831 895 
+496.45  93.6826  75.8672
+Current enhance: 832 895 
+Current enhance: 832 895 
+Current enhance: 832 895 
+Current enhance: 832 895 
+480.207  92.8191  73.5428
+Current enhance: 833 895 
+Current enhance: 833 895 
+482.167  91.1414  73.0784
+Current enhance: 834 895 
+Current enhance: 834 895 
+Current enhance: 834 895 
+476.019  88.4881  73.2491
+Current enhance: 835 895 
+Current enhance: 835 895 
+Current enhance: 835 895 
+Current enhance: 835 895 
+486.084  86.8289  73.144
+Current enhance: 836 895 
+Current enhance: 836 895 
+499.61  89.1458  74.2479
+Current enhance: 837 895 
+Current enhance: 837 895 
+Current enhance: 837 895 
+Current enhance: 837 895 
+526.779  93.9315  75.2751
+Current enhance: 838 895 
+Current enhance: 838 895 
+Current enhance: 838 895 
+507.312  95.0886  76.0025
+Current enhance: 839 895 
+Current enhance: 839 895 
+500.042  95.0411  77.6522
+Current enhance: 840 895 
+Current enhance: 840 895 
+Current enhance: 840 895 
+490.189  93.7469  78.7383
+Current enhance: 841 895 
+Current enhance: 841 895 
+Current enhance: 841 895 
+461.179  86.4455  75.0831
+Current enhance: 842 895 
+Current enhance: 842 895 
+Current enhance: 842 895 
+477.693  88.8953  74.3509
+Current enhance: 843 895 
+Current enhance: 843 895 
+Current enhance: 843 895 
+Current enhance: 843 895 
+445.228  87.5656  74.1722
+Current enhance: 844 895 
+Current enhance: 844 895 
+Current enhance: 844 895 
+469.678  90.2938  74.9993
+Current enhance: 845 895 
+Current enhance: 845 895 
+Current enhance: 845 895 
+451.006  89.8924  74.9885
+Current enhance: 846 895 
+Current enhance: 846 895 
+Current enhance: 846 895 
+435.492  89.6489  75.3746
+Current enhance: 847 895 
+Current enhance: 847 895 
+Current enhance: 847 895 
+458.371  90.1549  75.9747
+Current enhance: 848 895 
+Current enhance: 848 895 
+Current enhance: 848 895 
+481.606  90.4932  74.7959
+Current enhance: 849 895 
+Current enhance: 849 895 
+456.507  91.3177  75.2705
+Current enhance: 850 895 
+Current enhance: 850 895 
+Current enhance: 850 895 
+Current enhance: 850 895 
+443.65  92.6673  74.9574
+Current enhance: 851 895 
+Current enhance: 851 895 
+Current enhance: 851 895 
+439.244  94.4431  74.5018
+Current enhance: 852 895 
+Current enhance: 852 895 
+Current enhance: 852 895 
+388.258  95.7696  75.1547
+Current enhance: 853 895 
+Current enhance: 853 895 
+Current enhance: 853 895 
+374.108  96.9109  75.851
+Current enhance: 854 895 
+Current enhance: 854 895 
+320.646  90.4742  72.4053
+Current enhance: 855 895 
+Current enhance: 855 895 
+Current enhance: 855 895 
+304.144  91.2266  72.6903
+Current enhance: 856 895 
+Current enhance: 856 895 
+Current enhance: 856 895 
+Current enhance: 856 895 
+304.814  94.7336  73.2717
+Current enhance: 857 895 
+Current enhance: 857 895 
+Current enhance: 857 895 
+276.885  91.0854  71.6952
+Current enhance: 858 895 
+Current enhance: 858 895 
+Current enhance: 858 895 
+285.939  93.27  72.5023
+Current enhance: 859 895 
+Current enhance: 859 895 
+303.362  96.0555  72.627
+Current enhance: 860 895 
+Current enhance: 860 895 
+Current enhance: 860 895 
+317.62  99.3573  71.3768
+Current enhance: 861 895 
+Current enhance: 861 895 
+Current enhance: 861 895 
+Current enhance: 861 895 
+308.332  97.137  71.316
+Current enhance: 862 895 
+Current enhance: 862 895 
+Current enhance: 862 895 
+294.23  96.032  71.5236
+Current enhance: 863 895 
+Current enhance: 863 895 
+277.212  94.2711  72.3556
+Current enhance: 864 895 
+Current enhance: 864 895 
+Current enhance: 864 895 
+Current enhance: 864 895 
+277.997  91.1617  73.055
+Current enhance: 865 895 
+Current enhance: 865 895 
+Current enhance: 865 895 
+263.709  86.9423  73.4722
+Current enhance: 866 895 
+Current enhance: 866 895 
+Current enhance: 866 895 
+264.172  90.3741  74.7195
+Current enhance: 867 895 
+Current enhance: 867 895 
+Current enhance: 867 895 
+268.328  94.4012  75.0402
+Current enhance: 868 895 
+Current enhance: 868 895 
+Current enhance: 868 895 
+297.378  95.7289  75.089
+Current enhance: 869 895 
+Current enhance: 869 895 
+Current enhance: 869 895 
+248.22  89.052  70.7822
+Current enhance: 870 895 
+Current enhance: 870 895 
+Current enhance: 870 895 
+235.412  91.9748  70.0609
+Current enhance: 871 895 
+Current enhance: 871 895 
+Current enhance: 871 895 
+244.191  91.217  67.7974
+Current enhance: 872 895 
+Current enhance: 872 895 
+Current enhance: 872 895 
+244.384  94.1787  67.417
+Current enhance: 873 895 
+Current enhance: 873 895 
+Current enhance: 873 895 
+237.624  94.8085  64.5499
+Current enhance: 874 895 
+Current enhance: 874 895 
+231.248  93.9399  63.6512
+Current enhance: 875 895 
+Current enhance: 875 895 
+Current enhance: 875 895 
+Current enhance: 875 895 
+228.351  92.7362  64.0377
+Current enhance: 876 895 
+Current enhance: 876 895 
+232.402  89.4098  63.3466
+Current enhance: 877 895 
+Current enhance: 877 895 
+Current enhance: 877 895 
+Current enhance: 877 895 
+236.946  90.0798  63.7982
+Current enhance: 878 895 
+Current enhance: 878 895 
+222.611  91.8119  64.2499
+Current enhance: 879 895 
+Current enhance: 879 895 
+Current enhance: 879 895 
+Current enhance: 879 895 
+216.037  89.0428  61.49
+Current enhance: 880 895 
+Current enhance: 880 895 
+Current enhance: 880 895 
+210.749  89.6106  60.8994
+Current enhance: 881 895 
+Current enhance: 881 895 
+Current enhance: 881 895 
+217.979  91.3949  60.939
+Current enhance: 882 895 
+Current enhance: 882 895 
+218.559  92.3143  61.2992
+Current enhance: 883 895 
+Current enhance: 883 895 
+Current enhance: 883 895 
+Current enhance: 883 895 
+223.601  93.6876  61.772
+Current enhance: 884 895 
+Current enhance: 884 895 
+Current enhance: 884 895 
+212.116  93.4349  62.1191
+Current enhance: 885 895 
+Current enhance: 885 895 
+Current enhance: 885 895 
+196.937  91.8089  62.5896
+Current enhance: 886 895 
+Current enhance: 886 895 
+Current enhance: 886 895 
+196.253  91.7027  63.0633
+Current enhance: 887 895 
+Current enhance: 887 895 
+196.221  91.3807  63.6612
+Current enhance: 888 895 
+Current enhance: 888 895 
+Current enhance: 888 895 
+Current enhance: 888 895 
+199.61  90.8266  64.3607
+Current enhance: 889 895 
+Current enhance: 889 895 
+202.598  90.9441  65.1742
+Current enhance: 890 895 
+Current enhance: 890 895 
+Current enhance: 890 895 
+Current enhance: 890 895 
+200.736  90.6293  65.9161
+Current enhance: 891 895 
+Current enhance: 891 895 
+Current enhance: 891 895 
+202.928  90.9823  67.155
+Current enhance: 892 895 
+Current enhance: 892 895 
+Current enhance: 892 895 
+204.443  91.2466  68.5752
+Current enhance: 893 895 
+Current enhance: 893 895 
+202.646  90.4332  69.4798
+Current enhance: 894 895 
+Current enhance: 894 895 
+Current enhance: 894 895 
+Current enhance: 894 895 
+195.45  88.2038  68.3618
+Current enhance: 895 895 
+Current enhance: 895 895 
+Applying blur to image
+2.11392  85.7111  63.0744
+Current enhance: 896 910 
+Current enhance: 896 910 
+Current enhance: 896 910 
+Current enhance: 896 910 
+189.324  85.9053  65.1096
+Current enhance: 897 910 
+Current enhance: 897 910 
+Current enhance: 897 910 
+184.973  84.8618  62.6054
+Current enhance: 898 910 
+Current enhance: 898 910 
+191.002  85.9878  60.1875
+Current enhance: 899 910 
+Current enhance: 899 910 
+Current enhance: 899 910 
+Current enhance: 899 910 
+195.963  89.0025  61.1261
+Current enhance: 900 910 
+Current enhance: 900 910 
+Current enhance: 900 910 
+196.012  90.8349  61.3479
+Current enhance: 901 910 
+Current enhance: 901 910 
+Current enhance: 901 910 
+169.296  89.6847  59.5949
+Current enhance: 902 910 
+Current enhance: 902 910 
+Current enhance: 902 910 
+146.76  88.3485  58.4969
+Current enhance: 903 910 
+Current enhance: 903 910 
+132.761  89.4958  58.9901
+Current enhance: 904 910 
+Current enhance: 904 910 
+Current enhance: 904 910 
+Current enhance: 904 910 
+112.558  87.2549  57.9099
+Current enhance: 905 910 
+Current enhance: 905 910 
+Current enhance: 905 910 
+96.3739  85.4232  55.149
+Current enhance: 906 910 
+Current enhance: 906 910 
+Current enhance: 906 910 
+93.1985  84.9594  52.597
+Current enhance: 907 910 
+Current enhance: 907 910 
+Current enhance: 907 910 
+91.4083  85.8112  51.662
+Current enhance: 908 910 
+Current enhance: 908 910 
+Current enhance: 908 910 
+86.5102  88.653  53.0502
+Current enhance: 909 910 
+Current enhance: 909 910 
+Current enhance: 909 910 
+85.0273  92.1578  56.275
+Current enhance: 910 910 
+Current enhance: 910 910 
+Current enhance: 910 910 
+Applying blur to image
+1.62042  92.4803  56.5009
+Current enhance: 911 994 
+Current enhance: 911 994 
+Current enhance: 911 994 
+99.4186  92.3555  59.7732
+Current enhance: 912 994 
+Current enhance: 912 994 
+112.841  91.8718  61.2277
+Current enhance: 913 994 
+Current enhance: 913 994 
+Current enhance: 913 994 
+Current enhance: 913 994 
+123.342  91.4041  62.5722
+Current enhance: 914 994 
+Current enhance: 914 994 
+136.273  89.2653  66.7681
+Current enhance: 915 994 
+Current enhance: 915 994 
+Current enhance: 915 994 
+168.946  89.4322  71.6073
+Current enhance: 916 994 
+Current enhance: 916 994 
+Current enhance: 916 994 
+Current enhance: 916 994 
+203.032  95.5888  75.4898
+Current enhance: 917 994 
+Current enhance: 917 994 
+221.234  98.3397  78.201
+Current enhance: 918 994 
+Current enhance: 918 994 
+Current enhance: 918 994 
+Current enhance: 918 994 
+218.264  100.813  78.9068
+Current enhance: 919 994 
+Current enhance: 919 994 
+224.353  99.8592  80.5528
+Current enhance: 920 994 
+Current enhance: 920 994 
+Current enhance: 920 994 
+233.765  98.35  82.3709
+Current enhance: 921 994 
+Current enhance: 921 994 
+Current enhance: 921 994 
+Current enhance: 921 994 
+239.188  97.455  82.3774
+Current enhance: 922 994 
+Current enhance: 922 994 
+Current enhance: 922 994 
+255.259  96.2319  82.8642
+Current enhance: 923 994 
+Current enhance: 923 994 
+271.267  95.1903  84.1215
+Current enhance: 924 994 
+Current enhance: 924 994 
+Current enhance: 924 994 
+Current enhance: 924 994 
+267.892  94.8271  84.4893
+Current enhance: 925 994 
+Current enhance: 925 994 
+270.702  96.1468  84.6987
+Current enhance: 926 994 
+Current enhance: 926 994 
+Current enhance: 926 994 
+Current enhance: 926 994 
+268.301  98.2287  84.8742
+Current enhance: 927 994 
+Current enhance: 927 994 
+Current enhance: 927 994 
+275.859  99.3199  84.5865
+Current enhance: 928 994 
+Current enhance: 928 994 
+Current enhance: 928 994 
+286.595  100.466  85.8887
+Current enhance: 929 994 
+Current enhance: 929 994 
+288.842  101.259  85.7128
+Current enhance: 930 994 
+Current enhance: 930 994 
+Current enhance: 930 994 
+Current enhance: 930 994 
+283.368  101.301  85.3715
+Current enhance: 931 994 
+Current enhance: 931 994 
+Current enhance: 931 994 
+288.304  101.772  84.5581
+Current enhance: 932 994 
+Current enhance: 932 994 
+Current enhance: 932 994 
+282.73  103.055  83.5498
+Current enhance: 933 994 
+Current enhance: 933 994 
+Current enhance: 933 994 
+272.707  103.616  82.8251
+Current enhance: 934 994 
+Current enhance: 934 994 
+260.973  101.46  81.2223
+Current enhance: 935 994 
+Current enhance: 935 994 
+Current enhance: 935 994 
+242.671  100.178  79.4535
+Current enhance: 936 994 
+Current enhance: 936 994 
+Current enhance: 936 994 
+Current enhance: 936 994 
+238.797  99.4673  78.3008
+Current enhance: 937 994 
+Current enhance: 937 994 
+229.433  97.6469  78.1943
+Current enhance: 938 994 
+Current enhance: 938 994 
+Current enhance: 938 994 
+226.962  97.7488  76.8733
+Current enhance: 939 994 
+Current enhance: 939 994 
+Current enhance: 939 994 
+Current enhance: 939 994 
+234.349  97.91  76.1507
+Current enhance: 940 994 
+Current enhance: 940 994 
+234.423  94.109  76.7428
+Current enhance: 941 994 
+Current enhance: 941 994 
+Current enhance: 941 994 
+Current enhance: 941 994 
+235.192  91.4104  78.6845
+Current enhance: 942 994 
+Current enhance: 942 994 
+215.207  91.7737  79.0339
+Current enhance: 943 994 
+Current enhance: 943 994 
+Current enhance: 943 994 
+204.935  88.2312  80.7089
+Current enhance: 944 994 
+Current enhance: 944 994 
+Current enhance: 944 994 
+208.052  86.7278  81.1461
+Current enhance: 945 994 
+Current enhance: 945 994 
+Current enhance: 945 994 
+Current enhance: 945 994 
+210.38  86.2695  80.7925
+Current enhance: 946 994 
+Current enhance: 946 994 
+215.81  85.4383  79.8296
+Current enhance: 947 994 
+Current enhance: 947 994 
+Current enhance: 947 994 
+223.639  87.4807  79.6352
+Current enhance: 948 994 
+Current enhance: 948 994 
+Current enhance: 948 994 
+229.8  90.5  79.7936
+Current enhance: 949 994 
+Current enhance: 949 994 
+Current enhance: 949 994 
+234.814  91.9687  79.3589
+Current enhance: 950 994 
+Current enhance: 950 994 
+Current enhance: 950 994 
+Current enhance: 950 994 
+235.874  93.1074  78.3419
+Current enhance: 951 994 
+Current enhance: 951 994 
+Current enhance: 951 994 
+242.889  91.7887  78.4047
+Current enhance: 952 994 
+Current enhance: 952 994 
+Current enhance: 952 994 
+242.419  92.1518  79.0902
+Current enhance: 953 994 
+Current enhance: 953 994 
+Current enhance: 953 994 
+244.969  92.7983  80.1332
+Current enhance: 954 994 
+Current enhance: 954 994 
+Current enhance: 954 994 
+244.129  92.6586  81.3439
+Current enhance: 955 994 
+Current enhance: 955 994 
+Current enhance: 955 994 
+241.361  94.3275  82.3866
+Current enhance: 956 994 
+Current enhance: 956 994 
+Current enhance: 956 994 
+243.641  93.5401  81.2899
+Current enhance: 957 994 
+Current enhance: 957 994 
+Current enhance: 957 994 
+246.053  91.2574  80.33
+Current enhance: 958 994 
+Current enhance: 958 994 
+240.121  91.0733  80.7629
+Current enhance: 959 994 
+Current enhance: 959 994 
+Current enhance: 959 994 
+Current enhance: 959 994 
+247.247  91.7211  80.6575
+Current enhance: 960 994 
+Current enhance: 960 994 
+255.372  90.9726  80.2861
+Current enhance: 961 994 
+Current enhance: 961 994 
+Current enhance: 961 994 
+255.012  91.0163  80.2109
+Current enhance: 962 994 
+Current enhance: 962 994 
+Current enhance: 962 994 
+Current enhance: 962 994 
+257.353  90.3774  81.2956
+Current enhance: 963 994 
+Current enhance: 963 994 
+263.066  90.3313  81.7379
+Current enhance: 964 994 
+Current enhance: 964 994 
+Current enhance: 964 994 
+267.081  90.7809  82.3345
+Current enhance: 965 994 
+Current enhance: 965 994 
+Current enhance: 965 994 
+Current enhance: 965 994 
+278.38  92.1642  82.7263
+Current enhance: 966 994 
+Current enhance: 966 994 
+276.073  94.2848  83.2547
+Current enhance: 967 994 
+Current enhance: 967 994 
+Current enhance: 967 994 
+278.986  96.4919  83.07
+Current enhance: 968 994 
+Current enhance: 968 994 
+Current enhance: 968 994 
+280.517  97.8189  82.7625
+Current enhance: 969 994 
+Current enhance: 969 994 
+Current enhance: 969 994 
+Current enhance: 969 994 
+282.786  96.2128  82.0773
+Current enhance: 970 994 
+Current enhance: 970 994 
+Current enhance: 970 994 
+270.515  95.2889  81.1165
+Current enhance: 971 994 
+Current enhance: 971 994 
+254.857  94.4072  81.3033
+Current enhance: 972 994 
+Current enhance: 972 994 
+Current enhance: 972 994 
+Current enhance: 972 994 
+257.935  92.9519  81.7673
+Current enhance: 973 994 
+Current enhance: 973 994 
+Current enhance: 973 994 
+259.676  92.1804  81.4915
+Current enhance: 974 994 
+Current enhance: 974 994 
+Current enhance: 974 994 
+253.811  90.0757  80.7587
+Current enhance: 975 994 
+Current enhance: 975 994 
+Current enhance: 975 994 
+247.794  89.2218  81.1094
+Current enhance: 976 994 
+Current enhance: 976 994 
+245.649  90.0901  81.6118
+Current enhance: 977 994 
+Current enhance: 977 994 
+Current enhance: 977 994 
+245.255  88.1632  80.8962
+Current enhance: 978 994 
+Current enhance: 978 994 
+Current enhance: 978 994 
+Current enhance: 978 994 
+237.265  84.0804  79.2808
+Current enhance: 979 994 
+Current enhance: 979 994 
+Current enhance: 979 994 
+241.923  89.0018  76.4189
+Current enhance: 980 994 
+Current enhance: 980 994 
+Current enhance: 980 994 
+235.743  90.4805  76.4872
+Current enhance: 981 994 
+Current enhance: 981 994 
+238.738  91.4033  76.8706
+Current enhance: 982 994 
+Current enhance: 982 994 
+Current enhance: 982 994 
+240.836  93.8281  77.0795
+Current enhance: 983 994 
+Current enhance: 983 994 
+Current enhance: 983 994 
+Current enhance: 983 994 
+242.657  95.1397  77.8821
+Current enhance: 984 994 
+Current enhance: 984 994 
+Current enhance: 984 994 
+245.406  94.8734  78.7735
+Current enhance: 985 994 
+Current enhance: 985 994 
+Current enhance: 985 994 
+245.741  93.877  79.4041
+Current enhance: 986 994 
+Current enhance: 986 994 
+247.632  93.3426  80.184
+Current enhance: 987 994 
+Current enhance: 987 994 
+Current enhance: 987 994 
+Current enhance: 987 994 
+249.457  94.1135  81.2121
+Current enhance: 988 994 
+Current enhance: 988 994 
+258.557  93.4163  82.998
+Current enhance: 989 994 
+Current enhance: 989 994 
+Current enhance: 989 994 
+Current enhance: 989 994 
+258.393  97.0073  83.7911
+Current enhance: 990 994 
+Current enhance: 990 994 
+259.752  93.7549  85.9227
+Current enhance: 991 994 
+Current enhance: 991 994 
+Current enhance: 991 994 
+Current enhance: 991 994 
+269.101  91.0619  87.239
+Current enhance: 992 994 
+Current enhance: 992 994 
+268.525  92.6794  88.1811
+Current enhance: 993 994 
+Current enhance: 993 994 
+Current enhance: 993 994 
+Current enhance: 993 994 
+268.736  93.605  88.9426
+Current enhance: 994 994 
+Current enhance: 994 994 
+Applying blur to image
+3.0651  95.1003  86.2131
+Current enhance: 995 1012 
+Current enhance: 995 1012 
+Current enhance: 995 1012 
+262.936  94.8431  89.0439
+Current enhance: 996 1012 
+Current enhance: 996 1012 
+Current enhance: 996 1012 
+260.596  93.6184  88.5859
+Current enhance: 997 1012 
+Current enhance: 997 1012 
+Current enhance: 997 1012 
+257.851  91.7817  88.1242
+Current enhance: 998 1012 
+Current enhance: 998 1012 
+Current enhance: 998 1012 
+261.159  92.131  88.4528
+Current enhance: 999 1012 
+Current enhance: 999 1012 
+Current enhance: 999 1012 
+Current enhance: 999 1012 
+267.545  92.0038  88.1136
+Current enhance: 1000 1012 
+Current enhance: 1000 1012 
+273.46  91.564  86.8003
+Current enhance: 1001 1012 
+Current enhance: 1001 1012 
+Current enhance: 1001 1012 
+Current enhance: 1001 1012 
+267.823  91.1557  86.1524
+Current enhance: 1002 1012 
+Current enhance: 1002 1012 
+Current enhance: 1002 1012 
+269.112  92.9609  85.8157
+Current enhance: 1003 1012 
+Current enhance: 1003 1012 
+Current enhance: 1003 1012 
+266.229  92.8929  84.7057
+Current enhance: 1004 1012 
+Current enhance: 1004 1012 
+273.592  93.1503  83.8308
+Current enhance: 1005 1012 
+Current enhance: 1005 1012 
+Current enhance: 1005 1012 
+Current enhance: 1005 1012 
+271.269  94.009  83.4143
+Current enhance: 1006 1012 
+Current enhance: 1006 1012 
+267.761  92.5584  82.6805
+Current enhance: 1007 1012 
+Current enhance: 1007 1012 
+Current enhance: 1007 1012 
+Current enhance: 1007 1012 
+267.011  92.2927  82.5226
+Current enhance: 1008 1012 
+Current enhance: 1008 1012 
+270.973  92.231  82.2425
+Current enhance: 1009 1012 
+Current enhance: 1009 1012 
+Current enhance: 1009 1012 
+272.688  91.8667  81.825
+Current enhance: 1010 1012 
+Current enhance: 1010 1012 
+Current enhance: 1010 1012 
+Current enhance: 1010 1012 
+274.627  91.7106  81.6912
+Current enhance: 1011 1012 
+Current enhance: 1011 1012 
+277.139  92.3261  81.671
+Current enhance: 1012 1012 
+Current enhance: 1012 1012 
+Current enhance: 1012 1012 
+Applying blur to image
+3.13263  93.5522  78.4447
+Current enhance: 1013 1019 
+Current enhance: 1013 1019 
+Current enhance: 1013 1019 
+Current enhance: 1013 1019 
+271.029  94.2718  82.0653
+Current enhance: 1014 1019 
+Current enhance: 1014 1019 
+Current enhance: 1014 1019 
+277.396  94.967  81.7627
+Current enhance: 1015 1019 
+Current enhance: 1015 1019 
+Current enhance: 1015 1019 
+276.176  95.3437  81.786
+Current enhance: 1016 1019 
+Current enhance: 1016 1019 
+Current enhance: 1016 1019 
+282.098  96.2489  81.822
+Current enhance: 1017 1019 
+Current enhance: 1017 1019 
+278.703  96.3316  81.7564
+Current enhance: 1018 1019 
+Current enhance: 1018 1019 
+Current enhance: 1018 1019 
+Current enhance: 1018 1019 
+277.168  96.7806  81.4717
+Current enhance: 1019 1019 
+Current enhance: 1019 1019 
+Applying blur to image
+3.00914  97.4741  77.7576
+Current enhance: 1020 1027 
+Current enhance: 1020 1027 
+Current enhance: 1020 1027 
+273.822  96.8813  80.135
+Current enhance: 1021 1027 
+Current enhance: 1021 1027 
+Current enhance: 1021 1027 
+Current enhance: 1021 1027 
+276.44  96.7001  79.8033
+Current enhance: 1022 1027 
+Current enhance: 1022 1027 
+Current enhance: 1022 1027 
+271.423  95.2086  79.0845
+Current enhance: 1023 1027 
+Current enhance: 1023 1027 
+Current enhance: 1023 1027 
+268.722  93.768  78.2495
+Current enhance: 1024 1027 
+Current enhance: 1024 1027 
+273.143  92.2532  76.8785
+Current enhance: 1025 1027 
+Current enhance: 1025 1027 
+Current enhance: 1025 1027 
+Current enhance: 1025 1027 
+278.741  91.3863  75.3761
+Current enhance: 1026 1027 
+Current enhance: 1026 1027 
+Current enhance: 1026 1027 
+279.229  91.5601  74.3942
+Current enhance: 1027 1027 
+Current enhance: 1027 1027 
+Applying blur to image
+3.0572  92.5251  70.2623
+Current enhance: 1028 1035 
+Current enhance: 1028 1035 
+Current enhance: 1028 1035 
+Current enhance: 1028 1035 
+285.694  92.1804  73.5784
+Current enhance: 1029 1035 
+Current enhance: 1029 1035 
+295.92  91.538  73.7322
+Current enhance: 1030 1035 
+Current enhance: 1030 1035 
+Current enhance: 1030 1035 
+Current enhance: 1030 1035 
+301.409  91.834  73.512
+Current enhance: 1031 1035 
+Current enhance: 1031 1035 
+Current enhance: 1031 1035 
+305.402  92.3864  73.2914
+Current enhance: 1032 1035 
+Current enhance: 1032 1035 
+303.581  92.4675  72.765
+Current enhance: 1033 1035 
+Current enhance: 1033 1035 
+Current enhance: 1033 1035 
+Current enhance: 1033 1035 
+303.928  92.057  72.6209
+Current enhance: 1034 1035 
+Current enhance: 1034 1035 
+310.757  91.7455  72.6428
+Current enhance: 1035 1035 
+Current enhance: 1035 1035 
+Current enhance: 1035 1035 
+Applying blur to image
+3.29854  91.3339  68.429
+Current enhance: 1036 1082 
+Current enhance: 1036 1082 
+Current enhance: 1036 1082 
+Current enhance: 1036 1082 
+317.755  91.2688  72.8172
+Current enhance: 1037 1082 
+Current enhance: 1037 1082 
+316.845  91.0277  73.1725
+Current enhance: 1038 1082 
+Current enhance: 1038 1082 
+Current enhance: 1038 1082 
+318.296  91.2361  73.4759
+Current enhance: 1039 1082 
+Current enhance: 1039 1082 
+Current enhance: 1039 1082 
+313.892  91.3115  74.0271
+Current enhance: 1040 1082 
+Current enhance: 1040 1082 
+Current enhance: 1040 1082 
+Current enhance: 1040 1082 
+309.935  91.2564  74.4143
+Current enhance: 1041 1082 
+Current enhance: 1041 1082 
+Current enhance: 1041 1082 
+309.813  91.2208  74.5046
+Current enhance: 1042 1082 
+Current enhance: 1042 1082 
+301.475  91.2584  74.818
+Current enhance: 1043 1082 
+Current enhance: 1043 1082 
+Current enhance: 1043 1082 
+Current enhance: 1043 1082 
+295.463  91.0404  75.0186
+Current enhance: 1044 1082 
+Current enhance: 1044 1082 
+Current enhance: 1044 1082 
+288.651  90.8159  75.4988
+Current enhance: 1045 1082 
+Current enhance: 1045 1082 
+281.044  89.8499  75.5674
+Current enhance: 1046 1082 
+Current enhance: 1046 1082 
+Current enhance: 1046 1082 
+Current enhance: 1046 1082 
+271.779  88.6406  75.4253
+Current enhance: 1047 1082 
+Current enhance: 1047 1082 
+Current enhance: 1047 1082 
+264.633  88.2834  75.1712
+Current enhance: 1048 1082 
+Current enhance: 1048 1082 
+257.196  87.7792  74.7172
+Current enhance: 1049 1082 
+Current enhance: 1049 1082 
+Current enhance: 1049 1082 
+Current enhance: 1049 1082 
+252.141  87.712  74.5357
+Current enhance: 1050 1082 
+Current enhance: 1050 1082 
+248.071  88.0398  74.2855
+Current enhance: 1051 1082 
+Current enhance: 1051 1082 
+Current enhance: 1051 1082 
+239.287  90.3993  73.8063
+Current enhance: 1052 1082 
+Current enhance: 1052 1082 
+Current enhance: 1052 1082 
+224.268  93.0192  72.9161
+Current enhance: 1053 1082 
+Current enhance: 1053 1082 
+Current enhance: 1053 1082 
+Current enhance: 1053 1082 
+216.915  91.3326  72.6801
+Current enhance: 1054 1082 
+Current enhance: 1054 1082 
+Current enhance: 1054 1082 
+213.532  90.0048  72.5813
+Current enhance: 1055 1082 
+Current enhance: 1055 1082 
+Current enhance: 1055 1082 
+216.605  89.5784  72.57
+Current enhance: 1056 1082 
+Current enhance: 1056 1082 
+Current enhance: 1056 1082 
+216.465  89.7379  72.8789
+Current enhance: 1057 1082 
+Current enhance: 1057 1082 
+219.522  89.6512  73.0627
+Current enhance: 1058 1082 
+Current enhance: 1058 1082 
+Current enhance: 1058 1082 
+Current enhance: 1058 1082 
+219.838  89.0936  73.5422
+Current enhance: 1059 1082 
+Current enhance: 1059 1082 
+217.424  88.77  74.3823
+Current enhance: 1060 1082 
+Current enhance: 1060 1082 
+Current enhance: 1060 1082 
+Current enhance: 1060 1082 
+216.845  87.9915  74.6104
+Current enhance: 1061 1082 
+Current enhance: 1061 1082 
+218.843  87.6016  74.6846
+Current enhance: 1062 1082 
+Current enhance: 1062 1082 
+Current enhance: 1062 1082 
+222.892  87.6637  75.0895
+Current enhance: 1063 1082 
+Current enhance: 1063 1082 
+Current enhance: 1063 1082 
+Current enhance: 1063 1082 
+226.272  87.733  75.7162
+Current enhance: 1064 1082 
+Current enhance: 1064 1082 
+228.648  88.5073  76.804
+Current enhance: 1065 1082 
+Current enhance: 1065 1082 
+Current enhance: 1065 1082 
+Current enhance: 1065 1082 
+230.974  88.491  77.7772
+Current enhance: 1066 1082 
+Current enhance: 1066 1082 
+231.827  87.3469  77.9501
+Current enhance: 1067 1082 
+Current enhance: 1067 1082 
+Current enhance: 1067 1082 
+230.784  86.6171  78.2352
+Current enhance: 1068 1082 
+Current enhance: 1068 1082 
+Current enhance: 1068 1082 
+Current enhance: 1068 1082 
+232.072  87.6339  78.7279
+Current enhance: 1069 1082 
+Current enhance: 1069 1082 
+Current enhance: 1069 1082 
+237.242  89.9784  79.0854
+Current enhance: 1070 1082 
+Current enhance: 1070 1082 
+Current enhance: 1070 1082 
+243.104  91.0068  79.0946
+Current enhance: 1071 1082 
+Current enhance: 1071 1082 
+Current enhance: 1071 1082 
+245.076  89.2365  79.4985
+Current enhance: 1072 1082 
+Current enhance: 1072 1082 
+261.498  88.0253  79.4562
+Current enhance: 1073 1082 
+Current enhance: 1073 1082 
+Current enhance: 1073 1082 
+Current enhance: 1073 1082 
+275.386  88.5051  79.2365
+Current enhance: 1074 1082 
+Current enhance: 1074 1082 
+Current enhance: 1074 1082 
+287.679  88.7789  79.0381
+Current enhance: 1075 1082 
+Current enhance: 1075 1082 
+306.864  88.8692  78.9345
+Current enhance: 1076 1082 
+Current enhance: 1076 1082 
+Current enhance: 1076 1082 
+Current enhance: 1076 1082 
+318.301  88.4402  78.6498
+Current enhance: 1077 1082 
+Current enhance: 1077 1082 
+Current enhance: 1077 1082 
+327.298  88.012  78.1862
+Current enhance: 1078 1082 
+Current enhance: 1078 1082 
+327.594  87.7415  77.5467
+Current enhance: 1079 1082 
+Current enhance: 1079 1082 
+Current enhance: 1079 1082 
+332.033  86.8577  76.5588
+Current enhance: 1080 1082 
+Current enhance: 1080 1082 
+Current enhance: 1080 1082 
+Current enhance: 1080 1082 
+325.513  87.1961  76.3964
+Current enhance: 1081 1082 
+Current enhance: 1081 1082 
+332.948  89.867  77.1949
+Current enhance: 1082 1082 
+Current enhance: 1082 1082 
+Current enhance: 1082 1082 
+Applying blur to image
+2.76348  90.5168  73.0261
+Current enhance: 1083 1210 
+Current enhance: 1083 1210 
+Current enhance: 1083 1210 
+Current enhance: 1083 1210 
+336.493  88.3642  74.7865
+Current enhance: 1084 1210 
+Current enhance: 1084 1210 
+Current enhance: 1084 1210 
+339.865  87.8577  74.7775
+Current enhance: 1085 1210 
+Current enhance: 1085 1210 
+338.765  87.5126  74.3695
+Current enhance: 1086 1210 
+Current enhance: 1086 1210 
+Current enhance: 1086 1210 
+337.893  88.5379  74.3888
+Current enhance: 1087 1210 
+Current enhance: 1087 1210 
+Current enhance: 1087 1210 
+336.187  88.3864  74.4958
+Current enhance: 1088 1210 
+Current enhance: 1088 1210 
+Current enhance: 1088 1210 
+Current enhance: 1088 1210 
+337.437  88.9084  74.8589
+Current enhance: 1089 1210 
+Current enhance: 1089 1210 
+Current enhance: 1089 1210 
+330.613  89.1195  75.1544
+Current enhance: 1090 1210 
+Current enhance: 1090 1210 
+329.812  89.3971  75.3809
+Current enhance: 1091 1210 
+Current enhance: 1091 1210 
+Current enhance: 1091 1210 
+Current enhance: 1091 1210 
+332.525  89.9137  75.6203
+Current enhance: 1092 1210 
+Current enhance: 1092 1210 
+330.372  89.8042  75.6245
+Current enhance: 1093 1210 
+Current enhance: 1093 1210 
+Current enhance: 1093 1210 
+329.804  90.1937  75.7799
+Current enhance: 1094 1210 
+Current enhance: 1094 1210 
+Current enhance: 1094 1210 
+Current enhance: 1094 1210 
+335.548  91.6313  76.3559
+Current enhance: 1095 1210 
+Current enhance: 1095 1210 
+Current enhance: 1095 1210 
+325.743  91.4556  76.4563
+Current enhance: 1096 1210 
+Current enhance: 1096 1210 
+Current enhance: 1096 1210 
+322.407  90.6934  76.2493
+Current enhance: 1097 1210 
+Current enhance: 1097 1210 
+Current enhance: 1097 1210 
+319.907  89.945  76.0824
+Current enhance: 1098 1210 
+Current enhance: 1098 1210 
+316.548  89.9373  76.0343
+Current enhance: 1099 1210 
+Current enhance: 1099 1210 
+Current enhance: 1099 1210 
+Current enhance: 1099 1210 
+316.799  89.6695  75.95
+Current enhance: 1100 1210 
+Current enhance: 1100 1210 
+317.646  89.9544  75.9654
+Current enhance: 1101 1210 
+Current enhance: 1101 1210 
+Current enhance: 1101 1210 
+Current enhance: 1101 1210 
+315.617  89.9617  75.9404
+Current enhance: 1102 1210 
+Current enhance: 1102 1210 
+318.399  89.7848  75.8579
+Current enhance: 1103 1210 
+Current enhance: 1103 1210 
+Current enhance: 1103 1210 
+318.22  89.787  75.7663
+Current enhance: 1104 1210 
+Current enhance: 1104 1210 
+Current enhance: 1104 1210 
+317.735  89.9049  75.7337
+Current enhance: 1105 1210 
+Current enhance: 1105 1210 
+Current enhance: 1105 1210 
+320.808  90.2188  75.7492
+Current enhance: 1106 1210 
+End of program.

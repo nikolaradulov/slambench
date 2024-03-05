@@ -1,0 +1,49 @@
+{
+    "frames": [
+        {
+            "id_range": [1,30],
+            "camera": [
+                "contrast"
+            ],
+            "sensor_settings": {
+                "camera": {
+                    "mean": 100,
+                    "standard_deviation": 10,
+                    "kernel_size": 1,
+                    "brightness": 200,
+                    "contrast": 255
+                }
+            }
+        },
+        {
+            "id_range": [660, 690],
+            "camera": [
+                "contrast"
+            ],
+            "sensor_settings": {
+                "camera": {
+                    "mean": 100,
+                    "standard_deviation": 10,
+                    "kernel_size": 1,
+                    "brightness": 200,
+                    "contrast": 255
+                }
+            }
+        },
+        {
+            "id_range": [100,130],
+            "camera": [
+                "contrast"
+            ],
+            "sensor_settings": {
+                "camera": {
+                    "mean": 100,
+                    "standard_deviation": 10,
+                    "kernel_size": 1,
+                    "brightness": 200,
+                    "contrast": -255
+                }
+            }
+        }
+    ]
+}
