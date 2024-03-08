@@ -411,19 +411,24 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     auto lib = slam_libs_[i];
                     // ********* [[ SEND THE FRAME ]] *********
                     ongoing = not lib->c_sb_update_frame(lib, current_frame);
-
-                    // This algorithm hasn't received enough frames yet.
-                    if (ongoing) {
-                        continue;
-                    }
                     //  Id increase only when all necessary data has been provided
                     // for multiple algorithms support accepted_frames can be vectorised, along with current tracking
+                    
+                    //  process once might happen in update_frame
+                    //  so we need to check that the frame was used and if it was advance the tracker for enhancement
                     accepted_frames = lib->frame_counter;
                     // if finished with this frame , and the enhace happened then get next enhance
                     if(!this->frameFilters.empty() && current_enhance.first<accepted_frames && this->enhance_mode_){
                         current_enhance = this->frameFilters.back();
                         this->frameFilters.pop_back();
                     }    
+                    
+                    // This algorithm hasn't received enough frames yet.
+                    if (ongoing) {
+                        continue;
+                    }
+                   
+                    
                     // ********* [[ PROCESS ALGO START ]] *********
                     lib->GetMetricManager().BeginFrame();
                     slambench::TimeStamp ts = current_frame->Timestamp;
@@ -465,6 +470,12 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                             buffer->resetLock();
                         }
                     }
+                    //  the frame might've been consumed in process_once, so we check and advance
+                    accepted_frames = lib->frame_counter;
+                    if(!this->frameFilters.empty() && current_enhance.first<accepted_frames && this->enhance_mode_){
+                        current_enhance = this->frameFilters.back();
+                        this->frameFilters.pop_back();
+                    } 
 
                     if (!lib->c_sb_update_outputs(lib, &ts)) {
                         std::cerr << "Failed to get outputs" << std::endl;
