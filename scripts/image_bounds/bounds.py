@@ -14,7 +14,8 @@ fail_points={
     "icl-nuim": 1,
     "kitty" : 100,
     "icl-nuim3": 1,
-    "icl-nuim0": 1
+    "icl-nuim0": 1,
+    "tum": 1
 }
 
 no_frames={
@@ -33,8 +34,8 @@ no_frames={
     "tum":{
         "test": 1362,
         "lsd": 1362, 
-        "orbslam3": 1359,
-        "orbslam2": 1359
+        "orbslam3": 594,
+        "orbslam2": 594
 
     },
     "icl-nuim":{
@@ -66,13 +67,17 @@ dataset_names = {
     "icl-nuim": "icl-nuim traj 2",
     "kitty" : "Kitty",
     "icl-nuim3": "icl-nuim traj 3",
-    "icl-nuim0": "icl-nuim traj 0"
+    "icl-nuim0": "icl-nuim traj 0",
+    "tum": "Tum Freiburg1 desk"
 }
 def parse_log_file(log_file_path):
     with open(log_file_path, 'r') as file:
         lines = file.readlines()
     found_table= False
+    fail= False
     mean_ate_values = []
+    current_coord=None
+    consecutive_count = 0
     for line in lines:
         if line.startswith('Frame Number'):
             found_table=True
@@ -82,7 +87,15 @@ def parse_log_file(log_file_path):
             ate_rmse = float(values[2])
             if not math.isnan(ate_rmse):
                 mean_ate_values.append(ate_rmse)
-    return np.array(mean_ate_values)
+            coord = (float(values[10]), float(values[11]), float(values[12]))
+            if coord == current_coord:
+                consecutive_count += 1
+                if consecutive_count > 2000:
+                    fail = True    # Violation detected
+            else:
+                current_coord = coord
+                consecutive_count = 1
+    return np.array(mean_ate_values), fail
 
 
 def read_modified_frame_ids(json_file):
@@ -122,7 +135,8 @@ def get_default_metrics(dataset_folder):
     # print(metrics)
     errors=[]
     for i in range(1,5):
-        errors.append(np.mean(parse_log_file(os.path.join(base_folder, "log_file.txt"))))
+        ates, _ = parse_log_file(os.path.join(base_folder, "log_file.txt"))
+        errors.append(np.mean(ates))
         base_folder=os.path.join(dataset_folder, f"base_{i+1}")
     return metrics, np.mean(errors) 
 
@@ -142,6 +156,7 @@ def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
     total_values=[]
     total_ates=[]
     base_quality, base_error = get_default_metrics(dataset_folder)
+    print(base_error)
     for frame_folder in frame_folders:
         # if dataset_name=="icl-nuim3" and frame_folder!="frames90":
         #     continue
@@ -183,18 +198,20 @@ def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
                 modified_ids = read_modified_frame_ids(os.path.join(exp_path, "conf.json"))
                 quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
                 # print(quality_metrics[modified_ids[4]])
-                mean_ate_values = parse_log_file(log_file_path)
+                mean_ate_values, failed = parse_log_file(log_file_path)
+                
                 quality_metric = compute_mean_metric(quality_metrics, modified_ids, filter_type)
                 
                 mean_values_all_runs.append(quality_metric)
                 measured_change_all_runs.append(compute_avg_quality_diff(quality_metrics, base_quality, modified_ids, filter_type))
                 # just in case give some liniency
-                if(len(mean_ate_values)<no_frames[dataset_name][slam_alg]-20):
+                if(len(mean_ate_values)<no_frames[dataset_name][slam_alg]-20 or failed):
                     mean_ate_values_all_runs.append(fail_points[dataset_name]-base_error)
                     fail_flag-=1
                 else:
+                    # print(np.mean(mean_ate_values))
                     mean_ate_values_all_runs.append(np.mean(mean_ate_values)-base_error)
-                # print(mean_values_all_runs)
+            # print(mean_ate_values_all_runs)
             mean_values.append(np.mean(mean_values_all_runs))
             ate_per_filer.append(np.mean(mean_ate_values_all_runs))
             value_change.append(np.mean(measured_change_all_runs))
@@ -216,7 +233,11 @@ def plot_filter_data(filter_type,slam_name_folder):
     aggregated_filters = []
     aggregated_values = []
     aggregated_ates=[]
+    aggregated_pfail = {'x':[], 'y':[]}
+    aggregated_fail = {'x':[], 'y':[]}
     for dataset_folder in dataset_folders:
+        if dataset_folder == "tum":
+            continue
         if dataset_folder == "kitty":
             continue
         print(f"----> Retrieving from {dataset_folder}")
@@ -224,22 +245,28 @@ def plot_filter_data(filter_type,slam_name_folder):
         # get filter data for specific filter and dataset
         filters, mean_values, ates , fail, pfail = get_mean_ate_evolution(dataset_path, filter_type, dataset_folder)
         # ates = ates/(fail/_points[dataset_folder]/2)
+        print(mean_values, ates)
         plt.plot(filters, ates, label=f'{dataset_names[dataset_folder]}')
-        plt.scatter(filters, ates, c=mean_values, cmap='coolwarm')
-        plt.scatter(fail['x'], fail['y'], marker='X', label='Total failure', c='black')
-        plt.scatter(pfail['x'], pfail['y'], marker='x', label='Partial failure', c='black')
+        # plt.scatter(fail['x'], fail['y'], marker='+', label='Total failure', c='black')
+        # plt.scatter(pfail['x'], pfail['y'], marker='x', label='Partial failure', c='black')
+        aggregated_fail['x'].extend(fail['x'])
+        aggregated_pfail['x'].extend(pfail['x'])
+        aggregated_fail['y'].extend(fail['y'])
+        aggregated_pfail['y'].extend(pfail['y'])
         aggregated_filters.extend(filters)
         aggregated_values.extend(mean_values)
         aggregated_ates.extend(ates)
+    
+    plt.scatter(aggregated_filters, aggregated_ates, c=aggregated_values, cmap='coolwarm', s=60)
     # aggregated_ates = aggregated_ates / np.max(aggregated_ates)
     # fig = plt.figure()
     # ax = fig.add_subplot( projection='3d')
-    xi = np.linspace(min(aggregated_values), max(aggregated_values), 1000)
-    yi = np.linspace(min(aggregated_filters), max(aggregated_filters), 1000)
-    xi, yi = np.meshgrid(xi, yi)
+    # xi = np.linspace(min(aggregated_values), max(aggregated_values), 1000)
+    # yi = np.linspace(min(aggregated_filters), max(aggregated_filters), 1000)
+    # xi, yi = np.meshgrid(xi, yi)
 
     # Perform Delaunay triangulation and interpolate values
-    zi = griddata((aggregated_values, aggregated_filters), aggregated_ates, (xi, yi), method='linear')
+    # zi = griddata((aggregated_values, aggregated_filters), aggregated_ates, (xi, yi), method='linear')
     # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
     # Plot the data points
     # ax.plot_surface(xi, yi, zi, cmap='viridis', edgecolor='none')
@@ -257,6 +284,12 @@ def plot_filter_data(filter_type,slam_name_folder):
     # ax.set_zlabel('Error')
     # ax.set_title(f'3D Scatter Plot {filter_type}')
     plt.title(f'{filter_type} influence on error')
+    
+    cbar = plt.colorbar()
+    cbar.set_label('Average Quality metric')
+    plt.scatter(aggregated_fail['x'], aggregated_fail['y'], marker='x', label='Total failure', c='black')
+    plt.scatter(aggregated_pfail['x'], aggregated_pfail['y'], marker='+', label='Partial failure', c='black')
+    
     # Create a dictionary to store unique labels and corresponding handles
     handles, labels = plt.gca().get_legend_handles_labels()
     unique_labels = {}
@@ -266,11 +299,9 @@ def plot_filter_data(filter_type,slam_name_folder):
     plt.legend(unique_labels.values(), unique_labels.keys(),loc='upper center', bbox_to_anchor=(0.5, -0.2), shadow=True, ncol=3)
     # plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), shadow=True, ncol=3)
     plt.subplots_adjust(bottom=0.3) 
-    cbar = plt.colorbar()
-    cbar.set_label('Average Quality metric')
     plt.grid(True)
-    plt.savefig("brightness_orbslam2.png")
-    # plt.show()
+    # plt.savefig("brightness_orbslam2.png")
+    plt.show()
 # Main function1
 slam_alg= None
 def main():
@@ -280,7 +311,7 @@ def main():
         slam_alg = os.path.basename(slam_folder.rstrip('/'))
     else:
         exit(1)
-    plot_filter_data("brightness", slam_folder)
+    plot_filter_data("contrast", slam_folder)
 
 
 if __name__ == "__main__":
