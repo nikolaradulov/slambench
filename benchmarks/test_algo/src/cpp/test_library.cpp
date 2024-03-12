@@ -51,7 +51,7 @@ void static im_compute_metrics(const cv::Mat image)
 
     /* ---------- Compute Image Quality ------------ */
     cv::Mat laplacian, absLaplacian;
-    imRGB = new cv::Mat (rgb_sensor->Height, rgb_sensor->Width,CV_8UC3);
+    
     // Sharpness: Variance of Laplacian
     cv::Laplacian(current_image, laplacian, CV_64F);
     cv::convertScaleAbs(laplacian, absLaplacian);
@@ -111,7 +111,7 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
     grey_frame_output = new slambench::outputs::Output("Grey Frame", slambench::values::VT_FRAME);
     grey_frame_output->SetKeepOnlyMostRecent(true);
     slam_settings->GetOutputManager().RegisterOutput(grey_frame_output);
-
+    imRGB = new cv::Mat (rgb_sensor->Height, rgb_sensor->Width,CV_8UC3);
     greyInputSize   = make_sb_uint2(grey_sensor->Width, grey_sensor->Height);
     grey_raw.resize(grey_sensor->Height * grey_sensor->Width);
    
@@ -121,6 +121,7 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
 bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
     // check that the right sensor is associated with the frame
     // only do stuff is so 
+    
     if(s->FrameSensor==grey_sensor){
         memcpy(grey_raw.data(), s->GetData(), s->GetSize());
         latest_frame = s->Timestamp;
@@ -148,6 +149,7 @@ bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
 bool sb_process_once(SLAMBenchLibraryHelper * slam_settings){
     // nothing to do for a fake
     slam_settings->frame_counter++;
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     return true;
 }
 
@@ -169,8 +171,8 @@ bool sb_update_outputs(SLAMBenchLibraryHelper *slam_settings, const slambench::T
    
     if(grey_frame_output->IsActive()) {
 		std::lock_guard<FastLock> lock (slam_settings->GetOutputManager().GetLock());
-
-		grey_frame_output->AddPoint(latest_frame, new slambench::values::FrameValue(greyInputSize.x, greyInputSize.y, slambench::io::pixelformat::G_I_8, (void*) &(grey_raw.at(0))));
+        grey_frame_output->AddPoint(latest_frame, new slambench::values::FrameValue(greyInputSize.x, greyInputSize.y, slambench::io::pixelformat::RGB_III_888, (void*)(imRGB->data)));
+		// grey_frame_output->AddPoint(latest_frame, new slambench::values::FrameValue(greyInputSize.x, greyInputSize.y, slambench::io::pixelformat::G_I_8, (void*) &(grey_raw.at(0))));
 	}
 
    
