@@ -35,13 +35,18 @@ contrast_step = 255/granularity
 # contrast_inv_step = 1/granularity
 blur_step = 10/granularity
 steps ={"blur":blur_step, "contrast":contrast_step, "brightness":brightness_step }
-filters = {
-    0:"base",
-    1:"blur", 
-    2:"contrast",
-    3:"brightness" 
-    # 4:"noise"
-    }
+# filters = {
+#     0:"base",
+#     1:"blur", 
+#     2:"contrast",
+#     3:"brightness" 
+#     # 4:"noise"
+#     }
+filters=[
+    "base",
+    "blur",
+    "contrast"
+]
 base ={ "blur":1, "contrast":1, "brightness":0}
 no_frames={
     "kitty": {
@@ -216,6 +221,7 @@ def generate_all_commands():
                         dir_path = f"{prefix}/{algorithm}/{dataset}/base_{j+1}"
                         os.makedirs(Path(dir_path), exist_ok=True)
                         commands.append(f"./build/bin/slambench -i ~/slambench/{dataset_paths[dataset]} -load {algorithm_paths[algorithm]} --log-file {dir_path}/log_file.txt -img {dir_path}/image_metrics.txt")
+                        paths.append(dir_path)
                 else:
 
                     for frame_idx in range(frame_step, max_frames+1, frame_step):
@@ -232,14 +238,14 @@ def generate_all_commands():
                         for i in range(0,granularity+1):
                             # skip 0 value for blur
                             for turn in range(repeats):
-                                setting = i*steps[filters[filter]]
-                                new_command, dir_path = generate_command(filters[filter], setting, algorithm, dataset, frame_idx, turn, frame_rand)
+                                setting = i*steps[filter]
+                                new_command, dir_path = generate_command(filter, setting, algorithm, dataset, frame_idx, turn, frame_rand)
                                 commands.append(new_command)
                                 paths.append(dir_path)
                                 #  do reverse for brightness and contrast
                                 if(filter == "brightness" or filter == "contrast") and i!=0:
                                     setting=-setting
-                                    new_command, dir_path = generate_command(filters[filter], setting, algorithm, dataset, frame_idx, turn, frame_rand)
+                                    new_command, dir_path = generate_command(filter, setting, algorithm, dataset, frame_idx, turn, frame_rand)
                                     commands.append(new_command)
                                     paths.append(dir_path)
     assert len(commands) == len(paths)
