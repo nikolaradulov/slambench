@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import subprocess
 from multiprocessing import Pool, cpu_count
+import re
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
@@ -19,7 +20,7 @@ datasets=[
     # 'tum2_xzy',
     # 'tum2_rpy'
 ]
-algorithms=["orbslam3"]
+algorithms=["orbslam2"]
 repeats = 5
 base_repeat = 5
 granularity = 10 # how many range increases will take place till max / min range 
@@ -43,9 +44,10 @@ steps ={"blur":blur_step, "contrast":contrast_step, "brightness":brightness_step
 #     # 4:"noise"
 #     }
 filters=[
-    "base",
-    "blur",
-    "contrast"
+    # "base",
+    # "blur",
+    # "contrast",
+    "brightness"
 ]
 base ={ "blur":1, "contrast":1, "brightness":0}
 no_frames={
@@ -176,22 +178,88 @@ def generate_conf(filter, setting, frames):
             frame_list.append(frame)
     return {"frames":frame_list}
 
-def generate_command(filter: str, setting: int, algorithm: str, dataset: str, frame_idx: int, turn: int, frame_rand):
+def generate_command(filter: str, setting: int, algorithm: str, dataset: str, frame_idx: int, turn: int, frame_rand=None):
     dir_path = f"{prefix}/{algorithm}/{dataset}/{filter}/frames{frame_idx}/exp{turn}_frames_val_{setting}"
     os.makedirs(Path(dir_path), exist_ok=True)
-    conf = generate_conf(filter, setting, frame_rand[turn])
-    # print(conf)
-    with open(Path(dir_path+"/conf.json"), "w") as json_file:
-        json.dump(conf, json_file, indent=4)
+    if frame_rand is not None:
+        conf = generate_conf(filter, setting, frame_rand[turn])
+        # print(conf)
+        with open(Path(dir_path+"/conf.json"), "w") as json_file:
+            json.dump(conf, json_file, indent=4)
     command = f"./build/bin/slambench -i {dataset_paths[dataset]} -load {algorithm_paths[algorithm]}  --log-file {dir_path}/log_file.txt -enhance {dir_path}/conf.json -img {dir_path}/image_metrics.txt"
     # print(f"        ->{dir_path}")
     # print(command)
     return command, dir_path
 
+def read_image_metrics(file_path):
+    image_metrics = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            values = line.strip().split()
+            frame_id = int(values[0])
+            sharpness = float(values[1])
+            brightness = float(values[2])
+            contrast = float(values[3])
+            image_metrics.append({'frame_id': frame_id, 'blur': sharpness, 'brightness': brightness, 'contrast': contrast})
+    return image_metrics
+
+def get_invalid_runs_cmd():
+    invalid_cmd = []
+    invalid_path = []
+    for algorithm in algorithms:
+        for dataset in datasets:
+            for filter in filters:
+                if filter.startswith('base'):
+                    continue
+                path = f"{prefix}/{algorithm}/{dataset}/{filter}"
+                # print(prefix, algorithm , dataset, filter, path)
+                no_invalid = 0
+                frame_folders = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
+                # print(frame_folders)
+                for frame_folder in frame_folders:
+                    # print(frame_folder, path)
+                    frame_path = os.path.join(path, frame_folder)
+                    # print(frame_path)
+                    # print(os.listdir(frame_path))
+                    exp_folders = [d for d in os.listdir(frame_path) if os.path.isdir(os.path.join(frame_path, d))]
+                    exp_numbers = set()
+                    filter_values = set()
+
+                    # Regular expression pattern to extract numbers
+                    exp_pattern = r'exp(\d+)_frames_val'
+                    value_pattern = r'(-?\d+\.\d+)'
+
+                    # Extracting values using regular expressions
+                    for string in exp_folders:
+                        exp_match = re.search(exp_pattern, string)
+                        value_match = re.search(value_pattern, string)
+                        
+                        if exp_match and value_match:
+                            exp_numbers.add(int(exp_match.group(1)))
+                            filter_values.add(float(value_match.group(1)))
+                    exp_numbers = sorted(exp_numbers)
+                    filter_values = sorted(filter_values)
+       
+                    for filter_val in filter_values:
+                         for run in exp_numbers:
+                
+                            exp_folder = f"exp{run}_frames_val_{filter_val}"
+                
+                            exp_path = os.path.join(frame_path, exp_folder)
+                            # print(exp_path)
+                            quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
+                            if len(quality_metrics)<no_frames[dataset][algorithm]-20 :
+                                cmd, dir_path = generate_command(filter, filter_val, algorithm, dataset, int(frame_folder[6:]), run)
+                                invalid_cmd.append(cmd)
+                                invalid_path.append(dir_path)
+    return invalid_cmd, invalid_path
+
+
 def run_bash_command(command, dir_path):
     try:
+        result = subprocess.run(command, shell=True, capture_output=True, timeout=100000)
+        # subprocess.Popen(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).wait()
         print(command)
-        result = subprocess.run(command, shell=True, capture_output=True, timeout=900)
     except subprocess.TimeoutExpired:
         print("                 ->timeout")
         open(Path(f'{dir_path}/Timeout.txt'), "a").close()
@@ -237,6 +305,8 @@ def generate_all_commands():
                         #  run 2 will be the same for all granularities but different set from run 1, etc.
                         for i in range(0,granularity+1):
                             # skip 0 value for blur
+                            if filter == "blur" and i==1:
+                                continue
                             for turn in range(repeats):
                                 setting = i*steps[filter]
                                 new_command, dir_path = generate_command(filter, setting, algorithm, dataset, frame_idx, turn, frame_rand)
@@ -253,7 +323,7 @@ def generate_all_commands():
 
 if __name__ == "__main__":
     commands, paths = generate_all_commands()
-    num_workers = cpu_count() - 2 # so your computer doesn't crash
+    num_workers = 3 # so your computer doesn't crash
     # Create a pool of worker processes
     with Pool(processes=num_workers) as pool:
         # Submit commands to the pool for parallel execution
@@ -262,4 +332,18 @@ if __name__ == "__main__":
     # Process the results returned by the pool
     for result in results:
         continue
+   
+    commands, paths = get_invalid_runs_cmd()
+    for path in paths:
+        print(f"    --{path}")
+    print(f"{len(paths)}Invalid runs detected...")
+
+    while(len(commands)!=0):
+        # Create a pool of worker processes
+        with Pool(processes=num_workers) as pool:
+            # Submit commands to the pool for parallel execution
+            results = pool.starmap(run_bash_command, zip(commands, paths))
+        for result in results:
+            continue
+        commands, paths = get_invalid_runs_cmd()
 
