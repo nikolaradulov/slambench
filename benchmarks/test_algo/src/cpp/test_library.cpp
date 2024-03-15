@@ -10,6 +10,7 @@
 #include<thread>
 #include<chrono>
 #include<opencv2/opencv.hpp>
+#include <io/sensor/DepthSensor.h>
 
 std::ofstream outfile;
 bool im_file_initialized=false;
@@ -33,10 +34,13 @@ static cv::Mat *imRGB = nullptr;
 static int begin;
 static int end;
 
+static slambench::io::DepthSensor *depth_sensor;
+
 std::string im_file_name;
 std::string default_file ="";
 static int event_frames=0;
 
+static cv::Mat *imD = nullptr;
 
 void static im_compute_metrics(const cv::Mat image)
 {   
@@ -102,7 +106,7 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
 	assert(grey_sensor!=nullptr && "Failed, did not find event sensor");
     rgb_sensor = sensor_finder.FindOne(slam_settings->get_sensors(), {{"camera_type", "rgb"}});
     
-
+    depth_sensor = (slambench::io::DepthSensor*)sensor_finder.FindOne(slam_settings->get_sensors(), {{"camera_type", "depth"}});
     // initialise the pose output and bind it to the slam configuration output
     pose_out = new slambench::outputs::Output("Pose", slambench::values::VT_POSE, true);
     slam_settings->GetOutputManager().RegisterOutput(pose_out);
@@ -114,14 +118,18 @@ bool sb_init_slam_system(SLAMBenchLibraryHelper * slam_settings){
     imRGB = new cv::Mat (rgb_sensor->Height, rgb_sensor->Width,CV_8UC3);
     greyInputSize   = make_sb_uint2(grey_sensor->Width, grey_sensor->Height);
     grey_raw.resize(grey_sensor->Height * grey_sensor->Width);
-   
+    imD   = new cv::Mat (depth_sensor->Height, depth_sensor->Width,CV_16UC1);
     return true;
 }
 
 bool sb_update_frame(SLAMBenchLibraryHelper * lib, slambench::io::SLAMFrame* s){
     // check that the right sensor is associated with the frame
     // only do stuff is so 
-    
+    if(s->FrameSensor == depth_sensor and imD) {
+        memcpy(imD->data, s->GetData(), s->GetSize());
+        last_frame_timestamp = s->Timestamp;
+        s->FreeData();
+    }
     if(s->FrameSensor==grey_sensor){
         memcpy(grey_raw.data(), s->GetData(), s->GetSize());
         latest_frame = s->Timestamp;

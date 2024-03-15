@@ -13,12 +13,14 @@
 #include "io/sensor/CameraSensor.h"
 #include "io/sensor/SensorDatabase.h"
 #include <opencv2/opencv.hpp>
+#include <io/sensor/DepthSensor.h>
 #include <cassert>
 #include <Parameters.h>
 
 using namespace slambench::io;
 
 const Sensor::sensor_type_t CameraSensor::kCameraType = "Camera";
+static slambench::io::DepthSensor *depth_sensor;
 
 CameraSensor::CameraSensor(const Sensor::sensor_name_t  &name,  const Sensor::sensor_type_t &sensor_type) :
 		Sensor(name, sensor_type) ,
@@ -76,6 +78,7 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
 			float_img_type = CV_32FC3;
 		}
 	}
+	cv::Mat orig_img = cv::Mat(this->Height, this->Width, img_type, raw_image);
 	cv::Mat image_mat = cv::Mat(this->Height, this->Width, img_type, raw_image);
 	// cv::imshow("Pre-edit", image_mat);
 	
@@ -147,6 +150,8 @@ void * CameraSensor::Enhance(void * raw_image, std::unordered_map<std::string, s
     }
 
 	memcpy(edited_image, image_mat.data, image_mat.total() * image_mat.elemSize());
+
+	
 
 	return edited_image;
 

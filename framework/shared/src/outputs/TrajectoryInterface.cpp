@@ -41,8 +41,9 @@ void PoseOutputTrajectoryInterface::recalculate() const {
 
     for(auto i : pose_output_->GetValues()) {
         auto point = dynamic_cast<const PoseValue*>(i.second);
-        auto newval = new PoseValue(point->GetValue());
-        cached_traj_.insert({i.first, *newval});
+        // auto newval = new PoseValue(point->GetValue());
+        // cached_traj_.insert({i.first, *newval});
+        cached_traj_.insert(i.first, point->GetValue());
     }
 
     if(!cached_traj_.empty()) {

@@ -86,3 +86,7 @@ class DepthSensorDeserialiser : public SensorDeserialiser {
 };
 
 static slambench::io::SensorDatabaseRegistration depth_reg (DepthSensor::kDepthType, slambench::io::SensorDatabaseEntry(new DepthSensorSerialiser(), new DepthSensorDeserialiser()));
+
+void * DepthSensor::Enhance(void * raw_image, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> *filters){
+	return nullptr;
+}

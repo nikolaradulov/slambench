@@ -10,12 +10,22 @@ from matplotlib.ticker import LinearLocator
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from scipy.interpolate import interp2d
+from matplotlib.colors import LinearSegmentedColormap
+
+def extract_number(folder_name):
+    return int(folder_name.replace("frames", ""))
+
 fail_points={
     "icl-nuim": 1,
-    "kitty" : 100,
+    "kitty" : 5,
     "icl-nuim3": 1,
     "icl-nuim0": 1,
-    "tum": 1
+    "tum": 0.03, 
+    "tum1_rpy": 0.1,
+    "tum1_xzy": 0.1,
+    "tum_desk": 1, 
+    "tum_rpy": 0.1,
+    "tum_xzy": 0.1
 }
 
 no_frames={
@@ -24,7 +34,6 @@ no_frames={
         "lsd": 1106,
         "open_vins": -1,
         "orbslam3":1106,
-        "orbslam3_possible_bug": 1106,
         "orbslam2":1106
     },
     "eurocMAV":{
@@ -33,17 +42,24 @@ no_frames={
     },
     "tum":{
         "test": 1362,
-        "lsd": 1362, 
+        "lsd": 594, 
         "orbslam3": 594,
         "orbslam2": 594
 
     },
+    "tum_desk":{
+        "test": 1362,
+        "lsd": 594, 
+        "orbslam3": 594,
+        "orbslam2": 594,
+        'efusion': 595
+
+    },
     "icl-nuim":{
-        "lsd": 967,
-        "test": 967,
+        "lsd": 882,
+        "test": 882,
         "open_vins": -1,
         "orbslam3": 882,
-        "orbslam3_possible_bug": 882,
         "orbslam2": 882
     },
     "icl-nuim3":{
@@ -51,7 +67,6 @@ no_frames={
         "test": 882,
         "open_vins": -1,
         "orbslam3": 1241,
-        "orbslam3_possible_bug": 1241,
         "orbslam2": 1241
     },
     "icl-nuim0":{
@@ -59,16 +74,46 @@ no_frames={
         "test": 882,
         "open_vins": -1,
         "orbslam3": 1509,
-        "orbslam3_possible_bug": 1509,
         "orbslam2": 1509
+    },
+    'tum1_xzy':{
+        'orbslam3': 797,
+        'orbslam2': 797
+    },
+    'tum2_xzy':{
+        'orbslam3': 3665,
+        'orbslam2': 3665
+    },
+    'tum_xyz':{
+        'orbslam3': 797,
+        'orbslam2': 797,
+        'efusion': 797
+    },
+    'tum1_rpy':{
+        'orbslam3': 721,
+        'orbslam2': 721
+    },
+    'tum_rpy':{
+        'orbslam3': 721,
+        'orbslam2': 721,
+        'efusion': 721
+    },
+    'tum2_rpy':{
+        'orbslam3': 3286,
+        'orbslam2': 3286
     }
 }
 dataset_names = {
     "icl-nuim": "icl-nuim traj 2",
-    "kitty" : "Kitty",
+    "kitty" : "KITTI07",
     "icl-nuim3": "icl-nuim traj 3",
     "icl-nuim0": "icl-nuim traj 0",
-    "tum": "Tum Freiburg1 desk"
+    "tum": "Tum Freiburg1 desk",
+    "tum1_rpy": "Tum freiburg 1 rpy",
+    "tum1_xzy": "Tum freiburg 1 xyz",
+    "tum_desk": "Tum Freiburg1 desk",
+    "tum_rpy": "Tum freiburg 1 rpy",
+    "tum_xyz": "Tum freiburg 1 xyz"
 }
 def parse_log_file(log_file_path):
     with open(log_file_path, 'r') as file:
@@ -90,8 +135,9 @@ def parse_log_file(log_file_path):
             coord = (float(values[10]), float(values[11]), float(values[12]))
             if coord == current_coord:
                 consecutive_count += 1
-                if consecutive_count > 2000:
+                if consecutive_count > 500 and not fail:
                     fail = True    # Violation detected
+                    print(log_file_path)
             else:
                 current_coord = coord
                 consecutive_count = 1
@@ -109,8 +155,10 @@ def read_modified_frame_ids(json_file):
 
 def read_image_metrics(file_path):
     image_metrics = []
+    counter = 0
     with open(file_path, 'r') as file:
         for line in file:
+            counter+=1
             values = line.strip().split()
             frame_id = int(values[0])
             sharpness = float(values[1])
@@ -134,7 +182,7 @@ def get_default_metrics(dataset_folder):
     metrics = read_image_metrics(os.path.join(base_folder, "image_metrics.txt"))
     # print(metrics)
     errors=[]
-    for i in range(1,5):
+    for i in range(1,4):
         ates, _ = parse_log_file(os.path.join(base_folder, "log_file.txt"))
         errors.append(np.mean(ates))
         base_folder=os.path.join(dataset_folder, f"base_{i+1}")
@@ -149,7 +197,7 @@ def compute_avg_quality_diff(measured, base, modified_ids, filter_type):
 def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
 
     global slam_alg
-
+    no_invalid = 0
     filter_folder = os.path.join(dataset_folder, filter_type)
     frame_folders = [f for f in os.listdir(filter_folder) if os.path.isdir(os.path.join(filter_folder, f))]
     total_filters=[]
@@ -157,7 +205,11 @@ def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
     total_ates=[]
     base_quality, base_error = get_default_metrics(dataset_folder)
     print(base_error)
+    frame_folders = sorted(frame_folders,  key=extract_number)
+    # print(frame_folder)
     for frame_folder in frame_folders:
+        # if(frame_folder!=frame_folders[1]):
+        #     continue
         # if dataset_name=="icl-nuim3" and frame_folder!="frames90":
         #     continue
         frame_path = os.path.join(filter_folder, frame_folder)
@@ -191,26 +243,44 @@ def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
             mean_values_all_runs = []
             measured_change_all_runs =[]
             for run in exp_numbers:
+                invalid = False
                 exp_folder = f"exp{run}_frames_val_{filter_val}"
                 # print(exp_folder)
                 exp_path = os.path.join(frame_path, exp_folder)
                 log_file_path = os.path.join(exp_path, 'log_file.txt')
                 modified_ids = read_modified_frame_ids(os.path.join(exp_path, "conf.json"))
                 quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
+               
+                if len(quality_metrics)<no_frames[dataset_name][slam_alg]-20 :
+                    # print("=======================")
+                    # print(exp_path)
+                    # print("---------------------------")
+                    no_invalid +=1
+                    invalid = True
                 # print(quality_metrics[modified_ids[4]])
+                if invalid:
+                    continue
                 mean_ate_values, failed = parse_log_file(log_file_path)
-                
+                # print(failed)
                 quality_metric = compute_mean_metric(quality_metrics, modified_ids, filter_type)
-                
                 mean_values_all_runs.append(quality_metric)
+                # if filter_val == 0:
+                #     mean_ate_values_all_runs.append(0)
+                #     measured_change_all_runs.append(0)
+                #     continue
+                
                 measured_change_all_runs.append(compute_avg_quality_diff(quality_metrics, base_quality, modified_ids, filter_type))
                 # just in case give some liniency
+                mean_ate = np.mean(mean_ate_values)
+                if mean_ate >0.03:
+                    mean_ate=0.03
+                
                 if(len(mean_ate_values)<no_frames[dataset_name][slam_alg]-20 or failed):
                     mean_ate_values_all_runs.append(fail_points[dataset_name]-base_error)
                     fail_flag-=1
                 else:
                     # print(np.mean(mean_ate_values))
-                    mean_ate_values_all_runs.append(np.mean(mean_ate_values)-base_error)
+                    mean_ate_values_all_runs.append(mean_ate-base_error)
             # print(mean_ate_values_all_runs)
             mean_values.append(np.mean(mean_values_all_runs))
             ate_per_filer.append(np.mean(mean_ate_values_all_runs))
@@ -224,6 +294,7 @@ def get_mean_ate_evolution(dataset_folder, filter_type, dataset_name):
         total_filters = filter_values
         total_values = mean_values
         total_ates = ate_per_filer       
+    print(no_invalid)
     return np.array(total_filters), np.array(total_values), np.array(total_ates), failure_points, partial_failure
     
     
@@ -236,10 +307,12 @@ def plot_filter_data(filter_type,slam_name_folder):
     aggregated_pfail = {'x':[], 'y':[]}
     aggregated_fail = {'x':[], 'y':[]}
     for dataset_folder in dataset_folders:
-        if dataset_folder == "tum":
+        # if not dataset_folder.startswith("tum"):
+        #     continue
+        if dataset_folder != "tum":
             continue
-        if dataset_folder == "kitty":
-            continue
+        # if dataset_folder != "kitty":
+        #     continue
         print(f"----> Retrieving from {dataset_folder}")
         dataset_path = os.path.join(slam_name_folder, dataset_folder)
         # get filter data for specific filter and dataset
@@ -257,33 +330,18 @@ def plot_filter_data(filter_type,slam_name_folder):
         aggregated_values.extend(mean_values)
         aggregated_ates.extend(ates)
     
-    plt.scatter(aggregated_filters, aggregated_ates, c=aggregated_values, cmap='coolwarm', s=60)
-    # aggregated_ates = aggregated_ates / np.max(aggregated_ates)
-    # fig = plt.figure()
-    # ax = fig.add_subplot( projection='3d')
-    # xi = np.linspace(min(aggregated_values), max(aggregated_values), 1000)
-    # yi = np.linspace(min(aggregated_filters), max(aggregated_filters), 1000)
-    # xi, yi = np.meshgrid(xi, yi)
+    # Create custom colormap from grey to redbri    
+    # colors = [(0, 'darkred'), (1, 'lightgrey')]
+    # custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
 
-    # Perform Delaunay triangulation and interpolate values
-    # zi = griddata((aggregated_values, aggregated_filters), aggregated_ates, (xi, yi), method='linear')
-    # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-    # Plot the data points
-    # ax.plot_surface(xi, yi, zi, cmap='viridis', edgecolor='none')
-    # ax.plot_trisurf(aggregated_values, aggregated_filters, aggregated_ates, cmap='viridis', edgecolor='none')
-    # ax.scatter(aggregated_values, aggregated_filters, aggregated_ates)
-    # plt.plot(aggregated_values, aggregated_ates)
-    # plt.scatter(aggregated_values, aggregated_ates, c=aggregated_filters, cmap='coolwarm')
-    # surf = ax.plot_surface(np.array(aggregated_values), np.array(aggregated_filters), np.array(aggregated_ates), cmap=cm.coolwarm,
-                    #    linewidth=0, antialiased=False)
+    plt.scatter(aggregated_filters, aggregated_ates, c=aggregated_values, cmap='coolwarm',  s=60)
+    
     # Set labels and title
     plt.xlabel(f'Applied filter')
     plt.ylabel('Difference of MeanATE')
-    # ax.set_xlabel(f'Average quality metric')
-    # ax.set_ylabel('Measured change')
-    # ax.set_zlabel('Error')
-    # ax.set_title(f'3D Scatter Plot {filter_type}')
-    plt.title(f'{filter_type} influence on error')
+    # plt.yscale('symlog', base=2)
+    # plt.ylim(ymax=2)
+    plt.title(f'ORB-SLAM3 {filter_type} influence on error')
     
     cbar = plt.colorbar()
     cbar.set_label('Average Quality metric')
@@ -300,8 +358,8 @@ def plot_filter_data(filter_type,slam_name_folder):
     # plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), shadow=True, ncol=3)
     plt.subplots_adjust(bottom=0.3) 
     plt.grid(True)
-    # plt.savefig("brightness_orbslam2.png")
-    plt.show()
+    plt.savefig("contrast_orbslam3_tum.png")
+    # plt.show()
 # Main function1
 slam_alg= None
 def main():

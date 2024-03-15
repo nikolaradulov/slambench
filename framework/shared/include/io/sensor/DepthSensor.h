@@ -28,7 +28,7 @@ namespace slambench {
 			
 			disparity_type_t   DisparityType;
 			disparity_params_t DisparityParams;
-			
+			void * Enhance(void * raw, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>> * filters) override; 
 			void CopyDisparityParams(const DepthSensor *other);
 			void CopyDisparityParams(const disparity_params_t &other);
 		};

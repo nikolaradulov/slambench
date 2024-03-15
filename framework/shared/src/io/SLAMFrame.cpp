@@ -30,6 +30,20 @@ using namespace slambench::io;
 
 SLAMFrame::~SLAMFrame() {}
 
+bool areArraysEqual(const void* array1, const void* array2, size_t numElements, size_t elementSize) {
+    const unsigned char* charArray1 = static_cast<const unsigned char*>(array1);
+    const unsigned char* charArray2 = static_cast<const unsigned char*>(array2);
+
+    for (size_t i = 0; i < numElements * elementSize; ++i) {
+        if (charArray1[i] != charArray2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
 size_t SLAMFrame::GetSize() const {
 	if(FrameSensor->IsVariableSize()) {
 		return size_if_variable_sized_;
@@ -280,9 +294,14 @@ void * DeserialisedFrame::GetData(){
 	if(this->enhance_){
 		// printf("will enhance\n");
 		this->enhanced_image_ = FrameSensor->Enhance(data, this->filters);
+		
 		// if enhancing actually worked
-		if(this->enhanced_image_)
+		if(this->enhanced_image_){
+			if(memcmp(data, this->enhanced_image_, this->GetSize())!=0){
+				std::cout<<"------------------ They were not equal------------------- \n";
+			}
 			return this->enhanced_image_;
+		}
 		return data;
 	}
 	return data;

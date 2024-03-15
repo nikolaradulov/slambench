@@ -9,19 +9,19 @@ import re
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
-    #"icl-nuim",
+    # "icl-nuim",
     #"icl-nuim0",
     #"icl-nuim3",
     # "eurocMAV"
-    #"kitty"
-    # "tum0"
+    # "kitty",
+    "tum",
     # 'tum1_xzy',
-    'tum1_rpy'
+    # 'tum1_rpy'
     # 'tum2_xzy',
     # 'tum2_rpy'
 ]
-algorithms=["orbslam2"]
-repeats = 5
+algorithms=['orbslam3']
+repeats = 2
 base_repeat = 5
 granularity = 10 # how many range increases will take place till max / min range 
 percentage = 0.11
@@ -46,7 +46,7 @@ steps ={"blur":blur_step, "contrast":contrast_step, "brightness":brightness_step
 filters=[
     # "base",
     # "blur",
-    # "contrast",
+    "contrast",
     "brightness"
 ]
 base ={ "blur":1, "contrast":1, "brightness":0}
@@ -247,11 +247,17 @@ def get_invalid_runs_cmd():
                 
                             exp_path = os.path.join(frame_path, exp_folder)
                             # print(exp_path)
-                            quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
-                            if len(quality_metrics)<no_frames[dataset][algorithm]-20 :
+                            try:
+                                quality_metrics = read_image_metrics(os.path.join(exp_path, "image_metrics.txt"))
+                                if len(quality_metrics)<no_frames[dataset][algorithm]-20 :
+                                    cmd, dir_path = generate_command(filter, filter_val, algorithm, dataset, int(frame_folder[6:]), run)
+                                    invalid_cmd.append(cmd)
+                                    invalid_path.append(dir_path)
+                            except:
                                 cmd, dir_path = generate_command(filter, filter_val, algorithm, dataset, int(frame_folder[6:]), run)
                                 invalid_cmd.append(cmd)
                                 invalid_path.append(dir_path)
+                            
     return invalid_cmd, invalid_path
 
 
@@ -292,7 +298,7 @@ def generate_all_commands():
                         paths.append(dir_path)
                 else:
 
-                    for frame_idx in range(frame_step, max_frames+1, frame_step):
+                    for frame_idx in range(max_frames, max_frames+1, frame_step):
                         # print((int)(t/30))
                         if dataset == "kitty":
                             # print((int)(t/7))
@@ -322,22 +328,22 @@ def generate_all_commands():
     return commands, paths
 
 if __name__ == "__main__":
-    commands, paths = generate_all_commands()
-    num_workers = 3 # so your computer doesn't crash
-    # Create a pool of worker processes
-    with Pool(processes=num_workers) as pool:
-        # Submit commands to the pool for parallel execution
-        results = pool.starmap(run_bash_command, zip(commands, paths))
+    # commands, paths = generate_all_commands()
+    # num_workers = 3 # so your computer doesn't crash
+    # # Create a pool of worker processes
+    # with Pool(processes=num_workers) as pool:
+    #     # Submit commands to the pool for parallel execution
+    #     results = pool.starmap(run_bash_command, zip(commands, paths))
 
-    # Process the results returned by the pool
-    for result in results:
-        continue
+    # # Process the results returned by the pool
+    # for result in results:
+    #     continue
    
     commands, paths = get_invalid_runs_cmd()
     for path in paths:
         print(f"    --{path}")
     print(f"{len(paths)}Invalid runs detected...")
-
+    num_workers = 3
     while(len(commands)!=0):
         # Create a pool of worker processes
         with Pool(processes=num_workers) as pool:

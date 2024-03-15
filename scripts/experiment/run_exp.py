@@ -7,6 +7,8 @@ import subprocess
 
 ############# Change to select datasets and algorithms + settings #############
 datasets=[
+    # "icl-nuim0",
+    # "icl-nuim3",
     # "icl-nuim",
     # "eurocMAV"
     "kitty"
@@ -60,11 +62,34 @@ no_frames={
         "open_vins": -1,
         "orbslam3": 882,
         "orbslam2": 882
+    },
+    "icl-nuim":{
+        "lsd": 882,
+        "test": 882,
+        "open_vins": -1,
+        "orbslam3": 882,
+        "orbslam2": 882
+    },
+     "icl-nuim3":{
+        "lsd": 882,
+        "test": 882,
+        "open_vins": -1,
+        "orbslam3": 1241,
+        "orbslam2": 1241
+    },
+    "icl-nuim0":{
+        "lsd": 882,
+        "test": 882,
+        "open_vins": -1,
+        "orbslam3": 1509,
+        "orbslam2": 1509
     }
 }
 dataset_paths={
     "kitty":"./datasets/KITTI/2011_09_30_drive_0027/2011_09_30_drive_0027_sync.slam",
     "icl-nuim": "datasets/ICL_NUIM/living_room_traj2_loop.slam",
+    "icl-nuim0": "datasets/ICL_NUIM/living_room_traj0_loop.slam",
+    "icl-nuim3": "datasets/ICL_NUIM/living_room_traj3_loop.slam",
     "tum": "datasets/TUM/freiburg1/rgbd_dataset_freiburg1_room.slam",
     "eurocMAV": "datasets/EuRoCMAV/machine_hall/MH_01_easy/MH_01_easy.slam",
 }
@@ -148,10 +173,10 @@ for algorithm in algorithms:
         print(f"    ->frames={max_frames}")
         print(f"    ->frame_step={frame_step}\n\n\n")
         for filter in range(4):
-            # if filter == 1 or filter ==3:
+            # # if filter == 1 or filter ==2:
+            # #     continue
+            # if filter == 3:
             #     continue
-            if filter == 3:
-                skip
             if filter == 0:
                 for j in range(base_repeat):
                     dir_path = f"{prefix}/{algorithm}/{dataset}/base_{j+1}"

@@ -177,7 +177,8 @@ namespace slambench {
 				values_.push_back(value_t(ts, pose));
 			}
 			void insert(const value_t &value) { push_back(value.first, value.second); }
-
+			void insert(const TimeStamp &ts, const Eigen::Matrix4f &pose){values_.emplace_back(value_t(ts, PoseValue(pose)));}
+			
 			size_t size() const { return values_.size(); }
 			bool empty() const { return values_.size() == 0; }
 
