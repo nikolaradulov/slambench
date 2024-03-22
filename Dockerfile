@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y upgrade
 RUN apt-get -y update 
-# time to build slambench
+# time to build slamfuse
 # handle dependencies
 RUN apt-get -y install \
     libvtk6.3 \
@@ -36,14 +36,14 @@ RUN apt-get -y install \
     build-essential \
     libyaml-cpp-dev
 # download git folder
-RUN git clone --branch SLAMBench-conteinarisation https://github.com/nikolaradulov/slambench.git
-WORKDIR /slambench
+RUN git clone --branch SLAMBench-conteinarisation https://github.com/nikolaradulov/SLAMFuse.git slamfuse
+WORKDIR /slamfuse
 # RUN git checkout 93fa32123c8878a311ecb02acd2ad8971292a4ab
 RUN apt-get install python
-COPY entry.sh /slambench
-RUN chmod +x /slambench/entry.sh
-# COPY ./framework/tools/accuracy-tools/CMakeLists.txt /slambench/framework/tools/accuracy-tools
-#COPY ./framework/makefiles/deps.makefile /slambench/framework/makefiles
+COPY entry.sh /slamfuse
+RUN chmod +x /slamfuse/entry.sh
+# COPY ./framework/tools/accuracy-tools/CMakeLists.txt /slamfuse/framework/tools/accuracy-tools
+#COPY ./framework/makefiles/deps.makefile /slamfuse/framework/makefiles
 # RUN	make brisk
 #	+make ceres
 #	+make cvd

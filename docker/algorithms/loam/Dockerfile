@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LOAM_DIR=/deps/loam
+ENV ALG_DIR=/deps/loam
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install git
@@ -29,7 +29,7 @@ RUN git clone --depth 1 --branch 3.2.10 https://gitlab.com/libeigen/eigen.git ei
 WORKDIR eigen3
 RUN mkdir build
 WORKDIR build
-RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/eigen3/"
+RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/eigen3/"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -41,7 +41,7 @@ RUN git clone --branch 0.8.0 https://github.com/jbeder/yaml-cpp.git yaml-cpp
 WORKDIR yaml-cpp
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/yaml-cpp/"
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/yaml-cpp/"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -54,9 +54,9 @@ RUN git checkout v4.3.1
 
 # Build suitesparse
 RUN make
-RUN mkdir $LOAM_DIR/suitesparse/include -p
-RUN mkdir $LOAM_DIR/suitesparse/lib -p
-RUN make install INSTALL_LIB=$LOAM_DIR/suitesparse/lib INSTALL_INCLUDE=$LOAM_DIR/suitesparse/include
+RUN mkdir $ALG_DIR/suitesparse/include -p
+RUN mkdir $ALG_DIR/suitesparse/lib -p
+RUN make install INSTALL_LIB=$ALG_DIR/suitesparse/lib INSTALL_INCLUDE=$ALG_DIR/suitesparse/include
 
 
 # ===== <Flann> =====
@@ -70,7 +70,7 @@ RUN sed -e "/add_library(flann_cpp SHARED/ s/\"\"/empty.cpp/" -e "/add_library(f
 # build flann
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/flann/" \
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/flann/" \
             -DBUILD_MATLAB_BINDINGS=FALSE \
             -DBUILD_PYTHON_BINDINGS=FALSE \
             -DBUILD_EXAMPLES=FALSE \
@@ -88,18 +88,18 @@ RUN git checkout 1.12.0
 # build ceres
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/ceres" \
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/ceres" \
              "-DBUILD_EXAMPLES:BOOL=OFF" \
              "-DBUILD_TESTING:BOOL=OFF" \
              "-DBUILD_DOCUMENTATION=OFF" \
              "-DBUILD_SHARED_LIBS=ON" \
              "-DCERES_USING_SHARED_LIBRARY=OFF" \
              -DCMAKE_CXX_FLAGS="-w -O3 -std=c++11" \
-             -DEIGEN_INCLUDE_DIR=$LOAM_DIR/eigen3/include/eigen3 \
-             -DSUITESPARSE_INCLUDE_DIR_HINTS=$LOAM_DIR/suitesparse/include \
-             -DSUITESPARSE_LIBRARY_DIR_HINTS=$LOAM_DIR/suitesparse/lib \
-             -DCXSPARSE_INCLUDE_DIR=$LOAM_DIR/suitesparse/include \
-             -DCXSPARSE_LIBRARY=$LOAM_DIR/suitesparse/lib/libcxsparse.a
+             -DEIGEN_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3 \
+             -DSUITESPARSE_INCLUDE_DIR_HINTS=$ALG_DIR/suitesparse/include \
+             -DSUITESPARSE_LIBRARY_DIR_HINTS=$ALG_DIR/suitesparse/lib \
+             -DCXSPARSE_INCLUDE_DIR=$ALG_DIR/suitesparse/include \
+             -DCXSPARSE_LIBRARY=$ALG_DIR/suitesparse/lib/libcxsparse.a
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -147,10 +147,10 @@ RUN cmake .. -DWITH_LIBUSB=FALSE \
 	-DBUILD_visualization=FALSE \
 	-DBUILD_tools=FALSE \
     -DCMAKE_BUILD_TYPE=RELEASE \
-	"-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/pcl" \
-	-DEIGEN_INCLUDE_DIR=$LOAM_DIR/eigen3/include/eigen3 \
-	-DFLANN_LIBRARY=$LOAM_DIR/flann/lib \
-	-DFLANN_INCLUDE_DIR=$LOAM_DIR/flann/include
+	"-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/pcl" \
+	-DEIGEN_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3 \
+	-DFLANN_LIBRARY=$ALG_DIR/flann/lib \
+	-DFLANN_INCLUDE_DIR=$ALG_DIR/flann/include
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -158,12 +158,12 @@ RUN make -j$(expr $(nproc) - 2) && make install
 WORKDIR /repos
 RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
-WORKDIR $LOAM_DIR
+WORKDIR $ALG_DIR
 RUN mkdir wrapper
 WORKDIR /repos/slamfuse/docker/wrapper
-# RUN mv libslambench-c-wrapper.a $LOAM_DIR/wrapper
-COPY ./libslambench-c-wrapper.a $LOAM_DIR/wrapper/
-RUN mv null.cpp $LOAM_DIR/wrapper
+# RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
+COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
+RUN touch $ALG_DIR/wrapper/null.cpp
 
 
 # ====== <LOAM> ======
@@ -173,22 +173,22 @@ RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/loam-
 WORKDIR loam
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
- 	-DWRAPPER_PATH=$LOAM_DIR/wrapper/ \
- 	-DEIGEN3_INCLUDE_DIR=$LOAM_DIR/eigen3/include/eigen3/ \
-	-DFLANN_INCLUDE_DIR=$LOAM_DIR/flann/include/ \
-    -DPCL_INCLUDE_DIR=$LOAM_DIR/pcl/include/pcl-1.8/ \
-    -DCERES_INCLUDE_DIR=$LOAM_DIR/ceres/include/ \
-	-DYAML_CPP_INCLUDE_DIR=$LOAM_DIR/yaml-cpp/include/ \
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/" \
+ 	-DWRAPPER_PATH=$ALG_DIR/wrapper/ \
+ 	-DEIGEN3_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3/ \
+	-DFLANN_INCLUDE_DIR=$ALG_DIR/flann/include/ \
+    -DPCL_INCLUDE_DIR=$ALG_DIR/pcl/include/pcl-1.8/ \
+    -DCERES_INCLUDE_DIR=$ALG_DIR/ceres/include/ \
+	-DYAML_CPP_INCLUDE_DIR=$ALG_DIR/yaml-cpp/include/ \
  	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
-	-DFLANN_LIBRARY_DIR=$LOAM_DIR/flann/lib/ \
-    -DPCL_LIBRARY_DIR=$LOAM_DIR/pcl/lib/ \
-    -DCERES_LIBRARY_DIR=$LOAM_DIR/ceres/lib/ \
-	-DYAML_CPP_LIBRARY_DIR=$LOAM_DIR/yaml-cpp/lib/ \
+	-DFLANN_LIBRARY_DIR=$ALG_DIR/flann/lib/ \
+    -DPCL_LIBRARY_DIR=$ALG_DIR/pcl/lib/ \
+    -DCERES_LIBRARY_DIR=$ALG_DIR/ceres/lib/ \
+	-DYAML_CPP_LIBRARY_DIR=$ALG_DIR/yaml-cpp/lib/ \
  	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pcl/lib:\$ORIGIN/../ceres/lib:\$ORIGIN/../flann/lib:\$ORIGIN/../yaml-cpp/lib"
 RUN make -j$(expr $(nproc) - 2) && make install
 
-WORKDIR $LOAM_DIR
+WORKDIR $ALG_DIR
 RUN mkdir configs
 WORKDIR configs
 RUN mv /repos/loam/configs/*.yaml .

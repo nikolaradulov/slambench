@@ -48,7 +48,7 @@ RUN mkdir wrapper
 WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
-RUN mv null.cpp $ALG_DIR/wrapper
+RUN touch $ALG_DIR/wrapper/null.cpp
 
 
 # ====== <KFusion> ======

@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
-ENV OPENVINS_DIR=/deps/openvins
+ENV ALG_DIR=/deps/openvins
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install wget
@@ -24,7 +24,7 @@ RUN git clone --depth 1 --branch 3.2.10 https://gitlab.com/libeigen/eigen.git ei
 WORKDIR eigen3
 RUN mkdir build
 WORKDIR build
-RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$OPENVINS_DIR/eigen3/"
+RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/eigen3/"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 # ====== <OpenCV 3.4.3> ======
@@ -40,7 +40,7 @@ RUN git checkout 3.4.3
 WORKDIR /repos/opencv
 RUN mkdir build_dir
 WORKDIR build_dir
-RUN cmake -D CMAKE_BUILD_TYPE=RELEASE  -D CMAKE_INSTALL_PREFIX=$OPENVINS_DIR/opencv    -DCMAKE_CXX_FLAGS="-Wno-error=address"             \
+RUN cmake -D CMAKE_BUILD_TYPE=RELEASE  -D CMAKE_INSTALL_PREFIX=$ALG_DIR/opencv    -DCMAKE_CXX_FLAGS="-Wno-error=address"             \
 	-DWITH_GSTREAMER=OFF -DWITH_FFMPEG=OFF -DBUILD_PERF_TESTS=OFF  -D WITH_OPENCL=OFF -D BUILD_WITH_DEBUG_INFO=OFF  -D WITH_1394=OFF                \
 	-D BUILD_TESTS=OFF  -D WITH_TBB=OFF  -D WITH_V4L=OFF  -D WITH_OPENGL=OFF -D BUILD_opencv_gpu=OFF    \
 	  -D BUILD_opencv_java=OFF -D WITH_CUDA=OFF -DWITH_GTK=ON   -D BUILD_opencv_ml=ON  -D BUILD_opencv_videostab=OFF             \
@@ -53,12 +53,12 @@ RUN make -j$(expr $(nproc) - 2) && make install
 WORKDIR /repos
 RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
-WORKDIR $OPENVINS_DIR
+WORKDIR $ALG_DIR
 RUN mkdir wrapper
 WORKDIR /repos/slamfuse/docker/wrapper
-# RUN mv libslambench-c-wrapper.a $OPENVINS_DIR/wrapper
-COPY ./libslambench-c-wrapper.a $OPENVINS_DIR/wrapper/
-RUN mv null.cpp $OPENVINS_DIR/wrapper
+# RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
+COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
+RUN touch $ALG_DIR/wrapper/null.cpp
 
 
 # ====== <Open-VINS> ======
@@ -69,10 +69,10 @@ RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/openv
 WORKDIR openvins
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$OPENVINS_DIR/" \
-	-DCMAKE_PREFIX_PATH="$OPENVINS_DIR/opencv" \
-	-DWRAPPER_PATH=$OPENVINS_DIR/wrapper/ \
-	-DEIGEN3_INCLUDE_DIR=$OPENVINS_DIR/eigen3/include/eigen3/ \
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/" \
+	-DCMAKE_PREFIX_PATH="$ALG_DIR/opencv" \
+	-DWRAPPER_PATH=$ALG_DIR/wrapper/ \
+	-DEIGEN3_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3/ \
 	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../opencv/lib"
 RUN make -j$(expr $(nproc) - 2) && make install

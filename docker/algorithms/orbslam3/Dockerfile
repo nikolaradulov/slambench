@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
-ENV ORB3_DIR=/deps/orbslam3
+ENV ALG_DIR=/deps/orbslam3
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install git
@@ -23,7 +23,7 @@ WORKDIR TooN
 RUN git checkout 92241416d2a4874fd2334e08a5d417dfea6a1a3f
 
 # Build TooN
-RUN ./configure --prefix=$ORB3_DIR/toon/
+RUN ./configure --prefix=$ALG_DIR/toon/
 RUN make install
 
 
@@ -35,7 +35,7 @@ RUN git clone --depth 1 --branch 3.2.10 https://gitlab.com/libeigen/eigen.git ei
 WORKDIR eigen3
 RUN mkdir build
 WORKDIR build
-RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$ORB3_DIR/eigen3/"
+RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/eigen3/"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 # ====== <OpenCV 3.4.3> ======
@@ -51,7 +51,7 @@ RUN git checkout 3.4.3
 WORKDIR /repos/opencv
 RUN mkdir build_dir
 WORKDIR build_dir
-RUN cmake -D CMAKE_BUILD_TYPE=RELEASE  -D CMAKE_INSTALL_PREFIX=$ORB3_DIR/opencv    -DCMAKE_CXX_FLAGS="-Wno-error=address"             \
+RUN cmake -D CMAKE_BUILD_TYPE=RELEASE  -D CMAKE_INSTALL_PREFIX=$ALG_DIR/opencv    -DCMAKE_CXX_FLAGS="-Wno-error=address"             \
 	-DWITH_GSTREAMER=OFF -DWITH_FFMPEG=OFF -DBUILD_PERF_TESTS=OFF  -D WITH_OPENCL=OFF -D BUILD_WITH_DEBUG_INFO=OFF  -D WITH_1394=OFF                \
 	-D BUILD_TESTS=OFF  -D WITH_TBB=OFF  -D WITH_V4L=OFF  -D WITH_OPENGL=OFF -D BUILD_opencv_gpu=OFF    \
 	  -D BUILD_opencv_java=OFF -D WITH_CUDA=OFF -DWITH_GTK=ON   -D BUILD_opencv_ml=ON  -D BUILD_opencv_videostab=OFF             \
@@ -70,7 +70,7 @@ RUN git checkout c2a6ef524401945b493f14f8b5b8aa76cc7d71a9
 # Build pangolin
 RUN mkdir build
 WORKDIR build
-RUN cmake .. -DBUILD_PANGOLIN_VIDEO=OFF  "-DCMAKE_INSTALL_PREFIX:PATH=$ORB3_DIR/pangolin"  -DEIGEN_INCLUDE_DIR=$ORB3_DIR/eigen3/include/eigen3
+RUN cmake .. -DBUILD_PANGOLIN_VIDEO=OFF  "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/pangolin"  -DEIGEN_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -78,12 +78,12 @@ RUN make -j$(expr $(nproc) - 2) && make install
 WORKDIR /repos
 RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
-WORKDIR $ORB3_DIR
+WORKDIR $ALG_DIR
 RUN mkdir wrapper && mkdir Vocabulary
 WORKDIR /repos/slamfuse/docker/wrapper
-# RUN mv libslambench-c-wrapper.a $ORB3_DIR/wrapper
-COPY ./libslambench-c-wrapper.a $ORB3_DIR/wrapper/
-RUN mv null.cpp $ORB3_DIR/wrapper
+# RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
+COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
+RUN touch $ALG_DIR/wrapper/null.cpp
 
 
 # ====== <ORB-SLAM3> ======
@@ -93,18 +93,18 @@ RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/orbsl
 WORKDIR orbslam3
 RUN mkdir build
 WORKDIR build
-RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ORB3_DIR/" \
-	-DCMAKE_PREFIX_PATH="$ORB3_DIR/opencv" \
-	-DWRAPPER_PATH=$ORB3_DIR/wrapper/ \
-	-DTOON_INCLUDE_DIR=$ORB3_DIR/toon/include/ \
-	-DEIGEN3_INCLUDE_DIR=$ORB3_DIR/eigen3/include/eigen3/ \
-	-DPangolin_INCLUDE_DIR=$ORB3_DIR/pangolin/include/ \
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/" \
+	-DCMAKE_PREFIX_PATH="$ALG_DIR/opencv" \
+	-DWRAPPER_PATH=$ALG_DIR/wrapper/ \
+	-DTOON_INCLUDE_DIR=$ALG_DIR/toon/include/ \
+	-DEIGEN3_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3/ \
+	-DPangolin_INCLUDE_DIR=$ALG_DIR/pangolin/include/ \
 	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
-	-DPangolin_LIBRARIES=$ORB3_DIR/pangolin/lib/libpangolin.so \
+	-DPangolin_LIBRARIES=$ALG_DIR/pangolin/lib/libpangolin.so \
 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pangolin/lib:\$ORIGIN/../opencv/lib:\$ORIGIN/../DBoW2:\$ORIGIN/../g2o"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 # Move the vocabulary file
 WORKDIR /repos/orbslam3/Vocabulary
 RUN tar -xf ORBvoc.txt.tar.gz
-RUN mv ORBvoc.txt $ORB3_DIR/Vocabulary
+RUN mv ORBvoc.txt $ALG_DIR/Vocabulary

@@ -108,17 +108,17 @@ case "$1" in
             openvins-img
         ;;
     "loam")
-        echo "Select A-LOAM..."
+        echo "Select LOAM..."
         
-        # Build image for A-LOAM if choice is y
+        # Build image for LOAM if choice is y
         if [ "$CHOICE" = "y" ]; then
-            echo "Building the A-LOAM image..."
+            echo "Building the LOAM image..."
             docker build -t loam-img -f $PATH_DOCKERFILE/loam/Dockerfile .
         else
             echo "No image build requested."
         fi
         
-        echo "Populate volume for A-LOAM.."
+        echo "Populate volume for LOAM.."
         docker run -d \
             --name=loam \
             --mount source=loam-vol,destination=/deps/loam \
