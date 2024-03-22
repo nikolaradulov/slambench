@@ -53,6 +53,8 @@
 #include <boost/filesystem/operations.hpp>
 #include "ResultWriter.h"
 #include <nlohmann/json.hpp>
+#include<thread>
+#include<chrono>
 
 using json = nlohmann::json;
 
@@ -373,6 +375,7 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
     bool ongoing = false;
     std::vector<Eigen::Matrix4f> libs_trans;
     std::pair<int, std::unordered_map<std::string, std::pair<std::vector<std::string>, slambench::io::FilterSettings>>> current_enhance;
+    std::this_thread::sleep_for(std::chrono::milliseconds(30000));
     // ********* [[ MAIN LOOP ]] *********
     unsigned int frame_count = 0;
     if(this->enhance_mode_){
@@ -416,7 +419,10 @@ void SLAMBenchConfiguration::ComputeLoopAlgorithm(bool *stay_on, SLAMBenchUI *ui
                     
                     //  process once might happen in update_frame
                     //  so we need to check that the frame was used and if it was advance the tracker for enhancement
-                    accepted_frames = lib->frame_counter;
+                    if (this->enhance_mode_){
+                        accepted_frames = lib->frame_counter;
+                    }
+                    
                     // if finished with this frame , and the enhace happened then get next enhance
                     if(!this->frameFilters.empty() && current_enhance.first<accepted_frames && this->enhance_mode_){
                         current_enhance = this->frameFilters.back();
