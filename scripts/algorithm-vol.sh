@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-echo "Making sure you have slambench/main image (check it by: docker images)"
+echo "Making sure you have slamfuse/main image (check it by: docker images)"
 echo -n "Do you want to build image of algorithm [y/n]: "
 read CHOICE
 
@@ -16,8 +16,8 @@ if [[ -e $WRAPPER_FILE ]]; then
     echo "$WRAPPER_FILE exists."
 else
     echo "$WRAPPER_FILE does not exist, copy it from container."
-    docker run --name slambench-wrapper slambench/main
-    docker cp slambench-wrapper:/slambench/build/lib/libslambench-c-wrapper.a .
+    docker run --name wrapper slamfuse/main
+    docker cp wrapper:/slamfuse/build/lib/libslambench-c-wrapper.a .
 fi
 
 # Perform actions based on user input
@@ -107,22 +107,22 @@ case "$1" in
             --mount source=openvins-vol,destination=/deps/openvins \
             openvins-img
         ;;
-    "aloam")
+    "loam")
         echo "Select A-LOAM..."
         
         # Build image for A-LOAM if choice is y
         if [ "$CHOICE" = "y" ]; then
             echo "Building the A-LOAM image..."
-            docker build -t aloam-img -f $PATH_DOCKERFILE/aloam/Dockerfile .
+            docker build -t loam-img -f $PATH_DOCKERFILE/loam/Dockerfile .
         else
             echo "No image build requested."
         fi
         
         echo "Populate volume for A-LOAM.."
         docker run -d \
-            --name=aloam \
-            --mount source=aloam-vol,destination=/deps/aloam \
-            aloam-img
+            --name=loam \
+            --mount source=loam-vol,destination=/deps/loam \
+            loam-img
         ;;
     "floam")
         echo "Select F-LOAM..."

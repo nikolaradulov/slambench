@@ -96,20 +96,20 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LSD_DIR/g2o/" \
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $LSD_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $LSD_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $LSD_DIR/wrapper/
 RUN mv null.cpp $LSD_DIR/wrapper
 
 # ====== <LSD-SLAM> ======
 WORKDIR /repos
-RUN git clone --recursive --branch cpp https://github.com/yuhaozhang7/lsdslam-slambench.git lsdslam
+RUN git clone --recursive --branch cpp https://github.com/yuhaozhang7/lsdslam-slamfuse.git lsdslam
 
 WORKDIR lsdslam
 RUN mkdir build
@@ -122,7 +122,7 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LSD_DIR/" \
 	-DCSPARSE_INCLUDE_DIR=$LSD_DIR/suitesparse/include/ \
 	-DCHOLMOD_INCLUDE_DIR=$LSD_DIR/suitesparse/lib/ \
 	-DOpenCV_INCLUDE_DIRS=$LSD_DIR/opencv/include/ \
-	-DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/ \
+	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DG2O_TYPES_SIM3=$LSD_DIR/g2o/lib/libg2o_types_sim3.so \
 	-DG2O_TYPES_SBA=$LSD_DIR/g2o/lib/libg2o_types_sba.so \
 	-DG2O_CORE_LIBRARY=$LSD_DIR/g2o/lib/libg2o_core.so \

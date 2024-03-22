@@ -148,13 +148,13 @@ RUN cat /repos/opencv/build_dir/opencv_cmake.log
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $ALG_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
 RUN mv null.cpp $ALG_DIR/wrapper
@@ -162,14 +162,14 @@ RUN mv null.cpp $ALG_DIR/wrapper
 
 # ====== <LeGO-LOAM> ======
 WORKDIR /repos
-RUN git clone --recursive --branch slambench https://github.com/yuhaozhang7/LeGO-LOAM.git legoloam
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/legoloam-slamfuse.git legoloam
 
 WORKDIR /repos/legoloam/LeGO-LOAM-NoROS
 RUN mkdir build
 WORKDIR build
 RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/" \
             -DWRAPPER_PATH=$ALG_DIR/wrapper/ \
-            -DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/ \
+            -DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
             -DEIGEN3_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3/ \
             -DFLANN_INCLUDE_DIR=$ALG_DIR/flann/include/ \
             -DPCL_INCLUDE_DIR=$ALG_DIR/pcl/include/pcl-1.8/ \

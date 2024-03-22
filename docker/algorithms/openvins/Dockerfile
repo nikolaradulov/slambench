@@ -49,13 +49,13 @@ RUN cat /repos/opencv/build_dir/opencv_cmake.log
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $OPENVINS_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $OPENVINS_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $OPENVINS_DIR/wrapper/
 RUN mv null.cpp $OPENVINS_DIR/wrapper
@@ -63,7 +63,7 @@ RUN mv null.cpp $OPENVINS_DIR/wrapper
 
 # ====== <Open-VINS> ======
 WORKDIR /repos
-RUN git clone --recursive --branch rpng-master https://github.com/yuhaozhang7/openvins-slambench.git openvins
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/openvins-slamfuse.git openvins
 
 # Generate static library
 WORKDIR openvins
@@ -73,6 +73,6 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$OPENVINS_DIR/" \
 	-DCMAKE_PREFIX_PATH="$OPENVINS_DIR/opencv" \
 	-DWRAPPER_PATH=$OPENVINS_DIR/wrapper/ \
 	-DEIGEN3_INCLUDE_DIR=$OPENVINS_DIR/eigen3/include/eigen3/ \
-	-DSLAMBENCH_INCLUDE_DIRS=/repos/slambench/framework/shared/include/ \
+	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../opencv/lib"
 RUN make -j$(expr $(nproc) - 2) && make install

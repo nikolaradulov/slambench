@@ -8,20 +8,20 @@ import subprocess
 
 def build_handle():
     try:
-        output = subprocess.check_output("docker pull slambench/main ", shell=True, text=True)
+        output = subprocess.check_output("docker pull slamfuse/main ", shell=True, text=True)
     except:
         print("Image download Failed...")
     images = subprocess.check_output("docker images", shell=True, text=True)
-    if "slambench/main" not in images:
+    if "slamfuse/main" not in images:
         print("Seems like download failed, cannot find image. Build starting ...")
         current_directory = os.getcwd()
-        if current_directory.endswith("/slambench"):
-            os.system("docker build . -t slambench/main")
+        if current_directory.endswith("/slamfuse"):
+            os.system("docker build . -t slamfuse/main")
         else: 
-            os.system("git clone https://github.com/nikolaradulov/slambench.git")     
-            os.system("docker build ./slambench -t slambench/main")
+            os.system("git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse")     
+            os.system("docker build ./slamfuse -t slamfuse/main")
     else:
-        print("A version of the container is already present on host and it shall be used. Alternatively the image can manually be build by \'docker build <path to Dockerfile -t slambench/main\'")
+        print("A version of the container is already present on host and it shall be used. Alternatively the image can manually be build by \'docker build <path to Dockerfile -t slamfuse/main\'")
 
 def is_wsl():
     return "microsoft" in platform.uname().release
@@ -30,13 +30,13 @@ def print_usage():
     print("Usage: {} <mode> [options]".format(sys.argv[0]))
     print("\nModes:")
     print("  run         - Run benchmarks with provided arguments.")
-    print("  build       - Download or build the container for SLAMBench.")
+    print("  build       - Download or build the container for SLAMFuse.")
     print("  dataset     - Create a specified dataset.")
     print("\nOptions:")
     print("  For 'run' mode:")
     print("Usage: {} run [options] <dataset_location_in_volume> [<library1_path> ... <libraryN_path>]".format(sys.argv[0]))
     print("    bench-cli         - Run a benchmark with provided arguments using the command line as interface.")
-    print("    bench-gui         - Run a benchmark with provided arguments with the visualisation tool of SLAMBench.")
+    print("    bench-gui         - Run a benchmark with provided arguments with the visualisation tool of slamfuse.")
     print("    interactive-cli   - Run the container in interactive mode with mounts for datasets and algorithms.")
     print("    interactive-gui   - Run the container in interactive mode with mounts for datasets and algorithms. It also provides windowing support for applications.")
     print("\nFor 'build' mode:")
@@ -49,12 +49,12 @@ def print_usage():
 
 def dataset_handle(run_type, vol_name, dataset):
     if run_type=='list':
-        return "docker run slambench/main --list_datasets"
+        return "docker run slamfuse/main --list_datasets"
     else: 
         if vol_name is None or dataset is None:
             print("starter.py dataset: error: the following arguments are required: -v/--volume_name, -d/--dataset")
             sys.exit(1)
-        return f"docker run --mount source={vol_name},destination=/slambench/datasets slambench/main --dataset {dataset}"
+        return f"docker run --mount source={vol_name},destination=/slamfuse/datasets slamfuse/main --dataset {dataset}"
 
 def run_handle(mode, volumes, files, paths, save, extra):
     """
@@ -65,13 +65,13 @@ def run_handle(mode, volumes, files, paths, save, extra):
         if volumes is None or files is None or paths is None:
             print(f"{sys.argv[0]} {mode}: error: the following arguments are required -dv/--dataset_volume, -d/--dataset, -a/--algorithm")
             sys.exit(1)
-    image = "slambench/main"
+    image = "slamfuse/main"
     # Start the Docker container
     container_name = "{}-container".format(image)
     deps_dir = "/deps"
     docker_run_command=""
     for volume in volumes:
-        docker_run_command += "--mount source={},destination=/slambench/datasets".format(volume)
+        docker_run_command += "--mount source={},destination=/slamfuse/datasets".format(volume)
     end = ""
     for file in files:
         end+=f"{file} "
@@ -94,7 +94,7 @@ def run_handle(mode, volumes, files, paths, save, extra):
     # command line mode. Outputs the benchmark of the loaded algorithms with the loaded datasets  
     if mode == "cli":
         docker_run_command = "docker run {} {} --bench-cli {}".format(docker_run_command, image, end)
-    # GUI mode. Starts the visualisation tool of SLAMBench 
+    # GUI mode. Starts the visualisation tool of slamfuse 
     elif mode == "gui":
         if is_wsl():
             docker_run_command = "docker run -v /tmp/.X11-unix:/tmp/.X11-unix -v /mnt/wslg:/mnt/wslg -v /usr/lib/wsl:/usr/lib/wsl --device=/dev/dxg -e DISPLAY={} --device /dev/dri/card0 --device /dev/dri/renderD128 -e WAYLAND_DISPLAY={} -e XDG_RUNTIME_DIR={} {} {} --bench-gui {}".format(os.environ["DISPLAY"], os.environ["WAYLAND_DISPLAY"], os.environ["XDG_RUNTIME_DIR"], docker_run_command, image, end)
@@ -139,7 +139,7 @@ def run_handle(mode, volumes, files, paths, save, extra):
 
 def main():
     print(is_wsl())
-    parser = argparse.ArgumentParser(description="This is a tool to run Docker containers with SLAMBench.")
+    parser = argparse.ArgumentParser(description="This is a tool to run Docker containers with slamfuse.")
     subparsers = parser.add_subparsers(dest="mode", help="Select the mode of operation.")
 
     
@@ -173,7 +173,7 @@ def main():
     else:
         print("Invalid mode! Use one of the following:")
         print("  run      - Run benchmarks with provided arguments.")
-        print("  build    - Download or build the container for SLAMBench.")
+        print("  build    - Download or build the container for SLAMFuse.")
         print("  dataset  - Create a specified dataset.")
         sys.exit(1)
     

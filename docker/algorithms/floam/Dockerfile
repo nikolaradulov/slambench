@@ -154,21 +154,21 @@ RUN cmake .. -DWITH_LIBUSB=FALSE \
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $LOAM_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
-# RUN mv libslambench-c-wrapper.a $LOAM_DIR/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
+# Keep original slambench basic framework
 COPY ./libslambench-c-wrapper.a $LOAM_DIR/wrapper/
 RUN mv null.cpp $LOAM_DIR/wrapper
 
 
 # ====== <F-LOAM> ======
 WORKDIR /repos
-RUN git clone --recursive --branch slambench https://github.com/yuhaozhang7/floam.git floam
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/floam-slamfuse.git floam
 
 WORKDIR floam
 RUN mkdir build
@@ -180,7 +180,7 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
     -DPCL_INCLUDE_DIR=$LOAM_DIR/pcl/include/pcl-1.8/ \
     -DCERES_INCLUDE_DIR=$LOAM_DIR/ceres/include/ \
     -DYAML_CPP_INCLUDE_DIR=$LOAM_DIR/yaml-cpp/include/ \
- 	-DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/ \
+ 	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DFLANN_LIBRARY_DIR=$LOAM_DIR/flann/lib/ \
     -DPCL_LIBRARY_DIR=$LOAM_DIR/pcl/lib/ \
     -DCERES_LIBRARY_DIR=$LOAM_DIR/ceres/lib/ \

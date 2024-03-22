@@ -25,8 +25,8 @@
 #include <pcl/conversions.h>
 #include <pcl/PCLPointCloud2.h>
 #include <pcl/common/transforms.h>
-// #include <opencv2/imgproc/imgproc.hpp>
-// #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include <iostream>
 #include <iomanip>
@@ -39,7 +39,6 @@
 using namespace slambench::io;
 
 // You will need to resize image to be multiple of 16 if using darpra raw data
-/*
 bool resizeDARPASubtImage(const std::string &filename, int width, int height) {
 
     cv::Mat originalImage = cv::imread(filename);
@@ -62,7 +61,7 @@ bool resizeDARPASubtImage(const std::string &filename, int width, int height) {
     }
 
     return true;
-}*/
+}
 
 
 bool loadDARPASubtGreyData(const std::string &dirname,
@@ -106,6 +105,8 @@ bool loadDARPASubtGreyData(const std::string &dirname,
                 grey_frame->Timestamp.Ns = timestampNS;
 
                 std::string grey_filename = itr->path().string();
+
+                if (!resizeDARPASubtImage(grey_filename, width, height)) return false;
 
                 grey_frame->filename = grey_filename;
 
@@ -258,7 +259,7 @@ bool loadDARPASubtLidarData(const std::string &dirname, SLAMFile &file) {
 
                     // Extract timestamp from the filename
                     int timestampS = std::stoi(match[1].str());
-                    int timestampNS = std::stoi(match[2].str());;
+                    int timestampNS = std::stoi(match[2].str());
 
                     // ====== Load pointcloud for each frame
                     std::string lidar_file_pcd = lidar_dirname + "/" + filename;
@@ -428,7 +429,7 @@ SLAMFile* DARPASubtReader::GenerateSLAMFile() {
 
     int rate = 10;
     int width = 720;
-    int height = 536;
+    int height = 528;
 
     CameraSensor::intrinsics_t cam0_intrinsics;
     CameraSensor::intrinsics_t cam1_intrinsics;
@@ -443,7 +444,7 @@ SLAMFile* DARPASubtReader::GenerateSLAMFile() {
     bool rect = true;
     
     // Check the raw data type
-    if (dirname.find("anymal1") != std::string::npos && dirname.find("sync") != std::string::npos) {
+    if (dirname.find("anymal_01") != std::string::npos && dirname.find("sync") != std::string::npos) {
 
         std::cout << "Using rectified parameter of ANYMAL1 cam0 and cam1" << std::endl;
         get_DARPSSubt_params(cam0_intrinsics, cam1_intrinsics, cam_distortion_type, cam0_distortion, cam1_distortion);
@@ -452,6 +453,13 @@ SLAMFile* DARPASubtReader::GenerateSLAMFile() {
         
         rect = true;
 
+    } else {
+        std::cout << "Using rectified parameter of ANYMAL1 cam0 and cam1" << std::endl;
+        get_DARPSSubt_params(cam0_intrinsics, cam1_intrinsics, cam_distortion_type, cam0_distortion, cam1_distortion);
+
+        cam1_pose(0, 3) = 0.09939706071873089;
+        
+        rect = true;
     }
 
     if (grey && !loadDARPASubtGreyData(dirname + "/cam0", slamfile, rate, width, height, cam0_pose, cam0_intrinsics, cam_distortion_type, cam0_distortion)) {

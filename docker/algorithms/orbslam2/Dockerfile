@@ -74,20 +74,20 @@ RUN cmake .. -DBUILD_PANGOLIN_VIDEO=OFF  "-DCMAKE_INSTALL_PREFIX:PATH=$ORB2_DIR/
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $ORB2_DIR
 RUN mkdir wrapper && mkdir Vocabulary
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $ORB2_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $ORB2_DIR/wrapper/
 RUN mv null.cpp $ORB2_DIR/wrapper
 
 # ====== <ORB-SLAM2> ======
 WORKDIR /repos
-RUN git clone --recursive --branch update-master https://github.com/yuhaozhang7/orbslam2-slambench.git orbslam2
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/orbslam2-slamfuse.git orbslam2
 
 WORKDIR orbslam2
 RUN mkdir build
@@ -97,8 +97,8 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ORB2_DIR/" \
 	-DWRAPPER_PATH=$ORB2_DIR/wrapper/ \
 	-DTOON_INCLUDE_DIR=$ORB2_DIR/toon/include/ \
 	-DEIGEN3_INCLUDE_DIR=$ORB2_DIR/eigen3/include/eigen3/ \
-	-DPangolin_INCLUDE_DIRS=$ORB2_DIR/pangolin/include/ \
-	-DSLAMBENCH_INCLUDE_DIRS=/repos/slambench/framework/shared/include/ \
+	-DPangolin_INCLUDE_DIR=$ORB2_DIR/pangolin/include/ \
+	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DPangolin_LIBRARIES=$ORB2_DIR/pangolin/lib/libpangolin.so \
 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pangolin/lib:\$ORIGIN/../opencv/lib:\$ORIGIN/../DBoW2:\$ORIGIN/../g2o"
 RUN make -j$(expr $(nproc) - 2) && make install

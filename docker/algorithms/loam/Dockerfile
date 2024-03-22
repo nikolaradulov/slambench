@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Install git and other dependencies
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LOAM_DIR=/deps/aloam
+ENV LOAM_DIR=/deps/loam
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install git
@@ -30,6 +30,18 @@ WORKDIR eigen3
 RUN mkdir build
 WORKDIR build
 RUN cmake .. -DBUILD_SHARED_LIBS=OFF  -DCMAKE_BUILD_TYPE=Release  "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/eigen3/"
+RUN make -j$(expr $(nproc) - 2) && make install
+
+
+# ===== <YAML-CPP> =====
+WORKDIR /repos
+RUN git clone --branch 0.8.0 https://github.com/jbeder/yaml-cpp.git yaml-cpp
+
+# Build yaml-cpp
+WORKDIR yaml-cpp
+RUN mkdir build
+WORKDIR build
+RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/yaml-cpp/"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
@@ -142,23 +154,23 @@ RUN cmake .. -DWITH_LIBUSB=FALSE \
 RUN make -j$(expr $(nproc) - 2) && make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $LOAM_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $LOAM_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $LOAM_DIR/wrapper/
 RUN mv null.cpp $LOAM_DIR/wrapper
 
 
-# ====== <A-LOAM> ======
+# ====== <LOAM> ======
 WORKDIR /repos
-RUN git clone --recursive --branch slambench https://github.com/yuhaozhang7/oh_my_loam.git aloam
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/loam-slamfuse.git loam
 
-WORKDIR aloam
+WORKDIR loam
 RUN mkdir build
 WORKDIR build
 RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
@@ -167,14 +179,16 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$LOAM_DIR/" \
 	-DFLANN_INCLUDE_DIR=$LOAM_DIR/flann/include/ \
     -DPCL_INCLUDE_DIR=$LOAM_DIR/pcl/include/pcl-1.8/ \
     -DCERES_INCLUDE_DIR=$LOAM_DIR/ceres/include/ \
- 	-DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/ \
+	-DYAML_CPP_INCLUDE_DIR=$LOAM_DIR/yaml-cpp/include/ \
+ 	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/ \
 	-DFLANN_LIBRARY_DIR=$LOAM_DIR/flann/lib/ \
     -DPCL_LIBRARY_DIR=$LOAM_DIR/pcl/lib/ \
     -DCERES_LIBRARY_DIR=$LOAM_DIR/ceres/lib/ \
- 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pcl/lib:\$ORIGIN/../ceres/lib:\$ORIGIN/../flann/lib"
+	-DYAML_CPP_LIBRARY_DIR=$LOAM_DIR/yaml-cpp/lib/ \
+ 	-DLIB_PATH="\$ORIGIN:\$ORIGIN/../pcl/lib:\$ORIGIN/../ceres/lib:\$ORIGIN/../flann/lib:\$ORIGIN/../yaml-cpp/lib"
 RUN make -j$(expr $(nproc) - 2) && make install
 
 WORKDIR $LOAM_DIR
 RUN mkdir configs
 WORKDIR configs
-RUN mv /repos/aloam/configs/*.yaml .
+RUN mv /repos/loam/configs/*.yaml .

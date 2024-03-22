@@ -15,7 +15,7 @@ paths=("${@:4}")
 # Start the Docker container
 container_name="${image}-container"
 deps_dir="/deps"
-docker_run_command="--mount source=$file,destination=/slambench/datasets"
+docker_run_command="--mount source=$file,destination=/slamfuse/datasets"
 end=" "
 
 for path in "${paths[@]}"; do

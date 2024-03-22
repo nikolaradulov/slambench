@@ -31,7 +31,7 @@ namespace slambench {
     private:
             static constexpr image_params_t img_params_ori = { 720, 540, 10.0, 1.0};
             // original recitified image size: 720*540, make it become multiple of 16
-            static constexpr image_params_t img_params_rect = { 720, 536, 10.0, 1.0};
+            static constexpr image_params_t img_params_rect = { 720, 528, 10.0, 1.0};
 
             static constexpr CameraSensor::intrinsics_t cam0_intri_anymal1_rect
                     = { 348.12911695 / img_params_rect.width, 348.12911695 / img_params_rect.height,
@@ -73,7 +73,21 @@ namespace slambench {
                             CameraSensor::distortion_coefficients_t &cam_distortion_lgrey,
                             CameraSensor::distortion_coefficients_t &cam_distortion_rgrey) {
                                 
-                if (input.find("anymal1") != std::string::npos && input.find("sync") != std::string::npos) {
+                if (input.find("anymal_01") != std::string::npos && input.find("sync") != std::string::npos) {
+                    
+                    std::cout << "Loading params of rectified ANYMAL1 cam0 and cam1..." << std::endl;
+                    for (uint32_t i = 0; i < 4; i++) {
+                        cam_intrinsics_lgrey[i] = cam0_intri_anymal1_rect[i];
+                        cam_intrinsics_rgrey[i] = cam0_intri_anymal1_rect[i];
+                    }
+
+                    distortion_type = CameraSensor::NoDistortion;
+                    for (uint32_t i = 0; i < 5; i++) {
+                        cam_distortion_lgrey[i] = 0.0;
+                        cam_distortion_rgrey[i] = 0.0;
+                    }
+
+                } else {
                     
                     std::cout << "Loading params of rectified ANYMAL1 cam0 and cam1..." << std::endl;
                     for (uint32_t i = 0; i < 4; i++) {
@@ -88,7 +102,7 @@ namespace slambench {
                     }
 
                 }
-            }
+        }
     
 
         SLAMFile* GenerateSLAMFile() override;

@@ -39,13 +39,13 @@ RUN ./configure --prefix=$ALG_DIR/toon/
 RUN make install
 
 
-# ====== <SLAMBench> ======
+# ====== <SLAMFuse> ======
 WORKDIR /repos
-RUN git clone --branch fake_slambench https://github.com/nikolaradulov/slambench.git slambench
+RUN git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 
 WORKDIR $ALG_DIR
 RUN mkdir wrapper
-WORKDIR /repos/slambench/docker/wrapper
+WORKDIR /repos/slamfuse/docker/wrapper
 # RUN mv libslambench-c-wrapper.a $ALG_DIR/wrapper
 COPY ./libslambench-c-wrapper.a $ALG_DIR/wrapper/
 RUN mv null.cpp $ALG_DIR/wrapper
@@ -53,7 +53,7 @@ RUN mv null.cpp $ALG_DIR/wrapper
 
 # ====== <KFusion> ======
 WORKDIR /repos
-RUN git clone --recursive --branch update-master https://github.com/yuhaozhang7/kfusion-slambench.git kfusion
+RUN git clone --recursive --branch slamfuse https://github.com/yuhaozhang7/kfusion-slamfuse.git kfusion
 
 
 # Generate static library
@@ -64,5 +64,5 @@ RUN cmake .. "-DCMAKE_INSTALL_PREFIX:PATH=$ALG_DIR/" \
 	-DWRAPPER_PATH=$ALG_DIR/wrapper/ \
 	-DEIGEN3_INCLUDE_DIR=$ALG_DIR/eigen3/include/eigen3/ \
 	-DTOON_INCLUDE_PATHS=$ALG_DIR/toon/include/ \
-	-DSLAMBENCH_INCLUDE_DIR=/repos/slambench/framework/shared/include/
+	-DSLAMFUSE_INCLUDE_DIR=/repos/slamfuse/framework/shared/include/
 RUN make -j$(expr $(nproc) - 2) && make install
