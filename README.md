@@ -1,6 +1,6 @@
 <!-- ================================================== Disclaimer ============================================================ -->
 SLAMFuse is still under development and not all features presented in the paper are currently available on  main 'SLAMFuse' branch. We are actively working on improving 
-the tool so have a look [here](./issues/30) if you can't find a feature you were looking for.  
+the tool so have a look [here](https://github.com/nikolaradulov/SLAMFuse/issues/30) if you can't find a feature you were looking for.  
 <!-- ==================================================Prerequisites============================================================ -->
 # 1. ___Prerequisites___
 ## 1.1 Recommended System:
