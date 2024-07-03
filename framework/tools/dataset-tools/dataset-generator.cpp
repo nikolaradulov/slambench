@@ -37,6 +37,7 @@
 #include "include/NSH.h"
 #include "include/NewerCollege.h"
 #include "include/DARPASubt.h"
+#include "include/General.h"
 
 using namespace slambench::io;
 
@@ -92,6 +93,8 @@ public:
             std::cerr << "\033[1;31mError: ROS support not enabled for this dataset. Please rebuild SLAMBench with ROS dependencies.\033[0m" << std::endl;
 			exit(1);
 #endif
+        } else if (dataset_name == "general") {
+            config->reader = new GeneralDatasetReader("");
         } else if (dataset_name == "eurocmav") {
             config->reader = new EUROCMAVReader("");
         } else if (dataset_name == "icl") {
@@ -156,7 +159,7 @@ public:
 
         this->addParameter(TypedParameter<std::string>("d", "dataset",
                                                        "Name of the input dataset type "
-                                                       "(iclnuim, tum, eurocmav, icl, svo, bonn, ethi, uzhfpv, kitti, nsh, newercollege, darpasubt, OpenLORIS)",
+                                                       "(iclnuim, tum, eurocmav, icl, svo, bonn, ethi, uzhfpv, kitti, nsh, newercollege, darpasubt, general, OpenLORIS)",
                                                        &this->dataset, nullptr, dataset_callback));
         this->addParameter(TypedParameter<std::string>("o","output","Output slam file", &this->output, nullptr));
         this->addParameter(TypedParameter<bool>("q", "quiet","Hide the progress bar", &this->quiet, nullptr));
