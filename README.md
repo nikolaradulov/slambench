@@ -23,7 +23,7 @@ $ sudo chmod 777 /var/run/docker.sock
 ## 2.1 Build SLAMFuse
 ```
 $ sudo apt-get install git
-$ git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse # NEED TO CHANGE THE LINK IF MOVES TO PAMELA-PROJECT
+$ git clone https://github.com/nikolaradulov/SLAMFuse.git slamfuse
 $ cd ~/slamfuse/
 $ docker build . -t slamfuse/main
 ```
